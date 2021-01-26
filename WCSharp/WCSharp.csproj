@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+	<LangVersion>8.0</LangVersion>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<Authors>Orden</Authors>
+	<Company />
+	<Description>A set of systems to simplify the process of WarCraft 3 mapmaking with C#.</Description>
+	<Copyright>2020</Copyright>
+	<NeutralLanguage>en-GB</NeutralLanguage>
+	<PackageReleaseNotes>- Fixed a bug with IterateWithRemoval where it would iterate an item twice under certain conditions.</PackageReleaseNotes>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Orden4</PackageProjectUrl>
+    <PackageVersion>1.3.5</PackageVersion>
+	
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>contentFiles</ContentTargetFolders>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo> 
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <NoBuild>true</NoBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
+    <PackageReference Include="War3Api.Common" Version="1.32.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Generated\**" />
+    <None Include="Generated\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="@(Compile)">
+      <Pack>true</Pack>
+      <PackagePath>$(ContentTargetFolders)\cs\netstandard2.1\$(MSBuildProjectName)\%(RecursiveDir)\</PackagePath>
+    </Compile>
+    <EmbeddedResource Update="@(EmbeddedResource)">
+      <Pack>true</Pack>
+      <PackagePath>$(ContentTargetFolders)\any\any\$(PackageId)\%(RecursiveDir)\</PackagePath>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+</Project>
