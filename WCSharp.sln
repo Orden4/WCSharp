@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Launcher", "Launcher\Launch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Source", "Source\Source.csproj", "{F8A8DD28-974D-46AC-91A8-324E2BD1FAE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCSharp.ConstantGenerator", "WCSharp.ConstantGenerator\WCSharp.ConstantGenerator.csproj", "{3754F81C-5687-4EBF-8C48-E5FC83B013D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.ConstantGenerator", "WCSharp.ConstantGenerator\WCSharp.ConstantGenerator.csproj", "{3754F81C-5687-4EBF-8C48-E5FC83B013D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCSharp.Natives", "WCSharp.Natives\WCSharp.Natives.csproj", "{BB1493DB-A981-44AB-9CCA-36719108D0E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{3754F81C-5687-4EBF-8C48-E5FC83B013D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3754F81C-5687-4EBF-8C48-E5FC83B013D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3754F81C-5687-4EBF-8C48-E5FC83B013D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB1493DB-A981-44AB-9CCA-36719108D0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1493DB-A981-44AB-9CCA-36719108D0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1493DB-A981-44AB-9CCA-36719108D0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1493DB-A981-44AB-9CCA-36719108D0E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
