@@ -9,11 +9,11 @@
 	<Description>A set of systems to simplify the process of WarCraft 3 mapmaking with C#.</Description>
 	<Copyright>2020</Copyright>
 	<NeutralLanguage>en-GB</NeutralLanguage>
-	<PackageReleaseNotes>- Fixed a bug with IterateWithRemoval where it would iterate an item twice under certain conditions.</PackageReleaseNotes>
+	<PackageReleaseNotes>- Fixed EffectScale not being applied correctly on launch for missiles.</PackageReleaseNotes>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Orden4</PackageProjectUrl>
-    <PackageVersion>1.3.5</PackageVersion>
+    <PackageVersion>1.3.6</PackageVersion>
 	
     <IsPackable>true</IsPackable>
     <IncludeBuildOutput>false</IncludeBuildOutput>

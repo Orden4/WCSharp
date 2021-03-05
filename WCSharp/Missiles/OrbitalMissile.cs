@@ -101,11 +101,11 @@ namespace WCSharp.Missiles
 
 			IntervalLeft = Interval;
 
-			if (!string.IsNullOrEmpty(EffectString))
+			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				Effect = AddSpecialEffect(EffectString, MissileX, MissileY);
+				Effect = AddSpecialEffect(this.effectString, MissileX, MissileY);
 				BlzSetSpecialEffectZ(Effect, MissileZ);
-				BlzSetSpecialEffectScale(Effect, EffectScale);
+				BlzSetSpecialEffectScale(Effect, this.effectScale);
 			}
 		}
 
