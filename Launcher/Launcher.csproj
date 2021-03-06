@@ -2,15 +2,15 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="DotNetZip" Version="1.15.0" />
 	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
 	  <PackageReference Include="System.Security.Permissions" Version="5.0.0" />
-	  <PackageReference Include="War3Net.Build" Version="1.7.0" />
-	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.3" />
+	  <PackageReference Include="War3Net.Build" Version="5.0.0" />
+	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.8" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,8 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CSharpLua;
 using Microsoft.CodeAnalysis;
 using War3Net.Build;
+using War3Net.Build.Extensions;
+using War3Net.IO.Mpq;
 using WCSharp.ConstantGenerator;
 
 namespace Launcher
@@ -19,11 +22,17 @@ namespace Launcher
 
 		// Output
 		private const string OUTPUT_FOLDER_PATH = @"..\..\..\..\artifacts";
+		private const string OUTPUT_SCRIPT_NAME = @"war3map.lua";
 		private const string OUTPUT_MAP_NAME = @"target.w3x";
 
 		// Warcraft III
 		private const string GRAPHICS_API = "Direct3D9";
 		private const bool PAUSE_GAME_ON_LOSE_FOCUS = false;
+#if DEBUG
+		private const bool DEBUG = true;
+#else
+		private const bool DEBUG = false;
+#endif
 
 		private static void Main()
 		{
@@ -57,46 +66,69 @@ namespace Launcher
 
 		public static void Build(bool launch)
 		{
-			// Build and launch
-			var mapBuilder = new MapBuilder(OUTPUT_MAP_NAME);
-			var options = CompilerOptions.GetCompilerOptions(SOURCE_CODE_PROJECT_FOLDER_PATH, OUTPUT_FOLDER_PATH);
-			var buildResult = mapBuilder.Build(options, ASSETS_FOLDER_PATH, BASE_MAP_PATH);
+			var map = Map.Open(BASE_MAP_PATH);
+			var builder = new MapBuilder(map);
+			builder.AddFiles(ASSETS_FOLDER_PATH);
 
-			if (buildResult.Success)
+			var csc = DEBUG ? "-define:DEBUG" : null;
+			var csproj = Directory.EnumerateFiles(SOURCE_CODE_PROJECT_FOLDER_PATH, "*.csproj", SearchOption.TopDirectoryOnly).Single();
+			var compiler = new Compiler(csproj, OUTPUT_FOLDER_PATH, string.Empty, null, "", "", csc, false, null, string.Empty)
 			{
-				var mapPath = Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_MAP_NAME);
-				var absoluteMapPath = new FileInfo(mapPath).FullName;
+				IsExportMetadata = true,
+				IsModule = false,
+				IsInlineSimpleProperty = false,
+				IsPreventDebugObject = true,
+				IsCommentsDisabled = !DEBUG
+			};
 
-				if (launch)
-				{
-					var wc3exe = ConfigurationManager.AppSettings["wc3exe"];
-					if (wc3exe != null)
-					{
-						var commandLineArgs = new StringBuilder();
-						var isReforged = Version.Parse(FileVersionInfo.GetVersionInfo(wc3exe).FileVersion) >= new Version(1, 32);
-						if (isReforged)
-						{
-							commandLineArgs.Append("-launch ");
-						}
-						else if (GRAPHICS_API != null)
-						{
-							commandLineArgs.Append($"-graphicsapi {GRAPHICS_API} ");
-						}
+			var coreSystemFiles = CSharpLua.CoreSystem.CoreSystemProvider.GetCoreSystemFiles();
+			var blizzardJ = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Warcraft III/JassHelper/Blizzard.j");
+			var commonJ = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Warcraft III/JassHelper/common.j");
+			var compileResult = map.CompileScript(compiler, coreSystemFiles, blizzardJ, commonJ);
 
-						if (!PAUSE_GAME_ON_LOSE_FOCUS)
-						{
-							commandLineArgs.Append("-nowfpause ");
-						}
-
-						commandLineArgs.Append($"-loadfile \"{absoluteMapPath}\"");
-
-						Process.Start(wc3exe, commandLineArgs.ToString());
-					}
-				}
+			if (!compileResult.Success)
+			{
+				throw new Exception(compileResult.Diagnostics.First(x => x.Severity == DiagnosticSeverity.Error).GetMessage());
 			}
-			else
+
+			File.WriteAllText(Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_SCRIPT_NAME), map.Script);
+
+			var archiveCreateOptions = new MpqArchiveCreateOptions
 			{
-				throw new Exception(buildResult.Diagnostics.First(x => x.Severity == DiagnosticSeverity.Error).GetMessage());
+				ListFileCreateMode = MpqFileCreateMode.Overwrite,
+				AttributesCreateMode = MpqFileCreateMode.Prune,
+				BlockSize = 3,
+			};
+
+			builder.Build(Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_MAP_NAME), archiveCreateOptions);
+
+			if (launch)
+			{
+				var wc3exe = ConfigurationManager.AppSettings["wc3exe"];
+				if (wc3exe != null)
+				{
+					var commandLineArgs = new StringBuilder();
+					var isReforged = Version.Parse(FileVersionInfo.GetVersionInfo(wc3exe).FileVersion) >= new Version(1, 32);
+					if (isReforged)
+					{
+						commandLineArgs.Append("-launch ");
+					}
+					else if (GRAPHICS_API != null)
+					{
+						commandLineArgs.Append($"-graphicsapi {GRAPHICS_API} ");
+					}
+
+					if (!PAUSE_GAME_ON_LOSE_FOCUS)
+					{
+						commandLineArgs.Append("-nowfpause ");
+					}
+
+					var mapPath = Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_MAP_NAME);
+					var absoluteMapPath = new FileInfo(mapPath).FullName;
+					commandLineArgs.Append($"-loadfile \"{absoluteMapPath}\"");
+
+					Process.Start(wc3exe, commandLineArgs.ToString());
+				}
 			}
 		}
 	}

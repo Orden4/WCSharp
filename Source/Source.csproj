@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\artifacts\war3map.lua" Link="war3map.lua" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
+		<PackageReference Include="War3Api.Common" Version="1.32.9" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<ProjectReference Include="..\WCSharp\WCSharp.csproj" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<PackageReference Include="WCSharp" Version="1.3.6" />
+	</ItemGroup>
+</Project>
