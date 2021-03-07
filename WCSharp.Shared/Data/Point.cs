@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Utils.Data
+﻿using System;
+
+namespace WCSharp.Utils.Data
 {
 	/// <summary>
 	/// Data class for a simple point coordinate.
@@ -16,12 +18,12 @@
 
 		public static bool operator ==(Point point1, Point point2)
 		{
-			return point1.X == point2.X && point1.X == point2.X;
+			return point1.X == point2.X && point1.Y == point2.Y;
 		}
 
 		public static bool operator !=(Point point1, Point point2)
 		{
-			return point1.X != point2.X || point1.X != point2.X;
+			return point1.X != point2.X || point1.Y != point2.Y;
 		}
 
 		public override bool Equals(object obj)
@@ -33,10 +35,7 @@
 
 		public override int GetHashCode()
 		{
-			var hashCode = 1861411795;
-			hashCode = (hashCode * -1521134295) + X.GetHashCode();
-			hashCode = (hashCode * -1521134295) + Y.GetHashCode();
-			return hashCode;
+			return HashCode.Combine(X, Y);
 		}
 	}
 }

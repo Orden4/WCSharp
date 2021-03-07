@@ -247,12 +247,7 @@ namespace WCSharp.Utils.Data
 
 		public override int GetHashCode()
 		{
-			var hashCode = -481391125;
-			hashCode = (hashCode * -1521134295) + Left.GetHashCode();
-			hashCode = (hashCode * -1521134295) + Bottom.GetHashCode();
-			hashCode = (hashCode * -1521134295) + Right.GetHashCode();
-			hashCode = (hashCode * -1521134295) + Top.GetHashCode();
-			return hashCode;
+			return HashCode.Combine(Left, Bottom, Right, Top);
 		}
 	}
 }
