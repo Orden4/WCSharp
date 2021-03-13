@@ -72,7 +72,7 @@ namespace Launcher
 
 			var csc = DEBUG ? "-define:DEBUG" : null;
 			var csproj = Directory.EnumerateFiles(SOURCE_CODE_PROJECT_FOLDER_PATH, "*.csproj", SearchOption.TopDirectoryOnly).Single();
-			var compiler = new Compiler(csproj, OUTPUT_FOLDER_PATH, string.Empty, null, "", "", csc, false, null, string.Empty)
+			var compiler = new Compiler(csproj, OUTPUT_FOLDER_PATH, string.Empty, null, "WCSharp.*", "", csc, false, null, string.Empty)
 			{
 				IsExportMetadata = true,
 				IsModule = false,

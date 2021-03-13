@@ -35,4 +35,9 @@ The SaveLoad package provides a system that can be used to save and load data be
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WCSharp.Json\WCSharp.Json.csproj" />
+    <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
+  </ItemGroup>
+
 </Project>
