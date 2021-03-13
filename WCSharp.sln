@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Launcher", "Launcher\Launch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Source", "Source\Source.csproj", "{F8A8DD28-974D-46AC-91A8-324E2BD1FAE6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp", "WCSharp\WCSharp.csproj", "{54240127-7D28-4B6D-B879-CDF4EFCC8BF4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.ConstantGenerator", "WCSharp.ConstantGenerator\WCSharp.ConstantGenerator.csproj", "{759589DB-D5AA-4617-97F6-BCC9824B75B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Missiles", "WCSharp.Missiles\WCSharp.Missiles.csproj", "{FC57984B-01BC-459C-A6A5-7517A420B670}"
@@ -54,10 +52,6 @@ Global
 		{F8A8DD28-974D-46AC-91A8-324E2BD1FAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8A8DD28-974D-46AC-91A8-324E2BD1FAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8A8DD28-974D-46AC-91A8-324E2BD1FAE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54240127-7D28-4B6D-B879-CDF4EFCC8BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54240127-7D28-4B6D-B879-CDF4EFCC8BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54240127-7D28-4B6D-B879-CDF4EFCC8BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54240127-7D28-4B6D-B879-CDF4EFCC8BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{759589DB-D5AA-4617-97F6-BCC9824B75B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{759589DB-D5AA-4617-97F6-BCC9824B75B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759589DB-D5AA-4617-97F6-BCC9824B75B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
