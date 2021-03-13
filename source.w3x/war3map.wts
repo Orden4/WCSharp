@@ -1,0 +1,190 @@
+﻿STRING 1
+{
+Player 1
+}
+
+STRING 2
+{
+Force 1
+}
+
+STRING 3
+{
+Just another Warcraft III map
+}
+
+STRING 4
+{
+Any
+}
+
+STRING 5
+{
+Nondescript
+}
+
+STRING 6
+{
+Unknown
+}
+
+STRING 7
+// Units: xxxx (Dummy), Name (Name)
+{
+Dummy
+}
+
+STRING 11
+// Abilities: A002 (Straight Missile), Name (Name)
+{
+Straight Missile
+}
+
+STRING 12
+// Abilities: A001 (Arcing Missile), Name (Name)
+{
+Arcing Missile
+}
+
+STRING 14
+// Abilities: A000 (Homing Missile), Name (Name)
+{
+Homing Missile
+}
+
+STRING 15
+// Abilities: A000 (Homing Missile), Tip (Tooltip - Normal)
+{
+Homing Missile
+}
+
+STRING 16
+// Abilities: A000 (Homing Missile), Ubertip (Tooltip - Normal - Extended)
+{
+Homing Missile
+}
+
+STRING 17
+// Abilities: A001 (Arcing Missile), Tip (Tooltip - Normal)
+{
+Arcing Missile
+}
+
+STRING 18
+// Abilities: A001 (Arcing Missile), Ubertip (Tooltip - Normal - Extended)
+{
+Arcing Missile
+}
+
+STRING 19
+// Abilities: A002 (Straight Missile), Tip (Tooltip - Normal)
+{
+Straight Missile
+}
+
+STRING 20
+// Abilities: A002 (Straight Missile), Ubertip (Tooltip - Normal - Extended)
+{
+Straight Missile
+}
+
+STRING 21
+// Abilities: A003 (Orbital Missile), Name (Name)
+{
+Orbital Missile
+}
+
+STRING 22
+// Abilities: A003 (Orbital Missile), Tip (Tooltip - Normal)
+{
+Orbital Missile
+}
+
+STRING 23
+// Abilities: A003 (Orbital Missile), Ubertip (Tooltip - Normal - Extended)
+{
+Orbital Missile
+}
+
+STRING 24
+// Abilities: A004 (Momentum Missile), Name (Name)
+{
+Momentum Missile
+}
+
+STRING 25
+// Abilities: A004 (Momentum Missile), Tip (Tooltip - Normal)
+{
+Momentum Missile
+}
+
+STRING 26
+// Abilities: A004 (Momentum Missile), Ubertip (Tooltip - Normal - Extended)
+{
+Momentum Missile
+}
+
+STRING 27
+// Abilities: A005 (Curving Missile), Name (Name)
+{
+Curving Missile
+}
+
+STRING 28
+// Abilities: A005 (Curving Missile), Tip (Tooltip - Normal)
+{
+Curving Missile
+}
+
+STRING 29
+// Abilities: A005 (Curving Missile), Ubertip (Tooltip - Normal - Extended)
+{
+Curving Missile
+}
+
+STRING 30
+// Abilities: A000 (Homing Missile), Hotkey (Hotkey - Normal)
+{
+Z
+}
+
+STRING 31
+// Abilities: A001 (Arcing Missile), Hotkey (Hotkey - Normal)
+{
+W
+}
+
+STRING 32
+// Abilities: A002 (Straight Missile), Hotkey (Hotkey - Normal)
+{
+Q
+}
+
+STRING 33
+// Abilities: A004 (Momentum Missile), Hotkey (Hotkey - Normal)
+{
+X
+}
+
+STRING 34
+// Abilities: A005 (Curving Missile), Hotkey (Hotkey - Normal)
+{
+E
+}
+
+STRING 35
+// Items: I000 (Protection), Name (Name)
+{
+Protection
+}
+
+STRING 36
+{
+Player 2
+}
+
+STRING 37
+{
+Player 3
+}
+

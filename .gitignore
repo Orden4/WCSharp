@@ -1,8 +1,5 @@
 ## Own ignores
 artifacts
-source.w3x
-app.config
-Source/*
 
 
 
