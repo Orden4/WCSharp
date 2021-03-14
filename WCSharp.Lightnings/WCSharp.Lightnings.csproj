@@ -20,11 +20,8 @@
     <PackageReference Include="War3Api.Common" Version="1.32.9" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <ItemGroup>
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PackageReference Include="WCSharp.Events" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>

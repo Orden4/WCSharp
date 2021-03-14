@@ -21,11 +21,8 @@ The Events package provides various systems for organising events with an focus 
     <PackageReference Include="War3Api.Common" Version="1.32.9" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <ItemGroup>
     <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PackageReference Include="WCSharp.Shared" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>

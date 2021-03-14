@@ -73,7 +73,7 @@ namespace Launcher
 			var builder = new MapBuilder(map);
 			builder.AddFiles(ASSETS_FOLDER_PATH);
 
-			var csc = DEBUG ? "-define:DEBUG" : null;
+			var csc = DEBUG ? "-debug -define:DEBUG" : null;
 			var csproj = Directory.EnumerateFiles(SOURCE_CODE_PROJECT_FOLDER_PATH, "*.csproj", SearchOption.TopDirectoryOnly).Single();
 			var compiler = new Compiler(csproj, OUTPUT_FOLDER_PATH, string.Empty, null, "", "", csc, false, null, string.Empty)
 			{

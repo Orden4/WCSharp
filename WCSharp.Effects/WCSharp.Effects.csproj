@@ -24,13 +24,6 @@
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PackageReference Include="WCSharp.Events" Version="0.1.0" />
-  </ItemGroup>
-
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
