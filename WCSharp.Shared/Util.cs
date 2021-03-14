@@ -212,13 +212,29 @@ namespace WCSharp.Utils
 			return difference < minAllowedAngle || difference > maxAllowedAngle;
 		}
 
-		public static IEnumerable<player> GetPlayersPresent()
+		public static IEnumerable<player> EnumeratePlayers(playerslotstate playerslotstate = null, mapcontrol mapcontrol = null)
+		{
+			playerslotstate ??= PLAYER_SLOT_STATE_PLAYING;
+			mapcontrol ??= MAP_CONTROL_USER;
+
+			var maxPlayers = GetBJMaxPlayers();
+			for (var i = 0; i < maxPlayers; i++)
+			{
+				var player = Player(i);
+				if (GetPlayerSlotState(player) == playerslotstate && GetPlayerController(player) == mapcontrol)
+				{
+					yield return player;
+				}
+			}
+		}
+
+		public static IEnumerable<player> EnumeratePlayers(Func<player, bool> filter)
 		{
 			var maxPlayers = GetBJMaxPlayers();
 			for (var i = 0; i < maxPlayers; i++)
 			{
 				var player = Player(i);
-				if (GetPlayerSlotState(player) != PLAYER_SLOT_STATE_EMPTY)
+				if (filter(player))
 				{
 					yield return player;
 				}

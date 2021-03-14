@@ -135,25 +135,15 @@ namespace WCSharp.DateTime
 		public WcDateTime(int year, int month, int day, int hour, int minutes, int seconds)
 		{
 			if (year < 1970 || year > 2038)
-			{
 				throw new ArgumentException("WcDateTime before 1970 or after 2038 are not supported.");
-			}
 			if (month < 1 || month > 12)
-			{
 				throw new ArgumentException("Month cannot be less than 1 or greater than 12.");
-			}
 			if (hour < 0 || hour > 23)
-			{
 				throw new ArgumentException("Hour cannot be less than 0 or greater than 23.");
-			}
 			if (minutes < 0 || minutes > 59)
-			{
 				throw new ArgumentException("Minutes cannot be less than 0 or greater than 59.");
-			}
 			if (seconds < 0 || seconds > 59)
-			{
 				throw new ArgumentException("Seconds cannot be less than 0 or greater than 59.");
-			}
 
 			for (var i = 1970; i < year; i++)
 			{
@@ -169,9 +159,7 @@ namespace WCSharp.DateTime
 
 			var months = year % 4 == 0 ? daysToMonth366 : daysToMonth365;
 			if (day < 0 || day > months[month] - months[month - 1])
-			{
 				throw new ArgumentException($"Days cannot be less than 0 or greater the number of days in the current month ({months[month] - months[month - 1]}).");
-			}
 
 			this.seconds +=
 				(months[month - 1] * WcTimeSpan.SECONDS_PER_DAY) +

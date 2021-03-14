@@ -13,6 +13,34 @@ namespace WCSharp.Json
 			return (T)Deserialize(input, typeof(T));
 		}
 
+		public static bool TryDeserialize<T>(string input, out T data)
+		{
+			if (TryDeserialize(input, typeof(T), out var obj))
+			{
+				data = (T)obj;
+				return true;
+			}
+			else
+			{
+				data = default;
+				return false;
+			}
+		}
+
+		public static bool TryDeserialize(string input, Type deserializeType, out object data)
+		{
+			try
+			{
+				data = Deserialize(input, deserializeType);
+				return true;
+			}
+			catch (Exception)
+			{
+				data = null;
+				return false;
+			}
+		}
+
 		public static object Deserialize(string input, Type deserializeType)
 		{
 			object table = default;
@@ -375,7 +403,7 @@ local function encode_number(val)
   if val ~= val or val <= -math.huge or val >= math.huge then
     error("unexpected number value '" .. tostring(val) .. "'")
   end
-  return string.format("%.14g", val)
+  return tostring(val)
 end
 local type_func_map = {
   [ "nil"     ] = encode_nil,

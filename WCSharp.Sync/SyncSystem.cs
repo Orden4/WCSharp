@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WCSharp.Json;
 using WCSharp.Utils;
 using static War3Api.Common;
@@ -29,6 +30,16 @@ namespace WCSharp.Sync
 
 		private static readonly List<SyncHandler> syncHandlers = new List<SyncHandler>();
 		private static readonly Dictionary<int, SyncMessage> messages = new Dictionary<int, SyncMessage>();
+		private static readonly HashSet<char> escapeChars = new HashSet<char>
+		{
+			'"',
+			'\\',
+			'\b',
+			'\f',
+			'\n',
+			'\r',
+			'\t'
+		};
 		private static bool initialized = false;
 
 		private static void Initialize()
@@ -41,7 +52,7 @@ namespace WCSharp.Sync
 		{
 			var headerTrigger = CreateTrigger();
 			TriggerAddAction(headerTrigger, action);
-			foreach (var player in Util.GetPlayersPresent())
+			foreach (var player in Util.EnumeratePlayers())
 			{
 				BlzTriggerRegisterPlayerSyncEvent(headerTrigger, player, prefix, false);
 			}
@@ -112,23 +123,61 @@ namespace WCSharp.Sync
 
 			var contents = JsonConvert.Serialize(message);
 			var playerId = GetPlayerId(GetLocalPlayer());
+			var packets = BuildPackets(contents, playerId).ToList();
 			var header = new SyncHeader
 			{
-				PacketCount = contents.Length / PACKET_SIZE,
+				PacketCount = packets.Count,
 				PlayerId = playerId,
 				TypeName = typeof(T).FullName
 			};
 
 			BlzSendSyncData(SYNC_HEADER_PREFIX, JsonConvert.Serialize(header));
-			for (var i = 0; i < contents.Length; i += PACKET_SIZE)
+
+			foreach (var packet in packets)
 			{
-				var endIndex = Math.Min(contents.Length - i, PACKET_SIZE);
-				var packet = new SyncPacket
+				BlzSendSyncData(SYNC_PACKET_PREFIX, JsonConvert.Serialize(packet));
+			}
+		}
+
+		/// <summary>
+		/// Splits packets, taking into account added length from escaping the message data.
+		/// </summary>
+		private static IEnumerable<SyncPacket> BuildPackets(string content, int playerId)
+		{
+			var i = 0;
+			while (i < content.Length)
+			{
+				var startIndex = i;
+				var endIndex = Math.Min(content.Length - i, i + PACKET_SIZE);
+				var actualLength = endIndex - startIndex;
+				foreach (var ch in content.Substring(startIndex, endIndex))
+				{
+					if (escapeChars.Contains(ch))
+					{
+						if (++actualLength > PACKET_SIZE)
+						{
+							// If we remove an escape character, we free up 2 places
+							if (escapeChars.Contains(content[startIndex + endIndex - 1]))
+							{
+								actualLength -= 2;
+							}
+							else
+							{
+								actualLength--;
+							}
+
+							endIndex--;
+						}
+					}
+				}
+
+				yield return new SyncPacket
 				{
 					P = playerId,
-					M = contents.Substring(i, endIndex)
+					M = content.Substring(startIndex, endIndex)
 				};
-				BlzSendSyncData(SYNC_PACKET_PREFIX, JsonConvert.Serialize(packet));
+
+				i = startIndex + endIndex;
 			}
 		}
 

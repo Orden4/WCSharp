@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using WCSharp.Json;
 using WCSharp.Sync;
+using WCSharp.Utils;
 using static War3Api.Common;
 
 namespace WCSharp.SaveLoad
@@ -77,47 +78,25 @@ namespace WCSharp.SaveLoad
 			this.salt = options.Salt;
 			this.bindSavesToPlayerName = options.BindSavesToPlayerName;
 			this.suffix = options.Suffix ?? "";
-			if (this.suffix != "" && this.suffix.StartsWith("-"))
+			if (this.suffix != "" && !this.suffix.StartsWith("-"))
 				this.suffix = "-" + this.suffix;
 
 			if (string.IsNullOrWhiteSpace(this.saveFolder))
-			{
-				Console.WriteLine("ERROR: Must define a non-empty save folder for the SaveSystem.");
 				throw new ArgumentException("ERROR: Must define a non-empty save folder for the SaveSystem.");
-			}
-
 			if (string.IsNullOrWhiteSpace(this.salt))
-			{
-				Console.WriteLine("ERROR: Must define a non-empty save folder for the SaveSystem.");
 				throw new ArgumentException("ERROR: Must define a non-empty save folder for the SaveSystem.");
-			}
-
 			if (this.hash1 <= 0)
-			{
-				Console.WriteLine("ERROR: Must define a positive non-zero hash1 for the SaveSystem.");
 				throw new ArgumentException("ERROR: Must define a positive non-zero hash1 for the SaveSystem.");
-			}
-
 			if (this.hash2 <= 0)
-			{
-				Console.WriteLine("ERROR: Must define a positive non-zero hash2 for the SaveSystem.");
 				throw new ArgumentException("ERROR: Must define a positive non-zero hash2 for the SaveSystem.");
-			}
 
 			var illegalCharacters = new char[] { '<', '>', ':', '"', '/', '\\', '|', '?', '*' };
 			foreach (var ch in illegalCharacters)
 			{
 				if (this.saveFolder.Contains(ch))
-				{
-					Console.WriteLine($"ERROR: SaveFolder cannot contain {ch} as this is an illegal filename character.");
 					throw new ArgumentException($"ERROR: SaveFolder cannot contain {ch} as this is an illegal filename character.");
-				}
-
 				if (this.suffix.Contains(ch))
-				{
-					Console.WriteLine($"ERROR: Suffix cannot contain {ch} as this is an illegal filename character.");
 					throw new ArgumentException($"ERROR: Suffix cannot contain {ch} as this is an illegal filename character.");
-				}
 			}
 
 			SyncSystem.Subscribe<SaveLoadedMessage>(HandleSaveLoadedMessage);
@@ -127,10 +106,13 @@ namespace WCSharp.SaveLoad
 		{
 			if (message.TypeName == typeof(T).FullName)
 			{
-				var isEmptySave = string.IsNullOrEmpty(message.SaveData);
-				var data = isEmptySave
-					? Activator.CreateInstance<T>()
-					: JsonConvert.Deserialize<T>(message.SaveData);
+				var isEmptySave = false;
+				if (string.IsNullOrEmpty(message.SaveData) || !JsonConvert.TryDeserialize<T>(message.SaveData, out var data))
+				{
+					isEmptySave = true;
+					data = Activator.CreateInstance<T>();
+				}
+
 				data.player = Player(message.PlayerId);
 				data.saveSlot = message.SaveSlot;
 				OnSaveLoaded?.Invoke(data, isEmptySave);
@@ -158,8 +140,7 @@ namespace WCSharp.SaveLoad
 			};
 
 			save.HashCode = save.GetSaveHash(this.hash1, this.hash2, this.bindSavesToPlayerName, this.salt);
-			save.Encrypt();
-			var contents = JsonConvert.Serialize(save);
+			var contents = Base64.ToBase64(JsonConvert.Serialize(save));
 
 			var filename = GetFileName(player, saveable.GetSaveSlot());
 			if (contents.Length > PACKET_SIZE * abilityIds.Count)
@@ -241,8 +222,8 @@ namespace WCSharp.SaveLoad
 		{
 			try
 			{
-				var save = JsonConvert.Deserialize<Save>(sb.ToString());
-				save.Decrypt();
+				var contents = Base64.FromBase64(sb.ToString());
+				var save = JsonConvert.Deserialize<Save>(contents);
 				return save;
 			}
 			catch (Exception)

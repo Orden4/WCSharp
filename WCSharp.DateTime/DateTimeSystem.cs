@@ -44,7 +44,7 @@ namespace WCSharp.DateTime
 		{
 			this.timestamps[message.PlayerId] = new WcDateTime(message.Seconds);
 
-			if (Util.GetPlayersPresent().All(x => this.timestamps.ContainsKey(GetPlayerId(x))))
+			if (Util.EnumeratePlayers().All(x => this.timestamps.ContainsKey(GetPlayerId(x))))
 			{
 				var sync = this.method switch
 				{
