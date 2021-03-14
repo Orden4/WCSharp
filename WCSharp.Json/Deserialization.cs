@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WCSharp.Json
 {
@@ -13,17 +14,18 @@ namespace WCSharp.Json
 			}
 
 			var instance = Activator.CreateInstance(type);
+			var interfaces = type.GetInterfaces()
+				.Where(x => x.IsGenericType)
+				.Select(x => x.GetGenericTypeDefinition())
+				.ToList();
 
-			if (type.IsGenericType)
+			if (interfaces.Contains(typeof(IList<>)))
 			{
-				if (type.GetGenericTypeDefinition() == typeof(List<>))
-				{
-					return DeserializeList(type, instance, table);
-				}
-				else if (type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
-				{
-					return DeserializeDictionary(type, instance, table);
-				}
+				return DeserializeList(type, instance, table);
+			}
+			else if (interfaces.Contains(typeof(IDictionary<,>)))
+			{
+				return DeserializeDictionary(type, instance, table);
 			}
 
 			object value = default;

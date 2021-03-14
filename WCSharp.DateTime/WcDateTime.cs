@@ -474,7 +474,7 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// The time for the local player.
 		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
-		/// <para>For a danger-free time, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
+		/// <para>For a danger-free timestamp, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
 		/// </summary>
 		public static WcDateTime LocalTime
 		{
@@ -507,8 +507,32 @@ namespace WCSharp.DateTime
 			}
 			else
 			{
-				var system = new DateTimeSystem(action, method);
+				var system = new DateTimeSystem(method, action);
 				system.Run();
+			}
+		}
+
+		/// <summary>
+		/// This will attempt to immediately return a synchronised time for all players, if it has already been calculated.
+		/// If it has not been calculated, this will return false.
+		/// <para>If it has not been calculated, will start a calculation procedure behind the scenes, but this will take some time.</para>
+		/// </summary>
+		/// <param name="wcDateTime">The synchronised time, if available.</param>
+		/// <param name="method">The method it should use for determining the synchronised time.</param>
+		/// <returns>Whether the retrieval was successful.</returns>
+		public static bool TryGetCurrentTime(out WcDateTime wcDateTime, DateTimeSyncMethod method = DateTimeSyncMethod.BestFit)
+		{
+			if (offsetByMethod.TryGetValue(method, out var offset))
+			{
+				wcDateTime = new WcDateTime(baseTime + offset);
+				return true;
+			}
+			else
+			{
+				wcDateTime = null;
+				var system = new DateTimeSystem(method);
+				system.Run();
+				return false;
 			}
 		}
 

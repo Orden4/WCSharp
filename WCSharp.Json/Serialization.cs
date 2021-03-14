@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace WCSharp.Json
@@ -36,17 +37,18 @@ namespace WCSharp.Json
 
 		private static object SerializeClass(PropertyInfo property, object value)
 		{
-			if (property.PropertyType.IsGenericType)
+			var interfaces = property.PropertyType.GetInterfaces()
+				.Where(x => x.IsGenericType)
+				.Select(x => x.GetGenericTypeDefinition())
+				.ToList();
+
+			if (interfaces.Contains(typeof(IList<>)))
 			{
-				var typeDefinition = property.PropertyType.GetGenericTypeDefinition();
-				if (typeDefinition == typeof(List<>))
-				{
-					return SerializeList(property, value);
-				}
-				else if (typeDefinition == typeof(Dictionary<,>))
-				{
-					return SerializeDictionary(property, value);
-				}
+				return SerializeList(property, value);
+			}
+			else if (interfaces.Contains(typeof(IDictionary<,>)))
+			{
+				return SerializeDictionary(property, value);
 			}
 
 			return ConvertInputToDictionary(value);
@@ -63,7 +65,7 @@ namespace WCSharp.Json
 			else
 			{
 				var newList = new List<Dictionary<string, object>>();
-				foreach (var item in (ICollection)value)
+				foreach (var item in (IEnumerable)value)
 				{
 					newList.Add(ConvertInputToDictionary(item));
 				}
@@ -85,7 +87,7 @@ namespace WCSharp.Json
 			else
 			{
 				var newDict = new Dictionary<object, object>();
-				foreach (var item in (ICollection)value)
+				foreach (var item in (IEnumerable)value)
 				{
 					var itemType = item.GetType();
 					var itemKey = itemType.GetProperty("Key").GetValue(item);

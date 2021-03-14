@@ -91,6 +91,7 @@ namespace Launcher
 				throw new Exception(compileResult.Diagnostics.First(x => x.Severity == DiagnosticSeverity.Error).GetMessage());
 			}
 
+			Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
 			File.WriteAllText(Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_SCRIPT_NAME), map.Script);
 
 			var archiveCreateOptions = new MpqArchiveCreateOptions

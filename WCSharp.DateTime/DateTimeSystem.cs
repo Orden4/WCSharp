@@ -14,10 +14,10 @@ namespace WCSharp.DateTime
 
 		private readonly Dictionary<int, WcDateTime> timestamps;
 
-		public DateTimeSystem(Action<WcDateTime> action, DateTimeSyncMethod method)
+		public DateTimeSystem(DateTimeSyncMethod method, Action<WcDateTime> action = null)
 		{
-			this.action = action;
 			this.method = method;
+			this.action = action;
 
 			this.timestamps = new Dictionary<int, WcDateTime>();
 		}
