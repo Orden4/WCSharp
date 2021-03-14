@@ -66,6 +66,9 @@ namespace Launcher
 
 		public static void Build(bool launch)
 		{
+			Directory.CreateDirectory(ASSETS_FOLDER_PATH);
+			Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
+
 			var map = Map.Open(BASE_MAP_PATH);
 			var builder = new MapBuilder(map);
 			builder.AddFiles(ASSETS_FOLDER_PATH);
@@ -91,7 +94,6 @@ namespace Launcher
 				throw new Exception(compileResult.Diagnostics.First(x => x.Severity == DiagnosticSeverity.Error).GetMessage());
 			}
 
-			Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
 			File.WriteAllText(Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_SCRIPT_NAME), map.Script);
 
 			var archiveCreateOptions = new MpqArchiveCreateOptions

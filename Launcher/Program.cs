@@ -66,6 +66,9 @@ namespace Launcher
 
 		public static void Build(bool launch)
 		{
+			Directory.CreateDirectory(ASSETS_FOLDER_PATH);
+			Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
+
 			var map = Map.Open(BASE_MAP_PATH);
 			var builder = new MapBuilder(map);
 			builder.AddFiles(ASSETS_FOLDER_PATH);
