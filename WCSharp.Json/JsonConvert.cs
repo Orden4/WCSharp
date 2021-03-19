@@ -305,7 +305,7 @@ table = json.decode(input)
 
 		public static string Serialize<T>(T input)
 		{
-			var dictInput = Serialization.ConvertInputToDictionary(input);
+			var jsonInput = Serialization.SerializeClass(input, typeof(T));
 			string value = default;
 #if __CSharpLua__
 /*[[
@@ -423,7 +423,7 @@ end
 function json.encode(val)
   return ( encode(val) )
 end
-value = json.encode(dictInput)
+value = json.encode(jsonInput)
 ]]*/
 #endif
 			return value;

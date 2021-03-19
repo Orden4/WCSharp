@@ -13,6 +13,9 @@ namespace WCSharp.Events
 	{
 		private readonly List<T> actions;
 		protected PeriodicEvent timerEvent;
+		/// <summary>
+		/// All currently active periodic actions within this periodic trigger.
+		/// </summary>
 		public IEnumerable<T> Actions => this.actions.Where(x => x.Active);
 
 		/// <param name="period">How frequently this trigger should fire.</param>

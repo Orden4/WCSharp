@@ -8,18 +8,19 @@ namespace WCSharp.Json
 {
 	internal static class Serialization
 	{
-		public static Dictionary<string, object> ConvertInputToDictionary(object input)
+		public static Dictionary<string, object> ConvertInputToDictionary(object input, Type type)
 		{
 			var dict = new Dictionary<string, object>();
 
-			foreach (var property in input.GetType().GetProperties())
+			foreach (var property in type.GetProperties())
 			{
+				var propertyType = property.PropertyType;
 				var value = property.GetValue(input);
-				if (!property.PropertyType.IsClass)
+				if (!propertyType.IsClass)
 				{
 					dict.Add(property.Name, value);
 				}
-				else if (property.PropertyType == typeof(string))
+				else if (propertyType == typeof(string))
 				{
 					if (value != null)
 					{
@@ -28,35 +29,59 @@ namespace WCSharp.Json
 				}
 				else if (value != null)
 				{
-					dict.Add(property.Name, SerializeClass(property, value));
+					dict.Add(property.Name, SerializeClass(value, propertyType));
 				}
 			}
 
 			return dict;
 		}
 
-		private static object SerializeClass(PropertyInfo property, object value)
+		public static object SerializeClass(object value, Type type)
 		{
-			var interfaces = property.PropertyType.GetInterfaces()
+			if (type.IsArray)
+			{
+				return SerializeArray(value, type);
+			}
+
+			var interfaces = type.GetInterfaces()
 				.Where(x => x.IsGenericType)
 				.Select(x => x.GetGenericTypeDefinition())
 				.ToList();
 
 			if (interfaces.Contains(typeof(IList<>)))
 			{
-				return SerializeList(property, value);
+				return SerializeList(value, type);
 			}
 			else if (interfaces.Contains(typeof(IDictionary<,>)))
 			{
-				return SerializeDictionary(property, value);
+				return SerializeDictionary(value, type);
 			}
 
-			return ConvertInputToDictionary(value);
+			return ConvertInputToDictionary(value, type);
 		}
 
-		private static object SerializeList(PropertyInfo property, object value)
+		private static object SerializeArray(object value, Type type)
 		{
-			var itemType = property.PropertyType.GetGenericArguments()[0];
+			var elementType = type.GetElementType();
+			if (!elementType.IsClass || elementType == typeof(string))
+			{
+				// Only primitives, will serialize fine
+				return value;
+			}
+			else
+			{
+				var newList = new List<Dictionary<string, object>>();
+				foreach (var item in (IEnumerable)value)
+				{
+					newList.Add(ConvertInputToDictionary(item, elementType));
+				}
+				return newList;
+			}
+		}
+
+		private static object SerializeList(object value, Type type)
+		{
+			var itemType = type.GetGenericArguments()[0];
 			if (!itemType.IsClass || itemType == typeof(string))
 			{
 				// Only primitives, will serialize fine
@@ -67,35 +92,38 @@ namespace WCSharp.Json
 				var newList = new List<Dictionary<string, object>>();
 				foreach (var item in (IEnumerable)value)
 				{
-					newList.Add(ConvertInputToDictionary(item));
+					newList.Add(ConvertInputToDictionary(item, itemType));
 				}
 				return newList;
 			}
 		}
 
-		private static object SerializeDictionary(PropertyInfo property, object value)
+		private static object SerializeDictionary(object value, Type type)
 		{
-			var genericArguments = property.PropertyType.GetGenericArguments();
+			var genericArguments = type.GetGenericArguments();
 			if (genericArguments[0].IsClass && genericArguments[0] != typeof(string))
 				throw new ArgumentException("ERROR: Cannot serialize dictionaries with keys that are not primitives, enums or strings.");
 
-			if (!genericArguments[1].IsClass || genericArguments[1] == typeof(string))
+			var serializeValue = genericArguments[1].IsClass && genericArguments[1] != typeof(string);
+			var newDict = new Dictionary<string, object>();
+			PropertyInfo keyProp = null;
+			PropertyInfo valueProp = null;
+			foreach (var item in (IEnumerable)value)
 			{
-				// Only primitives, will serialize fine
-				return value;
-			}
-			else
-			{
-				var newDict = new Dictionary<object, object>();
-				foreach (var item in (IEnumerable)value)
+				if (keyProp == null)
 				{
 					var itemType = item.GetType();
-					var itemKey = itemType.GetProperty("Key").GetValue(item);
-					var itemValue = itemType.GetProperty("Value").GetValue(item);
-					newDict.Add(itemKey, ConvertInputToDictionary(itemValue));
+					keyProp = itemType.GetProperty("Key");
+					valueProp = itemType.GetProperty("Value");
 				}
-				return newDict;
+				var itemKey = keyProp.GetValue(item).ToString();
+				var itemValue = valueProp.GetValue(item);
+				var serializedValue = serializeValue
+					? ConvertInputToDictionary(itemValue, genericArguments[1])
+					: itemValue;
+				newDict.Add(itemKey, serializedValue);
 			}
+			return newDict;
 		}
 	}
 }

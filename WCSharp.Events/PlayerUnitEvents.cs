@@ -94,10 +94,10 @@ namespace WCSharp.Events
 		/// </summary>
 		public static void Register(string identifier, Action action, int filterTypeId)
 		{
-			var nativeEvent = customPlayerUnitEvents.FirstOrDefault(x => x.Identifier == identifier)?.NativeEvent;
-			if (nativeEvent != null)
+			var customEvent = customPlayerUnitEvents.FirstOrDefault(x => x.Identifier == identifier);
+			if (customEvent != null)
 			{
-				var handler = GetOrCreateEventHandler(nativeEvent);
+				var handler = GetOrCreateEventHandler(customEvent.NativeEvent);
 				handler.Register(identifier, action, filterTypeId);
 			}
 			else
@@ -136,10 +136,10 @@ namespace WCSharp.Events
 		/// </summary>
 		public static void Unregister(string identifier, int filterTypeId)
 		{
-			var nativeEvent = customPlayerUnitEvents.FirstOrDefault(x => x.Identifier == identifier)?.NativeEvent;
-			if (nativeEvent != null)
+			var customEvent = customPlayerUnitEvents.FirstOrDefault(x => x.Identifier == identifier);
+			if (customEvent != null)
 			{
-				if (eventHandlers.TryGetValue(nativeEvent, out var handler))
+				if (eventHandlers.TryGetValue(customEvent.NativeEvent, out var handler))
 				{
 					handler.Unregister(identifier, filterTypeId);
 				}

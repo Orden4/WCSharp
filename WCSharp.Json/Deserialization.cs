@@ -13,6 +13,11 @@ namespace WCSharp.Json
 				return null;
 			}
 
+			if (type.IsArray)
+			{
+				return DeserializeArray(type, table);
+			}
+
 			var instance = Activator.CreateInstance(type);
 			var interfaces = type.GetInterfaces()
 				.Where(x => x.IsGenericType)
@@ -28,7 +33,7 @@ namespace WCSharp.Json
 				return DeserializeDictionary(type, instance, table);
 			}
 
-			object value = default;
+			object value = null;
 
 			foreach (var property in type.GetProperties())
 			{
@@ -48,15 +53,39 @@ value = table[name];
 			return instance;
 		}
 
+		private static object DeserializeArray(Type type, object table)
+		{
+			var count = 0;
+#if __CSharpLua__
+/*[[
+count = #table
+]]*/
+#endif
+			var elementType = type.GetElementType();
+			var array = Array.CreateInstance(elementType, count);
+			for (var i = 0; i < count; i++)
+			{
+				object value = null;
+#if __CSharpLua__
+/*[[
+value = table[i + 1]
+]]*/
+#endif
+				array.SetValue(DeserializeLuaValue(value, elementType), i);
+			}
+
+			return array;
+		}
+
 		private static object DeserializeList(Type type, object instance, object table)
 		{
 			var genericType = type.GetGenericArguments()[0];
 			var add = type.GetMethod("Add", new Type[] { genericType });
 
-			object v = default;
+			object v = null;
 #if __CSharpLua__
 /*[[
-for k,v in pairs(table) do
+for _, v in pairs(table) do
 ]]*/
 #endif
 			add.Invoke(instance, new object[] { DeserializeLuaValue(v, genericType) });
@@ -73,11 +102,11 @@ end
 			var genericTypes = type.GetGenericArguments();
 			var add = type.GetMethod("Add", genericTypes);
 
-			object k = default;
-			object v = default;
+			object k = null;
+			object v = null;
 #if __CSharpLua__
 /*[[
-for k,v in pairs(table) do
+for k, v in pairs(table) do
 ]]*/
 #endif
 			k = DeserializeLuaString(k, genericTypes[0]);
@@ -209,111 +238,6 @@ end
 			{
 				return DeserializeLuaTable(value, type);
 			}
-
-			//if (type == typeof(bool))
-			//{
-			//	if (value is bool @bool)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(byte))
-			//{
-			//	if (value is byte @byte)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(sbyte))
-			//{
-			//	if (value is sbyte @sbyte)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(char))
-			//{
-			//	if (value is char @char)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(decimal))
-			//{
-			//	if (value is decimal @decimal)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(double))
-			//{
-			//	if (value is double @double)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(float))
-			//{
-			//	if (value is float @float)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(int))
-			//{
-			//	if (value is int @int)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(uint))
-			//{
-			//	if (value is uint @uint)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(long))
-			//{
-			//	if (value is long @long)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(ulong))
-			//{
-			//	if (value is ulong @ulong)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(short))
-			//{
-			//	if (value is short @short)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(ushort))
-			//{
-			//	if (value is ushort @ushort)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type == typeof(string))
-			//{
-			//	if (value is string @string)
-			//	{
-			//		return value;
-			//	}
-			//}
-			//else if (type.IsClass)
-			//{
-			//	return DeserializeLuaTable(value, type);
-			//}
-
-			//return null;
 		}
 	}
 }
