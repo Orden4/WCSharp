@@ -26,7 +26,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public unit Caster { get; set; }
 		/// <summary>
-		/// The owner of the caster. Automatically set on launch. Does NOT automatically update!
+		/// The owner of the caster. Automatically set on launch.
+		/// <para>Does NOT update automatically! If this is desired, you can use <see cref="MissileSystem.RegisterForOwnershipChanges"/>.</para>
 		/// </summary>
 		public player CastingPlayer { get; set; }
 		/// <summary>
@@ -55,7 +56,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public unit Target { get; set; }
 		/// <summary>
-		/// The owner of the target. Automatically set on launch. Does NOT automatically update!
+		/// The owner of the target. Automatically set on launch.
+		/// <para>Does NOT update automatically! If this is desired, you can use <see cref="MissileSystem.RegisterForOwnershipChanges"/>.</para>
 		/// </summary>
 		public player TargetPlayer { get; set; }
 		/// <summary>
@@ -150,7 +152,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The time left until the next call to <see cref="OnPeriodic"/>.
 		/// </summary>
-		protected float IntervalLeft { get; set; }
+		public float IntervalLeft { get; set; }
 
 		/// <summary>
 		/// The internal spin period field. Defined in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.

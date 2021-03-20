@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using WCSharp.Events;
-using WCSharp.Utils.Extensions;
 using static War3Api.Common;
 
 namespace WCSharp.Buffs
@@ -16,7 +15,8 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public unit Caster { get; set; }
 		/// <summary>
-		/// The owner of the caster. Automatically set on application only.
+		/// The owner of the caster. Automatically set on application.
+		/// <para>Does NOT update automatically! If this is desired, you can use <see cref="BuffSystem.RegisterForOwnershipChanges"/>.</para>
 		/// </summary>
 		public player CastingPlayer { get; set; }
 		/// <summary>
@@ -24,55 +24,90 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public unit Target { get; set; }
 		/// <summary>
-		/// The owner of the target. Automatically set on application only.
+		/// The owner of the target. Automatically set on application.
+		/// <para>Does NOT update automatically! If this is desired, you can use <see cref="BuffSystem.RegisterForOwnershipChanges"/>.</para>
 		/// </summary>
 		public player TargetPlayer { get; set; }
-		/// <summary>
-		/// The time, in seconds, remaining until the next tick.
-		/// </summary>
-		public float IntervalLeft { get; set; }
 
 		/// <summary>
 		/// The remaining duration before this buff expires.
 		/// </summary>
-		public abstract float Duration { get; set; }
-		/// <summary>
-		/// The time, in seconds, between each tick.
-		/// </summary>
-		public abstract float Interval { get; set; }
-		/// <summary>
-		/// The damage to apply on each tick. Set to negative to heal.
-		/// </summary>
-		public abstract float DamagePerInterval { get; set; }
-		/// <summary>
-		/// The attack type to apply when dealing damage via the built-in <see cref="DamagePerInterval"/> property.
-		/// </summary>
-		public abstract attacktype AttackType { get; set; }
+		public float Duration { get; set; }
 		/// <summary>
 		/// Whether this buff is beneficial or detrimental to the target.
 		/// </summary>
-		public abstract bool IsBeneficial { get; set; }
+		public bool IsBeneficial { get; set; }
 
 		/// <summary>
 		/// The buff types, used primarily for dispelling. E.g. magic, physical, undispellable, etc.
 		/// </summary>
-		public virtual List<string> BuffTypes { get; set; } = new List<string>();
+		public List<string> BuffTypes { get; set; } = new List<string>();
 
 		/// <summary>
-		/// The path of the effect to use. Leave empty for no effect.
+		/// The number of stacks of this buff currently active on the target.
+		/// <para>Defaults to 1.</para>
 		/// </summary>
-		protected abstract string EffectString { get; set; }
+		public int Stacks { get; set; } = 1;
+
+		private protected string effectString;
+		/// <summary>
+		/// The path of the effect to use. Leave empty for no effect.
+		/// <para>If changed while the buff is already active, will destroy and recreate the effect.</para>
+		/// </summary>
+		public string EffectString
+		{
+			get => this.effectString;
+			set
+			{
+				if (this.effectString != value)
+				{
+					this.effectString = value;
+					if (this.effect != null)
+					{
+						DestroyEffect(this.effect);
+					}
+					if (!string.IsNullOrEmpty(value))
+					{
+						this.effect = AddSpecialEffectTarget(value, Target, this.effectAttachmentPoint);
+					}
+					else
+					{
+						this.effect = null;
+					}
+				}
+			}
+		}
+
+		private protected string effectAttachmentPoint = "origin";
 		/// <summary>
 		/// The attachment point for the effect.
+		/// <para>If changed while the buff is already active, will destroy and recreate the effect at the desired attachment point.</para>
+		/// <para>Defaults to origin.</para>
 		/// </summary>
-		protected abstract string EffectAttachmentPoint { get; set; }
+		public string EffectAttachmentPoint
+		{
+			get => this.effectAttachmentPoint;
+			set
+			{
+				value ??= "origin";
+				if (this.effectAttachmentPoint != value)
+				{
+					this.effectAttachmentPoint = value;
+					if (this.effect != null)
+					{
+						DestroyEffect(this.effect);
+						this.effect = AddSpecialEffectTarget(this.effectString, Target, this.effectAttachmentPoint);
+					}
+				}
+			}
+		}
 
 		/// <summary>
 		/// The actual in-game effect applied on the target.
 		/// </summary>
 		protected effect effect;
-		private readonly int targetHandleId;
-		private bool targetAlive;
+
+		internal readonly int targetHandleId;
 
 		/// <summary>
 		/// Will set Caster, CastingPlayer, Target and TargetPlayer accordingly.
@@ -87,75 +122,14 @@ namespace WCSharp.Buffs
 		}
 
 		/// <summary>
-		/// Do not call this. Used by systems.
+		/// Called by the system. Do not call yourself.
 		/// </summary>
-		public void Action()
-		{
-			var unitAlive = UnitAlive(Target);
-			var unitKilled = false;
-			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+		public abstract void Apply();
 
-			if (Interval > 0)
-			{
-				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
-				if (IntervalLeft <= 0)
-				{
-					if (unitAlive)
-					{
-						if (DamagePerInterval < 0)
-						{
-							var damageDealer = UnitAlive(Caster) ? Caster : Target;
-							Target.Heal(-DamagePerInterval);
-						}
-						else if (DamagePerInterval > 0)
-						{
-							var damageDealer = UnitAlive(Caster) ? Caster : Target;
-							Target.Damage(damageDealer, DamagePerInterval, AttackType);
-							var stillAlive = UnitAlive(Target);
-							unitKilled = unitAlive && !stillAlive;
-							unitAlive = stillAlive;
-						}
-
-						if (unitAlive)
-						{
-							OnTick();
-							var stillAlive = UnitAlive(Target);
-							unitKilled = unitKilled || (unitAlive && !stillAlive);
-							unitAlive = stillAlive;
-						}
-					}
-
-					IntervalLeft += Interval;
-				}
-			}
-
-			if (this.targetAlive && !unitAlive && OnDeath(unitKilled))
-			{
-				Active = false;
-				Dispose();
-				return;
-			}
-
-			if (Duration <= 0)
-			{
-				OnExpire();
-				Active = false;
-				Dispose();
-			}
-
-			this.targetAlive = unitAlive;
-		}
-
-		internal void Apply()
-		{
-			if (!string.IsNullOrEmpty(EffectString))
-			{
-				this.effect = AddSpecialEffectTarget(EffectString, Target, EffectAttachmentPoint);
-			}
-
-			Active = true;
-			IntervalLeft = Interval;
-		}
+		/// <summary>
+		/// Called by the system. Do not call yourself.
+		/// </summary>
+		public abstract void Action();
 
 		/// <summary>
 		/// Executes immediately upon application of the buff.
@@ -166,13 +140,23 @@ namespace WCSharp.Buffs
 		}
 
 		/// <summary>
-		/// Executes immediately after <see cref="Target"/> dies. If you do not want the buff to automatically be removed upon death, return false.
+		/// Executes whenever this buff receives a new stack via <see cref="BuffSystem.Add(Buff, StackBehaviour)"/>.
+		/// <para>By default, the stacks of <paramref name="newStack"/> are added to this buff and <see cref="StackResult.Stack"/> is returned.</para>
+		/// </summary>
+		public virtual StackResult OnStack(Buff newStack)
+		{
+			Stacks += newStack.Stacks;
+			return StackResult.Stack;
+		}
+
+		/// <summary>
+		/// Executes immediately after <see cref="Target"/> dies.
 		/// </summary>
 		/// <param name="killingBlow"></param>
 		/// <returns></returns>
-		public virtual bool OnDeath(bool killingBlow)
+		public virtual void OnDeath(bool killingBlow)
 		{
-			return true;
+
 		}
 
 		/// <summary>
@@ -200,36 +184,19 @@ namespace WCSharp.Buffs
 		}
 
 		/// <summary>
-		/// Executes every <see cref="Interval"/>.
-		/// </summary>
-		public virtual void OnTick()
-		{
-
-		}
-
-		/// <summary>
 		/// You MUST call this method whenever you manually set <see cref="Active"/> to false.
 		/// </summary>
 		public void Dispose()
 		{
 			OnDispose();
+			Active = false;
 
 			if (this.effect != null)
 			{
 				DestroyEffect(this.effect);
 			}
 
-			if (BuffSystem.buffsByHandleId.TryGetValue(this.targetHandleId, out var buffs))
-			{
-				if (buffs.Count == 1)
-				{
-					BuffSystem.buffsByHandleId.Remove(this.targetHandleId);
-				}
-				else
-				{
-					buffs.Remove(this);
-				}
-			}
+			BuffSystem.Remove(this);
 		}
 	}
 }

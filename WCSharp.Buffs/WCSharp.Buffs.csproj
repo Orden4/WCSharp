@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WCSharp.Dummies\WCSharp.Dummies.csproj" />
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
     <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
   </ItemGroup>

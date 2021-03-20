@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Dummies;
 using WCSharp.Events;
 using static War3Api.Common;
 
@@ -8,17 +10,107 @@ namespace WCSharp.Buffs
 	public static class BuffSystem
 	{
 		private static readonly PeriodicTrigger<Buff> periodicTrigger = new PeriodicTrigger<Buff>(PeriodicEvents.SYSTEM_INTERVAL);
-		public static IEnumerable<Buff> Buffs => periodicTrigger.Actions;
+		private static readonly Dictionary<int, List<Buff>> buffsByHandleId = new Dictionary<int, List<Buff>>();
 
-		internal static readonly Dictionary<int, List<Buff>> buffsByHandleId = new Dictionary<int, List<Buff>>();
+		/// <summary>
+		/// All active buffs.
+		/// </summary>
+		public static IEnumerable<Buff> Buffs => periodicTrigger.Actions;
 
 		/// <summary>
 		/// Adds the given buffs to the system. This will also initialise or alter some values according to the buffs' properties.
 		/// </summary>
-		public static void Add(Buff buff)
+		/// <returns>The buff that was applied, or the buff whose stacks were added to.</returns>
+		public static Buff Add(Buff buff, StackBehaviour stackBehaviour = StackBehaviour.None)
 		{
-			buff.Apply();
+			if (buffsByHandleId.TryGetValue(buff.targetHandleId, out var buffs))
+			{
+				if (stackBehaviour != StackBehaviour.None)
+				{
+					var type = buff.GetType();
+					foreach (var currentBuff in buffs)
+					{
+						if (currentBuff.GetType() == type)
+						{
+							if (stackBehaviour == StackBehaviour.Stack ||
+								(stackBehaviour == StackBehaviour.StackCaster && buff.Caster == currentBuff.Caster) ||
+								(buff.CastingPlayer == currentBuff.CastingPlayer))
+							{
+								switch (currentBuff.OnStack(buff))
+								{
+									case StackResult.Stack:
+										return currentBuff;
+									case StackResult.Consume:
+										currentBuff.Dispose();
+										break;
+								}
+							}
+						}
+					}
+				}
+
+				buffs.Add(buff);
+			}
+			else
+			{
+				buffsByHandleId.Add(buff.targetHandleId, new List<Buff>
+				{
+					buff
+				});
+			}
+
 			periodicTrigger.Add(buff);
+			buff.Apply();
+			return buff;
+		}
+
+		internal static void Remove(Buff buff)
+		{
+			if (buffsByHandleId.TryGetValue(buff.targetHandleId, out var buffs))
+			{
+				if (buffs.Count == 1)
+				{
+					buffsByHandleId.Remove(buff.targetHandleId);
+				}
+				else
+				{
+					buffs.Remove(buff);
+				}
+			}
+		}
+
+		/// <summary>
+		/// By default, <see cref="Buff.CastingPlayer"/> and <see cref="Buff.TargetPlayer"/> are not updated when a unit changes owner.
+		/// <para>This adds an event to pass over all auras and update <see cref="Buff.CastingPlayer"/> and <see cref="Buff.TargetPlayer"/> on ownership changes.</para>
+		/// <para>This will ignore ownership changes of unit type 'xxxx' (<see cref="DummySystem.UNIT_TYPE_DUMMY"/>).</para>
+		/// </summary>
+		public static void RegisterForOwnershipChanges()
+		{
+			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeChangesOwner, OnUnitTypeChangesOwner);
+		}
+
+		private static void OnUnitTypeChangesOwner()
+		{
+			var unit = GetTriggerUnit();
+			if (GetUnitTypeId(unit) == DummySystem.UNIT_TYPE_DUMMY)
+				return;
+
+			foreach (var buff in periodicTrigger.Actions)
+			{
+				if (buff.Caster == unit)
+				{
+					buff.CastingPlayer = GetOwningPlayer(unit);
+				}
+			}
+
+			if (buffsByHandleId.TryGetValue(GetHandleId(unit), out var buffs))
+			{
+				var owner = GetOwningPlayer(unit);
+				foreach (var buff in buffs)
+				{
+					buff.TargetPlayer = owner;
+				}
+			}
 		}
 
 		/// <summary>

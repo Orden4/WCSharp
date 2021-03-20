@@ -13,6 +13,27 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class HomingMissile : Missile
 	{
+		public sealed override float CasterZ
+		{
+			get => this.casterZ + GetZ(CasterX, CasterY);
+			set => this.casterZ = value - GetZ(CasterX, CasterY);
+		}
+		public sealed override float TargetZ
+		{
+			get => this.targetZ + GetZ(TargetX, TargetY);
+			set => this.targetZ = value - GetZ(TargetX, TargetY);
+		}
+		public sealed override float MissileZ
+		{
+			get => this.missileZ + GetZ(MissileX, MissileY);
+			set => this.missileZ = value - GetZ(MissileX, MissileY);
+		}
+		public sealed override float Speed
+		{
+			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
+			set => this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
+		}
+
 		/// <summary>
 		/// The internal rate at which the missile can turn in radians per second.
 		/// </summary>
@@ -47,7 +68,7 @@ namespace WCSharp.Missiles
 		{
 		}
 
-		public override void Launch()
+		public sealed override void Launch()
 		{
 			this.casterZ += CasterLaunchZ;
 			this.targetZ += TargetImpactZ;
@@ -82,7 +103,7 @@ namespace WCSharp.Missiles
 			}
 		}
 
-		public override void Action()
+		public sealed override void Action()
 		{
 			if (Target != null)
 			{

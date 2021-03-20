@@ -1,4 +1,5 @@
 ﻿using System;
+using WCSharp.Events;
 using WCSharp.Utils;
 using WCSharp.Utils.Data;
 using static War3Api.Common;
@@ -11,26 +12,33 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class BasicMissile : Missile
 	{
+		public sealed override float CasterZ
+		{
+			get => this.followsTerrain ? this.casterZ + GetZ(CasterX, CasterY) : this.casterZ;
+			set => this.casterZ = this.followsTerrain ? value - GetZ(CasterX, CasterY) : value;
+		}
+		public sealed override float TargetZ
+		{
+			get => this.followsTerrain ? this.targetZ + GetZ(TargetX, TargetY) : this.targetZ;
+			set => this.targetZ = this.followsTerrain ? value - GetZ(TargetX, TargetY) : value;
+		}
+		public sealed override float MissileZ
+		{
+			get => this.followsTerrain ? this.missileZ + GetZ(MissileX, MissileY) : this.missileZ;
+			set => this.missileZ = this.followsTerrain ? value - GetZ(MissileX, MissileY) : value;
+		}
+		public sealed override float Speed
+		{
+			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
+			set => this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
+		}
+
 		/// <summary>
 		/// The arc of the missile. Closely matches the object editor arc values.
 		/// <para>If you want a fixed height arc, set the Arc equal to (arc height/distance to target).</para>
 		/// </summary>
 		public float Arc { get; set; }
-		public override float CasterZ
-		{
-			get => this.followsTerrain ? this.casterZ + GetZ(CasterX, CasterY) : this.casterZ;
-			set => this.casterZ = this.followsTerrain ? value - GetZ(CasterX, CasterY) : value;
-		}
-		public override float TargetZ
-		{
-			get => this.followsTerrain ? this.targetZ + GetZ(TargetX, TargetY) : this.targetZ;
-			set => this.targetZ = this.followsTerrain ? value - GetZ(TargetX, TargetY) : value;
-		}
-		public override float MissileZ
-		{
-			get => this.followsTerrain ? this.missileZ + GetZ(MissileX, MissileY) : this.missileZ;
-			set => this.missileZ = this.followsTerrain ? value - GetZ(MissileX, MissileY) : value;
-		}
+
 		private bool followsTerrain;
 		private float totalDistanceToTarget;
 
@@ -50,7 +58,7 @@ namespace WCSharp.Missiles
 		{
 		}
 
-		public override void Launch()
+		public sealed override void Launch()
 		{
 			this.casterZ += CasterLaunchZ;
 			this.targetZ += TargetImpactZ;
@@ -77,7 +85,7 @@ namespace WCSharp.Missiles
 			}
 		}
 
-		public override void Action()
+		public sealed override void Action()
 		{
 			if (Target != null)
 			{

@@ -11,6 +11,21 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class OrbitalMissile : Missile
 	{
+		public sealed override float CasterZ
+		{
+			get => this.casterZ + GetZ(CasterX, CasterY);
+			set => this.casterZ = value - GetZ(CasterX, CasterY);
+		}
+		public sealed override float TargetZ
+		{
+			get => this.targetZ + GetZ(TargetX, TargetY);
+			set => this.targetZ = value - GetZ(TargetX, TargetY);
+		}
+		public sealed override float MissileZ
+		{
+			get => this.missileZ + GetZ(MissileX, MissileY);
+			set => this.missileZ = value - GetZ(MissileX, MissileY);
+		}
 		/// <summary>
 		/// The speed of the missile. Defined in units per second.
 		/// <para>Use negative values to go clockwise.</para>
@@ -18,7 +33,7 @@ namespace WCSharp.Missiles
 		/// </summary>
 		/// this.speed is only used to store the desired speed for if the range is adjusted later on.
 		/// Actual speed is always in radians per tick, determined by this.orbitalVelocity.
-		public override float Speed
+		public sealed override float Speed
 		{
 			get => 2 / PeriodicEvents.SYSTEM_INTERVAL * this.orbitalVelocity * this.range;
 			set
@@ -83,7 +98,7 @@ namespace WCSharp.Missiles
 		{
 		}
 
-		public override void Launch()
+		public sealed override void Launch()
 		{
 			this.casterZ += CasterLaunchZ;
 			this.targetZ += TargetImpactZ;
@@ -109,7 +124,7 @@ namespace WCSharp.Missiles
 			}
 		}
 
-		public override void Action()
+		public sealed override void Action()
 		{
 			if (Target != null)
 			{
