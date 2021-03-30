@@ -2,6 +2,9 @@
 
 namespace WCSharp.DateTime
 {
+	/// <summary>
+	/// Represents a duration of time, with a precision in seconds.
+	/// </summary>
 	public class WcTimeSpan : IComparable, IComparable<WcTimeSpan>, IEquatable<WcTimeSpan>
 	{
 		public const int SECONDS_PER_MINUTE = 60;
@@ -230,6 +233,21 @@ namespace WCSharp.DateTime
 				format = format.Replace("s", Seconds.ToString());
 
 			return format;
+		}
+
+		public static WcTimeSpan Deserialize(string @string)
+		{
+			if (int.TryParse(@string, out var seconds))
+			{
+				return new WcTimeSpan(seconds);
+			}
+
+			return null;
+		}
+
+		public static string Serialize(WcTimeSpan wcTimeSpan)
+		{
+			return wcTimeSpan.seconds.ToString();
 		}
 	}
 }

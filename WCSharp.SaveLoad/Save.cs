@@ -1,6 +1,4 @@
-﻿using WCSharp.Utils;
-
-namespace WCSharp.SaveLoad
+﻿namespace WCSharp.SaveLoad
 {
 	internal class Save
 	{
@@ -8,16 +6,6 @@ namespace WCSharp.SaveLoad
 		public int HashCode { get; set; }
 		public string PlayerName { get; set; }
 		public string SaveData { get; set; }
-
-		public void Encrypt()
-		{
-			SaveData = Base64.ToBase64(SaveData);
-		}
-
-		public void Decrypt()
-		{
-			SaveData = Base64.FromBase64(SaveData);
-		}
 
 		public int GetSaveHash(int hash1, int hash2, bool bindSavesToPlayerName, string salt)
 		{

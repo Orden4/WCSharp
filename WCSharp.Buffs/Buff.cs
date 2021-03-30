@@ -4,6 +4,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// The most basic buff implementation, with almost all logic undefined.
+	/// <para>It is recommended to use one of the more concrete types instead, such as <see cref="PassiveBuff"/>.</para>
+	/// </summary>
 	public abstract class Buff : IPeriodicAction
 	{
 		/// <summary>
@@ -31,6 +35,7 @@ namespace WCSharp.Buffs
 
 		/// <summary>
 		/// The remaining duration before this buff expires.
+		/// <para>In the case of <see cref="BoundBuff"/>, this instead indicates the duration that the buff has been on the target.</para>
 		/// </summary>
 		public float Duration { get; set; }
 		/// <summary>
@@ -62,17 +67,20 @@ namespace WCSharp.Buffs
 				if (this.effectString != value)
 				{
 					this.effectString = value;
-					if (this.effect != null)
+					if (Active)
 					{
-						DestroyEffect(this.effect);
-					}
-					if (!string.IsNullOrEmpty(value))
-					{
-						this.effect = AddSpecialEffectTarget(value, Target, this.effectAttachmentPoint);
-					}
-					else
-					{
-						this.effect = null;
+						if (this.effect != null)
+						{
+							DestroyEffect(this.effect);
+						}
+						if (!string.IsNullOrEmpty(value))
+						{
+							this.effect = AddSpecialEffectTarget(value, Target, this.effectAttachmentPoint);
+						}
+						else
+						{
+							this.effect = null;
+						}
 					}
 				}
 			}
@@ -107,8 +115,6 @@ namespace WCSharp.Buffs
 		/// </summary>
 		protected effect effect;
 
-		internal readonly int targetHandleId;
-
 		/// <summary>
 		/// Will set Caster, CastingPlayer, Target and TargetPlayer accordingly.
 		/// </summary>
@@ -118,7 +124,6 @@ namespace WCSharp.Buffs
 			CastingPlayer = GetOwningPlayer(caster);
 			Target = target;
 			TargetPlayer = GetOwningPlayer(target);
-			this.targetHandleId = GetHandleId(target);
 		}
 
 		/// <summary>
@@ -186,17 +191,6 @@ namespace WCSharp.Buffs
 		/// <summary>
 		/// You MUST call this method whenever you manually set <see cref="Active"/> to false.
 		/// </summary>
-		public void Dispose()
-		{
-			OnDispose();
-			Active = false;
-
-			if (this.effect != null)
-			{
-				DestroyEffect(this.effect);
-			}
-
-			BuffSystem.Remove(this);
-		}
+		public abstract void Dispose();
 	}
 }

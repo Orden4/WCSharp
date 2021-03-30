@@ -49,7 +49,10 @@ namespace Launcher
 			switch (Console.ReadKey().Key)
 			{
 				case ConsoleKey.D1:
-					ConstantGenerator.Run(BASE_MAP_PATH, SOURCE_CODE_PROJECT_FOLDER_PATH);
+					ConstantGenerator.Run(BASE_MAP_PATH, SOURCE_CODE_PROJECT_FOLDER_PATH, new ConstantGeneratorOptions
+					{
+						IncludeCode = false
+					});
 					break;
 				case ConsoleKey.D2:
 					Build(false);
@@ -66,13 +69,16 @@ namespace Launcher
 
 		public static void Build(bool launch)
 		{
+			// Ensure these folders exist
 			Directory.CreateDirectory(ASSETS_FOLDER_PATH);
 			Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
 
+			// Load existing map data
 			var map = Map.Open(BASE_MAP_PATH);
 			var builder = new MapBuilder(map);
 			builder.AddFiles(ASSETS_FOLDER_PATH);
 
+			// Set debug options if necessary, configure compiler
 			var csc = DEBUG ? "-debug -define:DEBUG" : null;
 			var csproj = Directory.EnumerateFiles(SOURCE_CODE_PROJECT_FOLDER_PATH, "*.csproj", SearchOption.TopDirectoryOnly).Single();
 			var compiler = new Compiler(csproj, OUTPUT_FOLDER_PATH, string.Empty, null, "", "", csc, false, null, string.Empty)
@@ -84,18 +90,22 @@ namespace Launcher
 				IsCommentsDisabled = !DEBUG
 			};
 
+			// Collect required paths and compile
 			var coreSystemFiles = CSharpLua.CoreSystem.CoreSystemProvider.GetCoreSystemFiles();
 			var blizzardJ = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Warcraft III/JassHelper/Blizzard.j");
 			var commonJ = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Warcraft III/JassHelper/common.j");
 			var compileResult = map.CompileScript(compiler, coreSystemFiles, blizzardJ, commonJ);
 
+			// If compilation failed, output an error
 			if (!compileResult.Success)
 			{
 				throw new Exception(compileResult.Diagnostics.First(x => x.Severity == DiagnosticSeverity.Error).GetMessage());
 			}
 
+			// Update war3map.lua so you can inspect the generated Lua code easily
 			File.WriteAllText(Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_SCRIPT_NAME), map.Script);
 
+			// Build w3x file
 			var archiveCreateOptions = new MpqArchiveCreateOptions
 			{
 				ListFileCreateMode = MpqFileCreateMode.Overwrite,
@@ -105,32 +115,37 @@ namespace Launcher
 
 			builder.Build(Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_MAP_NAME), archiveCreateOptions);
 
+			// Launch if that option was selected
 			if (launch)
 			{
 				var wc3exe = ConfigurationManager.AppSettings["wc3exe"];
-				if (wc3exe != null)
+				if (File.Exists(wc3exe))
 				{
 					var commandLineArgs = new StringBuilder();
 					var isReforged = Version.Parse(FileVersionInfo.GetVersionInfo(wc3exe).FileVersion) >= new Version(1, 32);
 					if (isReforged)
 					{
-						commandLineArgs.Append("-launch ");
+						commandLineArgs.Append(" -launch");
 					}
 					else if (GRAPHICS_API != null)
 					{
-						commandLineArgs.Append($"-graphicsapi {GRAPHICS_API} ");
+						commandLineArgs.Append($" -graphicsapi {GRAPHICS_API}");
 					}
 
 					if (!PAUSE_GAME_ON_LOSE_FOCUS)
 					{
-						commandLineArgs.Append("-nowfpause ");
+						commandLineArgs.Append(" -nowfpause");
 					}
 
 					var mapPath = Path.Combine(OUTPUT_FOLDER_PATH, OUTPUT_MAP_NAME);
 					var absoluteMapPath = new FileInfo(mapPath).FullName;
-					commandLineArgs.Append($"-loadfile \"{absoluteMapPath}\"");
+					commandLineArgs.Append($" -loadfile \"{absoluteMapPath}\"");
 
 					Process.Start(wc3exe, commandLineArgs.ToString());
+				}
+				else
+				{
+					throw new Exception("Please set wc3exe in Launcher/app.config to the path of your Warcraft III executable.");
 				}
 			}
 		}

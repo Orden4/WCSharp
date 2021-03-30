@@ -4,6 +4,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// AutoBuffs are buffs which automatically tick for a specified damage/healing amount.
+	/// <para>If automatic damage/healing is not required, it is recommended to use <see cref="TickingBuff"/> instead.</para>
+	/// </summary>
 	public abstract class AutoBuff : Buff
 	{
 		/// <summary>
@@ -39,8 +43,8 @@ namespace WCSharp.Buffs
 				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
 			}
 
-			Active = true;
 			IntervalLeft = Interval;
+			OnApply();
 		}
 
 		public sealed override void Action()
@@ -51,34 +55,36 @@ namespace WCSharp.Buffs
 				Dispose();
 				return;
 			}
-			else if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+
+			if (Interval > 0)
 			{
-				IntervalLeft += Interval;
+				if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+				{
+					IntervalLeft += Interval;
 
-				if (DamagePerInterval < 0)
-				{
-					Target.Heal(-DamagePerInterval);
-				}
-				else if (DamagePerInterval > 0)
-				{
-					var damageDealer = UnitAlive(Caster) ? Caster : Target;
-					Target.Damage(damageDealer, DamagePerInterval, AttackType, DamageType);
-				}
-
-				if (UnitAlive(Target))
-				{
 					OnTick();
+
+					if (UnitAlive(Target))
+					{
+						if (DamagePerInterval < 0)
+						{
+							Target.Heal(-DamagePerInterval);
+						}
+						else if (DamagePerInterval > 0)
+						{
+							var damageDealer = UnitAlive(Caster) ? Caster : Target;
+							Target.Damage(damageDealer, DamagePerInterval, AttackType, DamageType);
+						}
+					}
+
+					if (!UnitAlive(Target))
+					{
+						OnDeath(true);
+						Dispose();
+						return;
+					}
 				}
 
-				if (!UnitAlive(Target))
-				{
-					OnDeath(true);
-					Dispose();
-					return;
-				}
-			}
-			else
-			{
 				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
 			}
 
@@ -97,10 +103,24 @@ namespace WCSharp.Buffs
 
 		/// <summary>
 		/// Executes every <see cref="Interval"/>.
+		/// <para>This is called BEFORE the automatic damage/healing occurs.</para>
 		/// </summary>
 		public virtual void OnTick()
 		{
 
+		}
+
+		public sealed override void Dispose()
+		{
+			OnDispose();
+			Active = false;
+
+			if (this.effect != null)
+			{
+				DestroyEffect(this.effect);
+			}
+
+			BuffSystem.Remove(this);
 		}
 	}
 }

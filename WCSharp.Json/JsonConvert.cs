@@ -5,14 +5,9 @@ namespace WCSharp.Json
 	public static class JsonConvert
 	{
 		/// <summary>
-		/// Converts the given JSON string into the specified generic class.
-		/// <para>Please read the documentation for details on what can and cannot be serialized.</para>
+		/// Attempts to convert the given JSON string into the specified generic class.
+		/// <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
 		/// </summary>
-		public static T Deserialize<T>(string input)
-		{
-			return (T)Deserialize(input, typeof(T));
-		}
-
 		public static bool TryDeserialize<T>(string input, out T data)
 		{
 			if (TryDeserialize(input, typeof(T), out var obj))
@@ -27,6 +22,10 @@ namespace WCSharp.Json
 			}
 		}
 
+		/// <summary>
+		/// Attempts to convert the given JSON string into the specified generic class.
+		/// <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+		/// </summary>
 		public static bool TryDeserialize(string input, Type deserializeType, out object data)
 		{
 			try
@@ -40,7 +39,19 @@ namespace WCSharp.Json
 				return false;
 			}
 		}
+		/// <summary>
+		/// Converts the given JSON string into the specified generic class.
+		/// <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+		/// </summary>
+		public static T Deserialize<T>(string input)
+		{
+			return (T)Deserialize(input, typeof(T));
+		}
 
+		/// <summary>
+		/// Converts the given JSON string into the specified generic class.
+		/// <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+		/// </summary>
 		public static object Deserialize(string input, Type deserializeType)
 		{
 			object table = default;
@@ -303,6 +314,11 @@ table = json.decode(input)
 			return Deserialization.DeserializeLuaTable(table, deserializeType);
 		}
 
+
+		/// <summary>
+		/// Converts the given generic class into a JSON string.
+		/// <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+		/// </summary>
 		public static string Serialize<T>(T input)
 		{
 			var jsonInput = Serialization.SerializeClass(input, typeof(T));

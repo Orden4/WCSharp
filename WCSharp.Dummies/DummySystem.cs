@@ -6,20 +6,18 @@ namespace WCSharp.Dummies
 {
 	public static partial class DummySystem
 	{
+		/// <summary>
+		/// Corresponds to the code 'xxxx'
+		/// </summary>
 		public const int UNIT_TYPE_DUMMY = 2021161080;
 
 		private static readonly PeriodicEvent periodicEvent = new PeriodicEvent(Countdown, 1.0);
 		private static readonly List<unit> dummiesReady = new List<unit>();
 		private static readonly List<DummyBeingRecycled> dummiesBeingRecycled = new List<DummyBeingRecycled>();
 
-#pragma warning disable IDE0052 // Remove unread private members
-		private static readonly object initialiser = Initialise();
-#pragma warning restore IDE0052 // Remove unread private members
-		private static object Initialise()
+		static DummySystem()
 		{
 			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeSpellEndCast, OnDummyCast);
-
-			return null;
 		}
 
 		private static void OnDummyCast()

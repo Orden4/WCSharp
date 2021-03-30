@@ -38,6 +38,12 @@ namespace WCSharp.Json
 
 		public static object SerializeClass(object value, Type type)
 		{
+			var serialize = type.GetMethod("Serialize");
+			if (serialize != null)
+			{
+				return (string)serialize.Invoke(null, new object[] { value });
+			}
+
 			if (type.IsArray)
 			{
 				return SerializeArray(value, type);

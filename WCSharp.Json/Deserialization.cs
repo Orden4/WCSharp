@@ -13,6 +13,12 @@ namespace WCSharp.Json
 				return null;
 			}
 
+			var deserialize = type.GetMethod("Deserialize");
+			if (deserialize != null && table is string)
+			{
+				return deserialize.Invoke(null, new object[] { table });
+			}
+
 			if (type.IsArray)
 			{
 				return DeserializeArray(type, table);
@@ -40,7 +46,7 @@ namespace WCSharp.Json
 				var name = property.Name;
 #if __CSharpLua__
 /*[[
-value = table[name];
+value = table[name]
 ]]*/
 #endif
 				value = DeserializeLuaValue(value, property.PropertyType);

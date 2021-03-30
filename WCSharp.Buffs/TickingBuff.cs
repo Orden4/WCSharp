@@ -4,7 +4,8 @@ using static War3Api.Common;
 namespace WCSharp.Buffs
 {
 	/// <summary>
-	/// 
+	/// A simple buff that only adds a ticking behaviour, allowing an action to be performed every interval.
+	/// If you simply want to damage/heal every tick, you can use <see cref="AutoBuff"/> instead to simplify the process.
 	/// </summary>
 	public abstract class TickingBuff : Buff
 	{
@@ -28,8 +29,8 @@ namespace WCSharp.Buffs
 				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
 			}
 
-			Active = true;
 			IntervalLeft = Interval;
+			OnApply();
 		}
 
 		public sealed override void Action()
@@ -51,10 +52,8 @@ namespace WCSharp.Buffs
 					return;
 				}
 			}
-			else
-			{
-				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
-			}
+
+			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
 
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
@@ -72,5 +71,18 @@ namespace WCSharp.Buffs
 		/// Executes every <see cref="Interval"/>.
 		/// </summary>
 		public abstract void OnTick();
+
+		public sealed override void Dispose()
+		{
+			OnDispose();
+			Active = false;
+
+			if (this.effect != null)
+			{
+				DestroyEffect(this.effect);
+			}
+
+			BuffSystem.Remove(this);
+		}
 	}
 }

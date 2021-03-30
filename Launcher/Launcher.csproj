@@ -10,8 +10,8 @@
 	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
 	  <PackageReference Include="System.Security.Permissions" Version="5.0.0" />
 	  <PackageReference Include="War3Net.Build" Version="5.0.0" />
-	  <PackageReference Include="War3Net.CSharpLua" Version="1.7.10" />
-	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.10" />
+	  <PackageReference Include="War3Net.CSharpLua" Version="1.7.11" />
+	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.11" />
 	</ItemGroup>
 
 	<ItemGroup>

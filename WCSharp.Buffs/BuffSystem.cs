@@ -10,7 +10,7 @@ namespace WCSharp.Buffs
 	public static class BuffSystem
 	{
 		private static readonly PeriodicTrigger<Buff> periodicTrigger = new PeriodicTrigger<Buff>(PeriodicEvents.SYSTEM_INTERVAL);
-		private static readonly Dictionary<int, List<Buff>> buffsByHandleId = new Dictionary<int, List<Buff>>();
+		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new Dictionary<unit, List<Buff>>();
 
 		/// <summary>
 		/// All active buffs.
@@ -23,7 +23,7 @@ namespace WCSharp.Buffs
 		/// <returns>The buff that was applied, or the buff whose stacks were added to.</returns>
 		public static Buff Add(Buff buff, StackBehaviour stackBehaviour = StackBehaviour.None)
 		{
-			if (buffsByHandleId.TryGetValue(buff.targetHandleId, out var buffs))
+			if (buffsByUnit.TryGetValue(buff.Target, out var buffs))
 			{
 				if (stackBehaviour != StackBehaviour.None)
 				{
@@ -53,24 +53,25 @@ namespace WCSharp.Buffs
 			}
 			else
 			{
-				buffsByHandleId.Add(buff.targetHandleId, new List<Buff>
+				buffsByUnit.Add(buff.Target, new List<Buff>
 				{
 					buff
 				});
 			}
 
 			periodicTrigger.Add(buff);
+			buff.Active = true;
 			buff.Apply();
 			return buff;
 		}
 
 		internal static void Remove(Buff buff)
 		{
-			if (buffsByHandleId.TryGetValue(buff.targetHandleId, out var buffs))
+			if (buffsByUnit.TryGetValue(buff.Target, out var buffs))
 			{
 				if (buffs.Count == 1)
 				{
-					buffsByHandleId.Remove(buff.targetHandleId);
+					buffsByUnit.Remove(buff.Target);
 				}
 				else
 				{
@@ -103,7 +104,7 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			if (buffsByHandleId.TryGetValue(GetHandleId(unit), out var buffs))
+			if (buffsByUnit.TryGetValue(unit, out var buffs))
 			{
 				var owner = GetOwningPlayer(unit);
 				foreach (var buff in buffs)
@@ -118,20 +119,13 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public static IEnumerable<Buff> GetBuffsOnUnit(unit unit)
 		{
-			return GetBuffsOnUnit(GetHandleId(unit));
-		}
-
-		/// <summary>
-		/// Uses a dictionary to quickly find all buffs attached to the given unit.
-		/// </summary>
-		public static IEnumerable<Buff> GetBuffsOnUnit(int unitHandleId)
-		{
-			if (buffsByHandleId.TryGetValue(unitHandleId, out var buffs))
+			if (buffsByUnit.TryGetValue(unit, out var buffs))
 			{
-				return buffs;
+				foreach (var buff in buffs)
+				{
+					yield return buff;
+				}
 			}
-
-			return Enumerable.Empty<Buff>();
 		}
 
 		/// <summary>

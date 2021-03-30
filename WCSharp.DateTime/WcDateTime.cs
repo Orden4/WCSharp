@@ -4,6 +4,9 @@ using WCSharp.Events;
 
 namespace WCSharp.DateTime
 {
+	/// <summary>
+	/// Represents an instant in time, with a precision in seconds.
+	/// </summary>
 	public class WcDateTime : IComparable, IComparable<WcDateTime>, IEquatable<WcDateTime>
 	{
 		#region Standard
@@ -467,6 +470,21 @@ namespace WCSharp.DateTime
 				str = "0" + str;
 			}
 			return str;
+		}
+
+		public static WcDateTime Deserialize(string @string)
+		{
+			if (int.TryParse(@string, out var seconds))
+			{
+				return new WcDateTime(seconds);
+			}
+
+			return null;
+		}
+
+		public static string Serialize(WcDateTime wcDateTime)
+		{
+			return wcDateTime.seconds.ToString();
 		}
 		#endregion
 

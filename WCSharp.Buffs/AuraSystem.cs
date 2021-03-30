@@ -17,6 +17,7 @@ namespace WCSharp.Buffs
 		public static void Add(IAura aura)
 		{
 			aura.Active = true;
+			aura.Apply();
 			periodicTrigger.Add(aura);
 		}
 

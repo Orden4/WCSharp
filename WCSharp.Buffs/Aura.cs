@@ -6,6 +6,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// Auras constantly apply/refresh a linked <see cref="Buff"/> on valid targets in range.
+	/// </summary>
+	/// <typeparam name="T">The buff that will be applied by this aura.</typeparam>
 	public abstract class Aura<T> : IAura
 		where T : Buff
 	{
@@ -26,9 +30,9 @@ namespace WCSharp.Buffs
 		public float SearchInterval { get; set; } = 1.0f;
 		public StackBehaviour StackBehaviour { get; set; }
 		/// <summary>
-		/// A dictionary mapping unit ids to active buffs.
+		/// A dictionary mapping units to active buffs.
 		/// </summary>
-		public Dictionary<int, AuraBuff<T>> ActiveBuffsByUnitId { get; set; }
+		public Dictionary<unit, AuraBuff<T>> ActiveBuffsByUnit { get; set; }
 
 		private string effectString;
 		public string EffectString
@@ -39,17 +43,20 @@ namespace WCSharp.Buffs
 				if (this.effectString != value)
 				{
 					this.effectString = value;
-					if (this.effect != null)
+					if (Active)
 					{
-						DestroyEffect(this.effect);
-					}
-					if (!string.IsNullOrEmpty(value))
-					{
-						this.effect = AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
-					}
-					else
-					{
-						this.effect = null;
+						if (this.effect != null)
+						{
+							DestroyEffect(this.effect);
+						}
+						if (!string.IsNullOrEmpty(value))
+						{
+							this.effect = AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
+						}
+						else
+						{
+							this.effect = null;
+						}
 					}
 				}
 			}
@@ -84,7 +91,7 @@ namespace WCSharp.Buffs
 		{
 			Caster = caster;
 			CastingPlayer = GetOwningPlayer(caster);
-			ActiveBuffsByUnitId = new Dictionary<int, AuraBuff<T>>();
+			ActiveBuffsByUnit = new Dictionary<unit, AuraBuff<T>>();
 		}
 
 		/// <summary>
@@ -102,6 +109,14 @@ namespace WCSharp.Buffs
 		/// <returns>True if the given unit should receive the aura buff.</returns>
 		protected abstract bool UnitFilter(unit unit);
 
+		public void Apply()
+		{
+			if (!string.IsNullOrEmpty(this.effectString))
+			{
+				this.effect = AddSpecialEffectTarget(this.effectString, Caster, EffectAttachmentPoint);
+			}
+		}
+
 		public void Action()
 		{
 			if (SearchIntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
@@ -111,8 +126,7 @@ namespace WCSharp.Buffs
 
 				foreach (var unit in this.group.Enumerate())
 				{
-					var handleId = GetHandleId(unit);
-					if (ActiveBuffsByUnitId.TryGetValue(handleId, out var buff))
+					if (ActiveBuffsByUnit.TryGetValue(unit, out var buff))
 					{
 						buff.Duration = Duration;
 						buff.Buff.Duration = Duration;
@@ -121,7 +135,7 @@ namespace WCSharp.Buffs
 					{
 						var aura = (T)BuffSystem.Add(CreateAuraBuff(unit), StackBehaviour);
 						aura.Duration = Duration;
-						ActiveBuffsByUnitId.Add(handleId, new AuraBuff<T>
+						ActiveBuffsByUnit.Add(unit, new AuraBuff<T>
 						{
 							Buff = aura,
 							Duration = Duration
@@ -134,13 +148,14 @@ namespace WCSharp.Buffs
 				SearchIntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
 			}
 
-			var removals = new List<int>();
+			var removals = new List<unit>();
 
-			foreach (var buff in ActiveBuffsByUnitId)
+			foreach (var buff in ActiveBuffsByUnit)
 			{
 				if (buff.Value.Duration <= 0)
 				{
 					removals.Add(buff.Key);
+					buff.Value.Buff.Stacks--;
 				}
 				else
 				{
@@ -150,13 +165,13 @@ namespace WCSharp.Buffs
 
 			foreach (var unitId in removals)
 			{
-				ActiveBuffsByUnitId.Remove(unitId);
+				ActiveBuffsByUnit.Remove(unitId);
 			}
 		}
 
 		public IEnumerable<Buff> GetActiveBuffs()
 		{
-			return ActiveBuffsByUnitId.Values.Select(x => x.Buff);
+			return ActiveBuffsByUnit.Values.Select(x => x.Buff);
 		}
 
 		public void Dispose()

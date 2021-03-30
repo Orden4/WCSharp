@@ -53,6 +53,11 @@ namespace WCSharp.Buffs
 		string EffectAttachmentPoint { get; set; }
 
 		/// <summary>
+		/// Called by the system. Do not call yourself.
+		/// </summary>
+		public void Apply();
+
+		/// <summary>
 		/// Returns all generic buffs currently active for this aura.
 		/// </summary>
 		IEnumerable<Buff> GetActiveBuffs();

@@ -15,11 +15,7 @@ namespace WCSharp.ConstantGenerator.Handlers
 public static class Cameras
 {{
 {0}
-
-#pragma warning disable IDE0052 // Remove unread private members
-	private static readonly object initialiser = Initialise();
-#pragma warning restore IDE0052 // Remove unread private members
-	private static object Initialise()
+	static Cameras()
 	{{
 {1}
 	}}
@@ -66,8 +62,6 @@ public static class Cameras
 				configuration.Append($"\t\tCameraSetupSetField({name}, CAMERA_FIELD_LOCAL_YAW, {camera.LocalYaw}f, 0);\r\n");
 				configuration.Append($"\t\tCameraSetupSetField({name}, CAMERA_FIELD_LOCAL_ROLL, {camera.LocalRoll}f, 0);\r\n");
 			}
-
-			configuration.Append("\t\treturn null;");
 
 			File.WriteAllText(output, string.Format(FILE, variables.ToString(), configuration.ToString()));
 		}

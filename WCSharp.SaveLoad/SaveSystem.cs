@@ -120,9 +120,9 @@ namespace WCSharp.SaveLoad
 		}
 
 		/// <summary>
-		/// 
+		/// Writes the given saveable to file for the player who owns the save.
 		/// </summary>
-		/// <param name="saveable">The save to store.</param>
+		/// <param name="saveable">The saveable to save.</param>
 		public void Save(T saveable)
 		{
 			// This code must only execute for the local player
@@ -206,8 +206,7 @@ namespace WCSharp.SaveLoad
 			var message = new SaveLoadedMessage
 			{
 				PlayerId = GetPlayerId(player),
-				SaveSlot = saveSlot,
-				TypeName = typeof(T).FullName
+				SaveSlot = saveSlot
 			};
 
 			if (save != null && save.HashCode == save.GetSaveHash(this.hash1, this.hash2, this.bindSavesToPlayerName, this.salt))

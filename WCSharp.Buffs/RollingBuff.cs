@@ -6,6 +6,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// A specialized buff for handling multiple underlying buffs, each with their own duration. The buff will tick only once, but the durations of all underlying buffs are managed individually.
+	/// </summary>
+	/// <typeparam name="T">This should be the type implementing this abstract.</typeparam>
 	public abstract class RollingBuff<T> : Buff
 		where T : RollingBuff<T>
 	{
@@ -45,11 +49,11 @@ namespace WCSharp.Buffs
 				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
 			}
 
-			Active = true;
 			this.buffs = new List<T>
 			{
 				(T)this
 			};
+			OnApply();
 		}
 
 		public sealed override void Action()
@@ -68,10 +72,8 @@ namespace WCSharp.Buffs
 					OnDeath(true);
 				}
 			}
-			else
-			{
-				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
-			}
+
+			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
 
 			this.buffs.IterateWithRemoval(x =>
 			{
@@ -115,6 +117,19 @@ namespace WCSharp.Buffs
 		public virtual void OnTick()
 		{
 
+		}
+
+		public sealed override void Dispose()
+		{
+			OnDispose();
+			Active = false;
+
+			if (this.effect != null)
+			{
+				DestroyEffect(this.effect);
+			}
+
+			BuffSystem.Remove(this);
 		}
 	}
 }

@@ -13,14 +13,10 @@ namespace WCSharp.Events
 
 		private static readonly List<PeriodicEvent> timerEvents = new List<PeriodicEvent>();
 
-#pragma warning disable IDE0052 // Remove unread private members
-		private static readonly object initialiser = Initialise();
-#pragma warning restore IDE0052 // Remove unread private members
-		private static object Initialise()
+		static PeriodicEvents()
 		{
 			var timer = CreateTimer();
 			TimerStart(timer, SYSTEM_INTERVAL, true, Tick);
-			return null;
 		}
 
 		/// <summary>

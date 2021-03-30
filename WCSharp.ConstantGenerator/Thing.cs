@@ -1,4 +1,6 @@
-﻿using WCSharp.ConstantGenerator.Extensions;
+﻿using System.Globalization;
+using System.Text;
+using WCSharp.ConstantGenerator.Extensions;
 
 namespace WCSharp.ConstantGenerator
 {
@@ -28,7 +30,15 @@ namespace WCSharp.ConstantGenerator
 					suffix = "_" + suffix;
 				}
 
-				return $"{Type}_{Code}_{name}{suffix}".Escape().ToUpper() + $" = {NumberCode}";
+				var sb = new StringBuilder();
+				sb.Append(Type);
+				if (ConstantGenerator.Options.IncludeCode)
+				{
+					sb.Append("_" + Code);
+				}
+				sb.Append($"_{name}{suffix}");
+
+				return $"{sb.ToString().Escape().ToUpper(CultureInfo.InvariantCulture)} = {NumberCode}";
 			}
 		}
 	}

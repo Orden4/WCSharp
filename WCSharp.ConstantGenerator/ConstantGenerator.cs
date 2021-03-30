@@ -5,7 +5,9 @@ namespace WCSharp.ConstantGenerator
 {
 	public class ConstantGenerator
 	{
-		public static void Run(string mapDirectory, string outputDirectory)
+		internal static ConstantGeneratorOptions Options { get; set; }
+
+		public static void Run(string mapDirectory, string outputDirectory, ConstantGeneratorOptions options = null)
 		{
 			if (mapDirectory == null)
 			{
@@ -15,6 +17,8 @@ namespace WCSharp.ConstantGenerator
 			{
 				throw new ArgumentNullException(nameof(outputDirectory));
 			}
+
+			Options = options ?? new ConstantGeneratorOptions();
 
 			ConstantsHandler.Run(mapDirectory, outputDirectory);
 			W3CHandler.Run(mapDirectory, outputDirectory);

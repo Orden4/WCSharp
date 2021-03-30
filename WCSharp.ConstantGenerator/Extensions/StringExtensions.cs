@@ -20,7 +20,7 @@ namespace WCSharp.ConstantGenerator.Extensions
 			}
 
 			// Remove non-alphanumeric characters
-			@string = Regex.Replace(@string, ALPHA_NUMERIC_FILTER, "_");
+			@string = Regex.Replace(@string, ALPHA_NUMERIC_FILTER, "_", RegexOptions.CultureInvariant);
 
 			if (@string.StartsWith("_"))
 			{
