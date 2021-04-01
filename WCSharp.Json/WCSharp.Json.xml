@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.Json</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.Json.JsonConvert">
+            <summary>
+            Entry point for converting classes to and from JSON files.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Json.JsonConvert.TryDeserialize``1(System.String,``0@)">
+            <summary>
+            Attempts to convert the given JSON string into the specified generic class.
+            <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Json.JsonConvert.TryDeserialize(System.String,System.Type,System.Object@)">
+            <summary>
+            Attempts to convert the given JSON string into the specified generic class.
+            <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Json.JsonConvert.Deserialize``1(System.String)">
+            <summary>
+            Converts the given JSON string into the specified generic class.
+            <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Json.JsonConvert.Deserialize(System.String,System.Type)">
+            <summary>
+            Converts the given JSON string into the specified generic class.
+            <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Json.JsonConvert.Serialize``1(``0)">
+            <summary>
+            Converts the given generic class into a JSON string.
+            <para>Please read the documentation for details on what can and cannot be (de)serialized.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

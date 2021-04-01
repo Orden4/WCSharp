@@ -4,6 +4,9 @@ using static War3Api.Common;
 
 namespace WCSharp.Events
 {
+	/// <summary>
+	/// Keeps track of all periodic events. The system runs at an interval defined by <see cref="SYSTEM_INTERVAL"/> (0.03125).
+	/// </summary>
 	public static class PeriodicEvents
 	{
 		/// <summary>

@@ -21,6 +21,10 @@ namespace WCSharp.Buffs
 		/// The time, in seconds, between each tick.
 		/// </summary>
 		public float Interval { get; set; }
+		/// <summary>
+		/// Whether the current instance is the main stack (i.e. the instance that manages underlying instances).
+		/// </summary>
+		public bool IsMainStack { get; private set; }
 
 		private List<T> buffs;
 
@@ -30,11 +34,16 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public IEnumerable<T> Buffs => this.buffs ?? Enumerable.Empty<T>();
 
+		/// <inheritdoc/>
 		public RollingBuff(unit caster, unit target) : base(caster, target)
 		{
 		}
 
-		public sealed override StackResult OnStack(Buff newStack)
+		/// <summary>
+		/// Executes whenever this buff receives a new stack via <see cref="BuffSystem.Add(Buff, StackBehaviour)"/>.
+		/// When overriding this method, you should always invoke base.OnStack(newStack).
+		/// </summary>
+		public override StackResult OnStack(Buff newStack)
 		{
 			var buff = (T)newStack;
 			this.buffs.Add(buff);
@@ -42,13 +51,19 @@ namespace WCSharp.Buffs
 			return StackResult.Stack;
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Apply()
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 
+			IsMainStack = true;
 			this.buffs = new List<T>
 			{
 				(T)this
@@ -56,14 +71,17 @@ namespace WCSharp.Buffs
 			OnApply();
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				Dispose();
+				Active = false;
+				return;
 			}
-			else if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+
+			if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				IntervalLeft = Interval;
 				OnTick();
@@ -94,7 +112,7 @@ namespace WCSharp.Buffs
 			if (this.buffs.Count == 0)
 			{
 				OnExpire();
-				Dispose();
+				Active = false;
 			}
 			else
 			{
@@ -119,14 +137,14 @@ namespace WCSharp.Buffs
 
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Dispose()
 		{
 			OnDispose();
-			Active = false;
 
-			if (this.effect != null)
+			if (Effect != null)
 			{
-				DestroyEffect(this.effect);
+				DestroyEffect(Effect);
 			}
 
 			BuffSystem.Remove(this);

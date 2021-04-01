@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.ConstantGenerator</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.ConstantGenerator.ConstantGenerator">
+            <summary>
+            Entry point for generated WCSharp constant files.
+            </summary>
+        </member>
+        <member name="M:WCSharp.ConstantGenerator.ConstantGenerator.Run(System.String,System.String,WCSharp.ConstantGenerator.ConstantGeneratorOptions)">
+            <summary>
+            
+            </summary>
+            <param name="mapDirectory">The directory containing the map source files (source.w3x by default)</param>
+            <param name="outputDirectory">The output directory (the Source project folder by default)</param>
+            <param name="options">Optional settings for the constant generation.</param>
+        </member>
+        <member name="T:WCSharp.ConstantGenerator.ConstantGeneratorOptions">
+            <summary>
+            Defines a set of optional parameters for constant generation.
+            </summary>
+        </member>
+        <member name="P:WCSharp.ConstantGenerator.ConstantGeneratorOptions.IncludeCode">
+            <summary>
+            Whether to include the FourCC code in the name of constants outputted.
+            <para>Example: 'ABILITY_A001_FIREBALL' if true, or 'ABILITY_FIREBALL' if false.</para>
+            <para>Defaults to false.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

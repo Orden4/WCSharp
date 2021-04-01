@@ -15,6 +15,10 @@
     <Product>WCSharp</Product>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.Lightnings\WCSharp.Lightnings.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
     <PackageReference Include="War3Api.Common" Version="1.32.9" />

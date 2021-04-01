@@ -18,37 +18,45 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public float Interval { get; set; }
 
+		/// <inheritdoc/>
 		public TickingBuff(unit caster, unit target) : base(caster, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Apply()
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 
 			IntervalLeft = Interval;
 			OnApply();
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				Dispose();
+				Active = false;
 				return;
 			}
-			else if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+
+			if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				IntervalLeft += Interval;
 				OnTick();
 				if (!UnitAlive(Target))
 				{
 					OnDeath(true);
-					Dispose();
+					Active = false;
 					return;
 				}
 			}
@@ -58,7 +66,7 @@ namespace WCSharp.Buffs
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				OnExpire();
-				Dispose();
+				Active = false;
 				return;
 			}
 			else
@@ -72,14 +80,14 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public abstract void OnTick();
 
+		/// <inheritdoc/>
 		public sealed override void Dispose()
 		{
 			OnDispose();
-			Active = false;
 
-			if (this.effect != null)
+			if (Effect != null)
 			{
-				DestroyEffect(this.effect);
+				DestroyEffect(Effect);
 			}
 
 			BuffSystem.Remove(this);

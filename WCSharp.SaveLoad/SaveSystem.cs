@@ -9,6 +9,10 @@ using static War3Api.Common;
 
 namespace WCSharp.SaveLoad
 {
+	/// <summary>
+	/// System capable of saving C# data structures on a players local files to create save files that can be loaded at a later date/map.
+	/// </summary>
+	/// <typeparam name="T">The <see cref="Saveable"/> type that this instance will be saving/loading</typeparam>
 	public class SaveSystem<T> : IDisposable
 		where T : Saveable
 	{
@@ -63,6 +67,9 @@ namespace WCSharp.SaveLoad
 		/// </summary>
 		public event OnSaveLoadedHandler OnSaveLoaded;
 
+		/// <summary>
+		/// Creates a new <see cref="SaveSystem{T}"/> instance with the given <paramref name="options"/>.
+		/// </summary>
 		public SaveSystem(SaveSystemOptions options)
 		{
 			if (originalTooltips == null)
@@ -243,6 +250,7 @@ namespace WCSharp.SaveLoad
 			}
 		}
 
+		/// <inheritdoc/>
 		public void Dispose()
 		{
 			SyncSystem.Unsubscribe<SaveLoadedMessage>(HandleSaveLoadedMessage);

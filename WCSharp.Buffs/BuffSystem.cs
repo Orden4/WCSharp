@@ -7,9 +7,12 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// Tracks and runs all active <see cref="Buff"/> instances.
+	/// </summary>
 	public static class BuffSystem
 	{
-		private static readonly PeriodicTrigger<Buff> periodicTrigger = new PeriodicTrigger<Buff>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<Buff> periodicTrigger = new PeriodicDisposableTrigger<Buff>(PeriodicEvents.SYSTEM_INTERVAL);
 		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new Dictionary<unit, List<Buff>>();
 
 		/// <summary>
@@ -18,7 +21,7 @@ namespace WCSharp.Buffs
 		public static IEnumerable<Buff> Buffs => periodicTrigger.Actions;
 
 		/// <summary>
-		/// Adds the given buffs to the system. This will also initialise or alter some values according to the buffs' properties.
+		/// Adds the given <paramref name="buff"/> to the system. If addition is successful, will invoke <see cref="Buff.OnApply"/>.
 		/// </summary>
 		/// <returns>The buff that was applied, or the buff whose stacks were added to.</returns>
 		public static Buff Add(Buff buff, StackBehaviour stackBehaviour = StackBehaviour.None)
@@ -30,7 +33,7 @@ namespace WCSharp.Buffs
 					var type = buff.GetType();
 					foreach (var currentBuff in buffs)
 					{
-						if (currentBuff.GetType() == type)
+						if (currentBuff.Active && currentBuff.GetType() == type)
 						{
 							if (stackBehaviour == StackBehaviour.Stack ||
 								(stackBehaviour == StackBehaviour.StackCaster && buff.Caster == currentBuff.Caster) ||
@@ -41,7 +44,7 @@ namespace WCSharp.Buffs
 									case StackResult.Stack:
 										return currentBuff;
 									case StackResult.Consume:
-										currentBuff.Dispose();
+										currentBuff.Active = false;
 										break;
 								}
 							}
@@ -59,9 +62,8 @@ namespace WCSharp.Buffs
 				});
 			}
 
-			periodicTrigger.Add(buff);
-			buff.Active = true;
 			buff.Apply();
+			periodicTrigger.Add(buff);
 			return buff;
 		}
 
@@ -104,13 +106,10 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			if (buffsByUnit.TryGetValue(unit, out var buffs))
+			var owner = GetOwningPlayer(unit);
+			foreach (var buff in GetBuffsOnUnit(unit))
 			{
-				var owner = GetOwningPlayer(unit);
-				foreach (var buff in buffs)
-				{
-					buff.TargetPlayer = owner;
-				}
+				buff.TargetPlayer = owner;
 			}
 		}
 
@@ -123,7 +122,10 @@ namespace WCSharp.Buffs
 			{
 				foreach (var buff in buffs)
 				{
-					yield return buff;
+					if (buff.Active)
+					{
+						yield return buff;
+					}
 				}
 			}
 		}
@@ -136,21 +138,25 @@ namespace WCSharp.Buffs
 		/// <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
 		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
 		/// <param name="dispelType">The type of buffs that can be dispelled.</param>
-		/// <returns>All dispelled buffs.</returns>
-		public static IEnumerable<Buff> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, string dispelType)
+		/// <returns>All dispels.</returns>
+		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, string dispelType)
 		{
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Contains(dispelType))
 				{
-					if (buff.OnDispel(dispeller))
+					var stacks = buff.Stacks;
+					var chargesConsumed = buff.OnDispel(dispeller, dispelAmount);
+					dispelAmount -= chargesConsumed;
+
+					if (buff.Stacks == 0)
 					{
 						buff.Active = false;
-						buff.Dispose();
-						yield return buff;
 					}
 
-					if (--dispelAmount == 0)
+					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+
+					if (dispelAmount <= 0)
 					{
 						yield break;
 					}
@@ -166,21 +172,25 @@ namespace WCSharp.Buffs
 		/// <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
 		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
 		/// <param name="dispelTypes">The buff types that can be dispelled.</param>
-		/// <returns>All dispelled buffs.</returns>
-		public static IEnumerable<Buff> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, params string[] dispelTypes)
+		/// <returns>All dispels.</returns>
+		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, params string[] dispelTypes)
 		{
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)))
 				{
-					if (buff.OnDispel(dispeller))
+					var stacks = buff.Stacks;
+					var chargesConsumed = buff.OnDispel(dispeller, dispelAmount);
+					dispelAmount -= chargesConsumed;
+
+					if (buff.Stacks == 0)
 					{
 						buff.Active = false;
-						buff.Dispose();
-						yield return buff;
 					}
 
-					if (--dispelAmount == 0)
+					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+
+					if (dispelAmount <= 0)
 					{
 						yield break;
 					}
@@ -197,21 +207,25 @@ namespace WCSharp.Buffs
 		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
 		/// <param name="dispelTypes">The buff types that can be dispelled.</param>
 		/// <param name="exclusions">Will not dispel buffs with any of the given exclusion types.</param>
-		/// <returns>All dispelled buffs.</returns>
-		public static IEnumerable<Buff> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, List<string> dispelTypes, List<string> exclusions)
+		/// <returns>All dispels.</returns>
+		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, List<string> dispelTypes, List<string> exclusions)
 		{
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)) && !buff.BuffTypes.Any(x => exclusions.Contains(x)))
 				{
-					if (buff.OnDispel(dispeller))
+					var stacks = buff.Stacks;
+					var chargesConsumed = buff.OnDispel(dispeller, dispelAmount);
+					dispelAmount -= chargesConsumed;
+
+					if (buff.Stacks == 0)
 					{
 						buff.Active = false;
-						buff.Dispose();
-						yield return buff;
 					}
 
-					if (--dispelAmount == 0)
+					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+
+					if (dispelAmount <= 0)
 					{
 						yield break;
 					}

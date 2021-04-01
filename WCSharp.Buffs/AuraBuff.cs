@@ -1,5 +1,9 @@
 ﻿namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// Helper class to track the duration of a buff specific to an aura applying it. Used to handle the case of multiple auras applying the same buff to a single unit.
+	/// </summary>
+	/// <typeparam name="T">The specific type of the buff being tracked.</typeparam>
 	public class AuraBuff<T>
 		where T : Buff
 	{

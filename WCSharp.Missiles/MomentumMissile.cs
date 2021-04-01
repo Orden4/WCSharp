@@ -13,21 +13,25 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class MomentumMissile : Missile
 	{
+		/// <inheritdoc/>
 		public sealed override float CasterZ
 		{
 			get => this.casterZ + GetZ(CasterX, CasterY);
 			set => this.casterZ = value - GetZ(CasterX, CasterY);
 		}
+		/// <inheritdoc/>
 		public sealed override float TargetZ
 		{
 			get => this.targetZ + GetZ(TargetX, TargetY);
 			set => this.targetZ = value - GetZ(TargetX, TargetY);
 		}
+		/// <inheritdoc/>
 		public sealed override float MissileZ
 		{
 			get => this.missileZ + GetZ(MissileX, MissileY);
 			set => this.missileZ = value - GetZ(MissileX, MissileY);
 		}
+		/// <inheritdoc/>
 		public sealed override float Speed
 		{
 			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
@@ -64,22 +68,27 @@ namespace WCSharp.Missiles
 			set => this.maximumSpeed = value * PeriodicEvents.SYSTEM_INTERVAL;
 		}
 
+		/// <inheritdoc/>
 		public MomentumMissile(unit caster, unit target) : base(caster, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		public MomentumMissile(unit caster, float targetX, float targetY) : base(caster, targetX, targetY)
 		{
 		}
 
+		/// <inheritdoc/>
 		public MomentumMissile(player castingPlayer, float casterX, float casterY, unit target) : base(castingPlayer, casterX, casterY, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		public MomentumMissile(player castingPlayer, float casterX, float casterY, float targetX, float targetY) : base(castingPlayer, casterX, casterY, targetX, targetY)
 		{
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Launch()
 		{
 			this.casterZ += CasterLaunchZ;
@@ -94,7 +103,10 @@ namespace WCSharp.Missiles
 			{
 				Effect = AddSpecialEffect(this.effectString, MissileX, MissileY);
 				BlzSetSpecialEffectZ(Effect, MissileZ);
-				BlzSetSpecialEffectScale(Effect, this.effectScale);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 
 			this.yaw = InitialAngle.HasValue
@@ -102,6 +114,7 @@ namespace WCSharp.Missiles
 				: Util.AngleBetweenPointsRad(CasterX, CasterY, TargetX, TargetY);
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (Target != null)
@@ -120,12 +133,7 @@ namespace WCSharp.Missiles
 
 			if (Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
-				Active = false;
 				Impact();
-				if (!Active)
-				{
-					Dispose();
-				}
 				return;
 			}
 
@@ -158,12 +166,7 @@ namespace WCSharp.Missiles
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{
-				Active = false;
 				ExitWorldBounds();
-				if (!Active)
-				{
-					Dispose();
-				}
 				return;
 			}
 

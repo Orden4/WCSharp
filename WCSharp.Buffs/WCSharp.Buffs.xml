@@ -1,0 +1,690 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.Buffs</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.Buffs.Aura`1">
+            <summary>
+            Auras constantly apply/refresh a linked <see cref="T:WCSharp.Buffs.Buff"/> on valid targets in range.
+            </summary>
+            <typeparam name="T">The buff that will be applied by this aura.</typeparam>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.Active">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.Caster">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.CastingPlayer">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.Radius">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.Duration">
+            <summary>
+            The duration in seconds of buffs applied by this aura. Defaults to 3.1.
+            <para>Unless you're making a pulsing aura, you will want the <see cref="P:WCSharp.Buffs.Aura`1.Duration"/> to be greater than the <see cref="P:WCSharp.Buffs.Aura`1.SearchInterval"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.SearchIntervalLeft">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.SearchInterval">
+            <summary>
+            How long in seconds between applications of this aura. Defaults to 1.0.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.StackBehaviour">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.ActiveBuffsByUnit">
+            <summary>
+            A dictionary mapping units to active buffs.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.EffectString">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.EffectAttachmentPoint">
+            <inheritdoc/>
+        </member>
+        <member name="F:WCSharp.Buffs.Aura`1.effectScale">
+            <summary>
+            Internal effect scale. Used only when there is no effect present yet.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.EffectScale">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Aura`1.Effect">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.#ctor(War3Api.Common.unit)">
+            <summary>
+            Creates a new aura centered around the given caster.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.CreateAuraBuff(War3Api.Common.unit)">
+            <summary>
+            Use this method to create new aura buffs.
+            <para>Duration will be set automatically.</para>
+            </summary>
+            <param name="unit">The unit on who the aura buff will be applied.</param>
+            <returns>The aura buff to be applied.</returns>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.UnitFilter(War3Api.Common.unit)">
+            <summary>
+            Use this method to filter units that should be affected by this aura.
+            </summary>
+            <param name="unit">The unit to evaluate</param>
+            <returns>True if the given unit should receive the aura buff.</returns>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.Apply">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.GetActiveBuffs">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.Aura`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Buffs.AuraBuff`1">
+            <summary>
+            Helper class to track the duration of a buff specific to an aura applying it. Used to handle the case of multiple auras applying the same buff to a single unit.
+            </summary>
+            <typeparam name="T">The specific type of the buff being tracked.</typeparam>
+        </member>
+        <member name="P:WCSharp.Buffs.AuraBuff`1.Duration">
+            <summary>
+            This is the duration relative to the aura containing this instance of <see cref="T:WCSharp.Buffs.AuraBuff`1"/>.
+            <para>If there are multiple sources applying an aura buff, the buff itself may persist even if this duration expires (i.e. moves away from this aura source).</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AuraBuff`1.Buff">
+            <summary>
+            The actual buff being applied.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Buffs.AuraSystem">
+            <summary>
+            Tracks and runs all active <see cref="T:WCSharp.Buffs.IAura"/> instances.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AuraSystem.Auras">
+            <summary>
+            All active buffs.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.AuraSystem.Add(WCSharp.Buffs.IAura)">
+            <summary>
+            Adds the given <paramref name="aura"/> to the system.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.AuraSystem.RegisterForOwnershipChanges">
+            <summary>
+            By default, <see cref="P:WCSharp.Buffs.IAura.CastingPlayer"/> is not updated when a unit changes owner.
+            <para>This adds an event to pass over all auras and update <see cref="P:WCSharp.Buffs.IAura.CastingPlayer"/> on ownership changes.</para>
+            <para>This will ignore ownership changes of unit type 'xxxx' (<see cref="F:WCSharp.Dummies.DummySystem.UNIT_TYPE_DUMMY"/>).</para>
+            </summary>
+        </member>
+        <member name="T:WCSharp.Buffs.AutoBuff">
+            <summary>
+            AutoBuffs are buffs which automatically tick for a specified damage/healing amount.
+            <para>If automatic damage/healing is not required, it is recommended to use <see cref="T:WCSharp.Buffs.TickingBuff"/> instead.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AutoBuff.IntervalLeft">
+            <summary>
+            The time, in seconds, remaining until the next tick.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AutoBuff.Interval">
+            <summary>
+            The time, in seconds, between each tick.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AutoBuff.DamagePerInterval">
+            <summary>
+            The damage to apply on each tick. Set to negative to heal.
+            <para>The damage dealer is the caster if the caster is alive, otherwise the target itself.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AutoBuff.AttackType">
+            <summary>
+            The attack type to use when dealing damage via the built-in <see cref="P:WCSharp.Buffs.AutoBuff.DamagePerInterval"/> property.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.AutoBuff.DamageType">
+            <summary>
+            The damage type to use when dealing damage via the built-in <see cref="P:WCSharp.Buffs.AutoBuff.DamagePerInterval"/> property.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.AutoBuff.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.AutoBuff.Apply">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.AutoBuff.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.AutoBuff.OnTick">
+            <summary>
+            Executes every <see cref="P:WCSharp.Buffs.AutoBuff.Interval"/>.
+            <para>This is called BEFORE the automatic damage/healing occurs.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.AutoBuff.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Buffs.BoundBuff">
+            <summary>
+            BoundBuffs have additional logic for binding the buff to an in-game buff with support of the <see cref="T:WCSharp.Dummies.DummySystem"/>.
+            <para>As a result, this buff works a little differently, and you should read the wiki in order to see how you should handle these buffs.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.BoundBuff.IntervalLeft">
+            <summary>
+            The time, in seconds, remaining until the next tick.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.BoundBuff.Interval">
+            <summary>
+            The time, in seconds, between each tick.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.Bind(System.Int32,System.Int32,System.Int32,System.Int32,War3Api.Common.player)">
+            <summary>
+            Will use the <see cref="T:WCSharp.Dummies.DummySystem"/> to cast the given buffing ability on the target and then track it to synchronise removal.
+            </summary>
+            <param name="abilityId">The ability ID which applies the buff that should be tracked</param>
+            <param name="buffId">The buff ID to track</param>
+            <param name="orderId">The order ID of the ability to cast</param>
+            <param name="level">The level of the ability to cast</param>
+            <param name="dummyPlayer">Who the owner of the dummy should be set to, defaults to Neutral Passive</param>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.Bind(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Will add the given aura to the unit if necessary and set its level accordingly. The aura will automatically be hidden from the command UI
+            and removed when the buff is removed.
+            </summary>
+            <param name="auraId"></param>
+            <param name="buffId"></param>
+            <param name="level"></param>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.Apply">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.OnTick">
+            <summary>
+            Executes every <see cref="P:WCSharp.Buffs.BoundBuff.Interval"/>.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.OnStack(WCSharp.Buffs.Buff)">
+            <summary>
+            Executes whenever this buff receives a new stack via <see cref="M:WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff,WCSharp.Buffs.StackBehaviour)"/>.
+            <para>By default, BoundBuff will return <see cref="F:WCSharp.Buffs.StackResult.Consume"/>.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.BoundBuff.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Buffs.Buff">
+            <summary>
+            The most basic buff implementation, with almost all logic undefined.
+            <para>It is recommended to use one of the more concrete types instead, such as <see cref="T:WCSharp.Buffs.PassiveBuff"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.Active">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.Caster">
+            <summary>
+            The unit that applied the buff.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.CastingPlayer">
+            <summary>
+            The owner of the caster. Automatically set on application.
+            <para>Does NOT update automatically! If this is desired, you can use <see cref="M:WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.Target">
+            <summary>
+            The target to which this buff is attached.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.TargetPlayer">
+            <summary>
+            The owner of the target. Automatically set on application.
+            <para>Does NOT update automatically! If this is desired, you can use <see cref="M:WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.Duration">
+            <summary>
+            The remaining duration before this buff expires.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.IsBeneficial">
+            <summary>
+            Whether this buff is beneficial or detrimental to the target.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.BuffTypes">
+            <summary>
+            The buff types, used primarily for dispelling. e.g. magic, physical, undispellable, etc.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.Stacks">
+            <summary>
+            The number of stacks of this buff currently active on the target.
+            <para>Defaults to 1.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.EffectString">
+            <summary>
+            The path of the effect to use. Leave empty for no effect.
+            <para>If changed while the buff is already active, will destroy and recreate the effect.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.EffectAttachmentPoint">
+            <summary>
+            The attachment point for the effect.
+            <para>If changed while the buff is already active, will destroy and recreate the effect at the desired attachment point.</para>
+            <para>Defaults to origin.</para>
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.Buff.effectScale">
+            <summary>
+            Internal effect scale. Used only when there is no effect present yet.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.EffectScale">
+            <summary>
+            The effect scale of the missile.
+            <para>If modified mid-flight, automatically modifies the missile.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Buff.Effect">
+            <summary>
+            The effect being used by the missile. Creation of the effect should be done by setting <see cref="P:WCSharp.Buffs.Buff.EffectString"/>, not by setting this property.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <summary>
+            Will set Caster, CastingPlayer, Target and TargetPlayer accordingly.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.Apply">
+            <summary>
+            Called by the system. Do not call yourself.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.Action">
+            <summary>
+            Called by the system. Do not call yourself.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.OnApply">
+            <summary>
+            Executes immediately upon application of the buff.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.OnStack(WCSharp.Buffs.Buff)">
+            <summary>
+            Executes whenever this buff receives a new stack via <see cref="M:WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff,WCSharp.Buffs.StackBehaviour)"/>.
+            <para>By default, the stacks of <paramref name="newStack"/> are added to this buff and <see cref="F:WCSharp.Buffs.StackResult.Stack"/> is returned.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.OnDeath(System.Boolean)">
+            <summary>
+            Executes immediately after <see cref="P:WCSharp.Buffs.Buff.Target"/> dies.
+            </summary>
+            <param name="killingBlow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.OnDispel(War3Api.Common.unit,System.Int32)">
+            <summary>
+            Executes when an attempt is made to dispel the target. Return the number of dispel charges consmed.
+            <para>If after this method is called the Stacks is at 0, the buff is automatically disposed.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.OnDispose">
+            <summary>
+            Executes when the buff is removed for any reason whatsoever.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.OnExpire">
+            <summary>
+            Executes when the buff expires by reaching the end of its duration. Does not trigger when the buff is removed via a dispel or target dies.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.Buff.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Buffs.BuffSystem">
+            <summary>
+            Tracks and runs all active <see cref="T:WCSharp.Buffs.Buff"/> instances.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.BuffSystem.Buffs">
+            <summary>
+            All active buffs.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff,WCSharp.Buffs.StackBehaviour)">
+            <summary>
+            Adds the given <paramref name="buff"/> to the system. If addition is successful, will invoke <see cref="M:WCSharp.Buffs.Buff.OnApply"/>.
+            </summary>
+            <returns>The buff that was applied, or the buff whose stacks were added to.</returns>
+        </member>
+        <member name="M:WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges">
+            <summary>
+            By default, <see cref="P:WCSharp.Buffs.Buff.CastingPlayer"/> and <see cref="P:WCSharp.Buffs.Buff.TargetPlayer"/> are not updated when a unit changes owner.
+            <para>This adds an event to pass over all auras and update <see cref="P:WCSharp.Buffs.Buff.CastingPlayer"/> and <see cref="P:WCSharp.Buffs.Buff.TargetPlayer"/> on ownership changes.</para>
+            <para>This will ignore ownership changes of unit type 'xxxx' (<see cref="F:WCSharp.Dummies.DummySystem.UNIT_TYPE_DUMMY"/>).</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.BuffSystem.GetBuffsOnUnit(War3Api.Common.unit)">
+            <summary>
+            Uses a dictionary to quickly find all buffs attached to the given unit.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.BuffSystem.Dispel(War3Api.Common.unit,War3Api.Common.unit,System.Boolean,System.Int32,System.String)">
+            <summary>
+            Attempts to dispel buffs from the target with the given dispel type.
+            </summary>
+            <param name="target">The target to dispel from.</param>
+            <param name="dispeller">The caster of the dispel effect.</param>
+            <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
+            <param name="dispelAmount">The maximum number of buffs to dispel.</param>
+            <param name="dispelType">The type of buffs that can be dispelled.</param>
+            <returns>All dispels.</returns>
+        </member>
+        <member name="M:WCSharp.Buffs.BuffSystem.Dispel(War3Api.Common.unit,War3Api.Common.unit,System.Boolean,System.Int32,System.String[])">
+            <summary>
+            Attempts to dispel buffs with any of the given dispel types.
+            </summary>
+            <param name="target">The target to dispel from.</param>
+            <param name="dispeller">The caster of the dispel effect.</param>
+            <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
+            <param name="dispelAmount">The maximum number of buffs to dispel.</param>
+            <param name="dispelTypes">The buff types that can be dispelled.</param>
+            <returns>All dispels.</returns>
+        </member>
+        <member name="M:WCSharp.Buffs.BuffSystem.Dispel(War3Api.Common.unit,War3Api.Common.unit,System.Boolean,System.Int32,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            For more complex buff hierarchies. Attempts to dispel buffs with any of the given dispel types, unless it has an excluded type.
+            </summary>
+            <param name="target">The target to dispel from.</param>
+            <param name="dispeller">The caster of the dispel effect.</param>
+            <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
+            <param name="dispelAmount">The maximum number of buffs to dispel.</param>
+            <param name="dispelTypes">The buff types that can be dispelled.</param>
+            <param name="exclusions">Will not dispel buffs with any of the given exclusion types.</param>
+            <returns>All dispels.</returns>
+        </member>
+        <member name="T:WCSharp.Buffs.Dispel">
+            <summary>
+            Represents a dispel attempt on a buff. Will be returned even if the dispel was resisted (i.e. no stacks were dispelled).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Dispel.Buff">
+            <summary>
+            The buff that was (attempted to be) dispelled.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Dispel.FullyDispelled">
+            <summary>
+            Whether the buff was fully dispelled.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Dispel.DispelChargesConsumed">
+            <summary>
+            How many dispel charges were consumed. If negative, it added to the dispel charges remaining.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.Dispel.BuffStacksDispelled">
+            <summary>
+            How many buff charges were dispelled. If negative, the charges were increased.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Buffs.IAura">
+            <summary>
+            Backing interface for auras, since different auras can otherwise not be stored in a generic way.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.Caster">
+            <summary>
+            The caster.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.CastingPlayer">
+            <summary>
+            The owner of the caster. Automatically set on application.
+            <para>Does NOT update automatically! If this is desired, you can use <see cref="M:WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.Radius">
+            <summary>
+            The range within which units must be for the aura to be applied to them.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.Duration">
+            <summary>
+            The duration in seconds of buffs applied by this aura.
+            <para>Unless you're making a pulsing aura, you will want the <see cref="P:WCSharp.Buffs.IAura.Duration"/> to be greater than the <see cref="P:WCSharp.Buffs.IAura.SearchInterval"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.SearchIntervalLeft">
+            <summary>
+            How long in seconds until this aura will next be applied to valid units in range.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.SearchInterval">
+            <summary>
+            How long in seconds between applications of this aura.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.StackBehaviour">
+            <summary>
+            The stack behaviour of buffs applied by this aura.
+            <para>Note that even with <see cref="F:WCSharp.Buffs.StackBehaviour.None"/>, auras will still only stack once per aura instance.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.EffectString">
+            <summary>
+            The path of the effect to use. Leave empty for no effect.
+            <para>If changed while the aura is already active, will destroy and recreate the effect.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.EffectAttachmentPoint">
+            <summary>
+            The attachment point for the effect.
+            <para>If changed while the aura is already active, will destroy and recreate the effect at the desired attachment point.</para>
+            <para>Defaults to origin.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.EffectScale">
+            The effect scale for the effect.
+            <para>If changed while the aura is already active, automatically modifies the effect.</para>
+        </member>
+        <member name="P:WCSharp.Buffs.IAura.Effect">
+            <summary>
+            The effect used by the aura. Creation of the effect should be done by setting <see cref="P:WCSharp.Buffs.IAura.EffectString"/>, not by setting this property.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.IAura.Apply">
+            <summary>
+            Called by the system. Do not call yourself.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.IAura.GetActiveBuffs">
+            <summary>
+            Returns all generic buffs currently active for this aura.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Buffs.PassiveBuff">
+            <summary>
+            A very basic buff implementation that simply applies and removes itself according to its duration.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.PassiveBuff.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.PassiveBuff.Apply">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.PassiveBuff.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.PassiveBuff.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Buffs.RollingBuff`1">
+            <summary>
+            A specialized buff for handling multiple underlying buffs, each with their own duration. The buff will tick only once, but the durations of all underlying buffs are managed individually.
+            </summary>
+            <typeparam name="T">This should be the type implementing this abstract.</typeparam>
+        </member>
+        <member name="P:WCSharp.Buffs.RollingBuff`1.IntervalLeft">
+            <summary>
+            The time, in seconds, remaining until the next tick.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.RollingBuff`1.Interval">
+            <summary>
+            The time, in seconds, between each tick.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.RollingBuff`1.IsMainStack">
+            <summary>
+            Whether the current instance is the main stack (i.e. the instance that manages underlying instances).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.RollingBuff`1.Buffs">
+            <summary>
+            All buffs contained in this stack.
+            <para>Note that this is only filled for the main stack.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.OnStack(WCSharp.Buffs.Buff)">
+            <summary>
+            Executes whenever this buff receives a new stack via <see cref="M:WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff,WCSharp.Buffs.StackBehaviour)"/>.
+            When overriding this method, you should always invoke base.OnStack(newStack).
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.Apply">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.OnExpireStack(`0)">
+            <summary>
+            Executes whenever a stack expires (executed from the main stack).
+            </summary>
+            <param name="expiredStack">The stack that expired.</param>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.OnTick">
+            <summary>
+            Executes every <see cref="P:WCSharp.Buffs.RollingBuff`1.Interval"/>.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.RollingBuff`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Buffs.StackBehaviour">
+            <summary>
+            An enum to indicate how buffs should be stacked.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackBehaviour.None">
+            <summary>
+            This buff will not stack in any way. All buffs will be applied individually.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackBehaviour.Stack">
+            <summary>
+            This buff will stack with all instances of itself.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackBehaviour.StackCaster">
+            <summary>
+            This buff will stack with all instances of itself cast by the same unit.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackBehaviour.StackPlayer">
+            <summary>
+            This buff will stack with all instances of itself cast by the same player.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Buffs.StackResult">
+            <summary>
+            An enum to indicate how the buffs were stacked.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackResult.Reject">
+            <summary>
+            Reject the stack attempt (apply separately).
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackResult.Stack">
+            <summary>
+            Keep old buff, discard new buff.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Buffs.StackResult.Consume">
+            <summary>
+            Keep new buff, discard old buff.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Buffs.TickingBuff">
+            <summary>
+            A simple buff that only adds a ticking behaviour, allowing an action to be performed every interval.
+            If you simply want to damage/heal every tick, you can use <see cref="T:WCSharp.Buffs.AutoBuff"/> instead to simplify the process.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.TickingBuff.IntervalLeft">
+            <summary>
+            The time, in seconds, remaining until the next tick.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Buffs.TickingBuff.Interval">
+            <summary>
+            The time, in seconds, between each tick.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.TickingBuff.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.TickingBuff.Apply">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.TickingBuff.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Buffs.TickingBuff.OnTick">
+            <summary>
+            Executes every <see cref="P:WCSharp.Buffs.TickingBuff.Interval"/>.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Buffs.TickingBuff.Dispose">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

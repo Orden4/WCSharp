@@ -4,6 +4,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Utils
 {
+	/// <summary>
+	/// Basic helper class to create 0 second delays on executing actions.
+	/// <para>This can be used to circumvent various issues, such as unit AI locking up if you give them a new order at the same time as they start an attack.</para>
+	/// </summary>
 	public static class Delay
 	{
 		private static readonly timer timer = CreateTimer();

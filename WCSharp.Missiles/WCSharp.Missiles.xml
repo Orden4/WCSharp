@@ -1,0 +1,632 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.Missiles</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.Missiles.BasicMissile">
+            <summary>
+            Basic missile that will go from unit/location A to unit/location B.
+            <para>The main feature for this missile is that missiles can arc.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.BasicMissile.CasterZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.BasicMissile.TargetZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.BasicMissile.MissileZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.BasicMissile.Speed">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.BasicMissile.Arc">
+            <summary>
+            The arc of the missile. Closely matches the object editor arc values.
+            <para>If you want a fixed height arc, set the Arc equal to (arc height/distance to target).</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.#ctor(War3Api.Common.unit,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.#ctor(War3Api.Common.player,System.Single,System.Single,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.#ctor(War3Api.Common.player,System.Single,System.Single,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.Launch">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.ReactivateArc">
+            <summary>
+            If the arc behaviour has or would disable itself (because of a large change in target position), you can forcefully re-activate it using this method.
+            <para>Note: Will set the caster position to the missiles current position.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.BasicMissile.DisableArc">
+            <summary>
+            Disables the arc and causes the missile to fly in a straight line towards the target.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Missiles.CurveMissile">
+            <summary>
+            Advanced missile that allows for arcing/curving motions, i.e. a boomerang motion.
+            <para>If you do not use the <see cref="P:WCSharp.Missiles.CurveMissile.Curve"/> property, you should use <see cref="T:WCSharp.Missiles.BasicMissile"/> instead for greater performance and
+            identical features.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.CurveMissile.CasterZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.CurveMissile.TargetZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.CurveMissile.MissileZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.CurveMissile.Speed">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.CurveMissile.Arc">
+            <summary>
+            The arc of the missile. Closely matches the object editor arc values.
+            <para>If you want a fixed height arc, set the Arc equal to (arc height/distance to target).</para>
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.CurveMissile.curve">
+            <summary>
+            The internal curve of the projectile in radians.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.CurveMissile.Curve">
+            <summary>
+            The curve of the projectile in degrees. This alters the arc, a 90 or -90 degree curve is a boomerang.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.CurveMissile.originX">
+            <summary>
+            The internal X of the missile without the arc/curve.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.CurveMissile.originY">
+            <summary>
+            The internal Y of the missile without the arc/curve.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.CurveMissile.originZ">
+            <summary>
+            The internal Z of the missile without the arc/curve.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.#ctor(War3Api.Common.unit,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.#ctor(War3Api.Common.player,System.Single,System.Single,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.#ctor(War3Api.Common.player,System.Single,System.Single,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.Launch">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.Action">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.ReactivateArc">
+            <summary>
+            If the arc behaviour has or would disable itself (because of a large change in target position), you can forcefully re-activate it using this method.
+            <para>Note: Will set the caster position to the missiles current position.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.CurveMissile.DisableArc">
+            <summary>
+            Disables the arc and causes the missile to fly in a straight line towards the target.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Missiles.HomingMissile">
+            <summary>
+            Homing missile with a fixed speed that will attempt to aim itself at the target, restricted by turn speed.
+            <para>Note: Does not have any behaviour to avoid endlessly circling the enemy.
+            I recommend using it with a collision radius or such so that exact collisions aren't required.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.HomingMissile.CasterZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.HomingMissile.TargetZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.HomingMissile.MissileZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.HomingMissile.Speed">
+            <inheritdoc/>
+        </member>
+        <member name="F:WCSharp.Missiles.HomingMissile.turnRate">
+            <summary>
+            The internal rate at which the missile can turn in radians per second.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.HomingMissile.TurnRate">
+            <summary>
+            The rate at which the missile can turn in degrees per second.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.HomingMissile.InitialAngle">
+            <summary>
+            The initial angle in degrees. If left at null, will default to the angle towards the target.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.HomingMissile.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.HomingMissile.#ctor(War3Api.Common.unit,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.HomingMissile.#ctor(War3Api.Common.player,System.Single,System.Single,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.HomingMissile.#ctor(War3Api.Common.player,System.Single,System.Single,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.HomingMissile.Launch">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.HomingMissile.Action">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Missiles.Missile">
+            <summary>
+            Fundamental missile class that provides the properties and methods that are shared by (virtually) all missiles.
+            <para>Unless you wish to define a new movement pattern for missiles, you should use one of the derived classes instead.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Active">
+            <summary>
+            Whether the missile is active. This is automatically set to false prior to calling <see cref="M:WCSharp.Missiles.Missile.OnImpact"/>.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Caster">
+            <summary>
+            The caster, if it exists.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CastingPlayer">
+            <summary>
+            The owner of the caster. Automatically set on launch.
+            <para>Does NOT update automatically! If this is desired, you can use <see cref="M:WCSharp.Missiles.MissileSystem.RegisterForOwnershipChanges"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CasterX">
+            <summary>
+            The X coordinate from which the missile was fired.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CasterY">
+            <summary>
+            The Y coordinate from which the missile was fired.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CasterZ">
+            <summary>
+            The Z coordinate from which the missile was fired.
+            <para>By default, this is equal to UnitFlyHeight + <see cref="P:WCSharp.Missiles.Missile.CasterLaunchZ"/> + GetLocationZ.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CasterLaunchZ">
+            <summary>
+            Use this to adjust the origin height of the missile when firing, as it will by default fire from the ground (plus unit flying height).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Target">
+            <summary>
+            The target, if it exists. If the target dies during travel, this is set to null.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.TargetPlayer">
+            <summary>
+            The owner of the target. Automatically set on launch.
+            <para>Does NOT update automatically! If this is desired, you can use <see cref="M:WCSharp.Missiles.MissileSystem.RegisterForOwnershipChanges"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.TargetX">
+            <summary>
+            The X coordinate that this missile is moving towards. While <see cref="P:WCSharp.Missiles.Missile.Target"/> is alive, this will automatically be updated.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.TargetY">
+            <summary>
+            The Y coordinate that this missile is moving towards. While <see cref="P:WCSharp.Missiles.Missile.Target"/> is alive, this will automatically be updated.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.TargetZ">
+            <summary>
+            The Z coordinate that this missile is moving towards. While <see cref="P:WCSharp.Missiles.Missile.Target"/> is alive, this will automatically be updated.
+            <para>By default, this is equal to UnitFlyHeight + <see cref="P:WCSharp.Missiles.Missile.TargetImpactZ"/> + GetLocationZ.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.TargetImpactZ">
+            <summary>
+            Use this to adjust the target height of the missile, as it will by default aim towards the ground (plus unit flying height).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.MissileX">
+            <summary>
+            The current X position of the missile.
+            <para>Depending on the type of missile, MissileX sets may be ignored.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.MissileY">
+            <summary>
+            The current Y position of the missile.
+            <para>Depending on the type of missile, MissileY sets may be ignored.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.MissileZ">
+            <summary>
+            The current Z position of the missile.
+            <para>Depending on the type of missile, MissileZ sets may be ignored.</para>
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.speed">
+            <summary>
+            The internal speed field. Defined in units per <see cref="F:WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL"/>.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Speed">
+            <summary>
+            The speed of the missile. Defined in units per second.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.ImpactLeeway">
+            <summary>
+            By default impact triggers when the distance is less than the missile's speed per tick.
+            <para>Use this to increase that distance by a static number (default 0).</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.TargetsHit">
+            <summary>
+            <para>Keeps track of all units collided with thus far.</para>
+            <para>Null if <see cref="P:WCSharp.Missiles.Missile.CollisionRadius"/> has never been set to a value greater than 0.</para>
+            <para>Removing a unit from this means <see cref="M:WCSharp.Missiles.Missile.OnCollision(War3Api.Common.unit)"/> will trigger for that unit once more.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CollisionRadius">
+            <summary>
+            The collision radius of the missile which is used to trigger <see cref="M:WCSharp.Missiles.Missile.OnCollision(War3Api.Common.unit)"/>.
+            <para>Leave at default (0) to disable. Will ignore values below 0.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Interval">
+            <summary>
+            The interval at which the missile will call <see cref="M:WCSharp.Missiles.Missile.OnPeriodic"/>. Leave at default (0) to disable.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.IntervalLeft">
+            <summary>
+            The time left until the next call to <see cref="M:WCSharp.Missiles.Missile.OnPeriodic"/>.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.spinPeriod">
+            <summary>
+            The internal spin period field. Defined in radians per <see cref="F:WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL"/>.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.SpinPeriod">
+            <summary>
+            The amount of time it takes for the projectile to spin once during flight in seconds.
+            <para>Use negative values to go clockwise.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Yaw">
+            <summary>
+            The yaw of the projectile. Defined in degrees.
+            <para>Depending on the type of missile, yaw sets may be ignored.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Pitch">
+            <summary>
+            The pitch of the projectile. Defined in degrees.
+            <para>Depending on the type of missile, pitch sets may be ignored.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Roll">
+            <summary>
+            The roll of the projectile. Defined in degrees.
+            <para>Depending on the type of missile, roll sets may be ignored.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.CurrentAngle">
+            <summary>
+            Identical to <see cref="P:WCSharp.Missiles.Missile.Yaw"/>.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.effectString">
+            <summary>
+            Internal effect string.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.EffectString">
+            <summary>
+            The effect string of the missile. If empty/null, the missile will be invisible.
+            <para>If changed mid-flight, automatically modifies the missile.</para>
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.effectScale">
+            <summary>
+            Internal effect scale. Used only when there is no effect present yet.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.EffectScale">
+            <summary>
+            The effect scale of the missile.
+            <para>If changed mid-flight, automatically modifies the missile.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.Missile.Effect">
+            <summary>
+            The effect being used by the missile. Creation of the effect should be done by setting <see cref="P:WCSharp.Missiles.Missile.EffectString"/>, not by setting this property.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.missileZ">
+            <summary>
+            The Z of the missile without accounting for terrain.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.casterZ">
+            <summary>
+            The Z of the caster without accounting for terrain.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.Missile.targetZ">
+            <summary>
+            The Z of the target without accounting for terrain.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <summary>
+            Creates a new missile instance with the given parameters.
+            <para>Will automatically set <see cref="P:WCSharp.Missiles.Missile.CastingPlayer"/>, <see cref="P:WCSharp.Missiles.Missile.CasterX"/>, <see cref="P:WCSharp.Missiles.Missile.CasterY"/>,
+            <see cref="P:WCSharp.Missiles.Missile.TargetPlayer"/>, <see cref="P:WCSharp.Missiles.Missile.TargetX"/> and <see cref="P:WCSharp.Missiles.Missile.TargetY"/>.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.#ctor(War3Api.Common.unit,System.Single,System.Single)">
+            <summary>
+            Creates a new missile instance with the given parameters.
+            <para>Will automatically set <see cref="P:WCSharp.Missiles.Missile.CastingPlayer"/>, <see cref="P:WCSharp.Missiles.Missile.CasterX"/> and <see cref="P:WCSharp.Missiles.Missile.CasterY"/>.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.#ctor(War3Api.Common.player,System.Single,System.Single,War3Api.Common.unit)">
+            <summary>
+            Creates a new missile instance with the given parameters.
+            <para>Will automatically set <see cref="P:WCSharp.Missiles.Missile.TargetPlayer"/>, <see cref="P:WCSharp.Missiles.Missile.TargetX"/> and <see cref="P:WCSharp.Missiles.Missile.TargetY"/>.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.#ctor(War3Api.Common.player,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new missile instance with the given parameters.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.Launch">
+            <summary>
+            Called by the system. Do not call yourself.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.Action">
+            <summary>
+            Called by the system. Do not call yourself.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.ExitWorldBounds">
+            <summary>
+            Should be called when the missile would exit world bounds.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.RunInterval">
+            <summary>
+            Runs the Interval related code. Do not call if <see cref="P:WCSharp.Missiles.Missile.Interval"/> is 0.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.RunCollisions">
+            <summary>
+            Runs the Collision related code. Do not call if <see cref="P:WCSharp.Missiles.Missile.CollisionRadius"/> is 0.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.Impact">
+            <summary>
+            Sets the missile position to that of the target and runs the interval, collision and impact code.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.OnCollision(War3Api.Common.unit)">
+            <summary>
+            <para>Override this method if your missile has an effect that should trigger when colliding with another unit.</para>
+            <para>For this to be active, <see cref="P:WCSharp.Missiles.Missile.CollisionRadius"/> must be greater than 0.</para>
+            <para>Note that there is no filter on this collision. This is called whenever it collides with anything not in <see cref="P:WCSharp.Missiles.Missile.TargetsHit"/>.</para>
+            <para>Before this method is called, the <paramref name="unit"/> is added to <see cref="P:WCSharp.Missiles.Missile.TargetsHit"/>.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.OnDispose">
+            <summary>
+            Override this method if your missile has an effect that should trigger when it is destroyed for any reason.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.OnImpact">
+            <summary>
+            Override this method if your missile has an impact effect.
+            <para><see cref="P:WCSharp.Missiles.Missile.Active"/> is automatically set to false prior to calling this method. If you do not want the missile to end, you need to set <see cref="P:WCSharp.Missiles.Missile.Active"/> back to true.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.OnPeriodic">
+            <summary>
+            <para>Override this method if your missile has a periodic effect.</para>
+            <para>For this to be active, <see cref="P:WCSharp.Missiles.Missile.Interval"/> must be greater than 0.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.GetZ(System.Single,System.Single)">
+            <summary>
+            Retrieves the LocationZ at the given (X, Y) coordinates.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.Missile.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Missiles.MissileSystem">
+            <summary>
+            Tracks and runs all active <see cref="T:WCSharp.Missiles.Missile"/> instances.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.MissileSystem.Missiles">
+            <summary>
+            All active missiles.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.MissileSystem.Add(WCSharp.Missiles.Missile)">
+            <summary>
+            Adds the given <paramref name="missile"/> to the system.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.MissileSystem.RegisterForOwnershipChanges">
+            <summary>
+            By default, <see cref="P:WCSharp.Missiles.Missile.CastingPlayer"/> and <see cref="P:WCSharp.Missiles.Missile.TargetPlayer"/> are not updated when a unit changes owner.
+            <para>This adds an event to pass over all missiles and update <see cref="P:WCSharp.Missiles.Missile.CastingPlayer"/> and <see cref="P:WCSharp.Missiles.Missile.TargetPlayer"/> on ownership changes.</para>
+            <para>This will ignore ownership changes of unit type 'xxxx' (WCSharp's dummy unit type).</para>
+            </summary>
+        </member>
+        <member name="T:WCSharp.Missiles.MomentumMissile">
+            <summary>
+            Homing-type missile that is based on momentum. Every tick, it will accelerate itself towards the target, up to a maximum speed.
+            <para>Note that the actual acceleration when adjusting its angle towards the target can be significantly less than specified.</para>
+            <para>It is recommended to use at least a little bit of <see cref="P:WCSharp.Missiles.Missile.ImpactLeeway"/> when using this missile.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.CasterZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.TargetZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.MissileZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.Speed">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.InitialAngle">
+            <summary>
+            The initial angle in degrees. If left at null, will default to the angle towards the target.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.MomentumMissile.acceleration">
+            <summary>
+            The internal acceleration in units per <see cref="F:WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.Acceleration">
+            <summary>
+            The acceleration in units per second.
+            <para>This is used to make adjustments to the trajectory.</para>
+            </summary>
+        </member>
+        <member name="F:WCSharp.Missiles.MomentumMissile.maximumSpeed">
+            <summary>
+            The internal maximum speed in units per <see cref="F:WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.MomentumMissile.MaximumSpeed">
+            <summary>
+            The maximum speed in units per second.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.MomentumMissile.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.MomentumMissile.#ctor(War3Api.Common.unit,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.MomentumMissile.#ctor(War3Api.Common.player,System.Single,System.Single,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.MomentumMissile.#ctor(War3Api.Common.player,System.Single,System.Single,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.MomentumMissile.Launch">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.MomentumMissile.Action">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.Missiles.OrbitalMissile">
+            <summary>
+            Missile that will orbit the specified target.
+            <para>Note: this missile calls <see cref="M:WCSharp.Missiles.Missile.OnImpact"/> when the target dies.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.CasterZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.TargetZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.MissileZ">
+            <inheritdoc/>
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.Speed">
+            <summary>
+            The speed of the missile. Defined in units per second.
+            <para>Use negative values to go clockwise.</para>
+            <para>This can be used instead of <see cref="P:WCSharp.Missiles.OrbitalMissile.OrbitalPeriod"/>, and will ensure a consistent units per second speed through <see cref="P:WCSharp.Missiles.OrbitalMissile.Speed"/> adjustments.</para>
+            </summary>
+            this.speed is only used to store the desired speed for if the range is adjusted later on.
+            Actual speed is always in radians per tick, determined by this.orbitalVelocity.
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.Range">
+            <summary>
+            The distance at which the <see cref="T:WCSharp.Missiles.OrbitalMissile"/> orbits from the origin.
+            <para>The speed of the missile after a range adjustment is determined by whether it was set via <see cref="P:WCSharp.Missiles.OrbitalMissile.Speed"/> or <see cref="P:WCSharp.Missiles.OrbitalMissile.OrbitalPeriod"/>.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.OrbitalPeriod">
+            <summary>
+            The amount of time it takes to make one rotation in seconds.
+            <para>Use negative values to go clockwise.</para>
+            <para>This can be used instead of <see cref="P:WCSharp.Missiles.OrbitalMissile.Speed"/>, and will ensure a consistent orbital period through <see cref="P:WCSharp.Missiles.OrbitalMissile.Range"/> adjustments.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.Missiles.OrbitalMissile.InitialAngle">
+            <summary>
+            The initial angle in degrees at which this missile is created. If left at null, will use a random angle.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Missiles.OrbitalMissile.#ctor(War3Api.Common.unit,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.OrbitalMissile.#ctor(War3Api.Common.unit,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.OrbitalMissile.#ctor(War3Api.Common.player,System.Single,System.Single,War3Api.Common.unit)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.OrbitalMissile.#ctor(War3Api.Common.player,System.Single,System.Single,System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.OrbitalMissile.Launch">
+            <inheritdoc/>
+        </member>
+        <member name="M:WCSharp.Missiles.OrbitalMissile.Action">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

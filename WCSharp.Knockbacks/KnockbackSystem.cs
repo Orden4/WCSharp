@@ -3,6 +3,9 @@ using WCSharp.Events;
 
 namespace WCSharp.Knockbacks
 {
+	/// <summary>
+	/// Keeps track of all active knockbacks.
+	/// </summary>
 	public static class KnockbackSystem
 	{
 		private static readonly PeriodicTrigger<Knockback> periodicTrigger = new PeriodicTrigger<Knockback>(PeriodicEvents.SYSTEM_INTERVAL);

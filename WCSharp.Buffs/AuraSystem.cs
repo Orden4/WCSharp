@@ -5,18 +5,23 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
+	/// <summary>
+	/// Tracks and runs all active <see cref="IAura"/> instances.
+	/// </summary>
 	public static class AuraSystem
 	{
-		private static readonly PeriodicTrigger<IAura> periodicTrigger = new PeriodicTrigger<IAura>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<IAura> periodicTrigger = new PeriodicDisposableTrigger<IAura>(PeriodicEvents.SYSTEM_INTERVAL);
 
 		/// <summary>
 		/// All active buffs.
 		/// </summary>
 		public static IEnumerable<IAura> Auras => periodicTrigger.Actions;
 
+		/// <summary>
+		/// Adds the given <paramref name="aura"/> to the system.
+		/// </summary>
 		public static void Add(IAura aura)
 		{
-			aura.Active = true;
 			aura.Apply();
 			periodicTrigger.Add(aura);
 		}

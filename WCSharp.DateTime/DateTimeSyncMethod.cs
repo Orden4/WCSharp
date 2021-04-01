@@ -1,5 +1,8 @@
 ﻿namespace WCSharp.DateTime
 {
+	/// <summary>
+	/// Defines a number of different methods by which a synchronised <see cref="WcDateTime"/> can be calculated.
+	/// </summary>
 	public enum DateTimeSyncMethod
 	{
 		/// <summary>

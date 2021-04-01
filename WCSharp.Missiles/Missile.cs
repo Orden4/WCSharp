@@ -11,14 +11,13 @@ namespace WCSharp.Missiles
 	/// Fundamental missile class that provides the properties and methods that are shared by (virtually) all missiles.
 	/// <para>Unless you wish to define a new movement pattern for missiles, you should use one of the derived classes instead.</para>
 	/// </summary>
-	public abstract class Missile : IPeriodicAction
+	public abstract class Missile : IPeriodicDisposableAction
 	{
 		// Doesn't fold multiple constant references properly unless you do this
 		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
 
 		/// <summary>
-		/// Whether the missile is active. Setting this to false during <see cref="OnImpact"/>, <see cref="OnCollision(unit)"/> or
-		/// <see cref="OnPeriodic"/> will automatically dispose of the missile. Otherwise, Dispose must be called manually.
+		/// Whether the missile is active. This is automatically set to false prior to calling <see cref="OnImpact"/>.
 		/// </summary>
 		public bool Active { get; set; }
 		/// <summary>
@@ -216,7 +215,7 @@ namespace WCSharp.Missiles
 		private protected string effectString;
 		/// <summary>
 		/// The effect string of the missile. If empty/null, the missile will be invisible.
-		/// <para>If modified mid-flight, automatically modifies the missile.</para>
+		/// <para>If changed mid-flight, automatically modifies the missile.</para>
 		/// </summary>
 		public string EffectString
 		{
@@ -236,8 +235,11 @@ namespace WCSharp.Missiles
 						{
 							Effect = AddSpecialEffect(value, MissileX, MissileY);
 							BlzSetSpecialEffectZ(Effect, MissileZ);
-							BlzSetSpecialEffectScale(Effect, this.effectScale);
 							BlzSetSpecialEffectOrientation(Effect, this.yaw, this.pitch, this.roll);
+							if (this.effectScale != 1)
+							{
+								BlzSetSpecialEffectScale(Effect, this.effectScale);
+							}
 						}
 					}
 
@@ -252,7 +254,7 @@ namespace WCSharp.Missiles
 		private protected float effectScale = 1.0f;
 		/// <summary>
 		/// The effect scale of the missile.
-		/// <para>If modified mid-flight, automatically modifies the missile.</para>
+		/// <para>If changed mid-flight, automatically modifies the missile.</para>
 		/// </summary>
 		public float EffectScale
 		{
@@ -268,7 +270,7 @@ namespace WCSharp.Missiles
 		}
 
 		/// <summary>
-		/// The effect being used by the missile. Creation of the effect should be done by setting <see cref="EffectString"/> in the OnLaunch method, not by setting this property.
+		/// The effect being used by the missile. Creation of the effect should be done by setting <see cref="EffectString"/>, not by setting this property.
 		/// </summary>
 		public effect Effect { get; protected set; }
 
@@ -301,6 +303,11 @@ namespace WCSharp.Missiles
 			CasterY = casterY;
 		}
 
+		/// <summary>
+		/// Creates a new missile instance with the given parameters.
+		/// <para>Will automatically set <see cref="CastingPlayer"/>, <see cref="CasterX"/>, <see cref="CasterY"/>,
+		/// <see cref="TargetPlayer"/>, <see cref="TargetX"/> and <see cref="TargetY"/>.</para>
+		/// </summary>
 		public Missile(unit caster, unit target) : this(caster)
 		{
 			Target = target;
@@ -310,12 +317,20 @@ namespace WCSharp.Missiles
 			this.targetZ = GetUnitFlyHeight(target);
 		}
 
+		/// <summary>
+		/// Creates a new missile instance with the given parameters.
+		/// <para>Will automatically set <see cref="CastingPlayer"/>, <see cref="CasterX"/> and <see cref="CasterY"/>.</para>
+		/// </summary>
 		public Missile(unit caster, float targetX, float targetY) : this(caster)
 		{
 			TargetX = targetX;
 			TargetY = targetY;
 		}
 
+		/// <summary>
+		/// Creates a new missile instance with the given parameters.
+		/// <para>Will automatically set <see cref="TargetPlayer"/>, <see cref="TargetX"/> and <see cref="TargetY"/>.</para>
+		/// </summary>
 		public Missile(player castingPlayer, float casterX, float casterY, unit target) : this(castingPlayer, casterX, casterY)
 		{
 			Target = target;
@@ -325,6 +340,9 @@ namespace WCSharp.Missiles
 			this.targetZ = GetUnitFlyHeight(target);
 		}
 
+		/// <summary>
+		/// Creates a new missile instance with the given parameters.
+		/// </summary>
 		public Missile(player castingPlayer, float casterX, float casterY, float targetX, float targetY) : this(castingPlayer, casterX, casterY)
 		{
 			TargetX = targetX;
@@ -361,6 +379,8 @@ namespace WCSharp.Missiles
 			{
 				RunCollisions();
 			}
+
+			Active = false;
 			OnImpact();
 		}
 
@@ -374,11 +394,6 @@ namespace WCSharp.Missiles
 			{
 				IntervalLeft += Interval;
 				OnPeriodic();
-
-				if (!Active)
-				{
-					Dispose();
-				}
 			}
 		}
 
@@ -394,11 +409,6 @@ namespace WCSharp.Missiles
 				{
 					OnCollision(unit);
 				}
-			}
-
-			if (!Active)
-			{
-				Dispose();
 			}
 		}
 
@@ -420,6 +430,8 @@ namespace WCSharp.Missiles
 			{
 				RunCollisions();
 			}
+
+			Active = false;
 			OnImpact();
 		}
 
@@ -427,6 +439,7 @@ namespace WCSharp.Missiles
 		/// <para>Override this method if your missile has an effect that should trigger when colliding with another unit.</para>
 		/// <para>For this to be active, <see cref="CollisionRadius"/> must be greater than 0.</para>
 		/// <para>Note that there is no filter on this collision. This is called whenever it collides with anything not in <see cref="TargetsHit"/>.</para>
+		/// <para>Before this method is called, the <paramref name="unit"/> is added to <see cref="TargetsHit"/>.</para>
 		/// </summary>
 		public virtual void OnCollision(unit unit)
 		{
@@ -443,6 +456,7 @@ namespace WCSharp.Missiles
 
 		/// <summary>
 		/// Override this method if your missile has an impact effect.
+		/// <para><see cref="Active"/> is automatically set to false prior to calling this method. If you do not want the missile to end, you need to set <see cref="Active"/> back to true.</para>
 		/// </summary>
 		public virtual void OnImpact()
 		{
@@ -461,7 +475,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// Retrieves the LocationZ at the given (X, Y) coordinates.
 		/// </summary>
-		protected float GetZ(float x, float y)
+		protected static float GetZ(float x, float y)
 		{
 			var loc = Location(x, y);
 			var z = GetLocationZ(loc);
@@ -469,9 +483,7 @@ namespace WCSharp.Missiles
 			return z;
 		}
 
-		/// <summary>
-		/// This method MUST be called if you set <see cref="Active"/> to false outside of <see cref="OnImpact"/>, <see cref="OnCollision(unit)"/> or <see cref="OnPeriodic"/>.
-		/// </summary>
+		/// <inheritdoc/>
 		public void Dispose()
 		{
 			OnDispose();

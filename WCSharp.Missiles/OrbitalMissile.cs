@@ -7,20 +7,23 @@ namespace WCSharp.Missiles
 {
 	/// <summary>
 	/// Missile that will orbit the specified target.
-	/// <para>Note: this missile does not call <see cref="Missile.OnImpact"/>.</para>
+	/// <para>Note: this missile calls <see cref="Missile.OnImpact"/> when the target dies.</para>
 	/// </summary>
 	public abstract class OrbitalMissile : Missile
 	{
+		/// <inheritdoc/>
 		public sealed override float CasterZ
 		{
 			get => this.casterZ + GetZ(CasterX, CasterY);
 			set => this.casterZ = value - GetZ(CasterX, CasterY);
 		}
+		/// <inheritdoc/>
 		public sealed override float TargetZ
 		{
 			get => this.targetZ + GetZ(TargetX, TargetY);
 			set => this.targetZ = value - GetZ(TargetX, TargetY);
 		}
+		/// <inheritdoc/>
 		public sealed override float MissileZ
 		{
 			get => this.missileZ + GetZ(MissileX, MissileY);
@@ -82,22 +85,27 @@ namespace WCSharp.Missiles
 		private float currentAngle;
 		private float orbitalVelocity;
 
+		/// <inheritdoc/>
 		protected OrbitalMissile(unit caster, unit target) : base(caster, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		protected OrbitalMissile(unit caster, float targetX, float targetY) : base(caster, targetX, targetY)
 		{
 		}
 
+		/// <inheritdoc/>
 		protected OrbitalMissile(player castingPlayer, float casterX, float casterY, unit target) : base(castingPlayer, casterX, casterY, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		protected OrbitalMissile(player castingPlayer, float casterX, float casterY, float targetX, float targetY) : base(castingPlayer, casterX, casterY, targetX, targetY)
 		{
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Launch()
 		{
 			this.casterZ += CasterLaunchZ;
@@ -120,10 +128,14 @@ namespace WCSharp.Missiles
 			{
 				Effect = AddSpecialEffect(this.effectString, MissileX, MissileY);
 				BlzSetSpecialEffectZ(Effect, MissileZ);
-				BlzSetSpecialEffectScale(Effect, this.effectScale);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (Target != null)
@@ -136,12 +148,14 @@ namespace WCSharp.Missiles
 				}
 				else
 				{
-					Target = null;
 					Active = false;
 					OnImpact();
 					if (!Active)
 					{
-						Dispose();
+						if (!UnitAlive(Target))
+						{
+							Target = null;
+						}
 						return;
 					}
 				}
@@ -163,12 +177,7 @@ namespace WCSharp.Missiles
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{
-				Active = false;
 				ExitWorldBounds();
-				if (!Active)
-				{
-					Dispose();
-				}
 				return;
 			}
 

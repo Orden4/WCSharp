@@ -13,21 +13,27 @@ namespace WCSharp.Buffs
 	public abstract class Aura<T> : IAura
 		where T : Buff
 	{
+		/// <inheritdoc/>
 		public bool Active { get; set; }
+		/// <inheritdoc/>
 		public unit Caster { get; set; }
+		/// <inheritdoc/>
 		public player CastingPlayer { get; set; }
 
+		/// <inheritdoc/>
 		public float Radius { get; set; }
 		/// <summary>
-		/// The duration in seconds of buffs applied by this aura. Defaults to 2.1.
+		/// The duration in seconds of buffs applied by this aura. Defaults to 3.1.
 		/// <para>Unless you're making a pulsing aura, you will want the <see cref="Duration"/> to be greater than the <see cref="SearchInterval"/>.</para>
 		/// </summary>
-		public float Duration { get; set; } = 2.1f;
+		public float Duration { get; set; } = 3.1f;
+		/// <inheritdoc/>
 		public float SearchIntervalLeft { get; set; }
 		/// <summary>
 		/// How long in seconds between applications of this aura. Defaults to 1.0.
 		/// </summary>
 		public float SearchInterval { get; set; } = 1.0f;
+		/// <inheritdoc/>
 		public StackBehaviour StackBehaviour { get; set; }
 		/// <summary>
 		/// A dictionary mapping units to active buffs.
@@ -35,6 +41,7 @@ namespace WCSharp.Buffs
 		public Dictionary<unit, AuraBuff<T>> ActiveBuffsByUnit { get; set; }
 
 		private string effectString;
+		/// <inheritdoc/>
 		public string EffectString
 		{
 			get => this.effectString;
@@ -45,17 +52,17 @@ namespace WCSharp.Buffs
 					this.effectString = value;
 					if (Active)
 					{
-						if (this.effect != null)
+						if (Effect != null)
 						{
-							DestroyEffect(this.effect);
+							DestroyEffect(Effect);
 						}
 						if (!string.IsNullOrEmpty(value))
 						{
-							this.effect = AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
+							Effect = AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
 						}
 						else
 						{
-							this.effect = null;
+							Effect = null;
 						}
 					}
 				}
@@ -63,6 +70,7 @@ namespace WCSharp.Buffs
 		}
 
 		private string effectAttachmentPoint = "origin";
+		/// <inheritdoc/>
 		public string EffectAttachmentPoint
 		{
 			get => this.effectAttachmentPoint;
@@ -72,21 +80,41 @@ namespace WCSharp.Buffs
 				if (this.effectAttachmentPoint != value)
 				{
 					this.effectAttachmentPoint = value;
-					if (this.effect != null)
+					if (Effect != null)
 					{
-						DestroyEffect(this.effect);
-						this.effect = AddSpecialEffectTarget(this.effectString, Caster, this.effectAttachmentPoint);
+						DestroyEffect(Effect);
+						Effect = AddSpecialEffectTarget(this.effectString, Caster, this.effectAttachmentPoint);
 					}
 				}
 			}
 		}
 
 		/// <summary>
-		/// The actual in-game effect applied on the target.
+		/// Internal effect scale. Used only when there is no effect present yet.
 		/// </summary>
-		protected effect effect;
+		private protected float effectScale = 1.0f;
+		/// <inheritdoc/>
+		public float EffectScale
+		{
+			get => Effect == null ? this.effectScale : BlzGetSpecialEffectScale(Effect);
+			set
+			{
+				if (Effect != null)
+				{
+					BlzSetSpecialEffectScale(Effect, value);
+				}
+				this.effectScale = value;
+			}
+		}
+
+		/// <inheritdoc/>
+		public effect Effect { get; set; }
+
 		private readonly group group = CreateGroup();
 
+		/// <summary>
+		/// Creates a new aura centered around the given caster.
+		/// </summary>
 		public Aura(unit caster)
 		{
 			Caster = caster;
@@ -109,14 +137,17 @@ namespace WCSharp.Buffs
 		/// <returns>True if the given unit should receive the aura buff.</returns>
 		protected abstract bool UnitFilter(unit unit);
 
+		/// <inheritdoc/>
 		public void Apply()
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				this.effect = AddSpecialEffectTarget(this.effectString, Caster, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Caster, EffectAttachmentPoint);
+				BlzSetSpecialEffectScale(Effect, this.effectScale);
 			}
 		}
 
+		/// <inheritdoc/>
 		public void Action()
 		{
 			if (SearchIntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
@@ -169,16 +200,18 @@ namespace WCSharp.Buffs
 			}
 		}
 
+		/// <inheritdoc/>
 		public IEnumerable<Buff> GetActiveBuffs()
 		{
 			return ActiveBuffsByUnit.Values.Select(x => x.Buff);
 		}
 
+		/// <inheritdoc/>
 		public void Dispose()
 		{
-			if (this.effect != null)
+			if (Effect != null)
 			{
-				DestroyEffect(this.effect);
+				DestroyEffect(Effect);
 			}
 			DestroyGroup(this.group);
 		}

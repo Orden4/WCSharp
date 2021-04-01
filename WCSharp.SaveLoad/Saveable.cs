@@ -2,6 +2,9 @@
 
 namespace WCSharp.SaveLoad
 {
+	/// <summary>
+	/// Abstract class containing the definitions that the SaveSystem needs in order to save and load your custom save data.
+	/// </summary>
 	public abstract class Saveable
 	{
 		internal player player;

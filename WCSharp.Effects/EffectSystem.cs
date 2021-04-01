@@ -3,6 +3,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Effects
 {
+	/// <summary>
+	/// Simple system for destroying effects after a given duration.
+	/// <para>This circumvents issues with certain special effects not showing up if deleted immediately in Reforged.</para>
+	/// </summary>
 	public partial class EffectSystem
 	{
 		private static readonly PeriodicTrigger<TimedEffect> periodicTrigger = new PeriodicTrigger<TimedEffect>(PeriodicEvents.SYSTEM_INTERVAL);

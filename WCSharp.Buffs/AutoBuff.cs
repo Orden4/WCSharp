@@ -32,27 +32,34 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public damagetype DamageType { get; set; }
 
+		/// <inheritdoc/>
 		public AutoBuff(unit caster, unit target) : base(caster, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Apply()
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 
 			IntervalLeft = Interval;
 			OnApply();
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				Dispose();
+				Active = false;
 				return;
 			}
 
@@ -80,7 +87,7 @@ namespace WCSharp.Buffs
 					if (!UnitAlive(Target))
 					{
 						OnDeath(true);
-						Dispose();
+						Active = false;
 						return;
 					}
 				}
@@ -92,8 +99,7 @@ namespace WCSharp.Buffs
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				OnExpire();
-				Dispose();
-				return;
+				Active = false;
 			}
 			else
 			{
@@ -110,14 +116,14 @@ namespace WCSharp.Buffs
 
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Dispose()
 		{
 			OnDispose();
-			Active = false;
 
-			if (this.effect != null)
+			if (Effect != null)
 			{
-				DestroyEffect(this.effect);
+				DestroyEffect(Effect);
 			}
 
 			BuffSystem.Remove(this);

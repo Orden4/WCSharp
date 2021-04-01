@@ -3,11 +3,12 @@ using static War3Api.Common;
 
 namespace WCSharp.Lightnings
 {
-	public class Lightning : IPeriodicAction
+	/// <summary>
+	/// Represents a single lightning instance. Add to <see cref="LightningSystem"/> to activate.
+	/// </summary>
+	public class Lightning : IPeriodicDisposableAction
 	{
-		/// <summary>
-		/// Set this to false to end the lightning early. Note that you MUST call <see cref="Dispose"/> if you do so.
-		/// </summary>
+		/// <inheritdoc/>
 		public bool Active { get; set; }
 		/// <summary>
 		/// The caster of the lightning. Setting this means that the lightning will follow the caster when the caster moves.
@@ -78,6 +79,13 @@ namespace WCSharp.Lightnings
 		/// </summary>
 		protected lightning lightning;
 
+		/// <summary>
+		/// Creates a new <see cref="Lightning"/> instance with the given parameters.
+		/// <para>Will automatically set <see cref="CasterX"/>, <see cref="CasterY"/>, <see cref="TargetX"/> and <see cref="TargetY"/>.</para>
+		/// </summary>
+		/// <param name="name">The name of the lightning effect. See <see href="https://www.hiveworkshop.com/threads/beginners-guide-to-lightning-effects.220370/"/>.</param>
+		/// <param name="caster">The source of the lightning. Will automatically update the position when <paramref name="caster"/> moves.</param>
+		/// <param name="target">The target of the lightning. Will automatically update the position when <paramref name="target"/> moves.</param>
 		public Lightning(string name, unit caster, unit target)
 		{
 			this.name = name;
@@ -93,6 +101,14 @@ namespace WCSharp.Lightnings
 			TargetY = GetUnitY(target);
 		}
 
+		/// <summary>
+		/// Creates a new <see cref="Lightning"/> instance with the given parameters.
+		/// <para>Will automatically set <see cref="CasterX"/> and <see cref="CasterY"/>.</para>
+		/// </summary>
+		/// <param name="name">The name of the lightning effect. See <see href="https://www.hiveworkshop.com/threads/beginners-guide-to-lightning-effects.220370/"/>.</param>
+		/// <param name="caster">The source of the lightning. Will automatically update the position when <paramref name="caster"/> moves.</param>
+		/// <param name="targetX"></param>
+		/// <param name="targetY"></param>
 		public Lightning(string name, unit caster, float targetX, float targetY)
 		{
 			this.name = name;
@@ -109,6 +125,14 @@ namespace WCSharp.Lightnings
 			TargetY = targetY;
 		}
 
+		/// <summary>
+		/// Creates a new <see cref="Lightning"/> instance with the given parameters.
+		/// <para>Will automatically set <see cref="TargetX"/> and <see cref="TargetY"/>.</para>
+		/// </summary>
+		/// <param name="name">The name of the lightning effect. See <see href="https://www.hiveworkshop.com/threads/beginners-guide-to-lightning-effects.220370/"/>.</param>
+		/// <param name="casterX"></param>
+		/// <param name="casterY"></param>
+		/// <param name="target">The target of the lightning. Will automatically update the position when <paramref name="target"/> moves.</param>
 		public Lightning(string name, float casterX, float casterY, unit target)
 		{
 			this.name = name;
@@ -125,6 +149,14 @@ namespace WCSharp.Lightnings
 			TargetY = GetUnitY(target);
 		}
 
+		/// <summary>
+		/// Creates a new <see cref="Lightning"/> instance with the given parameters.
+		/// </summary>
+		/// <param name="name">The name of the lightning effect. See <see href="https://www.hiveworkshop.com/threads/beginners-guide-to-lightning-effects.220370/"/>.</param>
+		/// <param name="casterX"></param>
+		/// <param name="casterY"></param>
+		/// <param name="targetX"></param>
+		/// <param name="targetY"></param>
 		public Lightning(string name, float casterX, float casterY, float targetX, float targetY)
 		{
 			this.name = name;
@@ -151,6 +183,9 @@ namespace WCSharp.Lightnings
 			this.age = 0;
 		}
 
+		/// <summary>
+		/// Called by the system. Do not call yourself.
+		/// </summary>
 		public void Action()
 		{
 			if (Caster != null)
@@ -193,7 +228,6 @@ namespace WCSharp.Lightnings
 			if (this.age >= Duration)
 			{
 				Active = false;
-				Dispose();
 			}
 		}
 
@@ -205,9 +239,7 @@ namespace WCSharp.Lightnings
 			this.age = Duration - FadeDuration;
 		}
 
-		/// <summary>
-		/// This method MUST be called if you are artifically ending the lightning early by forcibly setting <see cref="Active"/> to false.
-		/// </summary>
+		/// <inheritdoc/>
 		public void Dispose()
 		{
 			DestroyLightning(this.lightning);

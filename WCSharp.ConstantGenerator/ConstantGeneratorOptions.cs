@@ -1,5 +1,8 @@
 ﻿namespace WCSharp.ConstantGenerator
 {
+	/// <summary>
+	/// Defines a set of optional parameters for constant generation.
+	/// </summary>
 	public class ConstantGeneratorOptions
 	{
 		/// <summary>

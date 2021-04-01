@@ -172,46 +172,74 @@ namespace WCSharp.DateTime
 				seconds;
 		}
 
+		/// <summary>
+		/// Returns a new <see cref="WcDateTime"/> that is equal to <paramref name="a"/> plus the number of seconds in <paramref name="b"/>.
+		/// </summary>
 		public static WcDateTime operator +(WcDateTime a, WcTimeSpan b)
 		{
-			return new WcDateTime(a.seconds - b.seconds);
+			return new WcDateTime(a.seconds + b.seconds);
 		}
 
+		/// <summary>
+		/// Returns a new <see cref="WcDateTime"/> that is equal to <paramref name="a"/> minus the number of seconds in <paramref name="b"/>.
+		/// </summary>
 		public static WcDateTime operator -(WcDateTime a, WcTimeSpan b)
 		{
 			return new WcDateTime(a.seconds - b.seconds);
 		}
 
+		/// <summary>
+		/// Returns a <see cref="WcTimeSpan"/> representing the time from <paramref name="a"/> to <paramref name="b"/>.
+		/// </summary>
 		public static WcTimeSpan operator -(WcDateTime a, WcDateTime b)
 		{
 			return new WcTimeSpan(a.seconds - b.seconds);
 		}
 
+		/// <summary>
+		/// Returns true if <paramref name="a"/> is the same time as <paramref name="b"/>.
+		/// </summary>
 		public static bool operator ==(WcDateTime a, WcDateTime b)
 		{
 			return a.seconds == b.seconds;
 		}
 
+
+		/// <summary>
+		/// Returns true if <paramref name="a"/> is not the same time as <paramref name="b"/>.
+		/// </summary>
 		public static bool operator !=(WcDateTime a, WcDateTime b)
 		{
 			return a.seconds != b.seconds;
 		}
 
+		/// <summary>
+		/// Returns true if <paramref name="a"/> is earlier than <paramref name="b"/>.
+		/// </summary>
 		public static bool operator <(WcDateTime a, WcDateTime b)
 		{
 			return a.seconds < b.seconds;
 		}
 
+		/// <summary>
+		/// Returns true if <paramref name="a"/> is earlier than or equal to <paramref name="b"/>.
+		/// </summary>
 		public static bool operator <=(WcDateTime a, WcDateTime b)
 		{
 			return a.seconds <= b.seconds;
 		}
 
+		/// <summary>
+		/// Returns true if <paramref name="a"/> is later than <paramref name="b"/>.
+		/// </summary>
 		public static bool operator >(WcDateTime a, WcDateTime b)
 		{
 			return a.seconds > b.seconds;
 		}
 
+		/// <summary>
+		/// Returns true if <paramref name="a"/> is later than or equal to <paramref name="b"/>.
+		/// </summary>
 		public static bool operator >=(WcDateTime a, WcDateTime b)
 		{
 			return a.seconds >= b.seconds;
@@ -316,7 +344,7 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a new <see cref="WcDateTime"/> that is a given number of seconds into the future.
 		/// </summary>
-		/// <param name="value">The amount of seconds to move this instance into the future.</param>
+		/// <param name="seconds">The amount of seconds to move this instance into the future.</param>
 		public WcDateTime AddSeconds(int seconds)
 		{
 			return new WcDateTime(this.seconds + seconds);
@@ -325,7 +353,7 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a new <see cref="WcDateTime"/> that is a given number of minutes into the future.
 		/// </summary>
-		/// <param name="value">The amount of minutes to move this instance into the future.</param>
+		/// <param name="minutes">The amount of minutes to move this instance into the future.</param>
 		public WcDateTime AddMinutes(int minutes)
 		{
 			return new WcDateTime(this.seconds + (minutes * WcTimeSpan.SECONDS_PER_MINUTE));
@@ -334,7 +362,7 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a new <see cref="WcDateTime"/> that is a given number of hours into the future.
 		/// </summary>
-		/// <param name="value">The amount of hours to move this instance into the future.</param>
+		/// <param name="hours">The amount of hours to move this instance into the future.</param>
 		public WcDateTime AddHours(int hours)
 		{
 			return new WcDateTime(this.seconds + (hours * WcTimeSpan.SECONDS_PER_HOUR));
@@ -343,7 +371,7 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a new <see cref="WcDateTime"/> that is a given number of days into the future.
 		/// </summary>
-		/// <param name="value">The amount of days to move this instance into the future.</param>
+		/// <param name="days">The amount of days to move this instance into the future.</param>
 		public WcDateTime AddDays(int days)
 		{
 			return new WcDateTime(this.seconds + (days * WcTimeSpan.SECONDS_PER_DAY));
@@ -352,7 +380,7 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a new <see cref="WcDateTime"/> that is a given number of months into the future.
 		/// </summary>
-		/// <param name="value">The amount of months to move this instance into the future.</param>
+		/// <param name="months">The amount of months to move this instance into the future.</param>
 		public WcDateTime AddMonths(int months)
 		{
 			GetDatePart(out var year, out var month, out var day);
@@ -367,12 +395,13 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a new <see cref="WcDateTime"/> that is a given number of years into the future.
 		/// </summary>
-		/// <param name="value">The amount of years to move this instance into the future.</param>
+		/// <param name="years">The amount of years to move this instance into the future.</param>
 		public WcDateTime AddYears(int years)
 		{
 			return AddMonths(years * 12);
 		}
 
+		/// <inheritdoc/>
 		public int CompareTo(object obj)
 		{
 			return obj is WcDateTime other
@@ -380,26 +409,33 @@ namespace WCSharp.DateTime
 				: throw new ArgumentException("Cannot compare WcDateTime to non-WcDateTime object");
 		}
 
+		/// <inheritdoc/>
 		public int CompareTo(WcDateTime other)
 		{
 			return this.seconds.CompareTo(other.seconds);
 		}
 
+		/// <inheritdoc/>
 		public bool Equals(WcDateTime other)
 		{
 			return this.seconds == other.seconds;
 		}
 
+		/// <inheritdoc/>
 		public override bool Equals(object obj)
 		{
 			return obj is WcDateTime other && this.seconds == other.seconds;
 		}
 
+		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
 			return this.seconds;
 		}
 
+		/// <summary>
+		/// Outputs this <see cref="WcDateTime"/> in the default format of "yyyy-MM-dd HH:mm:ss".
+		/// </summary>
 		public override string ToString()
 		{
 			return ToString("yyyy-MM-dd HH:mm:ss");
@@ -407,6 +443,7 @@ namespace WCSharp.DateTime
 
 		/// <summary>
 		/// Returns a string representation using the given format.
+		/// <para>See the wiki for more information on the format specification.</para>
 		/// </summary>
 		/// <param name="format">The format to print the string in.</param>
 		public string ToString(string format)
@@ -472,6 +509,10 @@ namespace WCSharp.DateTime
 			return str;
 		}
 
+		/// <summary>
+		/// Attempts to parse the given string as the number of seconds since January 1st, 1970.
+		/// </summary>
+		/// <returns>Null if <paramref name="string"/> is not a valid integer.</returns>
 		public static WcDateTime Deserialize(string @string)
 		{
 			if (int.TryParse(@string, out var seconds))
@@ -482,6 +523,9 @@ namespace WCSharp.DateTime
 			return null;
 		}
 
+		/// <summary>
+		/// Returns a string representing the number of seconds since January 1st, 1970 contained in <paramref name="wcDateTime"/>.
+		/// </summary>
 		public static string Serialize(WcDateTime wcDateTime)
 		{
 			return wcDateTime.seconds.ToString();

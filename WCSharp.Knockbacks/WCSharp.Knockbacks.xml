@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.Knockbacks</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.Knockbacks.Knockback">
+            <summary>
+            Represents a single knockback instance. Add to <see cref="T:WCSharp.Knockbacks.KnockbackSystem"/> to activate.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Knockbacks.Knockback.EFFECT1_PERIOD">
+            <summary>
+            The interval between <see cref="P:WCSharp.Knockbacks.Knockback.Effect1"/> spawns.
+            </summary>
+        </member>
+        <member name="F:WCSharp.Knockbacks.Knockback.EFFECT2_PERIOD">
+            <summary>
+            The interval between <see cref="P:WCSharp.Knockbacks.Knockback.Effect2"/> spawns.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Active">
+            <summary>
+            Setting this to false will immediately end the knockback.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Target">
+            <summary>
+            The target of the knockback.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Angle">
+            <summary>
+            The angle of the knockback in radians.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Speed">
+            <summary>
+            The distance traversed per <see cref="F:WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.SpeedDropoff">
+            <summary>
+            The amount of speed lost per <see cref="F:WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Effect1">
+            <summary>
+            This effect will be spawned every 1.0 seconds on the target using <see cref="P:WCSharp.Knockbacks.Knockback.Effect1AttachmentPoint"/>.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Effect2">
+            <summary>
+            This effect will be spawned every 0.125 on the target using <see cref="P:WCSharp.Knockbacks.Knockback.Effect2AttachmentPoint"/>.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Effect1AttachmentPoint">
+            <summary>
+            The attachment point to use for <see cref="P:WCSharp.Knockbacks.Knockback.Effect1"/>.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.Knockback.Effect2AttachmentPoint">
+            <summary>
+            The attachment point to use for <see cref="P:WCSharp.Knockbacks.Knockback.Effect2"/>.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Knockbacks.Knockback.#ctor(War3Api.Common.unit,System.Single,System.Single,System.Single)">
+            <summary>
+            Knocks the target the given distance towards the given angle (in degrees) over the given duration.
+            </summary>
+            <param name="target">The target to perform the knockback on</param>
+            <param name="distance">The distance in units to knock the target back</param>
+            <param name="duration">The duration in seconds over which the target should be knocked back</param>
+            <param name="angle">In degrees.</param>
+        </member>
+        <member name="M:WCSharp.Knockbacks.Knockback.#ctor(War3Api.Common.unit,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Knocks the target the given distance towards the given location over the given duration.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Knockbacks.Knockback.Action">
+            <summary>
+            Called by the system. Do not call yourself.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Knockbacks.Knockback.Merge(WCSharp.Knockbacks.Knockback)">
+            <summary>
+            Merges the force of the given knockback into this knockback. Typically though, you can also just have both knockbacks active simultaneously and achieve the same effect.
+            </summary>
+        </member>
+        <member name="T:WCSharp.Knockbacks.KnockbackSystem">
+            <summary>
+            Keeps track of all active knockbacks.
+            </summary>
+        </member>
+        <member name="P:WCSharp.Knockbacks.KnockbackSystem.Knockbacks">
+            <summary>
+            All active knockbacks.
+            </summary>
+        </member>
+        <member name="M:WCSharp.Knockbacks.KnockbackSystem.Add(WCSharp.Knockbacks.Knockback)">
+            <summary>
+            Adds the given knockback to the system. This will also initialise or alter some values according to the knockbacks' properties.
+            </summary>
+        </member>
+    </members>
+</doc>

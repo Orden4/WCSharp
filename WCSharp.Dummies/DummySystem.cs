@@ -4,7 +4,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Dummies
 {
-	public static partial class DummySystem
+	/// <summary>
+	/// Tracks and recycles all dummy units on the map. Will automatically create more if necessary.
+	/// </summary>
+	public static class DummySystem
 	{
 		/// <summary>
 		/// Corresponds to the code 'xxxx'

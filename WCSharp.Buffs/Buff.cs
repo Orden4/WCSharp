@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WCSharp.Events;
 using static War3Api.Common;
 
@@ -8,11 +9,9 @@ namespace WCSharp.Buffs
 	/// The most basic buff implementation, with almost all logic undefined.
 	/// <para>It is recommended to use one of the more concrete types instead, such as <see cref="PassiveBuff"/>.</para>
 	/// </summary>
-	public abstract class Buff : IPeriodicAction
+	public abstract class Buff : IPeriodicDisposableAction
 	{
-		/// <summary>
-		/// Setting this to false will immediately end the buff.
-		/// </summary>
+		/// <inheritdoc/>
 		public bool Active { get; set; }
 		/// <summary>
 		/// The unit that applied the buff.
@@ -35,7 +34,6 @@ namespace WCSharp.Buffs
 
 		/// <summary>
 		/// The remaining duration before this buff expires.
-		/// <para>In the case of <see cref="BoundBuff"/>, this instead indicates the duration that the buff has been on the target.</para>
 		/// </summary>
 		public float Duration { get; set; }
 		/// <summary>
@@ -44,7 +42,7 @@ namespace WCSharp.Buffs
 		public bool IsBeneficial { get; set; }
 
 		/// <summary>
-		/// The buff types, used primarily for dispelling. E.g. magic, physical, undispellable, etc.
+		/// The buff types, used primarily for dispelling. e.g. magic, physical, undispellable, etc.
 		/// </summary>
 		public List<string> BuffTypes { get; set; } = new List<string>();
 
@@ -69,17 +67,21 @@ namespace WCSharp.Buffs
 					this.effectString = value;
 					if (Active)
 					{
-						if (this.effect != null)
+						if (Effect != null)
 						{
-							DestroyEffect(this.effect);
+							DestroyEffect(Effect);
 						}
 						if (!string.IsNullOrEmpty(value))
 						{
-							this.effect = AddSpecialEffectTarget(value, Target, this.effectAttachmentPoint);
+							Effect = AddSpecialEffectTarget(value, Target, this.effectAttachmentPoint);
+							if (this.effectScale != 1)
+							{
+								BlzSetSpecialEffectScale(Effect, this.effectScale);
+							}
 						}
 						else
 						{
-							this.effect = null;
+							Effect = null;
 						}
 					}
 				}
@@ -101,19 +103,44 @@ namespace WCSharp.Buffs
 				if (this.effectAttachmentPoint != value)
 				{
 					this.effectAttachmentPoint = value;
-					if (this.effect != null)
+					if (Effect != null)
 					{
-						DestroyEffect(this.effect);
-						this.effect = AddSpecialEffectTarget(this.effectString, Target, this.effectAttachmentPoint);
+						DestroyEffect(Effect);
+						Effect = AddSpecialEffectTarget(this.effectString, Target, this.effectAttachmentPoint);
+						if (this.effectScale != 1)
+						{
+							BlzSetSpecialEffectScale(Effect, this.effectScale);
+						}
 					}
 				}
 			}
 		}
 
 		/// <summary>
-		/// The actual in-game effect applied on the target.
+		/// Internal effect scale. Used only when there is no effect present yet.
 		/// </summary>
-		protected effect effect;
+		private protected float effectScale = 1.0f;
+		/// <summary>
+		/// The effect scale of the missile.
+		/// <para>If modified mid-flight, automatically modifies the missile.</para>
+		/// </summary>
+		public float EffectScale
+		{
+			get => Effect == null ? this.effectScale : BlzGetSpecialEffectScale(Effect);
+			set
+			{
+				if (Effect != null)
+				{
+					BlzSetSpecialEffectScale(Effect, value);
+				}
+				this.effectScale = value;
+			}
+		}
+
+		/// <summary>
+		/// The effect being used by the missile. Creation of the effect should be done by setting <see cref="EffectString"/>, not by setting this property.
+		/// </summary>
+		public effect Effect { get; protected set; }
 
 		/// <summary>
 		/// Will set Caster, CastingPlayer, Target and TargetPlayer accordingly.
@@ -151,6 +178,7 @@ namespace WCSharp.Buffs
 		public virtual StackResult OnStack(Buff newStack)
 		{
 			Stacks += newStack.Stacks;
+			Duration = Math.Max(Duration, newStack.Duration);
 			return StackResult.Stack;
 		}
 
@@ -165,11 +193,14 @@ namespace WCSharp.Buffs
 		}
 
 		/// <summary>
-		/// Executes when an attempt is made to dispel the target. Return false to resist the dispel.
+		/// Executes when an attempt is made to dispel the target. Return the number of dispel charges consmed.
+		/// <para>If after this method is called the Stacks is at 0, the buff is automatically disposed.</para>
 		/// </summary>
-		public virtual bool OnDispel(unit dispeller)
+		public virtual int OnDispel(unit dispeller, int dispelCharges)
 		{
-			return true;
+			var stacksToDispel = Math.Min(Stacks, dispelCharges);
+			Stacks -= stacksToDispel;
+			return stacksToDispel;
 		}
 
 		/// <summary>
@@ -188,9 +219,7 @@ namespace WCSharp.Buffs
 
 		}
 
-		/// <summary>
-		/// You MUST call this method whenever you manually set <see cref="Active"/> to false.
-		/// </summary>
+		/// <inheritdoc/>
 		public abstract void Dispose();
 	}
 }

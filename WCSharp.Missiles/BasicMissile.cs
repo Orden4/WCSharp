@@ -12,21 +12,25 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class BasicMissile : Missile
 	{
+		/// <inheritdoc/>
 		public sealed override float CasterZ
 		{
 			get => this.followsTerrain ? this.casterZ + GetZ(CasterX, CasterY) : this.casterZ;
 			set => this.casterZ = this.followsTerrain ? value - GetZ(CasterX, CasterY) : value;
 		}
+		/// <inheritdoc/>
 		public sealed override float TargetZ
 		{
 			get => this.followsTerrain ? this.targetZ + GetZ(TargetX, TargetY) : this.targetZ;
 			set => this.targetZ = this.followsTerrain ? value - GetZ(TargetX, TargetY) : value;
 		}
+		/// <inheritdoc/>
 		public sealed override float MissileZ
 		{
 			get => this.followsTerrain ? this.missileZ + GetZ(MissileX, MissileY) : this.missileZ;
 			set => this.missileZ = this.followsTerrain ? value - GetZ(MissileX, MissileY) : value;
 		}
+		/// <inheritdoc/>
 		public sealed override float Speed
 		{
 			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
@@ -42,22 +46,27 @@ namespace WCSharp.Missiles
 		private bool followsTerrain;
 		private float totalDistanceToTarget;
 
+		/// <inheritdoc/>
 		public BasicMissile(unit caster, unit target) : base(caster, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		public BasicMissile(unit caster, float targetX, float targetY) : base(caster, targetX, targetY)
 		{
 		}
 
+		/// <inheritdoc/>
 		public BasicMissile(player castingPlayer, float casterX, float casterY, unit target) : base(castingPlayer, casterX, casterY, target)
 		{
 		}
 
+		/// <inheritdoc/>
 		public BasicMissile(player castingPlayer, float casterX, float casterY, float targetX, float targetY) : base(castingPlayer, casterX, casterY, targetX, targetY)
 		{
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Launch()
 		{
 			this.casterZ += CasterLaunchZ;
@@ -81,10 +90,14 @@ namespace WCSharp.Missiles
 			{
 				Effect = AddSpecialEffect(this.effectString, MissileX, MissileY);
 				BlzSetSpecialEffectZ(Effect, MissileZ);
-				BlzSetSpecialEffectScale(Effect, this.effectScale);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (Target != null)
@@ -107,12 +120,7 @@ namespace WCSharp.Missiles
 
 			if (Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
-				Active = false;
 				Impact();
-				if (!Active)
-				{
-					Dispose();
-				}
 				return;
 			}
 
@@ -152,12 +160,7 @@ namespace WCSharp.Missiles
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{
-				Active = false;
 				ExitWorldBounds();
-				if (!Active)
-				{
-					Dispose();
-				}
 				return;
 			}
 

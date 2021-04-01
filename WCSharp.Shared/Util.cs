@@ -4,12 +4,30 @@ using static War3Api.Common;
 
 namespace WCSharp.Utils
 {
+	/// <summary>
+	/// Defines a number of miscellaneous useful methods and constants. 
+	/// </summary>
 	public static class Util
 	{
+		/// <summary>
+		/// This multiplier will translate GUI-like floating text size values into the values Warcraft III expects them to be.
+		/// </summary>
 		public const float TEXT_SIZE_MULTIPLIER = 0.023f / 10;
+		/// <summary>
+		/// This multiplier will translate GUI-like floating text velocity values into the values Warcraft III expects them to be.
+		/// </summary>
 		public const float TEXT_VELOCITY_MULTIPLIER = 0.071f / 128;
+		/// <summary>
+		/// A shortcut for <see cref="Deg2Rad(float)"/>.
+		/// </summary>
 		public const float DEG2RAD = PI / 180;
+		/// <summary>
+		/// A shortcut for <see cref="Rad2Deg(float)"/>.
+		/// </summary>
 		public const float RAD2DEG = 180 / PI;
+		/// <summary>
+		/// A shortcut for <see cref="War3Api.Blizzard.bj_PI"/>.
+		/// </summary>
 		public const float PI = 3.14159274f;
 
 		/// <summary>
@@ -182,6 +200,8 @@ namespace WCSharp.Utils
 		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
 		/// <para>A tolernace of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
 		/// </summary>
+		/// <param name="attacker">The unit performing the attack.</param>
+		/// <param name="attacked">The unit being attacked.</param>
 		/// <param name="tolerance">In degrees.</param>
 		public static bool IsAttackerBehindUnit(unit attacker, unit attacked, float tolerance)
 		{
@@ -199,6 +219,8 @@ namespace WCSharp.Utils
 		/// <para>Determines whether the attacker is in front of the attacked with the given tolerance in degrees.</para>
 		/// <para>A tolernace of 360 means the target can be attacked from anywhere while being considered "infront".</para>
 		/// </summary>
+		/// <param name="attacker">The unit performing the attack.</param>
+		/// <param name="attacked">The unit being attacked.</param>
 		/// <param name="tolerance">In degrees.</param>
 		public static bool IsAttackerInfrontUnit(unit attacker, unit attacked, float tolerance)
 		{
@@ -212,6 +234,12 @@ namespace WCSharp.Utils
 			return difference < minAllowedAngle || difference > maxAllowedAngle;
 		}
 
+		/// <summary>
+		/// Returns all players matching the given <paramref name="playerslotstate"/> and <paramref name="mapcontrol"/>.
+		/// </summary>
+		/// <param name="playerslotstate">The <see cref="playerslotstate"/> that players should have. Defaults to <see cref="PLAYER_SLOT_STATE_PLAYING"/>.</param>
+		/// <param name="mapcontrol">The <see cref="mapcontrol"/> that players should have. Defaults to <see cref="MAP_CONTROL_USER"/>.</param>
+		/// <returns></returns>
 		public static IEnumerable<player> EnumeratePlayers(playerslotstate playerslotstate = null, mapcontrol mapcontrol = null)
 		{
 			playerslotstate ??= PLAYER_SLOT_STATE_PLAYING;
@@ -228,16 +256,16 @@ namespace WCSharp.Utils
 			}
 		}
 
-		public static IEnumerable<player> EnumeratePlayers(Func<player, bool> filter)
+		/// <summary>
+		/// Returns all players.
+		/// </summary>
+		public static IEnumerable<player> EnumeratePlayers()
 		{
 			var maxPlayers = GetBJMaxPlayers();
 			for (var i = 0; i < maxPlayers; i++)
 			{
 				var player = Player(i);
-				if (filter(player))
-				{
-					yield return player;
-				}
+				yield return player;
 			}
 		}
 

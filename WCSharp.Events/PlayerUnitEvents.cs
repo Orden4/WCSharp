@@ -6,6 +6,9 @@ using static War3Api.Common;
 
 namespace WCSharp.Events
 {
+	/// <summary>
+	/// Manager for all Warcraft III <see cref="playerunitevent"/>s. Will bundle together and is able to efficiently filter on specific data.
+	/// </summary>
 	public static class PlayerUnitEvents
 	{
 		private static readonly Func<int> baseFunc = () => GetUnitTypeId(GetTriggerUnit());

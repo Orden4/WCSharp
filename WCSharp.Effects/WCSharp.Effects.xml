@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.Effects</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.Effects.EffectSystem">
+            <summary>
+            Simple system for destroying effects after a given duration.
+            <para>This circumvents issues with certain special effects not showing up if deleted immediately in Reforged.</para>
+            </summary>
+        </member>
+        <member name="M:WCSharp.Effects.EffectSystem.Add(War3Api.Common.effect,System.Single)">
+            <summary>
+            Adds an effect for removal after the given duration.
+            </summary>
+            <param name="effect"></param>
+            <param name="duration">In seconds.</param>
+        </member>
+    </members>
+</doc>

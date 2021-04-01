@@ -12,7 +12,7 @@ namespace WCSharp.Events
 		where T : IPeriodicAction
 	{
 		private readonly List<T> actions;
-		protected PeriodicEvent timerEvent;
+		private readonly PeriodicEvent timerEvent;
 
 		/// <summary>
 		/// All currently active periodic actions within this periodic trigger.

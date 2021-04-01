@@ -4,9 +4,18 @@ using static War3Api.Common;
 
 namespace WCSharp.Knockbacks
 {
+	/// <summary>
+	/// Represents a single knockback instance. Add to <see cref="KnockbackSystem"/> to activate.
+	/// </summary>
 	public class Knockback : IPeriodicAction
 	{
+		/// <summary>
+		/// The interval between <see cref="Effect1"/> spawns.
+		/// </summary>
 		public const float EFFECT1_PERIOD = 1.0f;
+		/// <summary>
+		/// The interval between <see cref="Effect2"/> spawns.
+		/// </summary>
 		public const float EFFECT2_PERIOD = 0.125f;
 
 		/// <summary>
@@ -18,23 +27,23 @@ namespace WCSharp.Knockbacks
 		/// </summary>
 		public unit Target { get; }
 		/// <summary>
-		/// The angle of the knockback in degrees.
+		/// The angle of the knockback in radians.
 		/// </summary>
 		public float Angle { get; set; }
 		/// <summary>
-		/// The distance traversed per tick (0.03125).
+		/// The distance traversed per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
 		/// </summary>
 		public float Speed { get; set; }
 		/// <summary>
-		/// The amount of speed lost per tick.
+		/// The amount of speed lost per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
 		/// </summary>
 		public float SpeedDropoff { get; set; }
 		/// <summary>
-		/// This effect will be spawned every 0.125 seconds on the target using <see cref="Effect1AttachmentPoint"/>.
+		/// This effect will be spawned every 1.0 seconds on the target using <see cref="Effect1AttachmentPoint"/>.
 		/// </summary>
 		public string Effect1 { get; set; }
 		/// <summary>
-		/// This effect will be spawned every second on the target using <see cref="Effect2AttachmentPoint"/>.
+		/// This effect will be spawned every 0.125 on the target using <see cref="Effect2AttachmentPoint"/>.
 		/// </summary>
 		public string Effect2 { get; set; }
 		/// <summary>
@@ -59,6 +68,9 @@ namespace WCSharp.Knockbacks
 		/// <summary>
 		/// Knocks the target the given distance towards the given angle (in degrees) over the given duration.
 		/// </summary>
+		/// <param name="target">The target to perform the knockback on</param>
+		/// <param name="distance">The distance in units to knock the target back</param>
+		/// <param name="duration">The duration in seconds over which the target should be knocked back</param>
 		/// <param name="angle">In degrees.</param>
 		public Knockback(unit target, float distance, float duration, float angle) : this(target, distance, duration)
 		{
@@ -75,6 +87,9 @@ namespace WCSharp.Knockbacks
 			Angle = Util.AngleBetweenPoints(unitX, unitY, targetX, targetY);
 		}
 
+		/// <summary>
+		/// Called by the system. Do not call yourself.
+		/// </summary>
 		public void Action()
 		{
 			var unitX = GetUnitX(Target) + (Speed * Cos(Angle));
@@ -85,7 +100,6 @@ namespace WCSharp.Knockbacks
 			if (Speed <= 0)
 			{
 				Active = false;
-				Dispose();
 				return;
 			}
 
@@ -121,14 +135,6 @@ namespace WCSharp.Knockbacks
 			var newY = (Speed * Sin(Angle)) + (knockback.Speed * Sin(knockback.Angle));
 			Angle = Atan2(newY, newX);
 			Speed = SquareRoot((newX * newX) + (newY * newY));
-		}
-
-		/// <summary>
-		/// Unused.
-		/// </summary>
-		public void Dispose()
-		{
-
 		}
 	}
 }

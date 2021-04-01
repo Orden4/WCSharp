@@ -4,7 +4,10 @@ using static War3Api.Common;
 
 namespace WCSharp.Buffs
 {
-	public interface IAura : IPeriodicAction
+	/// <summary>
+	/// Backing interface for auras, since different auras can otherwise not be stored in a generic way.
+	/// </summary>
+	public interface IAura : IPeriodicDisposableAction
 	{
 		/// <summary>
 		/// The caster.
@@ -51,6 +54,15 @@ namespace WCSharp.Buffs
 		/// <para>Defaults to origin.</para>
 		/// </summary>
 		string EffectAttachmentPoint { get; set; }
+
+		/// The effect scale for the effect.
+		/// <para>If changed while the aura is already active, automatically modifies the effect.</para>
+		float EffectScale { get; set; }
+
+		/// <summary>
+		/// The effect used by the aura. Creation of the effect should be done by setting <see cref="EffectString"/>, not by setting this property.
+		/// </summary>
+		effect Effect { get; set; }
 
 		/// <summary>
 		/// Called by the system. Do not call yourself.

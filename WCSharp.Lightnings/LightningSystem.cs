@@ -3,16 +3,19 @@ using WCSharp.Events;
 
 namespace WCSharp.Lightnings
 {
+	/// <summary>
+	/// Tracks and runs all active <see cref="Lightning"/> instances.
+	/// </summary>
 	public static class LightningSystem
 	{
-		private static readonly PeriodicTrigger<Lightning> periodicTrigger = new PeriodicTrigger<Lightning>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<Lightning> periodicTrigger = new PeriodicDisposableTrigger<Lightning>(PeriodicEvents.SYSTEM_INTERVAL);
 		/// <summary>
 		/// All active lightnings.
 		/// </summary>
 		public static IEnumerable<Lightning> Missiles => periodicTrigger.Actions;
 
 		/// <summary>
-		/// Adds the given lightning to the system. This will also initialise or alter some values according to the lightnings' properties.
+		/// Adds the given <paramref name="lightning"/> to the system. This will also initialise or alter some values according to the lightnings' properties.
 		/// </summary>
 		public static void Add(Lightning lightning)
 		{

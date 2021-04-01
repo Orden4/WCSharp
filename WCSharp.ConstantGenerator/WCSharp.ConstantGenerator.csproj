@@ -18,6 +18,10 @@
     <Version>1.0.2</Version>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.ConstantGenerator\WCSharp.ConstantGenerator.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="additional-constants.csv" />
     <None Include="..\LICENSE">

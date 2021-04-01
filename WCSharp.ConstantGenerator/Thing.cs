@@ -38,7 +38,7 @@ namespace WCSharp.ConstantGenerator
 				}
 				sb.Append($"_{name}{suffix}");
 
-				return $"{sb.ToString().Escape().ToUpper(CultureInfo.InvariantCulture)} = {NumberCode}";
+				return $"{sb.ToString().ToUpper(CultureInfo.InvariantCulture).Escape()} = {NumberCode}";
 			}
 		}
 	}

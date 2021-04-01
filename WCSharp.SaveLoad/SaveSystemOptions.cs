@@ -1,5 +1,9 @@
 ﻿namespace WCSharp.SaveLoad
 {
+	/// <summary>
+	/// Defines a set of options for a <see cref="SaveSystem{T}"/>.
+	/// <para>The <see cref="SaveFolder"/>, <see cref="Salt"/>, <see cref="Hash1"/> and <see cref="Hash2"/> properties are required.</para>
+	/// </summary>
 	public class SaveSystemOptions
 	{
 		/// <summary>

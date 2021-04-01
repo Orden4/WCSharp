@@ -2,6 +2,9 @@
 
 namespace WCSharp.Json
 {
+	/// <summary>
+	/// Entry point for converting classes to and from JSON files.
+	/// </summary>
 	public static class JsonConvert
 	{
 		/// <summary>

@@ -10,15 +10,33 @@ namespace WCSharp.Utils.Data
 	/// </summary>
 	public class Rectangle : IDisposable
 	{
-		public static Rectangle WorldBounds { get; private set; } = new Rectangle(GetWorldBounds());
+		/// <summary>
+		/// Represents the world bounds of the map. Automatically initialised.
+		/// </summary>
+		public static Rectangle WorldBounds { get; } = new Rectangle(GetWorldBounds());
 
 		private rect rect;
 		private region region;
 
+		/// <summary>
+		/// The left-most X coordinate.
+		/// </summary>
 		public float Left { get; private set; }
+		/// <summary>
+		/// The bottom-most Y coordinate.
+		/// </summary>
 		public float Bottom { get; private set; }
+		/// <summary>
+		/// The right-most X coordinate.
+		/// </summary>
 		public float Right { get; private set; }
+		/// <summary>
+		/// The top-most Y coordinate.
+		/// </summary>
 		public float Top { get; private set; }
+		/// <summary>
+		/// The Warcraft III rect. Generated on demand.
+		/// </summary>
 		public rect Rect
 		{
 			get
@@ -31,6 +49,9 @@ namespace WCSharp.Utils.Data
 				return this.rect;
 			}
 		}
+		/// <summary>
+		/// The Warcraft III region. Generated on demand.
+		/// </summary>
 		public region Region
 		{
 			get
@@ -45,13 +66,34 @@ namespace WCSharp.Utils.Data
 			}
 		}
 
+		/// <summary>
+		/// The distance between the right-most and left-most coordinates.
+		/// </summary>
 		public float Width => Right - Left;
+		/// <summary>
+		/// The distance between the top-most and bottom-most coordinates.
+		/// </summary>
 		public float Height => Top - Bottom;
 
+		/// <summary>
+		/// The point corresponding to the top-left of the rectangle.
+		/// </summary>
 		public Point TopLeft => new Point(Left, Top);
+		/// <summary>
+		/// The point corresponding to the top-right of the rectangle.
+		/// </summary>
 		public Point TopRight => new Point(Right, Top);
+		/// <summary>
+		/// The point corresponding to the bottom-left of the rectangle.
+		/// </summary>
 		public Point BottomLeft => new Point(Left, Bottom);
+		/// <summary>
+		/// The point corresponding to the bottom-right of the rectangle.
+		/// </summary>
 		public Point BottomRight => new Point(Right, Bottom);
+		/// <summary>
+		/// The point corresponding to the center of the rectangle.
+		/// </summary>
 		public Point Center => new Point((Left + Right) / 2, (Bottom + Top) / 2);
 
 		/// <summary>
@@ -59,6 +101,9 @@ namespace WCSharp.Utils.Data
 		/// </summary>
 		public bool IsEmpty => Width == 0 || Height == 0;
 
+		/// <summary>
+		/// Creates a new rectangle using the given Warcraft III rect as a base.
+		/// </summary>
 		public Rectangle(rect rect)
 		{
 			Left = GetRectMinX(rect);
@@ -68,6 +113,9 @@ namespace WCSharp.Utils.Data
 			this.rect = rect;
 		}
 
+		/// <summary>
+		/// Creates a new rectangle with the given set of coordinates.
+		/// </summary>
 		public Rectangle(float left, float bottom, float right, float top)
 		{
 			Left = Math.Min(left, right);
@@ -77,7 +125,7 @@ namespace WCSharp.Utils.Data
 		}
 
 		/// <summary>
-		/// Creates a Rectangle that can encompass all of the given points within its surface area.
+		/// Creates a Rectangle that encompasses all of the given points within its surface area.
 		/// </summary>
 		public Rectangle(IEnumerable<Point> points)
 		{
@@ -99,11 +147,17 @@ namespace WCSharp.Utils.Data
 			}
 		}
 
+		/// <summary>
+		/// True if all coordinates of <paramref name="rect1"/> match those of <paramref name="rect2"/>.
+		/// </summary>
 		public static bool operator ==(Rectangle rect1, Rectangle rect2)
 		{
 			return rect1.Left == rect2.Left && rect1.Bottom == rect2.Bottom && rect1.Right == rect2.Right && rect1.Top == rect2.Top;
 		}
 
+		/// <summary>
+		/// True if any coordinates of <paramref name="rect1"/> do not match those of <paramref name="rect2"/>.
+		/// </summary>
 		public static bool operator !=(Rectangle rect1, Rectangle rect2)
 		{
 			return rect1.Left != rect2.Left || rect1.Bottom != rect2.Bottom || rect1.Right != rect2.Right || rect1.Top != rect2.Top;
@@ -236,6 +290,7 @@ namespace WCSharp.Utils.Data
 			}
 		}
 
+		/// <inheritdoc/>
 		public override bool Equals(object obj)
 		{
 			return obj is Rectangle rect &&
@@ -245,6 +300,7 @@ namespace WCSharp.Utils.Data
 				Top == rect.Top;
 		}
 
+		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
 			return HashCode.Combine(Left, Bottom, Right, Top);

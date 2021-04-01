@@ -4,16 +4,19 @@ using static War3Api.Common;
 
 namespace WCSharp.Missiles
 {
+	/// <summary>
+	/// Tracks and runs all active <see cref="Missile"/> instances.
+	/// </summary>
 	public static class MissileSystem
 	{
-		private static readonly PeriodicTrigger<Missile> periodicTrigger = new PeriodicTrigger<Missile>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<Missile> periodicTrigger = new PeriodicDisposableTrigger<Missile>(PeriodicEvents.SYSTEM_INTERVAL);
 		/// <summary>
 		/// All active missiles.
 		/// </summary>
 		public static IEnumerable<Missile> Missiles => periodicTrigger.Actions;
 
 		/// <summary>
-		/// Adds the given missile to the system. This will also initialise or alter some values according to the missiles' properties.
+		/// Adds the given <paramref name="missile"/> to the system.
 		/// </summary>
 		public static void Add(Missile missile)
 		{

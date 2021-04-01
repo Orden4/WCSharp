@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WCSharp.SaveLoad</name>
+    </assembly>
+    <members>
+        <member name="T:WCSharp.SaveLoad.Saveable">
+            <summary>
+            Abstract class containing the definitions that the SaveSystem needs in order to save and load your custom save data.
+            </summary>
+        </member>
+        <member name="M:WCSharp.SaveLoad.Saveable.GetPlayer">
+            <summary>
+            Returns the player object that this save is bound to.
+            </summary>
+        </member>
+        <member name="M:WCSharp.SaveLoad.Saveable.GetSaveSlot">
+            <summary>
+            Returns the save slot that this save is bound to.
+            </summary>
+        </member>
+        <member name="M:WCSharp.SaveLoad.Saveable.SetPlayer(War3Api.Common.player)">
+            <summary>
+            Sets the player that this save is bound to.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:WCSharp.SaveLoad.Saveable.SetSaveSlot(System.Int32)">
+            <summary>
+            Sets the save slot that this save is bound to.
+            </summary>
+            <param name="saveSlot"></param>
+        </member>
+        <member name="T:WCSharp.SaveLoad.SaveSystem`1">
+            <summary>
+            System capable of saving C# data structures on a players local files to create save files that can be loaded at a later date/map.
+            </summary>
+            <typeparam name="T">The <see cref="T:WCSharp.SaveLoad.Saveable"/> type that this instance will be saving/loading</typeparam>
+        </member>
+        <member name="M:WCSharp.SaveLoad.SaveSystem`1.AddAbilityId(System.Int32)">
+            <summary>
+            Adds an additional ability id for use as temporary data storage.
+            <para>By default, you have 2000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.</para>
+            <para>This should be done upon map start, before anything attempts to use the SaveSystem.</para>
+            </summary>
+            <param name="abilityId"></param>
+        </member>
+        <member name="T:WCSharp.SaveLoad.SaveSystem`1.OnSaveLoadedHandler">
+            <summary>
+            Event handler for when a save is loaded. Note that the save will be instantiated even if it is empty.
+            </summary>
+            <param name="save">The save that was loaded.</param>
+            <param name="isEmptySave">Whether the save file is empty (i.e. did not exist before).</param>
+        </member>
+        <member name="E:WCSharp.SaveLoad.SaveSystem`1.OnSaveLoaded">
+            <summary>
+            This event will be invoked when a new save is loaded in, providing the given class and a boolean indicating whether the save is newly created or not.
+            </summary>
+        </member>
+        <member name="M:WCSharp.SaveLoad.SaveSystem`1.#ctor(WCSharp.SaveLoad.SaveSystemOptions)">
+            <summary>
+            Creates a new <see cref="T:WCSharp.SaveLoad.SaveSystem`1"/> instance with the given <paramref name="options"/>.
+            </summary>
+        </member>
+        <member name="M:WCSharp.SaveLoad.SaveSystem`1.Save(`0)">
+            <summary>
+            Writes the given saveable to file for the player who owns the save.
+            </summary>
+            <param name="saveable">The saveable to save.</param>
+        </member>
+        <member name="M:WCSharp.SaveLoad.SaveSystem`1.Load(War3Api.Common.player,System.Int32)">
+            <summary>
+            Loads a save for the given player, using the given slot.
+            <para>If no save exists on the given slot, will load an empty save.</para>
+            <para>Use <see cref="M:WCSharp.SaveLoad.SaveSystem`1.HandleSaveLoadedMessage(WCSharp.SaveLoad.SaveLoadedMessage)"/> to receive the save.</para>
+            </summary>
+            <param name="player">The player to create the save for.</param>
+            <param name="saveSlot">The slot to save to.</param>
+        </member>
+        <member name="M:WCSharp.SaveLoad.SaveSystem`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:WCSharp.SaveLoad.SaveSystemOptions">
+            <summary>
+            Defines a set of options for a <see cref="T:WCSharp.SaveLoad.SaveSystem`1"/>.
+            <para>The <see cref="P:WCSharp.SaveLoad.SaveSystemOptions.SaveFolder"/>, <see cref="P:WCSharp.SaveLoad.SaveSystemOptions.Salt"/>, <see cref="P:WCSharp.SaveLoad.SaveSystemOptions.Hash1"/> and <see cref="P:WCSharp.SaveLoad.SaveSystemOptions.Hash2"/> properties are required.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.SaveLoad.SaveSystemOptions.SaveFolder">
+            <summary>
+            May not be empty. The folder in which to store the saves.
+            </summary>
+        </member>
+        <member name="P:WCSharp.SaveLoad.SaveSystemOptions.Salt">
+            <summary>
+            May not be empty. The salt to use on the string. You can just type something random, or generate something with <see href="https://www.random.org/strings/"/>.
+            <para>You may use any length of salt, but around 16 is sufficient.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.SaveLoad.SaveSystemOptions.Hash1">
+            <summary>
+            Must be greater than 0. It is recommended to simply pick any prime number from <see href="http://www.mathematical.com/primes0to1000k.html"/> or a similar site.
+            <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.SaveLoad.SaveSystemOptions.Hash2">
+            <summary>
+            Must be greater than 0. It is recommended to simply pick any prime number from <see href="http://www.mathematical.com/primes0to1000k.html"/> or a similar site.
+            <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.SaveLoad.SaveSystemOptions.BindSavesToPlayerName">
+            <summary>
+            Whether saves are bound to the name of the player. If true, saves will have the player name contained in the filename,
+            and upon loading this will be matched with the current player's name.
+            <para>Attempting to load a save tied to a different username will result in a new save file being created instead.</para>
+            <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
+            </summary>
+        </member>
+        <member name="P:WCSharp.SaveLoad.SaveSystemOptions.Suffix">
+            <summary>
+            Optional. The given string will be added to the filename of any save stored.
+            </summary>
+        </member>
+    </members>
+</doc>

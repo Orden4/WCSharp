@@ -20,14 +20,9 @@ namespace WCSharp.Effects
 			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
 			if (Duration <= 0)
 			{
-				Dispose();
+				DestroyEffect(Effect);
 				Active = false;
 			}
-		}
-
-		public void Dispose()
-		{
-			DestroyEffect(Effect);
 		}
 	}
 }

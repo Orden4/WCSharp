@@ -2,6 +2,9 @@
 
 namespace WCSharp.Utils.Extensions
 {
+	/// <summary>
+	/// Extension class that defines a number of methods to simplify working with Warcraft III units.
+	/// </summary>
 	public static class UnitExtensions
 	{
 		/// <summary>

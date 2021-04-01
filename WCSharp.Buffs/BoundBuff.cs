@@ -12,22 +12,31 @@ namespace WCSharp.Buffs
 	public class BoundBuff : Buff
 	{
 		/// <summary>
+		/// The time, in seconds, remaining until the next tick.
+		/// </summary>
+		public float IntervalLeft { get; set; }
+		/// <summary>
 		/// The time, in seconds, between each tick.
 		/// </summary>
 		public float Interval { get; set; }
-		/// <summary>
-		/// How many ticks have occurred, according to the interval.
-		/// <para>Automatically incremented before each call to <see cref="OnTick"/>.</para>
-		/// </summary>
-		public int TickNumber { get; set; }
 
-		internal bool IsBound { get; set; }
-		internal int BuffId { get; set; }
+		internal bool isBound;
+		internal int buffId;
+		internal int auraId;
 
+		/// <inheritdoc/>
 		public BoundBuff(unit caster, unit target) : base(caster, target)
 		{
 		}
 
+		/// <summary>
+		/// Will use the <see cref="DummySystem"/> to cast the given buffing ability on the target and then track it to synchronise removal.
+		/// </summary>
+		/// <param name="abilityId">The ability ID which applies the buff that should be tracked</param>
+		/// <param name="buffId">The buff ID to track</param>
+		/// <param name="orderId">The order ID of the ability to cast</param>
+		/// <param name="level">The level of the ability to cast</param>
+		/// <param name="dummyPlayer">Who the owner of the dummy should be set to, defaults to Neutral Passive</param>
 		public void Bind(int abilityId, int buffId, int orderId, int level = 1, player dummyPlayer = null)
 		{
 			dummyPlayer ??= Player(PLAYER_NEUTRAL_PASSIVE);
@@ -38,53 +47,96 @@ namespace WCSharp.Buffs
 			IssueTargetOrderById(dummy, orderId, Target);
 			DummySystem.RecycleDummy(dummy);
 
-			BuffId = buffId;
-			IsBound = GetUnitAbilityLevel(Target, BuffId) > 0;
+			this.buffId = buffId;
+			this.isBound = GetUnitAbilityLevel(Target, this.buffId) > 0;
 		}
 
+		/// <summary>
+		/// Will add the given aura to the unit if necessary and set its level accordingly. The aura will automatically be hidden from the command UI
+		/// and removed when the buff is removed.
+		/// </summary>
+		/// <param name="auraId"></param>
+		/// <param name="buffId"></param>
+		/// <param name="level"></param>
+		public void Bind(int auraId, int buffId, int level = 1)
+		{
+			if (GetUnitAbilityLevel(Target, auraId) == 0)
+			{
+				UnitAddAbility(Target, auraId);
+			}
+
+			SetUnitAbilityLevel(Target, auraId, level);
+			BlzUnitHideAbility(Target, auraId, true);
+
+			this.auraId = auraId;
+			this.buffId = buffId;
+			this.isBound = GetUnitAbilityLevel(Target, this.buffId) > 0;
+		}
+
+		/// <inheritdoc/>
 		public sealed override void Apply()
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				this.effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				if (this.effectScale != 1)
+				{
+					BlzSetSpecialEffectScale(Effect, this.effectScale);
+				}
 			}
 
+			IntervalLeft = Interval;
 			OnApply();
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Action()
 		{
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				Dispose();
+				Active = false;
 				return;
 			}
 
-			if (IsBound)
+			if (this.isBound)
 			{
-				if (GetUnitAbilityLevel(Target, BuffId) == 0)
+				if (GetUnitAbilityLevel(Target, this.buffId) == 0)
 				{
-					Dispose();
+					Active = false;
 					return;
 				}
 			}
 			else
 			{
-				IsBound = true;
+				this.isBound = true;
 			}
 
-			Duration += PeriodicEvents.SYSTEM_INTERVAL;
-			if (Interval > 0 && Duration >= (TickNumber + 1) * Interval)
+			if (Interval > 0)
 			{
-				TickNumber++;
-				OnTick();
-				if (!UnitAlive(Target))
+				if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 				{
-					OnDeath(true);
-					Dispose();
-					return;
+					IntervalLeft += Interval;
+					OnTick();
+					if (!UnitAlive(Target))
+					{
+						OnDeath(true);
+						Active = false;
+						return;
+					}
 				}
+
+				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+			}
+
+			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
+			{
+				OnExpire();
+				Active = false;
+			}
+			else
+			{
+				Duration -= PeriodicEvents.SYSTEM_INTERVAL;
 			}
 		}
 
@@ -96,26 +148,38 @@ namespace WCSharp.Buffs
 
 		}
 
+		/// <summary>
+		/// Executes whenever this buff receives a new stack via <see cref="BuffSystem.Add(Buff, StackBehaviour)"/>.
+		/// <para>By default, BoundBuff will return <see cref="StackResult.Consume"/>.</para>
+		/// </summary>
 		public override StackResult OnStack(Buff newStack)
 		{
 			return StackResult.Consume;
 		}
 
+		/// <inheritdoc/>
 		public sealed override void Dispose()
 		{
 			OnDispose();
-			Active = false;
 
-			if (this.effect != null)
+			if (Effect != null)
 			{
-				DestroyEffect(this.effect);
+				DestroyEffect(Effect);
 			}
 
 			BuffSystem.Remove(this);
 
-			if (UnitAlive(Target) && BuffSystem.GetBuffsOnUnit(Target).OfType<BoundBuff>().All(x => x.BuffId != BuffId))
+			if (this.auraId > 0)
 			{
-				UnitRemoveAbility(Target, BuffId);
+				if (BuffSystem.GetBuffsOnUnit(Target).OfType<BoundBuff>().All(x => x.auraId != this.auraId))
+				{
+					UnitRemoveAbility(Target, this.auraId);
+					UnitRemoveAbility(Target, this.buffId);
+				}
+			}
+			else if (BuffSystem.GetBuffsOnUnit(Target).OfType<BoundBuff>().All(x => x.buffId != this.buffId))
+			{
+				UnitRemoveAbility(Target, this.buffId);
 			}
 		}
 	}

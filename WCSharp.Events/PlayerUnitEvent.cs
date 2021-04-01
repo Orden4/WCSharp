@@ -2,6 +2,10 @@
 
 namespace WCSharp.Events
 {
+	/// <summary>
+	/// Defines all built-in PlayerUnitEvents supported by <see cref="PlayerUnitEvents"/>.
+	/// <para>Custom events can also be specified via <see cref="PlayerUnitEvents.AddCustomEventFilter(playerunitevent, string, System.Func{int})"/>.</para>
+	/// </summary>
 	public enum PlayerUnitEvent
 	{
 		/// <summary>
@@ -412,7 +416,7 @@ namespace WCSharp.Events
 				PlayerUnitEvent.UnitTypeSpellEffect => EVENT_PLAYER_UNIT_SPELL_EFFECT,
 				PlayerUnitEvent.UnitTypeSpellEndCast => EVENT_PLAYER_UNIT_SPELL_ENDCAST,
 				PlayerUnitEvent.UnitTypeSpellFinish => EVENT_PLAYER_UNIT_SPELL_FINISH,
-				//PlayerUnitEvent.UnitTypeStacksItem => EVENT_PLAYER_UNIT_STACK_ITEM,
+				PlayerUnitEvent.UnitTypeStacksItem => EVENT_PLAYER_UNIT_STACK_ITEM,
 				PlayerUnitEvent.UnitTypeStartsBeingConstructed => EVENT_PLAYER_UNIT_CONSTRUCT_START,
 				PlayerUnitEvent.UnitTypeStartsBeingTrained => EVENT_PLAYER_UNIT_TRAIN_START,
 				PlayerUnitEvent.UnitTypeStartsConstruction => EVENT_PLAYER_UNIT_CONSTRUCT_START,
