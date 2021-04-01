@@ -14,10 +14,7 @@ The SaveLoad package provides a system that can be used to save and load data be
     <Authors>Orden4</Authors>
     <Company />
     <Product>WCSharp</Product>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.SaveLoad\WCSharp.SaveLoad.xml</DocumentationFile>
+    <DocumentationFile>WCSharp.SaveLoad.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

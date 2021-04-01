@@ -13,10 +13,7 @@
     <Authors>Orden4</Authors>
     <Company />
     <Product>WCSharp</Product>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.Knockbacks\WCSharp.Knockbacks.xml</DocumentationFile>
+    <DocumentationFile>WCSharp.Knockbacks.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

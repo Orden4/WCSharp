@@ -14,10 +14,7 @@ The Shared package contains a set of classes, methods and extensions used by alm
     <Authors>Orden4</Authors>
     <Company />
     <Product>WCSharp</Product>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.Shared\WCSharp.Shared.xml</DocumentationFile>
+    <DocumentationFile>WCSharp.Shared.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

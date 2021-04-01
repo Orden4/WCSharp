@@ -6,6 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.DateTime\WCSharp.DateTime.xml</DocumentationFile>
+    <DocumentationFile>WCSharp.DateTime.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

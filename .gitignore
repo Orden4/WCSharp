@@ -1,6 +1,6 @@
 ## Own ignores
 artifacts
-
+*.xml
 
 
 
