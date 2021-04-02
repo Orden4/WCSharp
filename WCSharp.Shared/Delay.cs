@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static War3Api.Common;
 
-namespace WCSharp.Utils
+namespace WCSharp.Shared
 {
 	/// <summary>
 	/// Basic helper class to create 0 second delays on executing actions.

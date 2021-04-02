@@ -10,7 +10,7 @@ namespace WCSharp.ConstantGenerator
 		private const string W3R_INPUT = "war3map.w3r";
 		private const string W3R_OUTPUT = "Regions.cs";
 
-		private const string FILE = @"using WCSharp.Utils.Data;
+		private const string FILE = @"using WCSharp.Shared.Data;
 
 public static class Regions
 {{

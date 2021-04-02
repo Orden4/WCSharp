@@ -1,10 +1,10 @@
 ﻿namespace WCSharp.SaveLoad
 {
-	internal class SaveLoadedMessage
+	internal class SaveLoadedMessage<T>
+		where T : Saveable
 	{
 		public int PlayerId { get; set; }
 		public int SaveSlot { get; set; }
-		public string TypeName { get; set; }
-		public string SaveData { get; set; }
+		public T SaveData { get; set; }
 	}
 }

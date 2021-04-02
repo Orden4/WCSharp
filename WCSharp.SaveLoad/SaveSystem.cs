@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WCSharp.Json;
+using WCSharp.Lua;
 using WCSharp.Sync;
-using WCSharp.Utils;
 using static War3Api.Common;
 
 namespace WCSharp.SaveLoad
@@ -54,6 +54,7 @@ namespace WCSharp.SaveLoad
 		private readonly int hash2;
 		private readonly bool bindSavesToPlayerName;
 		private readonly string suffix;
+		private readonly Base64 base64;
 
 		/// <summary>
 		/// Event handler for when a save is loaded. Note that the save will be instantiated even if it is empty.
@@ -85,8 +86,7 @@ namespace WCSharp.SaveLoad
 			this.salt = options.Salt;
 			this.bindSavesToPlayerName = options.BindSavesToPlayerName;
 			this.suffix = options.Suffix ?? "";
-			if (this.suffix != "" && !this.suffix.StartsWith("-"))
-				this.suffix = "-" + this.suffix;
+			this.base64 = options.Base64Provider ?? new Base64();
 
 			if (string.IsNullOrWhiteSpace(this.saveFolder))
 				throw new ArgumentException("ERROR: Must define a non-empty save folder for the SaveSystem.");
@@ -106,24 +106,18 @@ namespace WCSharp.SaveLoad
 					throw new ArgumentException($"ERROR: Suffix cannot contain {ch} as this is an illegal filename character.");
 			}
 
-			SyncSystem.Subscribe<SaveLoadedMessage>(HandleSaveLoadedMessage);
+			if (this.suffix != "" && !this.suffix.StartsWith("-"))
+				this.suffix = "-" + this.suffix;
+
+			SyncSystem.Subscribe<SaveLoadedMessage<T>>(HandleSaveLoadedMessage);
 		}
 
-		private void HandleSaveLoadedMessage(SaveLoadedMessage message)
+		private void HandleSaveLoadedMessage(SaveLoadedMessage<T> message)
 		{
-			if (message.TypeName == typeof(T).FullName)
-			{
-				var isEmptySave = false;
-				if (string.IsNullOrEmpty(message.SaveData) || !JsonConvert.TryDeserialize<T>(message.SaveData, out var data))
-				{
-					isEmptySave = true;
-					data = Activator.CreateInstance<T>();
-				}
-
-				data.player = Player(message.PlayerId);
-				data.saveSlot = message.SaveSlot;
-				OnSaveLoaded?.Invoke(data, isEmptySave);
-			}
+			var data = message.SaveData ?? Activator.CreateInstance<T>();
+			data.player = Player(message.PlayerId);
+			data.saveSlot = message.SaveSlot;
+			OnSaveLoaded?.Invoke(data, message.SaveData == null);
 		}
 
 		/// <summary>
@@ -138,18 +132,16 @@ namespace WCSharp.SaveLoad
 				return;
 			}
 
-			var player = saveable.GetPlayer();
-			var save = new Save
+			var save = new Save<T>
 			{
 				Version = CURRENT_VERSION,
-				PlayerName = GetPlayerName(player),
-				SaveData = JsonConvert.Serialize(saveable)
+				HashCode = GetSaveHash(JsonConvert.Serialize(saveable), saveable.player),
+				SaveData = saveable,
 			};
 
-			save.HashCode = save.GetSaveHash(this.hash1, this.hash2, this.bindSavesToPlayerName, this.salt);
-			var contents = Base64.ToBase64(JsonConvert.Serialize(save));
+			var contents = this.base64.Encode(JsonConvert.Serialize(save));
 
-			var filename = GetFileName(player, saveable.GetSaveSlot());
+			var filename = GetFileName(saveable.player, saveable.saveSlot);
 			if (contents.Length > PACKET_SIZE * abilityIds.Count)
 			{
 				Console.WriteLine("ERROR: Maximum save file size has been reached. Unable to save file. Please contact the mapmaker to increase storage space.");
@@ -210,13 +202,13 @@ namespace WCSharp.SaveLoad
 			}
 
 			var save = TryLoadSave(sb);
-			var message = new SaveLoadedMessage
+			var message = new SaveLoadedMessage<T>
 			{
 				PlayerId = GetPlayerId(player),
 				SaveSlot = saveSlot
 			};
 
-			if (save != null && save.HashCode == save.GetSaveHash(this.hash1, this.hash2, this.bindSavesToPlayerName, this.salt))
+			if (save?.SaveData != null && save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
 			{
 				message.SaveData = save.SaveData;
 			}
@@ -224,12 +216,12 @@ namespace WCSharp.SaveLoad
 			SyncSystem.Send(message);
 		}
 
-		private static Save TryLoadSave(StringBuilder sb)
+		private Save<T> TryLoadSave(StringBuilder sb)
 		{
 			try
 			{
-				var contents = Base64.FromBase64(sb.ToString());
-				var save = JsonConvert.Deserialize<Save>(contents);
+				var contents = this.base64.Decode(sb.ToString());
+				var save = JsonConvert.Deserialize<Save<T>>(contents);
 				return save;
 			}
 			catch (Exception)
@@ -250,10 +242,38 @@ namespace WCSharp.SaveLoad
 			}
 		}
 
+		private int GetSaveHash(string saveData, player player)
+		{
+			unchecked
+			{
+				var hash = HashString(this.hash1, saveData);
+				if (this.bindSavesToPlayerName)
+				{
+					hash = HashString(hash, GetPlayerName(player));
+				}
+				hash = HashString(hash, this.salt);
+
+				return hash;
+			}
+		}
+
+		private int HashString(int hash, string @string)
+		{
+			unchecked
+			{
+				foreach (var ch in @string)
+				{
+					hash = (hash * this.hash2) ^ ch;
+				}
+
+				return hash;
+			}
+		}
+
 		/// <inheritdoc/>
 		public void Dispose()
 		{
-			SyncSystem.Unsubscribe<SaveLoadedMessage>(HandleSaveLoadedMessage);
+			SyncSystem.Unsubscribe<SaveLoadedMessage<T>>(HandleSaveLoadedMessage);
 		}
 	}
 }

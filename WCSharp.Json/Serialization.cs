@@ -122,13 +122,18 @@ namespace WCSharp.Json
 					keyProp = itemType.GetProperty("Key");
 					valueProp = itemType.GetProperty("Value");
 				}
-				var itemKey = keyProp.GetValue(item).ToString();
-				var itemValue = valueProp.GetValue(item);
-				var serializedValue = serializeValue
-					? ConvertInputToDictionary(itemValue, genericArguments[1])
-					: itemValue;
-				newDict.Add(itemKey, serializedValue);
+
+				var itemKeyValue = keyProp.GetValue(item);
+				if (itemKeyValue != null)
+				{
+					var itemValue = valueProp.GetValue(item);
+					var serializedValue = serializeValue
+						? ConvertInputToDictionary(itemValue, genericArguments[1])
+						: itemValue;
+					newDict.Add(itemKeyValue.ToString(), serializedValue);
+				}
 			}
+
 			return newDict;
 		}
 	}

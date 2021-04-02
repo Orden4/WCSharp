@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WCSharp.Json;
-using WCSharp.Utils;
+using WCSharp.Shared;
 using static War3Api.Common;
 
 namespace WCSharp.Sync
@@ -40,9 +40,8 @@ namespace WCSharp.Sync
 			'\r',
 			'\t'
 		};
-		private static bool initialized = false;
 
-		private static void Initialize()
+		static SyncSystem()
 		{
 			RegisterForPrefix(HandleSyncHeader, SYNC_HEADER_PREFIX);
 			RegisterForPrefix(HandleSyncPacket, SYNC_PACKET_PREFIX);
@@ -116,7 +115,7 @@ namespace WCSharp.Sync
 		public static void Send<T>(T message)
 			where T : class
 		{
-			if (message == null || !initialized)
+			if (message == null)
 			{
 				return;
 			}
@@ -190,12 +189,6 @@ namespace WCSharp.Sync
 			if (handler == null)
 			{
 				return;
-			}
-
-			if (!initialized)
-			{
-				initialized = true;
-				Initialize();
 			}
 
 			syncHandlers.Add(SyncHandler.Create(handler));

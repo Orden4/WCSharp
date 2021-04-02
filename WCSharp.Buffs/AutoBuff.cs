@@ -1,5 +1,5 @@
 ﻿using WCSharp.Events;
-using WCSharp.Utils.Extensions;
+using WCSharp.Shared.Extensions;
 using static War3Api.Common;
 
 namespace WCSharp.Buffs

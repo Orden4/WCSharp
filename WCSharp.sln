@@ -36,7 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Effects", "WCSharp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Shared", "WCSharp.Shared\WCSharp.Shared.csproj", "{60348EAA-DEBB-4FE8-B6C5-4E5D29D58ABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCSharp.DateTime", "WCSharp.DateTime\WCSharp.DateTime.csproj", "{43A50E89-5290-490A-BB67-75170B0E6E0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.DateTime", "WCSharp.DateTime\WCSharp.DateTime.csproj", "{43A50E89-5290-490A-BB67-75170B0E6E0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Lua", "WCSharp.Lua\WCSharp.Lua.csproj", "{3058295E-708E-4B31-B78D-B6809C67DB4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +106,10 @@ Global
 		{43A50E89-5290-490A-BB67-75170B0E6E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43A50E89-5290-490A-BB67-75170B0E6E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43A50E89-5290-490A-BB67-75170B0E6E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3058295E-708E-4B31-B78D-B6809C67DB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3058295E-708E-4B31-B78D-B6809C67DB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3058295E-708E-4B31-B78D-B6809C67DB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3058295E-708E-4B31-B78D-B6809C67DB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static War3Api.Common;
 
-namespace WCSharp.Utils
+namespace WCSharp.Shared
 {
 	/// <summary>
 	/// Defines a number of miscellaneous useful methods and constants. 
@@ -12,19 +12,19 @@ namespace WCSharp.Utils
 		/// <summary>
 		/// This multiplier will translate GUI-like floating text size values into the values Warcraft III expects them to be.
 		/// </summary>
-		public const float TEXT_SIZE_MULTIPLIER = 0.023f / 10;
+		public const float TEXT_SIZE_MULTIPLIER = 0.023f / 10.0f;
 		/// <summary>
 		/// This multiplier will translate GUI-like floating text velocity values into the values Warcraft III expects them to be.
 		/// </summary>
-		public const float TEXT_VELOCITY_MULTIPLIER = 0.071f / 128;
+		public const float TEXT_VELOCITY_MULTIPLIER = 0.071f / 128.0f;
 		/// <summary>
 		/// A shortcut for <see cref="Deg2Rad(float)"/>.
 		/// </summary>
-		public const float DEG2RAD = PI / 180;
+		public const float DEG2RAD = PI / 180.0f;
 		/// <summary>
 		/// A shortcut for <see cref="Rad2Deg(float)"/>.
 		/// </summary>
-		public const float RAD2DEG = 180 / PI;
+		public const float RAD2DEG = 180.0f / PI;
 		/// <summary>
 		/// A shortcut for <see cref="War3Api.Blizzard.bj_PI"/>.
 		/// </summary>

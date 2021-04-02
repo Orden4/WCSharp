@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WCSharp.Utils.Extensions
+namespace WCSharp.Shared.Extensions
 {
 	/// <summary>
 	/// Extension class that defines a number of methods to simplify working with lists, in particular within context of Warcraft III.

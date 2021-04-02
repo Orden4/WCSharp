@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <DocumentationFile>WCSharp.Effects.xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.2.1</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>- Initial version, split package test</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+This package simply allows you to destroy Warcraft III special effects on a delay, primarily to circumvent some Reforged bugs.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
+    <PackageReference Include="War3Api.Common" Version="1.32.9" />
+    <PackageReference Include="WCSharp.Events" Version="0.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

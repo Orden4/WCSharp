@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Lua;
+using WCSharp.Shared;
 using WCSharp.Sync;
-using WCSharp.Utils;
 using static War3Api.Common;
 
 namespace WCSharp.DateTime
@@ -24,16 +25,10 @@ namespace WCSharp.DateTime
 
 		public void Run()
 		{
-			var seconds = 0;
-#if __CSharpLua__
-	/*[[
-	seconds = os.time()
-	]]*/
-#endif
 			var message = new DateTimeSyncMessage
 			{
 				PlayerId = GetPlayerId(GetLocalPlayer()),
-				Seconds = seconds
+				Seconds = Os.Time()
 			};
 
 			SyncSystem.Subscribe<DateTimeSyncMessage>(HandleDateTimeSyncMessage);
@@ -55,7 +50,7 @@ namespace WCSharp.DateTime
 				};
 
 				SyncSystem.Unsubscribe<DateTimeSyncMessage>(HandleDateTimeSyncMessage);
-				WcDateTime.StoreSynchronisedTime(sync.seconds, this.method);
+				WcDateTime.StoreSynchronisedTime(sync.TotalSeconds, this.method);
 
 				this.action?.Invoke(sync);
 			}
@@ -74,7 +69,7 @@ namespace WCSharp.DateTime
 		private WcDateTime ResolveAverage()
 		{
 			var count = this.timestamps.Count;
-			var averageSeconds = this.timestamps.Values.Sum(x => x.seconds / count);
+			var averageSeconds = this.timestamps.Values.Sum(x => x.TotalSeconds / count);
 			return new WcDateTime(averageSeconds);
 		}
 
@@ -83,16 +78,16 @@ namespace WCSharp.DateTime
 			if (this.timestamps.Count % 2 == 0)
 			{
 				var ordered = this.timestamps.Values
-					.OrderBy(x => x.seconds)
+					.OrderBy(x => x.TotalSeconds)
 					.ToList();
 				var middle = this.timestamps.Count / 2;
-				var averageSeconds = (ordered[middle].seconds / 2) + (ordered[middle + 1].seconds / 2);
+				var averageSeconds = (ordered[middle].TotalSeconds / 2) + (ordered[middle + 1].TotalSeconds / 2);
 				return new WcDateTime(averageSeconds);
 			}
 			else
 			{
 				var ordered = this.timestamps.Values
-					.OrderBy(x => x.seconds)
+					.OrderBy(x => x.TotalSeconds)
 					.ToList();
 				return ordered[this.timestamps.Count / 2];
 			}

@@ -1,4 +1,6 @@
-﻿namespace WCSharp.SaveLoad
+﻿using WCSharp.Lua;
+
+namespace WCSharp.SaveLoad
 {
 	/// <summary>
 	/// Defines a set of options for a <see cref="SaveSystem{T}"/>.
@@ -14,6 +16,7 @@
 		/// <summary>
 		/// May not be empty. The salt to use on the string. You can just type something random, or generate something with <see href="https://www.random.org/strings/"/>.
 		/// <para>You may use any length of salt, but around 16 is sufficient.</para>
+		/// <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
 		/// </summary>
 		public string Salt { get; set; }
 
@@ -41,5 +44,12 @@
 		/// Optional. The given string will be added to the filename of any save stored.
 		/// </summary>
 		public string Suffix { get; set; }
+
+		/// <summary>
+		/// Optional. The save is encoded in Base64, if you want, you can provide a custom Base64 provider to effectively scramble the save.
+		/// <para>This does not change much in terms of protection, but makes it harder for people to inspect save files.</para>
+		/// <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
+		/// </summary>
+		public Base64 Base64Provider { get; set; }
 	}
 }

@@ -3,17 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Initial version, split package test</PackageReleaseNotes>
-    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
-The SaveLoad package provides a system that can be used to save and load data between separate games. Data is encrypted and optionally bound to player name. Internally, saves are encoded as a JSON to allow for easy serializing and deserializing to and from concrete types.</Description>
-    <Authors>Orden4</Authors>
-    <Company />
-    <Product>WCSharp</Product>
     <DocumentationFile>WCSharp.SaveLoad.xml</DocumentationFile>
   </PropertyGroup>
 
@@ -23,16 +12,9 @@ The SaveLoad package provides a system that can be used to save and load data be
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
     <ProjectReference Include="..\WCSharp.Json\WCSharp.Json.csproj" />
+    <ProjectReference Include="..\WCSharp.Lua\WCSharp.Lua.csproj" />
     <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

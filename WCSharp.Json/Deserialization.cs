@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Lua;
 
 namespace WCSharp.Json
 {
 	internal static class Deserialization
 	{
-		public static object DeserializeLuaTable(object table, Type type)
+		public static object DeserializeLuaTable(LuaTable table, Type type)
 		{
-			if (table == null)
-			{
-				return null;
-			}
-
-			var deserialize = type.GetMethod("Deserialize");
-			if (deserialize != null && table is string)
-			{
-				return deserialize.Invoke(null, new object[] { table });
-			}
-
 			if (type.IsArray)
 			{
 				return DeserializeArray(type, table);
@@ -39,90 +29,86 @@ namespace WCSharp.Json
 				return DeserializeDictionary(type, instance, table);
 			}
 
-			object value = null;
-
 			foreach (var property in type.GetProperties())
 			{
-				var name = property.Name;
-#if __CSharpLua__
-/*[[
-value = table[name]
-]]*/
-#endif
-				value = DeserializeLuaValue(value, property.PropertyType);
-				if (value != null)
+				if (table.TryGetValue(property.Name, out var value))
 				{
-					property.SetValue(instance, value);
+					var deserializedValue = DeserializeLuaValue(value, property.PropertyType);
+					if (deserializedValue != null)
+					{
+						property.SetValue(instance, deserializedValue);
+					}
 				}
 			}
 
 			return instance;
 		}
 
-		private static object DeserializeArray(Type type, object table)
+		private static object DeserializeClass(object value, Type type)
 		{
-			var count = 0;
-#if __CSharpLua__
-/*[[
-count = #table
-]]*/
-#endif
-			var elementType = type.GetElementType();
-			var array = Array.CreateInstance(elementType, count);
-			for (var i = 0; i < count; i++)
+			if (value == null)
 			{
-				object value = null;
-#if __CSharpLua__
-/*[[
-value = table[i + 1]
-]]*/
-#endif
-				array.SetValue(DeserializeLuaValue(value, elementType), i);
+				return null;
+			}
+
+			var deserialize = type.GetMethod("Deserialize");
+			if (deserialize != null && value is string)
+			{
+				return deserialize.Invoke(null, new object[] { value });
+			}
+
+			return DeserializeLuaTable(new LuaTable(value), type);
+		}
+
+		private static object DeserializeArray(Type type, LuaTable table)
+		{
+			var elementType = type.GetElementType();
+			var array = Array.CreateInstance(elementType, table.Count);
+
+			var i = 0;
+			foreach (var item in table)
+			{
+				array.SetValue(DeserializeLuaValue(item.Value, elementType), i++);
 			}
 
 			return array;
 		}
 
-		private static object DeserializeList(Type type, object instance, object table)
+		private static object DeserializeList(Type type, object instance, LuaTable table)
 		{
 			var genericType = type.GetGenericArguments()[0];
 			var add = type.GetMethod("Add", new Type[] { genericType });
 
-			object v = null;
-#if __CSharpLua__
-/*[[
-for _, v in pairs(table) do
-]]*/
-#endif
-			add.Invoke(instance, new object[] { DeserializeLuaValue(v, genericType) });
-#if __CSharpLua__
-/*[[
-end
-]]*/
-#endif
+			if (add == null)
+			{
+				return null;
+			}
+
+			foreach (var value in table.Values)
+			{
+				add.Invoke(instance, new object[] { DeserializeLuaValue(value, genericType) });
+			}
+
 			return instance;
 		}
 
-		private static object DeserializeDictionary(Type type, object instance, object table)
+		private static object DeserializeDictionary(Type type, object instance, LuaTable table)
 		{
 			var genericTypes = type.GetGenericArguments();
 			var add = type.GetMethod("Add", genericTypes);
 
-			object k = null;
-			object v = null;
-#if __CSharpLua__
-/*[[
-for k, v in pairs(table) do
-]]*/
-#endif
-			k = DeserializeLuaString(k, genericTypes[0]);
-			v = DeserializeLuaValue(v, genericTypes[1]);
-			add.Invoke(instance, new object[] { k, v });
-#if __CSharpLua__
-/*[[
-end
-]]*/
-#endif
+			if (add == null)
+			{
+				return null;
+			}
+
+			foreach (var keyValue in table)
+			{
+				var key = DeserializeLuaString(keyValue.Key, genericTypes[0]);
+				var value = DeserializeLuaValue(keyValue.Value, genericTypes[1]);
+				add.Invoke(instance, new object[] { key, value });
+			}
+
 			return instance;
 		}
 
@@ -242,7 +228,7 @@ end
 			}
 			else
 			{
-				return DeserializeLuaTable(value, type);
+				return DeserializeClass(value, type);
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WCSharp.Events;
-using WCSharp.Utils.Extensions;
+using WCSharp.Shared.Extensions;
 using static War3Api.Common;
 
 namespace WCSharp.Buffs

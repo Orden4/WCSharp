@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WCSharp.Utils.Data
+namespace WCSharp.Shared.Data
 {
 	/// <summary>
 	/// Data class for a simple point coordinate.

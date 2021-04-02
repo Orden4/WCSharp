@@ -12,7 +12,7 @@ namespace WCSharp.Sync
 		{
 			return new SyncHandler
 			{
-				Action = x => action?.Invoke((T)x),
+				Action = x => action.Invoke((T)x),
 				InternalAction = action,
 				Type = typeof(T)
 			};

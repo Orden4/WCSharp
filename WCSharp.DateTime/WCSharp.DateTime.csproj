@@ -2,10 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Tom\source\repos\WCSharp\WCSharp.DateTime\WCSharp.DateTime.xml</DocumentationFile>
+    <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.DateTime.xml</DocumentationFile>
   </PropertyGroup>
 
@@ -16,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
+    <ProjectReference Include="..\WCSharp.Lua\WCSharp.Lua.csproj" />
     <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
   </ItemGroup>
 

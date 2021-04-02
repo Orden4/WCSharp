@@ -3,28 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <Authors>Orden</Authors>
-    <Product />
-    <Company>Orden</Company>
-    <Description>Tool for generating C# constant files for WarCraft III maps.</Description>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/Orden4</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>Courtesy of BLOKKADE:
-- Now checks tooltip name for buff instead of editor name
-- No longer add duplicate names
-- Some regex fixes</PackageReleaseNotes>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
     <DocumentationFile>WCSharp.ConstantGenerator.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="additional-constants.csv" />
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,4 +15,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+
 </Project>

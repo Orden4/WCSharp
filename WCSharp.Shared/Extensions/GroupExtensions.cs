@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static War3Api.Common;
 
-namespace WCSharp.Utils.Extensions
+namespace WCSharp.Shared.Extensions
 {
 	/// <summary>
 	/// Extension class that defines a number of methods to simplify working with Warcraft III groups.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static War3Api.Common;
 
-namespace WCSharp.Utils.Data
+namespace WCSharp.Shared.Data
 {
 	/// <summary>
 	/// Data class that mimics the functions of the standard Rect.cs while providing access to WC3 rect and region representations.

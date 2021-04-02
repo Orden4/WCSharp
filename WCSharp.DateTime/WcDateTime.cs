@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Events;
+using WCSharp.Lua;
 
 namespace WCSharp.DateTime
 {
@@ -18,20 +19,23 @@ namespace WCSharp.DateTime
 			Day
 		}
 
-		internal readonly int seconds;
+		/// <summary>
+		/// The total number of seconds since January 1st, 1970, 00:00:00.
+		/// </summary>
+		public int TotalSeconds { get; }
 
 		/// <summary>
 		/// Returns the number of whole seconds in this <see cref="WcDateTime"/> (as a timestamp).
 		/// </summary>
-		public int Second => this.seconds % WcTimeSpan.SECONDS_PER_MINUTE;
+		public int Second => TotalSeconds % WcTimeSpan.SECONDS_PER_MINUTE;
 		/// <summary>
 		/// Returns the number of whole minutes in this <see cref="WcDateTime"/> (as a timestamp).
 		/// </summary>
-		public int Minute => this.seconds % WcTimeSpan.SECONDS_PER_HOUR / WcTimeSpan.SECONDS_PER_MINUTE;
+		public int Minute => TotalSeconds % WcTimeSpan.SECONDS_PER_HOUR / WcTimeSpan.SECONDS_PER_MINUTE;
 		/// <summary>
 		/// Returns the number of whole hours in this <see cref="WcDateTime"/> (as a timestamp).
 		/// </summary>
-		public int Hour => this.seconds % WcTimeSpan.SECONDS_PER_DAY / WcTimeSpan.SECONDS_PER_HOUR;
+		public int Hour => TotalSeconds % WcTimeSpan.SECONDS_PER_DAY / WcTimeSpan.SECONDS_PER_HOUR;
 		/// <summary>
 		/// Returns the number of whole days in this <see cref="WcDateTime"/> (as a timestamp).
 		/// </summary>
@@ -51,22 +55,12 @@ namespace WCSharp.DateTime
 		{
 			get
 			{
-				var dayOfWeek = this.seconds / WcTimeSpan.SECONDS_PER_DAY % 7;
+				var dayOfWeek = TotalSeconds / WcTimeSpan.SECONDS_PER_DAY % 7;
 				if (dayOfWeek < 0)
 				{
 					dayOfWeek = 7 + dayOfWeek;
 				}
-				return dayOfWeek switch
-				{
-					0 => DayOfWeek.Thursday,
-					1 => DayOfWeek.Friday,
-					2 => DayOfWeek.Saturday,
-					3 => DayOfWeek.Sunday,
-					4 => DayOfWeek.Monday,
-					5 => DayOfWeek.Tuesday,
-					6 => DayOfWeek.Wednesday,
-					_ => throw new NotImplementedException(),
-				};
+				return (DayOfWeek)((dayOfWeek + 4) % 7);
 			}
 		}
 		/// <summary>
@@ -112,7 +106,7 @@ namespace WCSharp.DateTime
 		/// <param name="seconds"></param>
 		public WcDateTime(int seconds)
 		{
-			this.seconds = seconds;
+			TotalSeconds = seconds;
 		}
 
 		/// <summary>
@@ -122,8 +116,14 @@ namespace WCSharp.DateTime
 		/// <param name="year">The year. Must be between 1970 and 2038.</param>
 		/// <param name="month">The month of the year. Must be between 1 and 12.</param>
 		/// <param name="day">The day of the month.</param>
-		public WcDateTime(int year, int month, int day) : this(year, month, day, 0, 0, 0)
+		public WcDateTime(int year, int month, int day)
 		{
+			TotalSeconds = GetSeconds(year, month, day, 0, 0, 0);
+		}
+
+		private WcDateTime(LuaTable table)
+		{
+			TotalSeconds = GetSeconds((int)table["year"], (int)table["month"], (int)table["day"], (int)table["hour"], (int)table["min"], (int)table["sec"]);
 		}
 
 		/// <summary>
@@ -133,30 +133,37 @@ namespace WCSharp.DateTime
 		/// <param name="month">The month of the year. Must be between 1 and 12.</param>
 		/// <param name="day">The day of the month.</param>
 		/// <param name="hour">The hour of the day. Must be between 0 and 23.</param>
-		/// <param name="minutes">The minutes of the hour. Must be between 0 and 59.</param>
-		/// <param name="seconds">The seconds of the minute. Must be between 0 and 59.</param>
-		public WcDateTime(int year, int month, int day, int hour, int minutes, int seconds)
+		/// <param name="minute">The minute of the hour. Must be between 0 and 59.</param>
+		/// <param name="second">The second of the minute. Must be between 0 and 59.</param>
+		public WcDateTime(int year, int month, int day, int hour, int minute, int second)
 		{
+			TotalSeconds = GetSeconds(year, month, day, hour, minute, second);
+		}
+
+		private int GetSeconds(int year, int month, int day, int hour, int minute, int second)
+		{
+			var seconds = 0;
+
 			if (year < 1970 || year > 2038)
 				throw new ArgumentException("WcDateTime before 1970 or after 2038 are not supported.");
 			if (month < 1 || month > 12)
 				throw new ArgumentException("Month cannot be less than 1 or greater than 12.");
 			if (hour < 0 || hour > 23)
 				throw new ArgumentException("Hour cannot be less than 0 or greater than 23.");
-			if (minutes < 0 || minutes > 59)
+			if (minute < 0 || minute > 59)
 				throw new ArgumentException("Minutes cannot be less than 0 or greater than 59.");
-			if (seconds < 0 || seconds > 59)
+			if (second < 0 || second > 59)
 				throw new ArgumentException("Seconds cannot be less than 0 or greater than 59.");
 
 			for (var i = 1970; i < year; i++)
 			{
 				if (i % 4 == 0)
 				{
-					this.seconds += WcTimeSpan.SECONDS_PER_DAY * 366;
+					seconds += WcTimeSpan.SECONDS_PER_DAY * 366;
 				}
 				else
 				{
-					this.seconds += WcTimeSpan.SECONDS_PER_DAY * 365;
+					seconds += WcTimeSpan.SECONDS_PER_DAY * 365;
 				}
 			}
 
@@ -164,12 +171,12 @@ namespace WCSharp.DateTime
 			if (day < 0 || day > months[month] - months[month - 1])
 				throw new ArgumentException($"Days cannot be less than 0 or greater the number of days in the current month ({months[month] - months[month - 1]}).");
 
-			this.seconds +=
+			return seconds +
 				(months[month - 1] * WcTimeSpan.SECONDS_PER_DAY) +
 				((day - 1) * WcTimeSpan.SECONDS_PER_DAY) +
 				(hour * WcTimeSpan.SECONDS_PER_HOUR) +
-				(minutes * WcTimeSpan.SECONDS_PER_MINUTE) +
-				seconds;
+				(minute * WcTimeSpan.SECONDS_PER_MINUTE) +
+				second;
 		}
 
 		/// <summary>
@@ -177,7 +184,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static WcDateTime operator +(WcDateTime a, WcTimeSpan b)
 		{
-			return new WcDateTime(a.seconds + b.seconds);
+			return new WcDateTime(a.TotalSeconds + b.seconds);
 		}
 
 		/// <summary>
@@ -185,7 +192,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static WcDateTime operator -(WcDateTime a, WcTimeSpan b)
 		{
-			return new WcDateTime(a.seconds - b.seconds);
+			return new WcDateTime(a.TotalSeconds - b.seconds);
 		}
 
 		/// <summary>
@@ -193,7 +200,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static WcTimeSpan operator -(WcDateTime a, WcDateTime b)
 		{
-			return new WcTimeSpan(a.seconds - b.seconds);
+			return new WcTimeSpan(a.TotalSeconds - b.TotalSeconds);
 		}
 
 		/// <summary>
@@ -201,7 +208,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator ==(WcDateTime a, WcDateTime b)
 		{
-			return a.seconds == b.seconds;
+			return a.TotalSeconds == b.TotalSeconds;
 		}
 
 
@@ -210,7 +217,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator !=(WcDateTime a, WcDateTime b)
 		{
-			return a.seconds != b.seconds;
+			return a.TotalSeconds != b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -218,7 +225,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator <(WcDateTime a, WcDateTime b)
 		{
-			return a.seconds < b.seconds;
+			return a.TotalSeconds < b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -226,7 +233,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator <=(WcDateTime a, WcDateTime b)
 		{
-			return a.seconds <= b.seconds;
+			return a.TotalSeconds <= b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -234,7 +241,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator >(WcDateTime a, WcDateTime b)
 		{
-			return a.seconds > b.seconds;
+			return a.TotalSeconds > b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -242,13 +249,13 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator >=(WcDateTime a, WcDateTime b)
 		{
-			return a.seconds >= b.seconds;
+			return a.TotalSeconds >= b.TotalSeconds;
 		}
 
 		private int GetDatePart(DatePart part)
 		{
 			// n = number of days since 1970/1/1
-			var n = this.seconds / WcTimeSpan.SECONDS_PER_DAY;
+			var n = TotalSeconds / WcTimeSpan.SECONDS_PER_DAY;
 			// y4 = number of whole 4-year periods since 1970/1/1
 			var y4 = n / DAYS_PER_4_YEARS;
 			// n = day in current 4-year period
@@ -292,7 +299,7 @@ namespace WCSharp.DateTime
 		private void GetDatePart(out int year, out int month, out int day)
 		{
 			// n = number of days since 1970/1/1
-			var n = this.seconds / WcTimeSpan.SECONDS_PER_DAY;
+			var n = TotalSeconds / WcTimeSpan.SECONDS_PER_DAY;
 			// y4 = number of whole 4-year periods since 1970/1/1
 			var y4 = n / DAYS_PER_4_YEARS;
 			// n = day in current 4-year period
@@ -329,7 +336,7 @@ namespace WCSharp.DateTime
 		/// <param name="value">The amount of time to move this instance into the future.</param>
 		public WcDateTime Add(WcTimeSpan value)
 		{
-			return new WcDateTime(this.seconds + value.seconds);
+			return new WcDateTime(TotalSeconds + value.seconds);
 		}
 
 		/// <summary>
@@ -347,7 +354,7 @@ namespace WCSharp.DateTime
 		/// <param name="seconds">The amount of seconds to move this instance into the future.</param>
 		public WcDateTime AddSeconds(int seconds)
 		{
-			return new WcDateTime(this.seconds + seconds);
+			return new WcDateTime(TotalSeconds + seconds);
 		}
 
 		/// <summary>
@@ -356,7 +363,7 @@ namespace WCSharp.DateTime
 		/// <param name="minutes">The amount of minutes to move this instance into the future.</param>
 		public WcDateTime AddMinutes(int minutes)
 		{
-			return new WcDateTime(this.seconds + (minutes * WcTimeSpan.SECONDS_PER_MINUTE));
+			return new WcDateTime(TotalSeconds + (minutes * WcTimeSpan.SECONDS_PER_MINUTE));
 		}
 
 		/// <summary>
@@ -365,7 +372,7 @@ namespace WCSharp.DateTime
 		/// <param name="hours">The amount of hours to move this instance into the future.</param>
 		public WcDateTime AddHours(int hours)
 		{
-			return new WcDateTime(this.seconds + (hours * WcTimeSpan.SECONDS_PER_HOUR));
+			return new WcDateTime(TotalSeconds + (hours * WcTimeSpan.SECONDS_PER_HOUR));
 		}
 
 		/// <summary>
@@ -374,7 +381,7 @@ namespace WCSharp.DateTime
 		/// <param name="days">The amount of days to move this instance into the future.</param>
 		public WcDateTime AddDays(int days)
 		{
-			return new WcDateTime(this.seconds + (days * WcTimeSpan.SECONDS_PER_DAY));
+			return new WcDateTime(TotalSeconds + (days * WcTimeSpan.SECONDS_PER_DAY));
 		}
 
 		/// <summary>
@@ -412,25 +419,25 @@ namespace WCSharp.DateTime
 		/// <inheritdoc/>
 		public int CompareTo(WcDateTime other)
 		{
-			return this.seconds.CompareTo(other.seconds);
+			return TotalSeconds.CompareTo(other.TotalSeconds);
 		}
 
 		/// <inheritdoc/>
 		public bool Equals(WcDateTime other)
 		{
-			return this.seconds == other.seconds;
+			return TotalSeconds == other.TotalSeconds;
 		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object obj)
 		{
-			return obj is WcDateTime other && this.seconds == other.seconds;
+			return obj is WcDateTime other && TotalSeconds == other.TotalSeconds;
 		}
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
-			return this.seconds;
+			return TotalSeconds;
 		}
 
 		/// <summary>
@@ -443,7 +450,9 @@ namespace WCSharp.DateTime
 
 		/// <summary>
 		/// Returns a string representation using the given format.
+		/// <para>Supports standard C# format specifiers for year, month, day, hour, minute and second.</para>
 		/// <para>See the wiki for more information on the format specification.</para>
+		/// <para>Alternatively, use <see cref="Os.Date(string, int)"/>.</para>
 		/// </summary>
 		/// <param name="format">The format to print the string in.</param>
 		public string ToString(string format)
@@ -528,7 +537,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static string Serialize(WcDateTime wcDateTime)
 		{
-			return wcDateTime.seconds.ToString();
+			return wcDateTime.TotalSeconds.ToString();
 		}
 		#endregion
 
@@ -538,19 +547,7 @@ namespace WCSharp.DateTime
 		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
 		/// <para>For a danger-free timestamp, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
 		/// </summary>
-		public static WcDateTime LocalTime
-		{
-			get
-			{
-				var seconds = 0;
-#if __CSharpLua__
-	/*[[
-	seconds = os.time()
-	]]*/
-#endif
-				return new WcDateTime(seconds);
-			}
-		}
+		public static WcDateTime LocalTime => new WcDateTime(Os.Date());
 
 		private static int baseTime = -1;
 		private static readonly Dictionary<DateTimeSyncMethod, int> offsetByMethod = new Dictionary<DateTimeSyncMethod, int>();
