@@ -188,3 +188,33 @@ STRING 37
 Player 3
 }
 
+STRING 38
+// Abilities: A006 (Mark), Name (Name)
+{
+Mark
+}
+
+STRING 39
+// Buffs/Effects: B000 (Mark), EditorName (Name (Editor Only))
+{
+Mark
+}
+
+STRING 40
+// Buffs/Effects: B000 (Mark), Bufftip (Tooltip)
+{
+Mark
+}
+
+STRING 41
+// Buffs/Effects: B000 (Mark), Buffubertip (Tooltip - Extended)
+{
+This unit has been marked.
+}
+
+STRING 42
+// Abilities: A007 (Mark Aura), Name (Name)
+{
+Mark Aura
+}
+

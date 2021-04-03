@@ -26,6 +26,16 @@ namespace Source.Missiles
 			Roll = 90;
 			EffectScale = 1.0f;
 			EffectString = @"Abilities\Weapons\GlaiveMissile\GlaiveMissile.mdl";
+			CollisionRadius = 300;
+		}
+
+		public override void OnCollision(unit unit)
+		{
+			if (IsUnitEnemy(unit, CastingPlayer))
+			{
+				UnitDamageTarget(Caster, Target, 100, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS);
+				Active = false;
+			}
 		}
 	}
 }

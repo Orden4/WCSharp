@@ -1,5 +1,6 @@
 ﻿using WCSharp.Events;
 using WCSharp.Missiles;
+using WCSharp.Shared.Extensions;
 using static War3Api.Common;
 
 namespace Source.Missiles
@@ -28,6 +29,29 @@ namespace Source.Missiles
 			EffectScale = 1.0f;
 			Roll = 90;
 			EffectString = @"Abilities\Weapons\GlaiveMissile\GlaiveMissile.mdl";
+			Interval = 5.0f;
+		}
+
+		public override void OnImpact()
+		{
+			Explode();
+		}
+
+		public override void OnPeriodic()
+		{
+			Explode();
+		}
+
+		private void Explode()
+		{
+			var group = CreateGroup();
+			GroupEnumUnitsInRange(group, MissileX, MissileY, 300, null);
+			foreach (var unit in group.Enumerate())
+			{
+				UnitDamageTarget(Caster, unit, 100, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS);
+			}
+			DestroyGroup(group);
+			Active = false;
 		}
 	}
 }

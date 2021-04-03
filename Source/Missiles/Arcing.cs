@@ -17,11 +17,6 @@ namespace Source.Missiles
 			MissileSystem.Add(missile);
 		}
 
-		public Arcing() : base(null, 0, 0)
-		{
-
-		}
-
 		public Arcing(unit caster, float targetX, float targetY) : base(caster, targetX, targetY)
 		{
 			CasterZ = 0;
