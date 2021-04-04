@@ -270,7 +270,8 @@ namespace WCSharp.Shared
 		}
 
 		/// <summary>
-		/// <para>Creates a "damage text" style of floating text at the target location.</para>
+		/// Creates a "damage text" style of floating text at the target location.
+		/// <para>Size is expected to be GUI-like values (it gets multiplied by <see cref="TEXT_SIZE_MULTIPLIER"/>).</para>
 		/// <para>By default, the text will start to fade after 2 seconds, and be fully removed after 4 seconds.</para>
 		/// </summary>
 		/// <param name="damage">The damage number to display (will round to whole numbers).</param>
@@ -312,7 +313,8 @@ namespace WCSharp.Shared
 		}
 
 		/// <summary>
-		/// <para>Creates a floating text at the target location.</para>
+		/// Creates a floating text at the target location.
+		/// <para>Size is expected to be GUI-like values (it gets multiplied by <see cref="TEXT_SIZE_MULTIPLIER"/>).</para>
 		/// <para>By default, the text will start to fade after 2 seconds, and be fully removed after 4 seconds.</para>
 		/// </summary>
 		/// <param name="text">The text to display.</param>

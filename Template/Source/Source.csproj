@@ -9,17 +9,17 @@
 	<ItemGroup>
 		<PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
 		<PackageReference Include="War3Api.Common" Version="1.32.9" />
-		<PackageReference Include="WCSharp.Buffs" Version="0.2.1" />
-		<PackageReference Include="WCSharp.DateTime" Version="0.2.2" />
-		<PackageReference Include="WCSharp.Dummies" Version="0.2.1" />
-		<PackageReference Include="WCSharp.Effects" Version="0.2.1" />
-		<PackageReference Include="WCSharp.Events" Version="0.2.1" />
-		<PackageReference Include="WCSharp.Json" Version="0.2.3" />
-		<PackageReference Include="WCSharp.Knockbacks" Version="0.2.1" />
-		<PackageReference Include="WCSharp.Lightnings" Version="0.2.1" />
-		<PackageReference Include="WCSharp.Missiles" Version="0.2.1" />
-		<PackageReference Include="WCSharp.SaveLoad" Version="0.2.1" />
-		<PackageReference Include="WCSharp.Shared" Version="0.2.2" />
-		<PackageReference Include="WCSharp.Sync" Version="0.2.1" />
+		<PackageReference Include="WCSharp.Buffs" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.DateTime" Version="2.0.0-rc3" />
+		<PackageReference Include="WCSharp.Dummies" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.Effects" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.Events" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.Json" Version="2.0.0-rc4" />
+		<PackageReference Include="WCSharp.Knockbacks" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.Lightnings" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.Missiles" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.SaveLoad" Version="2.0.0-rc3" />
+		<PackageReference Include="WCSharp.Shared" Version="2.0.0-rc2" />
+		<PackageReference Include="WCSharp.Sync" Version="2.0.0-rc2" />
 	</ItemGroup>
 </Project>

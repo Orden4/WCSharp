@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
-namespace WCSharp.Lua
+namespace WCSharp.Shared
 {
 	/// <summary>
 	/// Represents a table in Lua in a way that is easier to work with from C#.
@@ -16,7 +15,7 @@ namespace WCSharp.Lua
 		/// <summary>
 		/// The actual Lua table that this dictionary is mapping.
 		/// </summary>
-		public object Lua { get; set; }
+		public object Table { get; set; }
 		/// <inheritdoc/>
 		public ICollection<object> Keys => this.dict.Keys;
 		/// <inheritdoc/>
@@ -39,21 +38,14 @@ namespace WCSharp.Lua
 		public LuaTable(object table)
 		{
 			this.dict = new Dictionary<object, object>();
-			Lua = table;
+			Table = table;
 
 			object k = null;
 			object v = null;
-#if __CSharpLua__
-/*[[
-for k, v in pairs(table) do
-]]*/
-#endif
+
+			Lua.ForPairs(table, k, v);
 			this.dict.Add(k, v);
-#if __CSharpLua__
-/*[[
-end
-]]*/
-#endif
+			Lua.End();
 		}
 
 		/// <inheritdoc/>
@@ -75,7 +67,7 @@ end
 		}
 
 		/// <inheritdoc/>
-		public bool TryGetValue(object key, [MaybeNullWhen(false)] out object value)
+		public bool TryGetValue(object key, out object value)
 		{
 			return this.dict.TryGetValue(key, out value);
 		}

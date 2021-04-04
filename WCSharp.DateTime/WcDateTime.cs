@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Events;
-using WCSharp.Lua;
+using WCSharp.Shared;
 
 namespace WCSharp.DateTime
 {
@@ -452,9 +452,9 @@ namespace WCSharp.DateTime
 		/// Returns a string representation using the given format.
 		/// <para>Supports standard C# format specifiers for year, month, day, hour, minute and second.</para>
 		/// <para>See the wiki for more information on the format specification.</para>
-		/// <para>Alternatively, use <see cref="Os.Date(string, int)"/>.</para>
+		/// <para>Alternatively, use <see cref="Format(string)"/> for a C/Lua style format.</para>
 		/// </summary>
-		/// <param name="format">The format to print the string in.</param>
+		/// <param name="format">The format to print the date in.</param>
 		public string ToString(string format)
 		{
 			GetDatePart(out var year, out var month, out var day);
@@ -519,6 +519,23 @@ namespace WCSharp.DateTime
 		}
 
 		/// <summary>
+		/// Formats the given time in seconds according to the given format.
+		/// <para>For more information regarding the format, see <see href="http://www.cplusplus.com/reference/ctime/strftime/"/>.</para>
+		/// <para>Alternatively, use <see cref="ToString(string)"/> for a C# style format.</para>
+		/// </summary>
+		/// <param name="format">The format to print the date in.</param>
+		/// <returns></returns>
+		public string Format(string format)
+		{
+			if (format == "*t" || format == "!*t")
+			{
+				return format;
+			}
+
+			return Os.Date(format, TotalSeconds);
+		}
+
+		/// <summary>
 		/// Attempts to parse the given string as the number of seconds since January 1st, 1970.
 		/// </summary>
 		/// <returns>Null if <paramref name="string"/> is not a valid integer.</returns>
@@ -547,7 +564,13 @@ namespace WCSharp.DateTime
 		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
 		/// <para>For a danger-free timestamp, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
 		/// </summary>
-		public static WcDateTime LocalTime => new WcDateTime(Os.Date());
+		public static WcDateTime LocalTime => new WcDateTime(new LuaTable(Os.Date("*t")));
+		/// <summary>
+		/// The time for the local player in UTC.
+		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
+		/// <para>For a danger-free timestamp, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
+		/// </summary>
+		public static WcDateTime LocalTimeUtc => new WcDateTime(new LuaTable(Os.Date("!*t")));
 
 		private static int baseTime = -1;
 		private static readonly Dictionary<DateTimeSyncMethod, int> offsetByMethod = new Dictionary<DateTimeSyncMethod, int>();

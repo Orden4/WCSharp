@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WCSharp.Json;
-using WCSharp.Lua;
+using WCSharp.Shared;
 using WCSharp.Sync;
 using static War3Api.Common;
 

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WCSharp.Json\WCSharp.Json.csproj" />
-    <ProjectReference Include="..\WCSharp.Lua\WCSharp.Lua.csproj" />
     <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
   </ItemGroup>
 

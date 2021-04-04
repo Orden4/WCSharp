@@ -4,18 +4,19 @@
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.ConstantGenerator.xml</DocumentationFile>
-    <Authors>Orden</Authors>
-    <Product />
-    <Company>Orden</Company>
-    <Description>Tool for generating C# constant files for WarCraft III maps.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/Orden4</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
     <PackageReleaseNotes>- Update to .NET 5
 - Some fixes for localization
 - Add ConstantGeneratorOptions</PackageReleaseNotes>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0-rc1</Version>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+This package allows for the syncing of class structures between players in Warcraft III, making it easy to sync complex and large amounts of data.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
   </PropertyGroup>
 
   <ItemGroup>

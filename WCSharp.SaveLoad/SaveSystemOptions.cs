@@ -1,4 +1,4 @@
-﻿using WCSharp.Lua;
+﻿using WCSharp.Shared;
 
 namespace WCSharp.SaveLoad
 {

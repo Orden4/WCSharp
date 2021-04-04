@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WCSharp.Lua;
 using WCSharp.Shared;
 using WCSharp.Sync;
 using static War3Api.Common;
@@ -28,7 +27,7 @@ namespace WCSharp.DateTime
 			var message = new DateTimeSyncMessage
 			{
 				PlayerId = GetPlayerId(GetLocalPlayer()),
-				Seconds = Os.Time()
+				Seconds = WcDateTime.LocalTime.TotalSeconds
 			};
 
 			SyncSystem.Subscribe<DateTimeSyncMessage>(HandleDateTimeSyncMessage);
