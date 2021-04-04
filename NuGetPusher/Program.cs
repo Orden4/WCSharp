@@ -34,6 +34,8 @@ namespace NuGetPusher
 		{
 			ApiKey = ConfigurationManager.AppSettings["api-key"];
 			Source = ConfigurationManager.AppSettings["source"];
+			Console.WriteLine("Press enter to start.");
+			Console.ReadLine();
 			var runner = new Runner();
 			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.GetDirectories().FirstOrDefault(x => x.Name == "NuGet").FullName;
 			foreach (var project in Projects)
