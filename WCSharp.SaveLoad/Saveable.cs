@@ -3,45 +3,30 @@
 namespace WCSharp.SaveLoad
 {
 	/// <summary>
-	/// Abstract class containing the definitions that the SaveSystem needs in order to save and load your custom save data.
+	/// An abstract that defines required information for saves. Can be saved at any time by using <see cref="Save"/>.
 	/// </summary>
 	public abstract class Saveable
 	{
-		internal player player;
-		internal int saveSlot;
+		/// <summary>
+		/// The player that this Saveable is bound to.
+		/// </summary>
+		public player Player { get; set; }
+		/// <summary>
+		/// The save slot that this Saveable is bound to.
+		/// </summary>
+		public int SaveSlot { get; set; }
 
 		/// <summary>
-		/// Returns the player object that this save is bound to.
+		/// Stores this saveable to file for the appropriate player and save slot.
 		/// </summary>
-		public player GetPlayer()
+		public void Save()
 		{
-			return this.player;
-		}
-
-		/// <summary>
-		/// Returns the save slot that this save is bound to.
-		/// </summary>
-		public int GetSaveSlot()
-		{
-			return this.saveSlot;
-		}
-
-		/// <summary>
-		/// Sets the player that this save is bound to.
-		/// </summary>
-		/// <param name="player"></param>
-		public void SetPlayer(player player)
-		{
-			this.player = player;
-		}
-
-		/// <summary>
-		/// Sets the save slot that this save is bound to.
-		/// </summary>
-		/// <param name="saveSlot"></param>
-		public void SetSaveSlot(int saveSlot)
-		{
-			this.saveSlot = saveSlot;
+			if (GetLocalPlayer() == Player)
+			{
+				var save = new Save(Player, SaveSlot);
+				save.Serialize(this);
+				SaveSystem.Save(save);
+			}
 		}
 	}
 }

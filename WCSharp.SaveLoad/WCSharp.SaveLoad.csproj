@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WCSharp.Json\WCSharp.Json.csproj" />
-    <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
+    <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
   </ItemGroup>
 
 </Project>
