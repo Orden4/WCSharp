@@ -20,9 +20,9 @@ namespace NuGetPusher
 		private readonly PackageSearchResource search;
 		private readonly SearchFilter filter;
 
-		public Runner(string sourceUri)
+		public Runner()
 		{
-			this.source = new PackageSource(sourceUri);
+			this.source = new PackageSource(Program.Source);
 			this.providers = Repository.Provider.GetCoreV3();
 			this.repository = new SourceRepository(this.source, this.providers);
 			this.search = this.repository.GetResource<PackageSearchResource>();
