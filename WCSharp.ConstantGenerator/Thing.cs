@@ -23,7 +23,6 @@ namespace WCSharp.ConstantGenerator
 			else
 			{
 				var name = Name ?? Identifier;
-				name = name.ToUpper();
 				var suffix = Suffix;
 				if (!string.IsNullOrEmpty(suffix))
 				{

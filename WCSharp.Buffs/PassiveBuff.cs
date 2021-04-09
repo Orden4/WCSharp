@@ -18,7 +18,7 @@ namespace WCSharp.Buffs
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				Effect = AddSpecialEffectTarget(this.effectString, Target, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Target, this.effectAttachmentPoint);
 				if (this.effectScale != 1)
 				{
 					BlzSetSpecialEffectScale(Effect, this.effectScale);
@@ -33,14 +33,14 @@ namespace WCSharp.Buffs
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				Active = false;
+				this.active = false;
 				return;
 			}
 
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				OnExpire();
-				Active = false;
+				this.active = false;
 			}
 			else
 			{

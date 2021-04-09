@@ -142,7 +142,7 @@ namespace WCSharp.Buffs
 		{
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
-				Effect = AddSpecialEffectTarget(this.effectString, Caster, EffectAttachmentPoint);
+				Effect = AddSpecialEffectTarget(this.effectString, Caster, this.effectAttachmentPoint);
 				BlzSetSpecialEffectScale(Effect, this.effectScale);
 			}
 		}

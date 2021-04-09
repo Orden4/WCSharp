@@ -16,10 +16,15 @@ namespace WCSharp.Missiles
 		// Doesn't fold multiple constant references properly unless you do this
 		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
 
+		private protected bool active;
 		/// <summary>
 		/// Whether the missile is active. This is automatically set to false prior to calling <see cref="OnImpact"/>.
 		/// </summary>
-		public bool Active { get; set; }
+		public bool Active
+		{
+			get => this.active;
+			set => this.active = value;
+		}
 		/// <summary>
 		/// The caster, if it exists.
 		/// </summary>

@@ -11,10 +11,10 @@
 	  <PackageReference Include="System.Security.Permissions" Version="5.0.0" />
 	  <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
 	  <PackageReference Include="War3Api.Common" Version="1.32.9" />
-	  <PackageReference Include="War3Net.Build" Version="5.0.0" />
-	  <PackageReference Include="War3Net.CSharpLua" Version="1.7.11" />
+	  <PackageReference Include="War3Net.Build" Version="5.0.1" />
+	  <PackageReference Include="War3Net.CSharpLua" Version="1.7.12" />
 	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.11" />
-	  <PackageReference Include="WCSharp.ConstantGenerator" Version="2.0.0-rc1" />
+	  <PackageReference Include="WCSharp.ConstantGenerator" Version="2.0.2" />
 	</ItemGroup>
 
 </Project>

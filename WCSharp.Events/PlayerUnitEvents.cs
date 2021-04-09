@@ -166,7 +166,7 @@ namespace WCSharp.Events
 		public static void AddCustomEventFilter(playerunitevent wcEvent, string identifier, Func<int> filterFunc)
 		{
 			var @event = customPlayerUnitEvents.FirstOrDefault(x => x.Identifier == identifier);
-			if (@event != null)
+			if (@event == null)
 			{
 				customPlayerUnitEvents.Add(new CustomPlayerUnitEvent
 				{

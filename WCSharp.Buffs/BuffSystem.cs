@@ -131,6 +131,39 @@ namespace WCSharp.Buffs
 		}
 
 		/// <summary>
+		/// Attempts to dispel buffs from the target. Buff types are ignored.
+		/// </summary>
+		/// <param name="target">The target to dispel from.</param>
+		/// <param name="dispeller">The caster of the dispel effect.</param>
+		/// <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
+		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
+		/// <returns>All dispels.</returns>
+		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount)
+		{
+			foreach (var buff in GetBuffsOnUnit(target))
+			{
+				if (buff.IsBeneficial == isBeneficial)
+				{
+					var stacks = buff.Stacks;
+					var chargesConsumed = buff.OnDispel(dispeller, dispelAmount);
+					dispelAmount -= chargesConsumed;
+
+					if (buff.Stacks == 0)
+					{
+						buff.Active = false;
+					}
+
+					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+
+					if (dispelAmount <= 0)
+					{
+						yield break;
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Attempts to dispel buffs from the target with the given dispel type.
 		/// </summary>
 		/// <param name="target">The target to dispel from.</param>

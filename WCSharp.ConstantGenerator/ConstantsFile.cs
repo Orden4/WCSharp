@@ -89,7 +89,7 @@ namespace WCSharp.ConstantGenerator
 			}
 		}
 
-		private string NextToken(ref string line, string symbol)
+		private static string NextToken(ref string line, string symbol)
 		{
 			var index = line.IndexOf(symbol);
 			var output = line.Substring(0, index);
@@ -105,7 +105,14 @@ namespace WCSharp.ConstantGenerator
 
 			foreach (var thing in Things.Values.OrderBy(x => x.Type))
 			{
-				sb.AppendLine($"\tpublic const int {thing};");
+				try
+				{
+					sb.AppendLine($"\tpublic const int {thing};");
+				}
+				catch (Exception ex)
+				{
+					throw new Exception($"Exception on {thing.Type} {thing.Name ?? thing.Identifier}. Suffix: {thing.Suffix}, FourCC: ({thing.Code})", ex);
+				}
 			}
 
 			sb.AppendLine("}");

@@ -76,7 +76,8 @@ namespace Launcher
 			// Load existing map data
 			var map = Map.Open(BASE_MAP_PATH);
 			var builder = new MapBuilder(map);
-			builder.AddFiles(ASSETS_FOLDER_PATH);
+			builder.AddFiles(BASE_MAP_PATH, "*", SearchOption.AllDirectories);
+			builder.AddFiles(ASSETS_FOLDER_PATH, "*", SearchOption.AllDirectories);
 
 			// Set debug options if necessary, configure compiler
 			var csc = DEBUG ? "-debug -define:DEBUG" : null;

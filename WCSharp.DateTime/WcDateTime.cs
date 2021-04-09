@@ -60,7 +60,7 @@ namespace WCSharp.DateTime
 				{
 					dayOfWeek = 7 + dayOfWeek;
 				}
-				return (DayOfWeek)((dayOfWeek + 4) % 7);
+				return (DayOfWeek)((dayOfWeek + 3) % 7);
 			}
 		}
 		/// <summary>

@@ -38,8 +38,9 @@ namespace WCSharp.DateTime
 		{
 			this.timestamps[message.PlayerId] = new WcDateTime(message.Seconds);
 
-			if (Util.EnumeratePlayers().All(x => this.timestamps.ContainsKey(GetPlayerId(x))))
+			if (Util.EnumeratePlayers(PLAYER_SLOT_STATE_PLAYING, MAP_CONTROL_USER).All(x => this.timestamps.ContainsKey(GetPlayerId(x))))
 			{
+				Console.WriteLine("Received for all players");
 				var sync = this.method switch
 				{
 					DateTimeSyncMethod.Earliest => ResolveEarliest(),
@@ -80,8 +81,17 @@ namespace WCSharp.DateTime
 					.OrderBy(x => x.TotalSeconds)
 					.ToList();
 				var middle = this.timestamps.Count / 2;
-				var averageSeconds = (ordered[middle].TotalSeconds / 2) + (ordered[middle + 1].TotalSeconds / 2);
-				return new WcDateTime(averageSeconds);
+				var t1 = ordered[middle - 1];
+				var t2 = ordered[middle];
+				var avg = this.timestamps.Values.Sum(x => x.TotalSeconds / this.timestamps.Count);
+				if (Math.Abs(t1.TotalSeconds - avg) < Math.Abs(t2.TotalSeconds - avg))
+				{
+					return t1;
+				}
+				else
+				{
+					return t2;
+				}
 			}
 			else
 			{

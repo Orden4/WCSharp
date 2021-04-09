@@ -18,8 +18,8 @@
 		/// </summary>
 		Average,
 		/// <summary>
-		/// Picks a time that minimizes the time difference of the chosen time compared to that of all players.
-		/// <para>In practice, this means it will pick the middle player on uneven player counts, or the average of the middle two players on even player counts.</para>
+		/// Picks the time that minimizes the time difference of the chosen time compared to that of all players.
+		/// <para>In practice, this means it will pick the middle player on uneven player counts, or the one closest to the average from the two middle players on even player counts.</para>
 		/// </summary>
 		BestFit
 	}

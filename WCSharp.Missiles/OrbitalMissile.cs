@@ -148,9 +148,9 @@ namespace WCSharp.Missiles
 				}
 				else
 				{
-					Active = false;
+					this.active = false;
 					OnImpact();
-					if (!Active)
+					if (!this.active)
 					{
 						if (!UnitAlive(Target))
 						{

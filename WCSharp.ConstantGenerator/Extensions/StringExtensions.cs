@@ -11,11 +11,13 @@ namespace WCSharp.ConstantGenerator.Extensions
 		public static string Escape(this string @string)
 		{
 			// Remove color codes
-			while (@string.Contains("|C", StringComparison.InvariantCultureIgnoreCase))
+			var index = -1;
+			while ((index = @string.IndexOf("|C", StringComparison.InvariantCultureIgnoreCase)) != -1)
 			{
-				var index = @string.IndexOf("|C", StringComparison.InvariantCultureIgnoreCase);
 				@string = @string.Substring(0, index) + @string.Substring(index + 10);
-				index = @string.IndexOf("|R", StringComparison.InvariantCultureIgnoreCase);
+			}
+			while ((index = @string.IndexOf("|R", StringComparison.InvariantCultureIgnoreCase)) != -1)
+			{
 				@string = @string.Substring(0, index) + @string.Substring(index + 2);
 			}
 
