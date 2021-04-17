@@ -5,11 +5,12 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Shared.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Initial version</PackageReleaseNotes>
+    <PackageReleaseNotes>- Changed the Damage extension method to have "attack" set to false to avoid potential damage engine errors
+- Some performance improvements based on benchmarking</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package contains a set of classes, methods and extensions used by almost all WCSharp packages, or are simply generally useful.</Description>
     <Authors>Orden4</Authors>

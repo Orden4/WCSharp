@@ -47,17 +47,17 @@ namespace WCSharp.Sync
 			RegisterForPrefix(HandleSyncPacket, SYNC_PACKET_PREFIX);
 		}
 
-		private static void RegisterForPrefix(Action action, string prefix)
+		private static void RegisterForPrefix(Func<bool> action, string prefix)
 		{
 			var headerTrigger = CreateTrigger();
-			TriggerAddAction(headerTrigger, action);
+			TriggerAddCondition(headerTrigger, Condition(action));
 			foreach (var player in Util.EnumeratePlayers())
 			{
 				BlzTriggerRegisterPlayerSyncEvent(headerTrigger, player, prefix, false);
 			}
 		}
 
-		private static void HandleSyncHeader()
+		private static bool HandleSyncHeader()
 		{
 			var header = JsonConvert.Deserialize<SyncHeader>(BlzGetTriggerSyncData());
 			if (messages.TryGetValue(header.PlayerId, out var message))
@@ -65,13 +65,14 @@ namespace WCSharp.Sync
 				// If this ever happens we can't really recover, as this is most likely grounds for an immediate desync anyway
 				// For now we just ignore the new header, there isn't really a good solution for this
 				Console.WriteLine($"ERROR: A new sync message of type {header.TypeName} was received for player {header.PlayerId} while still processing {message.SyncHeader.TypeName}");
-				return;
+				return false;
 			}
 
 			messages.Add(header.PlayerId, new SyncMessage(header));
+			return false;
 		}
 
-		private static void HandleSyncPacket()
+		private static bool HandleSyncPacket()
 		{
 			var packet = JsonConvert.Deserialize<SyncPacket>(BlzGetTriggerSyncData());
 			if (!messages.TryGetValue(packet.P, out var message))
@@ -87,6 +88,8 @@ namespace WCSharp.Sync
 			{
 				FinalizeMessage(message);
 			}
+
+			return false;
 		}
 
 		private static void FinalizeMessage(SyncMessage message)
@@ -95,8 +98,9 @@ namespace WCSharp.Sync
 
 			object concreteData = null;
 
-			foreach (var handler in syncHandlers)
+			for (var i = 0; i < syncHandlers.Count; i++)
 			{
+				var handler = syncHandlers[i];
 				if (handler.Type.FullName == message.SyncHeader.TypeName)
 				{
 					if (concreteData == null)
@@ -132,9 +136,9 @@ namespace WCSharp.Sync
 
 			BlzSendSyncData(SYNC_HEADER_PREFIX, JsonConvert.Serialize(header));
 
-			foreach (var packet in packets)
+			for (var i = 0; i < packets.Count; i++)
 			{
-				BlzSendSyncData(SYNC_PACKET_PREFIX, JsonConvert.Serialize(packet));
+				BlzSendSyncData(SYNC_PACKET_PREFIX, JsonConvert.Serialize(packets[i]));
 			}
 		}
 
@@ -149,9 +153,10 @@ namespace WCSharp.Sync
 				var startIndex = i;
 				var endIndex = Math.Min(content.Length - i, i + PACKET_SIZE);
 				var actualLength = endIndex - startIndex;
-				foreach (var ch in content.Substring(startIndex, endIndex))
+				var substr = content.Substring(startIndex, endIndex);
+				for (var j = 0; j < substr.Length; j++)
 				{
-					if (escapeChars.Contains(ch))
+					if (escapeChars.Contains(substr[j]))
 					{
 						if (++actualLength > PACKET_SIZE)
 						{

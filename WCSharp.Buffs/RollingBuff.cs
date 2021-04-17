@@ -77,7 +77,7 @@ namespace WCSharp.Buffs
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				this.active = false;
+				Active = false;
 				return;
 			}
 
@@ -112,7 +112,7 @@ namespace WCSharp.Buffs
 			if (this.buffs.Count == 0)
 			{
 				OnExpire();
-				this.active = false;
+				Active = false;
 			}
 			else
 			{

@@ -45,7 +45,7 @@ namespace WCSharp.Buffs
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				this.active = false;
+				Active = false;
 				return;
 			}
 
@@ -56,7 +56,7 @@ namespace WCSharp.Buffs
 				if (!UnitAlive(Target))
 				{
 					OnDeath(true);
-					this.active = false;
+					Active = false;
 					return;
 				}
 			}
@@ -66,7 +66,7 @@ namespace WCSharp.Buffs
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				OnExpire();
-				this.active = false;
+				Active = false;
 				return;
 			}
 			else

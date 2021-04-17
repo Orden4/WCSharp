@@ -40,7 +40,6 @@ namespace WCSharp.DateTime
 
 			if (Util.EnumeratePlayers(PLAYER_SLOT_STATE_PLAYING, MAP_CONTROL_USER).All(x => this.timestamps.ContainsKey(GetPlayerId(x))))
 			{
-				Console.WriteLine("Received for all players");
 				var sync = this.method switch
 				{
 					DateTimeSyncMethod.Earliest => ResolveEarliest(),

@@ -194,9 +194,9 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			foreach (var unitId in removals)
+			for (var i = 0; i < removals.Count; i++)
 			{
-				ActiveBuffsByUnit.Remove(unitId);
+				ActiveBuffsByUnit.Remove(removals[i]);
 			}
 		}
 

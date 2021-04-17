@@ -5,11 +5,11 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.SaveLoad.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Initial version</PackageReleaseNotes>
+    <PackageReleaseNotes>- Some performance improvements based on benchmarking</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 The SaveLoad package provides a system that can be used to save and load data between separate games by (de)serializing class structures, making it easy to store complex and large amounts of data.</Description>
     <Authors>Orden4</Authors>

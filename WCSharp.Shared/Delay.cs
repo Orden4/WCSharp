@@ -28,9 +28,9 @@ namespace WCSharp.Shared
 
 		private static void ExecuteAll()
 		{
-			foreach (var func in funcs)
+			for (var i = 0; i < funcs.Count; i++)
 			{
-				func();
+				funcs[i]();
 			}
 			funcs.Clear();
 		}

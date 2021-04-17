@@ -33,14 +33,14 @@ namespace WCSharp.Buffs
 			if (!UnitAlive(Target))
 			{
 				OnDeath(false);
-				this.active = false;
+				Active = false;
 				return;
 			}
 
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				OnExpire();
-				this.active = false;
+				Active = false;
 			}
 			else
 			{

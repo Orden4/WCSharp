@@ -5,11 +5,11 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Dummies.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Initial version</PackageReleaseNotes>
+    <PackageReleaseNotes>- Fixed dummies being recycled much faster than intended</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the fetching and recycling of dummy units in Warcraft III.</Description>
     <Authors>Orden4</Authors>

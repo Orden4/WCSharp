@@ -29,8 +29,10 @@ namespace WCSharp.Json
 				return DeserializeDictionary(type, instance, table);
 			}
 
-			foreach (var property in type.GetProperties())
+			var properties = type.GetProperties();
+			for (var i = 0; i < properties.Length; i++)
 			{
+				var property = properties[i];
 				if (table.TryGetValue(property.Name, out var value))
 				{
 					var deserializedValue = DeserializeLuaValue(value, property.PropertyType);

@@ -18,9 +18,9 @@ namespace WCSharp.Sync
 		public string GetContents()
 		{
 			var sb = new StringBuilder();
-			foreach (var packet in Packets)
+			for (var i = 0; i < Packets.Count; i++)
 			{
-				sb.Append(packet.M);
+				sb.Append(Packets[i].M);
 			}
 			return sb.ToString();
 		}

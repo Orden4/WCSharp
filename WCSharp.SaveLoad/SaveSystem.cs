@@ -98,8 +98,9 @@ namespace WCSharp.SaveLoad
 				throw new ArgumentException("ERROR: Must define a positive non-zero hash2 for the SaveSystem.");
 
 			var illegalCharacters = new char[] { '<', '>', ':', '"', '/', '\\', '|', '?', '*' };
-			foreach (var ch in illegalCharacters)
+			for (var i = 0; i < illegalCharacters.Length; i++)
 			{
+				var ch = illegalCharacters[i];
 				if (this.saveFolder.Contains(ch))
 					throw new ArgumentException($"ERROR: SaveFolder cannot contain {ch} as this is an illegal filename character.");
 				if (this.suffix.Contains(ch))
@@ -261,9 +262,9 @@ namespace WCSharp.SaveLoad
 		{
 			unchecked
 			{
-				foreach (var ch in @string)
+				for (var i = 0; i < @string.Length; i++)
 				{
-					hash = (hash * this.hash2) ^ ch;
+					hash = (hash * this.hash2) ^ @string[i];
 				}
 
 				return hash;

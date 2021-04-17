@@ -23,23 +23,23 @@ namespace WCSharp.ConstantGenerator
 			for (var i = 0; i < w3s.Length; i++)
 			{
 				var line = w3s[i];
-				if (line.StartsWith("// Abilities"))
+				if (line.StartsWith("// Abilities: ", StringComparison.InvariantCulture))
 				{
 					HandleThing(w3s.Skip(i), Type.ABILITY);
 				}
-				else if (line.StartsWith("// Buffs/Effects: "))
+				else if (line.StartsWith("// Buffs/Effects: ", StringComparison.InvariantCulture))
 				{
 					HandleThing(w3s.Skip(i), Type.BUFF);
 				}
-				else if (line.StartsWith("// Units: "))
+				else if (line.StartsWith("// Units: ", StringComparison.InvariantCulture))
 				{
 					HandleThing(w3s.Skip(i), Type.UNIT);
 				}
-				else if (line.StartsWith("// Upgrades: "))
+				else if (line.StartsWith("// Upgrades: ", StringComparison.InvariantCulture))
 				{
 					HandleThing(w3s.Skip(i), Type.UPGRADE);
 				}
-				else if (line.StartsWith("// Items: "))
+				else if (line.StartsWith("// Items: ", StringComparison.InvariantCulture))
 				{
 					HandleThing(w3s.Skip(i), Type.ITEM);
 				}
@@ -66,7 +66,6 @@ namespace WCSharp.ConstantGenerator
 			var line = lines.First();
 			line = line.Substring(type.GetCharactersToSkip());
 			var code = NextToken(ref line, " ");
-			var name = lines.ElementAt(2);
 			if (!Things.TryGetValue(code, out var thing))
 			{
 				thing = new Thing
@@ -79,7 +78,7 @@ namespace WCSharp.ConstantGenerator
 				Things.Add(code, thing);
 			}
 
-			if (line.EndsWith("(Name)") | line.EndsWith("Bufftip (Tooltip)"))
+			if (line.EndsWith("(Name)") || line.EndsWith("Bufftip (Tooltip)"))
 			{
 				thing.Name = lines.ElementAt(2);
 			}

@@ -70,7 +70,7 @@ namespace WCSharp.Dummies
 			{
 				PeriodicEvents.AddPeriodicEvent(periodicEvent);
 			}
-			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, recycleTime));
+			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, (int)(recycleTime / PeriodicEvents.SYSTEM_INTERVAL)));
 		}
 
 		/// <summary>

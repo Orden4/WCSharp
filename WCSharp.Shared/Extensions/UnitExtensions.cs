@@ -12,7 +12,7 @@ namespace WCSharp.Shared.Extensions
 		/// </summary>
 		public static void Damage(this unit target, unit damageDealer, float damage, attacktype attackType, damagetype damagetype = null)
 		{
-			UnitDamageTarget(damageDealer, target, damage, true, false, attackType, damagetype ?? DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS);
+			UnitDamageTarget(damageDealer, target, damage, false, false, attackType, damagetype ?? DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS);
 		}
 
 		/// <summary>

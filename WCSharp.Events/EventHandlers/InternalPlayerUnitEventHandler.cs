@@ -8,6 +8,7 @@ namespace WCSharp.Events.EventHandlers
 	{
 		public abstract PlayerUnitEvent Event { get; }
 		public trigger Trigger { get; set; }
+		public conditionfunc Condition { get; set; }
 		public List<Action> Actions { get; set; }
 		public Dictionary<int, Action> ActionsByFilter { get; set; }
 
@@ -57,10 +58,11 @@ namespace WCSharp.Events.EventHandlers
 			{
 				DisableTrigger(Trigger);
 				DestroyTrigger(Trigger);
+				DestroyCondition(Condition);
 			}
 
 #pragma warning disable IDE0007 // Use implicit type
-			Action method = GetEventMethodId() switch
+			Func<bool> method = GetEventMethodId() switch
 #pragma warning restore IDE0007 // Use implicit type
 			{
 				1 => Execute1,
@@ -72,7 +74,8 @@ namespace WCSharp.Events.EventHandlers
 			if (method != null)
 			{
 				Trigger = CreateTrigger();
-				TriggerAddAction(Trigger, method);
+				Condition = Condition(method);
+				TriggerAddCondition(Trigger, Condition);
 				RegisterTriggerEvents(Trigger);
 			}
 		}
@@ -95,33 +98,39 @@ namespace WCSharp.Events.EventHandlers
 			return methodId;
 		}
 
-		protected void Execute1()
+		protected bool Execute1()
 		{
-			foreach (var action in Actions)
+			for (var i = 0; i < Actions.Count; i++)
 			{
-				action();
+				Actions[i]();
 			}
+
+			return false;
 		}
 
-		protected void Execute12()
+		protected bool Execute12()
 		{
-			foreach (var action in Actions)
+			for (var i = 0; i < Actions.Count; i++)
 			{
-				action();
+				Actions[i]();
 			}
 
 			if (ActionsByFilter.TryGetValue(GetUnitTypeId(GetTriggerUnit()), out var actionByType))
 			{
 				actionByType();
 			}
+
+			return false;
 		}
 
-		protected void Execute2()
+		protected bool Execute2()
 		{
 			if (ActionsByFilter.TryGetValue(GetUnitTypeId(GetTriggerUnit()), out var actionByType))
 			{
 				actionByType();
 			}
+
+			return false;
 		}
 
 		void IPlayerUnitEventHandler.Register(string @event, Action action, int filter)

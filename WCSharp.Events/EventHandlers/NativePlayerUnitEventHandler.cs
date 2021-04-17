@@ -26,17 +26,20 @@ namespace WCSharp.Events.EventHandlers
 				Func = PlayerUnitEvents.GetFunc(@event);
 			}
 
-			public void Handle()
+			public bool Handle()
 			{
 				if (ActionsByType.TryGetValue(Func(), out var action))
 				{
 					action();
 				}
+
+				return false;
 			}
 		}
 
 		public playerunitevent NativeEvent { get; set; }
 		public trigger Trigger { get; set; }
+		public conditionfunc Condition { get; set; }
 		public List<Action> BaseActions { get; set; }
 		private List<InternalHandler> Handlers { get; set; }
 
@@ -136,10 +139,11 @@ namespace WCSharp.Events.EventHandlers
 			{
 				DisableTrigger(Trigger);
 				DestroyTrigger(Trigger);
+				DestroyCondition(Condition);
 			}
 
 #pragma warning disable IDE0007 // Use implicit type
-			Action method = GetEventMethodId() switch
+			Func<bool> method = GetEventMethodId() switch
 #pragma warning restore IDE0007 // Use implicit type
 			{
 				1 => Execute01(),
@@ -156,7 +160,8 @@ namespace WCSharp.Events.EventHandlers
 			if (method != null)
 			{
 				Trigger = CreateTrigger();
-				TriggerAddAction(Trigger, method);
+				Condition = Condition(method);
+				TriggerAddCondition(Trigger, Condition);
 				var maxPlayers = GetBJMaxPlayers();
 				for (var i = 0; i < maxPlayers; i++)
 				{
@@ -194,28 +199,34 @@ namespace WCSharp.Events.EventHandlers
 			return methodId;
 		}
 
-		private Action Execute01()
+		private Func<bool> Execute01()
 		{
-			return BaseActions[0];
-		}
-
-		private Action Execute02()
-		{
+			var action = BaseActions[0];
 			return () =>
 			{
-				foreach (var baseAction in BaseActions)
-				{
-					baseAction();
-				}
+				action();
+				return false;
 			};
 		}
 
-		private Action Execute10()
+		private Func<bool> Execute02()
+		{
+			return () =>
+			{
+				for (var i = 0; i < BaseActions.Count; i++)
+				{
+					BaseActions[i]();
+				}
+				return false;
+			};
+		}
+
+		private Func<bool> Execute10()
 		{
 			return Handlers[0].Handle;
 		}
 
-		private Action Execute11()
+		private Func<bool> Execute11()
 		{
 			var func = Handlers[0].Func;
 			var dict = Handlers[0].ActionsByType;
@@ -227,73 +238,84 @@ namespace WCSharp.Events.EventHandlers
 				{
 					action();
 				}
+				return false;
 			};
 		}
 
-		private Action Execute12()
+		private Func<bool> Execute12()
 		{
 			var func = Handlers[0].Func;
 			var dict = Handlers[0].ActionsByType;
 			return () =>
 			{
-				foreach (var baseAction in BaseActions)
+				for (var i = 0; i < BaseActions.Count; i++)
 				{
-					baseAction();
+					BaseActions[i]();
 				}
 
 				if (dict.TryGetValue(func(), out var action))
 				{
 					action();
 				}
+
+				return false;
 			};
 		}
 
-		private Action Execute20()
+		private Func<bool> Execute20()
 		{
 			return () =>
 			{
-				foreach (var handler in Handlers)
+				for (var i = 0; i < Handlers.Count; i++)
 				{
+					var handler = Handlers[i];
 					if (handler.ActionsByType.TryGetValue(handler.Func(), out var action))
 					{
 						action();
 					}
 				}
+
+				return false;
 			};
 		}
 
-		private Action Execute21()
+		private Func<bool> Execute21()
 		{
 			var baseAction = BaseActions[0];
 			return () =>
 			{
 				baseAction();
-				foreach (var handler in Handlers)
+				for (var i = 0; i < Handlers.Count; i++)
 				{
+					var handler = Handlers[i];
 					if (handler.ActionsByType.TryGetValue(handler.Func(), out var action))
 					{
 						action();
 					}
 				}
+				return false;
 			};
 		}
 
-		private Action Execute22()
+		private Func<bool> Execute22()
 		{
 			return () =>
 			{
-				foreach (var baseAction in BaseActions)
+				for (var i = 0; i < BaseActions.Count; i++)
 				{
-					baseAction();
+					BaseActions[i]();
 				}
 
-				foreach (var handler in Handlers)
+				for (var i = 0; i < Handlers.Count; i++)
 				{
+					var handler = Handlers[i];
 					if (handler.ActionsByType.TryGetValue(handler.Func(), out var action))
 					{
 						action();
 					}
 				}
+
+				return false;
 			};
 		}
 	}

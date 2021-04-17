@@ -137,8 +137,9 @@ namespace WCSharp.Shared.Data
 				Right = WorldBounds.Left;
 				Top = WorldBounds.Bottom;
 
-				foreach (var point in list)
+				for (var i = 0; i < list.Count; i++)
 				{
+					var point = list[i];
 					Left = Math.Min(Left, point.X);
 					Bottom = Math.Min(Bottom, point.Y);
 					Right = Math.Max(Right, point.X);

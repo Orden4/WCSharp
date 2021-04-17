@@ -12,8 +12,10 @@ namespace WCSharp.Json
 		{
 			var dict = new Dictionary<string, object>();
 
-			foreach (var property in type.GetProperties())
+			var properties = type.GetProperties();
+			for (var i = 0; i < properties.Length; i++)
 			{
+				var property = properties[i];
 				var propertyType = property.PropertyType;
 				var value = property.GetValue(input);
 				if (!propertyType.IsClass)

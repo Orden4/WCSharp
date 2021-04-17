@@ -4,10 +4,10 @@ namespace WCSharp.Dummies
 {
 	internal class DummyBeingRecycled
 	{
-		public float TicksLeft { get; set; }
+		public int TicksLeft { get; set; }
 		public unit Dummy { get; set; }
 
-		public DummyBeingRecycled(unit dummy, float recycleTime)
+		public DummyBeingRecycled(unit dummy, int recycleTime)
 		{
 			Dummy = dummy;
 			TicksLeft = recycleTime;

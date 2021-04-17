@@ -11,13 +11,8 @@ namespace WCSharp.Buffs
 	/// </summary>
 	public abstract class Buff : IPeriodicDisposableAction
 	{
-		private protected bool active;
 		/// <inheritdoc/>
-		public bool Active
-		{
-			get => this.active;
-			set => this.active = value;
-		}
+		public bool Active { get; set; }
 		/// <summary>
 		/// The unit that applied the buff.
 		/// </summary>

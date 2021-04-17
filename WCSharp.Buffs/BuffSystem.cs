@@ -31,8 +31,9 @@ namespace WCSharp.Buffs
 				if (stackBehaviour != StackBehaviour.None)
 				{
 					var type = buff.GetType();
-					foreach (var currentBuff in buffs)
+					for (var i = 0; i < buffs.Count; i++)
 					{
+						var currentBuff = buffs[i];
 						if (currentBuff.Active && currentBuff.GetType() == type)
 						{
 							if (stackBehaviour == StackBehaviour.Stack ||
@@ -120,8 +121,9 @@ namespace WCSharp.Buffs
 		{
 			if (buffsByUnit.TryGetValue(unit, out var buffs))
 			{
-				foreach (var buff in buffs)
+				for (var i = 0; i < buffs.Count; i++)
 				{
+					var buff = buffs[i];
 					if (buff.Active)
 					{
 						yield return buff;
