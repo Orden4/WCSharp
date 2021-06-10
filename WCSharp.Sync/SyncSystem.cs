@@ -138,7 +138,8 @@ namespace WCSharp.Sync
 
 			for (var i = 0; i < packets.Count; i++)
 			{
-				BlzSendSyncData(SYNC_PACKET_PREFIX, JsonConvert.Serialize(packets[i]));
+				var text = JsonConvert.Serialize(packets[i]);
+				BlzSendSyncData(SYNC_PACKET_PREFIX, text);
 			}
 		}
 
@@ -147,41 +148,48 @@ namespace WCSharp.Sync
 		/// </summary>
 		private static IEnumerable<SyncPacket> BuildPackets(string content, int playerId)
 		{
-			var i = 0;
-			while (i < content.Length)
+			var startIndex = 0;
+			var escapedLength = 0;
+			for (var i = 0; i < content.Length; i++)
 			{
-				var startIndex = i;
-				var endIndex = Math.Min(content.Length - i, i + PACKET_SIZE);
-				var actualLength = endIndex - startIndex;
-				var substr = content.Substring(startIndex, endIndex);
-				for (var j = 0; j < substr.Length; j++)
+				if (escapeChars.Contains(content[i]))
 				{
-					if (escapeChars.Contains(substr[j]))
-					{
-						if (++actualLength > PACKET_SIZE)
-						{
-							// If we remove an escape character, we free up 2 places
-							if (escapeChars.Contains(content[startIndex + endIndex - 1]))
-							{
-								actualLength -= 2;
-							}
-							else
-							{
-								actualLength--;
-							}
-
-							endIndex--;
-						}
-					}
+					escapedLength += 2;
+				}
+				else
+				{
+					escapedLength++;
 				}
 
+				if (escapedLength == PACKET_SIZE)
+				{
+					yield return new SyncPacket
+					{
+						P = playerId,
+						M = content.Substring(startIndex, i - startIndex)
+					};
+					startIndex = i;
+					escapedLength = 0;
+				}
+				else if (escapedLength == PACKET_SIZE + 1)
+				{
+					yield return new SyncPacket
+					{
+						P = playerId,
+						M = content.Substring(startIndex, i - startIndex - 1)
+					};
+					startIndex = i - 1;
+					escapedLength = 2;
+				}
+			}
+
+			if (startIndex < content.Length - 1)
+			{
 				yield return new SyncPacket
 				{
 					P = playerId,
-					M = content.Substring(startIndex, endIndex)
+					M = content.Substring(startIndex)
 				};
-
-				i = startIndex + endIndex;
 			}
 		}
 

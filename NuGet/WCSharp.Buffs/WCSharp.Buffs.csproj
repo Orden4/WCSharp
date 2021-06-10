@@ -5,12 +5,11 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Buffs.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.2</Version>
+    <Version>2.0.4</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Revert base.Property (de)compiler bug workaround
-- Some performance improvements based on benchmarking</PackageReleaseNotes>
+    <PackageReleaseNotes>- Increased the default value of BindLeeway so that it waits 0.25 seconds before checking for the in-game buff starts.</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the creation and management of powerful buffs and auras in Warcraft III.</Description>
     <Authors>Orden4</Authors>

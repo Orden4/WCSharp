@@ -5,11 +5,11 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Events.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Some performance improvements based on benchmarking</PackageReleaseNotes>
+    <PackageReleaseNotes>- Fixed custom defined events not working.</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 The Events package provides various systems for organising events with a focus on efficiency and simplicity. Currently this is limited to periodic and PlayerUnitEvents.</Description>
     <Authors>Orden4</Authors>

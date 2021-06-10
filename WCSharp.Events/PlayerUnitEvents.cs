@@ -204,6 +204,7 @@ namespace WCSharp.Events
 
 				if (handler != null)
 				{
+					internalPlayerUnitEventHandlers.Add(handler);
 					return handler;
 				}
 			}

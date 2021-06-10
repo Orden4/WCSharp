@@ -102,7 +102,14 @@ namespace WCSharp.Events.EventHandlers
 			var handler = Handlers.FirstOrDefault(x => x.Identifier == null && x.PlayerUnitEvent == @event);
 			if (handler != null && handler.ActionsByType.Remove(filterId) && handler.ActionsByType.Count < 2)
 			{
-				RemoveHandler(handler);
+				if (handler.ActionsByType.Count == 0)
+				{
+					RemoveHandler(handler);
+				}
+				else
+				{
+					RegisterEvent();
+				}
 			}
 		}
 
@@ -111,7 +118,14 @@ namespace WCSharp.Events.EventHandlers
 			var handler = Handlers.FirstOrDefault(x => x.Identifier == @event);
 			if (handler != null && handler.ActionsByType.Remove(filterId) && handler.ActionsByType.Count < 2)
 			{
-				RemoveHandler(handler);
+				if (handler.ActionsByType.Count == 0)
+				{
+					RemoveHandler(handler);
+				}
+				else
+				{
+					RegisterEvent();
+				}
 			}
 		}
 

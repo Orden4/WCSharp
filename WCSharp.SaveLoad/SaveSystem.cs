@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using WCSharp.Json;
 using WCSharp.Shared;
@@ -75,9 +74,20 @@ namespace WCSharp.SaveLoad
 		{
 			if (originalTooltips == null)
 			{
-				originalTooltips = abilityIds
-					.Select(x => BlzGetAbilityTooltip(x, 0))
-					.ToList();
+				originalTooltips = new List<string>();
+
+				for (var i = 0; i < abilityIds.Count; i++)
+				{
+					var tooltip = BlzGetAbilityTooltip(abilityIds[i], 0);
+					if (tooltip != "Tool tip missing!")
+					{
+						originalTooltips.Add(tooltip);
+					}
+					else
+					{
+						throw new ArgumentException($"ERROR: Tooltip {abilityIds[i]} cannot be modified for the SaveLoad system. See the WCSharp wiki for more info on Save/Load storage space.");
+					}
+				}
 			}
 
 			this.saveFolder = options.SaveFolder;

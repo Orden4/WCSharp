@@ -19,8 +19,14 @@ namespace WCSharp.Buffs
 		/// The time, in seconds, between each tick.
 		/// </summary>
 		public float Interval { get; set; }
+		/// <summary>
+		/// Used to prevent the buff from being immediately dropped. Intended to give some leeway for the dummy-based bind.
+		/// <para>This is decreased by 1 every <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>, once it becomes 0 or less it will remove this buff if the in-game buff is not present.</para>
+		/// <para>Automatically set to 0 once it detects the buff on the target.</para>
+		/// <para>Defaults to 8 (0.25s).</para>
+		/// </summary>
+		public int BindLeeway { get; set; } = 8;
 
-		internal bool isBound;
 		internal int buffId;
 		internal int auraId;
 
@@ -48,7 +54,6 @@ namespace WCSharp.Buffs
 			DummySystem.RecycleDummy(dummy);
 
 			this.buffId = buffId;
-			this.isBound = GetUnitAbilityLevel(Target, this.buffId) > 0;
 		}
 
 		/// <summary>
@@ -70,7 +75,6 @@ namespace WCSharp.Buffs
 
 			this.auraId = auraId;
 			this.buffId = buffId;
-			this.isBound = GetUnitAbilityLevel(Target, this.buffId) > 0;
 		}
 
 		/// <inheritdoc/>
@@ -99,7 +103,7 @@ namespace WCSharp.Buffs
 				return;
 			}
 
-			if (this.isBound)
+			if (BindLeeway <= 0)
 			{
 				if (GetUnitAbilityLevel(Target, this.buffId) == 0)
 				{
@@ -109,7 +113,7 @@ namespace WCSharp.Buffs
 			}
 			else
 			{
-				this.isBound = true;
+				BindLeeway--;
 			}
 
 			if (Interval > 0)

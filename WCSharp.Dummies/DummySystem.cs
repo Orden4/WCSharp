@@ -34,13 +34,8 @@ namespace WCSharp.Dummies
 
 		private static bool Countdown()
 		{
-			var size = dummiesBeingRecycled.Count;
-			if (size == 0)
-			{
-				return false;
-			}
-
 			var i = 0;
+			var size = dummiesBeingRecycled.Count;
 			while (i < size)
 			{
 				var dummy = dummiesBeingRecycled[i];
@@ -58,7 +53,7 @@ namespace WCSharp.Dummies
 				}
 			}
 
-			return true;
+			return size > 0;
 		}
 
 		/// <summary>
