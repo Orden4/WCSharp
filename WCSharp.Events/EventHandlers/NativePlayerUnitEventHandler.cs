@@ -176,11 +176,11 @@ namespace WCSharp.Events.EventHandlers
 				Trigger = CreateTrigger();
 				Condition = Condition(method);
 				TriggerAddCondition(Trigger, Condition);
-				var maxPlayers = GetBJMaxPlayers();
+				var maxPlayers = GetBJMaxPlayerSlots();
 				for (var i = 0; i < maxPlayers; i++)
 				{
 					var player = Player(i);
-					if (GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING)
+					if (GetPlayerSlotState(player) != PLAYER_SLOT_STATE_EMPTY)
 					{
 						TriggerRegisterPlayerUnitEvent(Trigger, player, NativeEvent, null);
 					}
