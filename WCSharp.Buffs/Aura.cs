@@ -38,7 +38,7 @@ namespace WCSharp.Buffs
 		/// <summary>
 		/// A dictionary mapping units to active buffs.
 		/// </summary>
-		public Dictionary<unit, AuraBuff<T>> ActiveBuffsByUnit { get; set; }
+		public Dictionary<unit, AuraBuffDuration<T>> ActiveBuffsByUnit { get; set; }
 
 		private string effectString;
 		/// <inheritdoc/>
@@ -119,7 +119,7 @@ namespace WCSharp.Buffs
 		{
 			Caster = caster;
 			CastingPlayer = GetOwningPlayer(caster);
-			ActiveBuffsByUnit = new Dictionary<unit, AuraBuff<T>>();
+			ActiveBuffsByUnit = new Dictionary<unit, AuraBuffDuration<T>>();
 		}
 
 		/// <summary>
@@ -166,11 +166,7 @@ namespace WCSharp.Buffs
 					{
 						var aura = (T)BuffSystem.Add(CreateAuraBuff(unit), StackBehaviour);
 						aura.Duration = Duration;
-						ActiveBuffsByUnit.Add(unit, new AuraBuff<T>
-						{
-							Buff = aura,
-							Duration = Duration
-						});
+						ActiveBuffsByUnit.Add(unit, new AuraBuffDuration<T>(aura, Duration));
 					}
 				}
 			}
