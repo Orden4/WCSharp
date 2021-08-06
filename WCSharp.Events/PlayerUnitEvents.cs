@@ -24,7 +24,7 @@ namespace WCSharp.Events
 			{ PlayerUnitEvent.HeroTypeLevels, () => GetUnitTypeId(GetLevelingUnit()) },
 			{ PlayerUnitEvent.HeroTypeStartsRevive, () => GetUnitTypeId(GetRevivingUnit()) },
 			{ PlayerUnitEvent.ItemTypeIsDropped, () => GetItemTypeId(GetManipulatedItem()) },
-			{ PlayerUnitEvent.ItemTypeIsPawned, () => GetItemTypeId(GetManipulatedItem()) },
+			{ PlayerUnitEvent.ItemTypeIsPawned, () => GetItemTypeId(GetSoldItem()) },
 			{ PlayerUnitEvent.ItemTypeIsPickedUp, () => GetItemTypeId(GetManipulatedItem()) },
 			{ PlayerUnitEvent.ItemTypeIsSold, () => GetItemTypeId(GetSoldItem()) },
 			{ PlayerUnitEvent.ItemTypeIsStacked, () => GetItemTypeId(GetManipulatedItem()) },

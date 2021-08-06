@@ -5,12 +5,11 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Events.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.4</Version>
+    <Version>2.0.5</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Fixed events not registering to neutral factions.
-- Fixed events not registering for players that have left the game.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Fixed the filter-based event trigger for ItemTypeIsPawned never firing.</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 The Events package provides various systems for organising events with a focus on efficiency and simplicity. Currently this is limited to periodic and PlayerUnitEvents.</Description>
     <Authors>Orden4</Authors>
