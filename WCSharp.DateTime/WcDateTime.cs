@@ -97,8 +97,8 @@ namespace WCSharp.DateTime
 		public static WcDateTime MaxValue => new WcDateTime(int.MaxValue);
 
 		private const int DAYS_PER_4_YEARS = (365 * 4) + 1;
-		private static readonly int[] daysToMonth366 = new[] { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365 };
-		private static readonly int[] daysToMonth365 = new[] { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 };
+		private static readonly int[] daysToMonth365 = new[] { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365 };
+		private static readonly int[] daysToMonth366 = new[] { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 };
 
 		/// <summary>
 		/// Creates a new <see cref="WcDateTime"/> with the given number of seconds since January 1st, 1970, 00:00:00.
@@ -265,7 +265,8 @@ namespace WCSharp.DateTime
 				? 2
 				: n / 365;
 			// Can be 4 if last day of last year
-			y1 = Math.Min(y1, 3);
+			if (y1 == 4)
+				y1 = 3;
 
 			// compute year
 			var year = 1970 + (y4 * 4) + y1;
@@ -309,7 +310,8 @@ namespace WCSharp.DateTime
 				? 2
 				: n / 365;
 			// Can be 4 if last day of last year
-			y1 = Math.Min(y1, 3);
+			if (y1 == 4)
+				y1 = 3;
 
 			// compute year
 			year = 1970 + (y4 * 4) + y1;
@@ -322,7 +324,7 @@ namespace WCSharp.DateTime
 			var days = y1 == 2 ? daysToMonth366 : daysToMonth365;
 			// All months have less than 32 days, so n >> 5 is a good conservative estimate for the month
 			month = (n >> 5) + 1;
-			//Util.Debug(month);
+
 			while (n >= days[month])
 			{
 				month++;
