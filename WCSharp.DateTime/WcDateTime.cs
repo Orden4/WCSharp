@@ -60,13 +60,13 @@ namespace WCSharp.DateTime
 				{
 					dayOfWeek = 7 + dayOfWeek;
 				}
-				return (DayOfWeek)((dayOfWeek + 3) % 7);
+				return (DayOfWeek)((dayOfWeek + 4) % 7);
 			}
 		}
 		/// <summary>
 		/// Returns the current day of the year.
 		/// </summary>
-		public int DayOfYear => GetDatePart(DatePart.DayOfYear);
+		public int DayOfYear => GetDatePart(DatePart.DayOfYear) + 1;
 		/// <summary>
 		/// Returns the current date (hour/minutes/seconds removed).
 		/// </summary>

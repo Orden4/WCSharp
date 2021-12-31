@@ -5,11 +5,12 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.DateTime.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.6</Version>
+    <Version>2.0.8</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Removed a debug print line</PackageReleaseNotes>
+    <PackageReleaseNotes>- Fixed DayOfWeek after leap year adjustment.
+- Fixed DayOfYear starting at 0 instead of 1.</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package defines custom DateTime and TimeSpan classes that can be used in Warcraft III.</Description>
     <Authors>Orden4</Authors>
