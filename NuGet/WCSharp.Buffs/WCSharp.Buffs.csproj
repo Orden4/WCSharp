@@ -9,7 +9,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Now listen to unit death event and fire OnDeath based on that so units being exploded do not cause issues. Also saves some UnitAlive checks.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Now listen to unit death event and fire OnDeath based on that so units being exploded do not cause issues. Also significantly reduces the number of UnitAlive checks.</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the creation and management of powerful buffs and auras in Warcraft III.</Description>
     <Authors>Orden4</Authors>

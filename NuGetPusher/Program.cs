@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,16 +33,29 @@ namespace NuGetPusher
 		[STAThread]
 		private static async Task Main(string[] args)
 		{
+			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.GetDirectories().FirstOrDefault(x => x.Name == "NuGet").FullName;
+
+			await CopyFiles();
+
 			ApiKey = ConfigurationManager.AppSettings["api-key"];
 			Source = ConfigurationManager.AppSettings["source"];
 			Console.WriteLine("Press enter to start.");
 			Console.ReadLine();
 			var runner = new Runner();
-			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.GetDirectories().FirstOrDefault(x => x.Name == "NuGet").FullName;
 			foreach (var project in Projects)
 			{
 				await runner.Run($"WCSharp.{project}");
 			}
+		}
+
+		private static async Task CopyFiles()
+		{
+			var startInfo = new ProcessStartInfo
+			{
+				FileName = Path.Combine(new DirectoryInfo(Environment.CurrentDirectory).Parent.FullName, "nuget-copy.bat")
+			};
+			using var process = Process.Start(startInfo);
+			await process.WaitForExitAsync();
 		}
 	}
 }
