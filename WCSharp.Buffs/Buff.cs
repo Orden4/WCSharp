@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using WCSharp.Events;
 using static War3Api.Common;
 
 namespace WCSharp.Buffs
@@ -9,9 +8,11 @@ namespace WCSharp.Buffs
 	/// The most basic buff implementation, with almost all logic undefined.
 	/// <para>It is recommended to use one of the more concrete types instead, such as <see cref="PassiveBuff"/>.</para>
 	/// </summary>
-	public abstract class Buff : IPeriodicDisposableAction
+	public abstract class Buff
 	{
-		/// <inheritdoc/>
+		/// <summary>
+		/// Indicates the active state of this buff. Set this to false to disable and dispose this instance.
+		/// </summary>
 		public bool Active { get; set; }
 		/// <summary>
 		/// The unit that applied the buff.
@@ -184,6 +185,8 @@ namespace WCSharp.Buffs
 
 		/// <summary>
 		/// Executes immediately after <see cref="Target"/> dies.
+		/// <para>Note: <paramref name="killingBlow"/> will be true if the unit dies while the buffs actions are being evaluated.
+		/// It may not be directly responsible for the death due to asynchronous events.</para>
 		/// </summary>
 		/// <param name="killingBlow"></param>
 		/// <returns></returns>
@@ -219,7 +222,10 @@ namespace WCSharp.Buffs
 
 		}
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// Automatically called after <see cref="Active"/> is set to false.
+		/// <para>Automatically called by the system. Do not call yourself.</para>
+		/// </summary>
 		public abstract void Dispose();
 	}
 }

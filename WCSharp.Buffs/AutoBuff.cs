@@ -56,13 +56,6 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			if (!UnitAlive(Target))
-			{
-				OnDeath(false);
-				Active = false;
-				return;
-			}
-
 			if (Interval > 0)
 			{
 				if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
@@ -71,7 +64,7 @@ namespace WCSharp.Buffs
 
 					OnTick();
 
-					if (UnitAlive(Target))
+					if (Active)
 					{
 						if (DamagePerInterval < 0)
 						{
@@ -82,13 +75,6 @@ namespace WCSharp.Buffs
 							var damageDealer = UnitAlive(Caster) ? Caster : Target;
 							Target.Damage(damageDealer, DamagePerInterval, AttackType, DamageType);
 						}
-					}
-
-					if (!UnitAlive(Target))
-					{
-						OnDeath(true);
-						Active = false;
-						return;
 					}
 				}
 

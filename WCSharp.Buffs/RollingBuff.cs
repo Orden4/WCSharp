@@ -74,21 +74,10 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			if (!UnitAlive(Target))
-			{
-				OnDeath(false);
-				Active = false;
-				return;
-			}
-
 			if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				IntervalLeft = Interval;
 				OnTick();
-				if (!UnitAlive(Target))
-				{
-					OnDeath(true);
-				}
 			}
 
 			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;

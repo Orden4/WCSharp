@@ -30,13 +30,6 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			if (!UnitAlive(Target))
-			{
-				OnDeath(false);
-				Active = false;
-				return;
-			}
-
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				OnExpire();

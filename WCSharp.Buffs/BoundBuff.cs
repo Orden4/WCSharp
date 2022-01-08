@@ -96,13 +96,6 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			if (!UnitAlive(Target))
-			{
-				OnDeath(false);
-				Active = false;
-				return;
-			}
-
 			if (BindLeeway <= 0)
 			{
 				if (GetUnitAbilityLevel(Target, this.buffId) == 0)
@@ -122,12 +115,6 @@ namespace WCSharp.Buffs
 				{
 					IntervalLeft += Interval;
 					OnTick();
-					if (!UnitAlive(Target))
-					{
-						OnDeath(true);
-						Active = false;
-						return;
-					}
 				}
 
 				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;

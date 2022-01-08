@@ -12,13 +12,79 @@ namespace WCSharp.Buffs
 	/// </summary>
 	public static class BuffSystem
 	{
-		private static readonly PeriodicDisposableTrigger<Buff> periodicTrigger = new PeriodicDisposableTrigger<Buff>(PeriodicEvents.SYSTEM_INTERVAL);
+		static BuffSystem()
+		{
+			// Taking a shortcut from the standard approach and just assuming that there will pretty much always be buffs active and never unregistering these events.
+			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeDies, OnDeath);
+			PeriodicEvents.AddPeriodicEvent(Action);
+		}
+
+		private static readonly List<Buff> buffs = new List<Buff>();
 		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new Dictionary<unit, List<Buff>>();
+
+		private static int index;
+		private static int size;
 
 		/// <summary>
 		/// All active buffs.
 		/// </summary>
-		public static IEnumerable<Buff> Buffs => periodicTrigger.Actions;
+		public static IEnumerable<Buff> Buffs => buffs.Where(x => x.Active);
+
+		private static bool Action()
+		{
+			size = buffs.Count;
+			index = 0;
+
+			while (index < size)
+			{
+				var buff = buffs[index];
+				if (buff.Active)
+				{
+					buff.Action();
+				}
+
+				if (buff.Active)
+				{
+					index++;
+				}
+				else
+				{
+					size--;
+					buffs[index] = buffs[size];
+					buffs.RemoveAt(size);
+					buff.Dispose();
+				}
+			}
+
+			return true;
+		}
+
+		private static void OnDeath()
+		{
+			var unit = GetTriggerUnit();
+			if (index < size)
+			{
+				var buff = buffs[index];
+				if (buff.Active && buff.Target == unit)
+				{
+					buff.OnDeath(true);
+					buff.Active = false;
+				}
+			}
+
+			if (buffsByUnit.TryGetValue(unit, out var buffsOnUnit))
+			{
+				for (var i = 0; i < buffsOnUnit.Count; i++)
+				{
+					var buff = buffsOnUnit[i];
+					if (buff.Active)
+					{
+						buff.OnDeath(false);
+						buff.Active = false;
+					}
+				}
+			}
+		}
 
 		/// <summary>
 		/// Adds the given <paramref name="buff"/> to the system. If addition is successful, will invoke <see cref="Buff.OnApply"/>.
@@ -26,14 +92,14 @@ namespace WCSharp.Buffs
 		/// <returns>The buff that was applied, or the buff whose stacks were added to.</returns>
 		public static Buff Add(Buff buff, StackBehaviour stackBehaviour = StackBehaviour.None)
 		{
-			if (buffsByUnit.TryGetValue(buff.Target, out var buffs))
+			if (buffsByUnit.TryGetValue(buff.Target, out var buffsOnUnit))
 			{
 				if (stackBehaviour != StackBehaviour.None)
 				{
 					var type = buff.GetType();
-					for (var i = 0; i < buffs.Count; i++)
+					for (var i = 0; i < buffsOnUnit.Count; i++)
 					{
-						var currentBuff = buffs[i];
+						var currentBuff = buffsOnUnit[i];
 						if (currentBuff.Active && currentBuff.GetType() == type)
 						{
 							if (stackBehaviour == StackBehaviour.Stack ||
@@ -53,7 +119,7 @@ namespace WCSharp.Buffs
 					}
 				}
 
-				buffs.Add(buff);
+				buffsOnUnit.Add(buff);
 			}
 			else
 			{
@@ -63,22 +129,24 @@ namespace WCSharp.Buffs
 				});
 			}
 
+			buffs.Add(buff);
+			buff.Active = true;
 			buff.Apply();
-			periodicTrigger.Add(buff);
+
 			return buff;
 		}
 
 		internal static void Remove(Buff buff)
 		{
-			if (buffsByUnit.TryGetValue(buff.Target, out var buffs))
+			if (buffsByUnit.TryGetValue(buff.Target, out var buffsOnUnit))
 			{
-				if (buffs.Count == 1)
+				if (buffsOnUnit.Count == 1)
 				{
 					buffsByUnit.Remove(buff.Target);
 				}
 				else
 				{
-					buffs.Remove(buff);
+					buffsOnUnit.Remove(buff);
 				}
 			}
 		}
@@ -99,11 +167,11 @@ namespace WCSharp.Buffs
 			if (GetUnitTypeId(unit) == DummySystem.UNIT_TYPE_DUMMY)
 				return;
 
-			foreach (var buff in periodicTrigger.Actions)
+			for (var i = 0; i < buffs.Count; i++)
 			{
-				if (buff.Caster == unit)
+				if (buffs[i].Caster == unit)
 				{
-					buff.CastingPlayer = GetOwningPlayer(unit);
+					buffs[i].CastingPlayer = GetOwningPlayer(unit);
 				}
 			}
 
@@ -119,11 +187,11 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public static IEnumerable<Buff> GetBuffsOnUnit(unit unit)
 		{
-			if (buffsByUnit.TryGetValue(unit, out var buffs))
+			if (buffsByUnit.TryGetValue(unit, out var boffsOnUnit))
 			{
-				for (var i = 0; i < buffs.Count; i++)
+				for (var i = 0; i < boffsOnUnit.Count; i++)
 				{
-					var buff = buffs[i];
+					var buff = boffsOnUnit[i];
 					if (buff.Active)
 					{
 						yield return buff;
