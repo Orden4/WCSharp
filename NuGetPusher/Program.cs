@@ -33,9 +33,9 @@ namespace NuGetPusher
 		[STAThread]
 		private static async Task Main(string[] args)
 		{
-			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.GetDirectories().FirstOrDefault(x => x.Name == "NuGet").FullName;
-
+			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName;
 			await CopyFiles();
+			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).GetDirectories().FirstOrDefault(x => x.Name == "NuGet").FullName;
 
 			ApiKey = ConfigurationManager.AppSettings["api-key"];
 			Source = ConfigurationManager.AppSettings["source"];
@@ -52,7 +52,7 @@ namespace NuGetPusher
 		{
 			var startInfo = new ProcessStartInfo
 			{
-				FileName = Path.Combine(new DirectoryInfo(Environment.CurrentDirectory).Parent.FullName, "nuget-copy.bat")
+				FileName = "nuget-copy.bat"
 			};
 			using var process = Process.Start(startInfo);
 			await process.WaitForExitAsync();
