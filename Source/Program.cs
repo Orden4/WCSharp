@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Source.Buffs;
 using Source.Missiles;
 using WCSharp.Buffs;
-using WCSharp.Events;
-using WCSharp.Mazing.Cardinal;
 using WCSharp.SaveLoad;
-using WCSharp.Shared;
 using WCSharp.Shared.Data;
 using WCSharp.Shared.Extensions;
-using static Constants;
 using static War3Api.Common;
 
 namespace Source
@@ -108,58 +103,6 @@ namespace Source
 						Console.WriteLine($"{GetUnitName(a)}: ({x}, {y})");
 					}
 				}
-
-				var maze = new Maze(-544f, -2272f, 13, 9);
-				maze.SetWaypoints(new List<Cell>
-				{
-					maze.GetCellByIndex(0, 0),
-					maze.GetCellByIndex(12, 0),
-					maze.GetCellByIndex(0, 8)
-				});
-				maze.DebugDraw(@"Abilities\Weapons\FireBallMissile\FireBallMissile.mdl");
-
-				PeriodicEvents.AddPeriodicEvent(() =>
-				{
-					maze.DebugDraw(@"Abilities\Weapons\FireBallMissile\FireBallMissile.mdl");
-					return true;
-				}, 10f);
-
-				PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeReceivesPointOrder, () =>
-				{
-					var u = GetTriggerUnit();
-					var o = GetIssuedOrderId();
-					var x = GetOrderPointX();
-					var y = GetOrderPointY();
-
-					var a = new Unit(u);
-					Console.WriteLine(a.MovementSpeed);
-					a.MovementSpeed = 400;
-					Console.WriteLine(a.MovementSpeed);
-					a.MovementSpeed += 50;
-					Console.WriteLine(a.MovementSpeed);
-					Console.WriteLine(GetHandleId(a.Wc3Unit));
-
-					if (o == 1752659063)
-					{
-						if (maze.WouldBlock(x, y, 2, 2))
-						{
-							Delay.Add(() => IssueImmediateOrderById(u, ORDER_STOP));
-						}
-						else
-						{
-
-						}
-					}
-				});
-
-				PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeStartsBeingConstructed, () =>
-				{
-					new Performance().Run();
-					Console.WriteLine($"{maze.Rectangle.Left}, {maze.Rectangle.Bottom}, {maze.Rectangle.Right}, {maze.Rectangle.Top}");
-
-					var u = GetTriggerUnit();
-					maze.Build(u, GetUnitX(u), GetUnitY(u), 2, 2);
-				});
 
 				var g = CreateGroup();
 				GroupEnumUnitsInRect(g, Rectangle.WorldBounds.Rect, null);
