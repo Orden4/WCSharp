@@ -154,7 +154,6 @@ namespace Source
 
 				PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeStartsBeingConstructed, () =>
 				{
-					new Performance().Run();
 					Console.WriteLine($"{maze.Rectangle.Left}, {maze.Rectangle.Bottom}, {maze.Rectangle.Right}, {maze.Rectangle.Top}");
 
 					var u = GetTriggerUnit();
