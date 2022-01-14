@@ -6,12 +6,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DotNetZip" Version="1.15.0" />
+	  <PackageReference Include="DotNetZip" Version="1.16.0" />
 	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
 	  <PackageReference Include="System.Security.Permissions" Version="5.0.0" />
-	  <PackageReference Include="War3Net.Build" Version="5.0.1" />
-	  <PackageReference Include="War3Net.CSharpLua" Version="1.7.12" />
-	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.11" />
+	  <PackageReference Include="War3Net.Build" Version="5.0.4" />
+	  <PackageReference Include="War3Net.CSharpLua" Version="1.7.14" />
+	  <PackageReference Include="War3Net.CSharpLua.CoreSystem" Version="1.7.14" />
 	</ItemGroup>
 
 	<ItemGroup>

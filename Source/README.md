@@ -1,0 +1,1 @@
+This is effectively a playground for features. Just ignore whatever is in here or what's going on. If you want some examples of how to set things up, check out the wiki.

@@ -1,4 +1,5 @@
-﻿using WCSharp.Buffs;
+﻿using System;
+using WCSharp.Buffs;
 using static Constants;
 using static War3Api.Common;
 
@@ -9,8 +10,9 @@ namespace Source.Buffs
 		public AuraTest(unit caster) : base(caster)
 		{
 			Radius = 800;
+			Duration = 1.1f;
 			EffectString = @"Abilities\Spells\Human\DevotionAura\DevotionAura.mdl";
-			StackBehaviour = StackBehaviour.StackCaster;
+			StackBehaviour = StackBehaviour.Stack;
 		}
 
 		protected override MyBuff CreateAuraBuff(unit unit)
@@ -24,7 +26,7 @@ namespace Source.Buffs
 		}
 	}
 
-	public class MyBuff : BoundBuff
+	public class MyBuff : AuraBoundBuff
 	{
 		public MyBuff(unit caster, unit target) : base(caster, target)
 		{
@@ -39,7 +41,13 @@ namespace Source.Buffs
 
 		public override void OnExpire()
 		{
+			Console.WriteLine("expired! : " + GetUnitName(Target));
 			BlzSetUnitArmor(Target, BlzGetUnitArmor(Target) - 5);
+		}
+
+		public override void OnDeath(bool killingBlow)
+		{
+			Console.WriteLine(killingBlow);
 		}
 	}
 }

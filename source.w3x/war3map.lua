@@ -2,7 +2,6 @@ gg_rct_Region_000 = nil
 gg_rct_Region_001 = nil
 gg_cam_Camera_001 = nil
 gg_cam_Camera_001_Copy = nil
-gg_trg_Melee_Initialization = nil
 function InitGlobals()
 end
 
@@ -207,6 +206,8 @@ function CreateUnitsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("hpea"), 951.2, 2291.1, 248.376, FourCC("hpea"))
     u = BlzCreateUnitWithSkin(p, FourCC("hpea"), 946.7, 2441.2, 248.376, FourCC("hpea"))
     u = BlzCreateUnitWithSkin(p, FourCC("hpea"), 947.7, 2391.2, 248.376, FourCC("hpea"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -177.0, -235.9, 43.606, FourCC("hfoo"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -411.8, -1855.3, 329.479, FourCC("hpea"))
 end
 
 function CreateUnitsForPlayer1()
@@ -276,30 +277,6 @@ function CreateCameras()
     CameraSetupSetDestPosition(gg_cam_Camera_001_Copy, -444.1, -616.5, 0.0)
 end
 
-function Trig_Melee_Initialization_Actions()
-    MeleeStartingVisibility()
-    MeleeStartingHeroLimit()
-    MeleeGrantHeroItems()
-    MeleeStartingResources()
-    MeleeClearExcessUnits()
-    MeleeStartingUnits()
-    MeleeStartingAI()
-    MeleeInitVictoryDefeat()
-end
-
-function InitTrig_Melee_Initialization()
-    gg_trg_Melee_Initialization = CreateTrigger()
-    TriggerAddAction(gg_trg_Melee_Initialization, Trig_Melee_Initialization_Actions)
-end
-
-function InitCustomTriggers()
-    InitTrig_Melee_Initialization()
-end
-
-function RunInitializationTriggers()
-    ConditionalTriggerExecute(gg_trg_Melee_Initialization)
-end
-
 function InitCustomPlayerSlots()
     SetPlayerStartLocation(Player(0), 0)
     SetPlayerColor(Player(0), ConvertPlayerColor(0))
@@ -361,8 +338,6 @@ function main()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
-    InitCustomTriggers()
-    RunInitializationTriggers()
 end
 
 function config()

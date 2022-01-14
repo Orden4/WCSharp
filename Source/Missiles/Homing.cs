@@ -34,7 +34,6 @@ namespace Source.Missiles
 			if (IsUnitEnemy(unit, CastingPlayer))
 			{
 				UnitDamageTarget(Caster, Target, 100, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS);
-				Active = false;
 			}
 		}
 	}
