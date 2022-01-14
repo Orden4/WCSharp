@@ -38,7 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Shared", "WCSharp.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.DateTime", "WCSharp.DateTime\WCSharp.DateTime.csproj", "{43A50E89-5290-490A-BB67-75170B0E6E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetPusher", "NuGetPusher\NuGetPusher.csproj", "{AE8AEAB7-4FB6-463C-8A0B-55596D052EE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuGetPusher", "NuGetPusher\NuGetPusher.csproj", "{AE8AEAB7-4FB6-463C-8A0B-55596D052EE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.DamageControl", "WCSharp.DamageControl\WCSharp.DamageControl.csproj", "{6B4EAC8B-689F-4360-958C-4E0F60F07BE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +112,10 @@ Global
 		{AE8AEAB7-4FB6-463C-8A0B-55596D052EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE8AEAB7-4FB6-463C-8A0B-55596D052EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE8AEAB7-4FB6-463C-8A0B-55596D052EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4EAC8B-689F-4360-958C-4E0F60F07BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4EAC8B-689F-4360-958C-4E0F60F07BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4EAC8B-689F-4360-958C-4E0F60F07BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4EAC8B-689F-4360-958C-4E0F60F07BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

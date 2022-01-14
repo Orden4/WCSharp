@@ -19,7 +19,6 @@
 	  <ProjectReference Include="..\WCSharp.Json\WCSharp.Json.csproj" />
 	  <ProjectReference Include="..\WCSharp.Knockbacks\WCSharp.Knockbacks.csproj" />
 	  <ProjectReference Include="..\WCSharp.Lightnings\WCSharp.Lightnings.csproj" />
-	  <ProjectReference Include="..\WCSharp.Mazing\WCSharp.Mazing.csproj" />
 	  <ProjectReference Include="..\WCSharp.Missiles\WCSharp.Missiles.csproj" />
 	  <ProjectReference Include="..\WCSharp.SaveLoad\WCSharp.SaveLoad.csproj" />
 	  <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
