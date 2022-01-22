@@ -83,7 +83,7 @@ dotnet_separate_import_directive_groups                    = false
 #use hard tabs for indentation
 indent_style                                               = tab
 insert_final_newline                                       = true
-max_line_length                                            = 140
+max_line_length                                            = 180
 
 #prefer the language keyword for member access expressions, instead of the type name, for types that have a keyword to represent them
 dotnet_style_predefined_type_for_member_access             = true : suggestion

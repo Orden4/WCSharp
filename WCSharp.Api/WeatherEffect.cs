@@ -10,6 +10,12 @@ namespace WCSharp.Api
 		{
 		}
 
+		/// @CSharpLua.Template = "EnableWeatherEffect({0}, true)"
+		public extern void Enable();
+
+		/// @CSharpLua.Template = "EnableWeatherEffect({0}, false)"
+		public extern void Disable();
+
 		/// @CSharpLua.Template = "RemoveWeatherEffect({0})"
 		public extern void Dispose();
 	}
