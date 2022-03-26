@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Rect()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator rect(Rect x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Rect(rect x);
 
 		/// @CSharpLua.Template = "RemoveRect({0})"
 		public extern void Dispose();

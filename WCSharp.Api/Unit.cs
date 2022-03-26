@@ -24,6 +24,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "SetUnitY({0}, {1})"
 		public extern override float Y { get; set; }
 
+		/// @CSharpLua.Get = "BlzGetLocalUnitZ({0})"
+		public extern float Z { get; }
+
 		/// @CSharpLua.Get = "GetUnitState({0}, UNIT_STATE_MANA)"
 		/// @CSharpLua.Set = "SetUnitState({0}, {1}, UNIT_STATE_MANA)"
 		public extern float Mana { get; set; }
@@ -37,6 +40,10 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitMaxMana({0}, {1})"
 		/// TODO: Test integer/float value for set max mana
 		public extern float MaxMana { get; set; }
+
+		/// @CSharpLua.Get = "GetOwningPlayer({0})"
+		/// @CSharpLua.Set = "SetUnitOwner({0}, {1}, true)"
+		public extern Player Owner { get; set; }
 
 		/// @CSharpLua.Get = "GetUnitFacing({0})"
 		/// @CSharpLua.Set = "BlzSetUnitFacingEx({0}, {1})"
@@ -201,6 +208,30 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Template = "ReviveHero({0}, {1}, {2}, {3})"
 		public extern void Revive(float x, float y, bool doEyecandy);
+
+		/// @CSharpLua.Template = "KillUnit({0})"
+		public extern void Kill();
+
+		/// @CSharpLua.Template = "SetUnitFacing({0})"
+		public extern void SetFacing(float facingAngle, float duration);
+
+		/// @CSharpLua.Template = "SetUnitFlyHeight({0})"
+		public extern void SetFlyHeight(float flyHeight, float rate);
+
+		/// @CSharpLua.Template = "SetUnitOwner({0}, {1}, false)"
+		public extern void SetOwner(Player player);
+
+		/// @CSharpLua.Template = "SetUnitColor({0}, {1})"
+		public extern void SetColor(PlayerColor color);
+
+		/// @CSharpLua.Template = "SetUnitTimeScale({0}, {1})"
+		public extern void SetTimeScale(float timeScale);
+
+		/// @CSharpLua.Template = "SetUnitBlendTime({0}, {1})"
+		public extern void SetBlendTime(float blendTime);
+
+		/// @CSharpLua.Template = "SetUnitVertexColor({0}, {1}, {2}, {3})"
+		public extern void SetVertexColor(int red, int green, int blue, int alpha = 255);
 
 		/// @CSharpLua.Template = "RemoveUnit({0})"
 		public extern void Dispose();

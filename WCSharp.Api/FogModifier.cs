@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal FogModifier()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator fogmodifier(FogModifier x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator FogModifier(fogmodifier x);
 
 		/// @CSharpLua.Template = "DestroyFogModifier({0})"
 		public extern void Dispose();

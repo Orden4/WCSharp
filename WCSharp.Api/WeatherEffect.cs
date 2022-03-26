@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal WeatherEffect()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator weathereffect(WeatherEffect x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator WeatherEffect(weathereffect x);
 
 		/// @CSharpLua.Template = "EnableWeatherEffect({0}, true)"
 		public extern void Enable();

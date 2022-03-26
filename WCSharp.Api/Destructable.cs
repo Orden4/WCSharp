@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Destructable()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator destructable(Destructable x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Destructable(destructable x);
 
 		/// @CSharpLua.Get = "IsDestructableInvulnerable({0})"
 		/// @CSharpLua.Set = "SetDestructableInvulnerable({0}, {1})"

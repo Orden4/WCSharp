@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Dialog()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator dialog(Dialog x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Dialog(dialog x);
 
 		/// @CSharpLua.Template = "DialogDestroy({0})"
 		public extern void Dispose();

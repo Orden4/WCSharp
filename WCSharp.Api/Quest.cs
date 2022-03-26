@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Quest()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator quest(Quest x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Quest(quest x);
 
 		/// @CSharpLua.Template = "DestroyQuest({0})"
 		public extern void Dispose();

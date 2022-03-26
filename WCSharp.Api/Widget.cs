@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using static War3Api.Common;
+
+namespace WCSharp.Api
 {
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	/// @CSharpLua.Ignore
@@ -7,6 +9,11 @@
 		internal Widget()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator widget(Widget x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Widget(widget x);
 
 		/// @CSharpLua.Get = "GetWidgetLife({0})"
 		/// @CSharpLua.Set = "SetWidgetLife({0}, {1})"

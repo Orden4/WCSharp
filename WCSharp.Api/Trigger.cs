@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Trigger()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator trigger(Trigger x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Trigger(trigger x);
 
 		/// @CSharpLua.Template = "DestroyTrigger({0})"
 		public extern void Dispose();

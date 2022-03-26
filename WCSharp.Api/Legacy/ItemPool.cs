@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal ItemPool()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator itempool(ItemPool x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator ItemPool(itempool x);
 
 		/// @CSharpLua.Template = "DestroyItemPool({0})"
 		public extern void Dispose();

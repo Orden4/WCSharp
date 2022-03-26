@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Item()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator item(Item x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Item(item x);
 
 		/// @CSharpLua.Get = "CreateItem({0}, {1}, {2})"
 		public static extern Item Create(int itemId, float x, float y);
@@ -46,7 +52,7 @@ namespace WCSharp.Api
 		public extern bool IsInvulnerable { get; set; }
 
 		/// @CSharpLua.Get = "IsItemPowerup({0})"
-		public extern bool IsPowerup { get; set; }
+		public extern bool IsPowerup { get; }
 
 		/// @CSharpLua.Get = "IsItemOwned({0})"
 		public extern bool IsOwned { get; }

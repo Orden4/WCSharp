@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal BoolExpr()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator boolexpr(BoolExpr x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator BoolExpr(boolexpr x);
 
 		/// @CSharpLua.Template = "DestroyBoolExpr({0})"
 		public extern virtual void Dispose();

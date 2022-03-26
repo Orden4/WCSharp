@@ -1,4 +1,5 @@
 ﻿using System;
+using static War3Api.Common;
 
 namespace WCSharp.Api
 {
@@ -9,6 +10,11 @@ namespace WCSharp.Api
 		internal Timer()
 		{
 		}
+
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator timer(Timer x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Timer(timer x);
 
 		/// @CSharpLua.Template = "DestroyTimer({0})"
 		public extern void Dispose();

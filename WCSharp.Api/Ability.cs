@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using static War3Api.Common;
+
+namespace WCSharp.Api
 {
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	/// @CSharpLua.Ignore
@@ -6,95 +8,99 @@
 	{
 		internal Ability()
 		{
-
 		}
 
-		/// @CSharpLua.Get = "GetAbilityBooleanField_({0}, ABILITY_BF_HERO_ABILITY)"
-		/// @CSharpLua.Set = "SetAbilityBooleanField_({0}, ABILITY_BF_HERO_ABILITY, {1})"
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator ability(Ability x);
+		/// @CSharpLua.Template = "{0}"
+		public static extern implicit operator Ability(ability x);
+
+		/// @CSharpLua.Get = "GetAbilityBooleanField({0}, ABILITY_BF_HERO_ABILITY)"
+		/// @CSharpLua.Set = "SetAbilityBooleanField({0}, ABILITY_BF_HERO_ABILITY, {1})"
 		public extern bool HeroAbility { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityBooleanField_aite({0}, ABILITY_BF_ITEM_ABILITY)"
-		/// @CSharpLua.Set = "SetAbilityBooleanField_aite({0}, ABILITY_BF_ITEM_ABILITY, {1})"
+		/// @CSharpLua.Get = "GetAbilityBooleanField({0}, ABILITY_BF_ITEM_ABILITY)"
+		/// @CSharpLua.Set = "SetAbilityBooleanField({0}, ABILITY_BF_ITEM_ABILITY, {1})"
 		public extern bool ItemAbility { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityBooleanField_achd({0}, ABILITY_BF_CHECK_DEPENDENCIES)"
-		/// @CSharpLua.Set = "SetAbilityBooleanField_achd({0}, ABILITY_BF_CHECK_DEPENDENCIES, {1})"
+		/// @CSharpLua.Get = "GetAbilityBooleanField({0}, ABILITY_BF_CHECK_DEPENDENCIES)"
+		/// @CSharpLua.Set = "SetAbilityBooleanField({0}, ABILITY_BF_CHECK_DEPENDENCIES, {1})"
 		public extern bool CheckDependencies { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_abpx({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_X)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_abpx({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_X, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_X)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_X, {1})"
 		public extern int ButtonPositionNormalX { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_abpy({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_Y)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_abpy({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_Y, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_Y)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_NORMAL_Y, {1})"
 		public extern int ButtonPositionNormalY { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_aubx({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_X)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_aubx({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_X, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_X)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_X, {1})"
 		public extern int ButtonPositionActivatedX { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_auby({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_Y)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_auby({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_Y, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_Y)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_ACTIVATED_Y, {1})"
 		public extern int ButtonPositionActivatedY { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_arpx({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_X)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_arpx({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_X, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_X)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_X, {1})"
 		public extern int ButtonPositionResearchX { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_arpy({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_Y)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_arpy({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_Y, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_Y)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_BUTTON_POSITION_RESEARCH_Y, {1})"
 		public extern int ButtonPositionResearchY { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_amsp({0}, ABILITY_IF_MISSILE_SPEED)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_amsp({0}, ABILITY_IF_MISSILE_SPEED, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_MISSILE_SPEED)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_MISSILE_SPEED, {1})"
 		public extern int MissileSpeed { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_atac({0}, ABILITY_IF_TARGET_ATTACHMENTS)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_atac({0}, ABILITY_IF_TARGET_ATTACHMENTS, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_TARGET_ATTACHMENTS)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_TARGET_ATTACHMENTS, {1})"
 		public extern int TargetAttachments { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_acac({0}, ABILITY_IF_CASTER_ATTACHMENTS)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_acac({0}, ABILITY_IF_CASTER_ATTACHMENTS, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_CASTER_ATTACHMENTS)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_CASTER_ATTACHMENTS, {1})"
 		public extern int CasterAttachments { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_apri({0}, ABILITY_IF_PRIORITY)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_apri({0}, ABILITY_IF_PRIORITY, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_PRIORITY)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_PRIORITY, {1})"
 		public extern int Priority { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_alev({0}, ABILITY_IF_LEVELS)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_alev({0}, ABILITY_IF_LEVELS, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_LEVELS)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_LEVELS, {1})"
 		public extern int Levels { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_arlv({0}, ABILITY_IF_REQUIRED_LEVEL)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_arlv({0}, ABILITY_IF_REQUIRED_LEVEL, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_REQUIRED_LEVEL)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_REQUIRED_LEVEL, {1})"
 		public extern int RequiredLevel { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityIntegerField_({0}, ABILITY_IF_LEVEL_SKIP_REQUIREMENT)"
-		/// @CSharpLua.Set = "SetAbilityIntegerField_({0}, ABILITY_IF_LEVEL_SKIP_REQUIREMENT, {1})"
+		/// @CSharpLua.Get = "GetAbilityIntegerField({0}, ABILITY_IF_LEVEL_SKIP_REQUIREMENT)"
+		/// @CSharpLua.Set = "SetAbilityIntegerField({0}, ABILITY_IF_LEVEL_SKIP_REQUIREMENT, {1})"
 		public extern int LevelSkipRequirement { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityRealField_amac({0}, ABILITY_RF_ARF_MISSILE_ARC)"
-		/// @CSharpLua.Set = "SetAbilityRealField_amac({0}, ABILITY_RF_ARF_MISSILE_ARC, {1})"
-		public extern float ArfMissileArc { get; set; }
+		/// @CSharpLua.Get = "GetAbilityRealField({0}, ABILITY_RF_ARF_MISSILE_ARC)"
+		/// @CSharpLua.Set = "SetAbilityRealField({0}, ABILITY_RF_ARF_MISSILE_ARC, {1})"
+		public extern float MissileArc { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityStringField_({0}, ABILITY_SF_NAME)"
-		/// @CSharpLua.Set = "SetAbilityStringField_({0}, ABILITY_SF_NAME, {1})"
+		/// @CSharpLua.Get = "GetAbilityStringField({0}, ABILITY_SF_NAME)"
+		/// @CSharpLua.Set = "SetAbilityStringField({0}, ABILITY_SF_NAME, {1})"
 		public extern string Name { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityStringField_auar({0}, ABILITY_SF_ICON_ACTIVATED)"
-		/// @CSharpLua.Set = "SetAbilityStringField_auar({0}, ABILITY_SF_ICON_ACTIVATED, {1})"
+		/// @CSharpLua.Get = "GetAbilityStringField({0}, ABILITY_SF_ICON_ACTIVATED)"
+		/// @CSharpLua.Set = "SetAbilityStringField({0}, ABILITY_SF_ICON_ACTIVATED, {1})"
 		public extern string IconActivated { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityStringField_arar({0}, ABILITY_SF_ICON_RESEARCH)"
-		/// @CSharpLua.Set = "SetAbilityStringField_arar({0}, ABILITY_SF_ICON_RESEARCH, {1})"
+		/// @CSharpLua.Get = "GetAbilityStringField({0}, ABILITY_SF_ICON_RESEARCH)"
+		/// @CSharpLua.Set = "SetAbilityStringField({0}, ABILITY_SF_ICON_RESEARCH, {1})"
 		public extern string IconResearch { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityStringField_aefs({0}, ABILITY_SF_EFFECT_SOUND)"
-		/// @CSharpLua.Set = "SetAbilityStringField_aefs({0}, ABILITY_SF_EFFECT_SOUND, {1})"
+		/// @CSharpLua.Get = "GetAbilityStringField({0}, ABILITY_SF_EFFECT_SOUND)"
+		/// @CSharpLua.Set = "SetAbilityStringField({0}, ABILITY_SF_EFFECT_SOUND, {1})"
 		public extern string EffectSound { get; set; }
 
-		/// @CSharpLua.Get = "GetAbilityStringField_aefl({0}, ABILITY_SF_EFFECT_SOUND_LOOPING)"
-		/// @CSharpLua.Set = "SetAbilityStringField_aefl({0}, ABILITY_SF_EFFECT_SOUND_LOOPING, {1})"
+		/// @CSharpLua.Get = "GetAbilityStringField({0}, ABILITY_SF_EFFECT_SOUND_LOOPING)"
+		/// @CSharpLua.Set = "SetAbilityStringField({0}, ABILITY_SF_EFFECT_SOUND_LOOPING, {1})"
 		public extern string EffectSoundLooping { get; set; }
 
 		/// <summary>
