@@ -134,7 +134,7 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates the angle in radians from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		/// @CSharpLua.Template = "3.14159274 + Atan2({1} - {3}, {0} - {1})"
+		/// @CSharpLua.Template = "3.14159274 + Atan2({1} - {3}, {0} - {2})"
 		public static extern float AngleBetweenPointsRad(float x1, float y1, float x2, float y2);
 
 		/// <summary>
