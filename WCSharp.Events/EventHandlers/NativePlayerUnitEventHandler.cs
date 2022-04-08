@@ -156,9 +156,7 @@ namespace WCSharp.Events.EventHandlers
 				DestroyCondition(Condition);
 			}
 
-#pragma warning disable IDE0007 // Use implicit type
-			Func<bool> method = GetEventMethodId() switch
-#pragma warning restore IDE0007 // Use implicit type
+			var method = GetEventMethodId() switch
 			{
 				1 => Execute01(),
 				2 => Execute02(),

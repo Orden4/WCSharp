@@ -9,6 +9,7 @@ namespace WCSharp.Shared
 	/// </summary>
 	public static class Util
 	{
+#pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 		/// <summary>
 		/// This multiplier will translate GUI-like floating text size values into the values Warcraft III expects them to be.
 		/// </summary>
@@ -41,10 +42,8 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Displays the given text to everyone at the default position.
 		/// </summary>
-		public static void DisplayTextToAll(string text)
-		{
-			DisplayTextToPlayer(GetLocalPlayer(), 0, 0, text);
-		}
+		/// @CSharpLua.Template = "DisplayTextToPlayer(GetLocalPlayer(), 0, 0, {0})"
+		public static extern void DisplayTextToAll(string text);
 
 		/// <summary>
 		/// Calculates the distance from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
@@ -97,10 +96,8 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates the angle in degrees from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		public static float AngleBetweenPoints(float x1, float y1, float x2, float y2)
-		{
-			return 180 + (RAD2DEG * Atan2(y1 - y2, x1 - x2));
-		}
+		/// @CSharpLua.Template = "180 + (57.2957764 * Atan2({1} - {3}, {0} - {2}))"
+		public static extern float AngleBetweenPoints(float x1, float y1, float x2, float y2);
 
 		/// <summary>
 		/// Calculates the angle in degrees from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>).
@@ -137,10 +134,8 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates the angle in radians from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		public static float AngleBetweenPointsRad(float x1, float y1, float x2, float y2)
-		{
-			return PI + Atan2(y1 - y2, x1 - x2);
-		}
+		/// @CSharpLua.Template = "3.14159274 + Atan2({1} - {3}, {0} - {1})"
+		public static extern float AngleBetweenPointsRad(float x1, float y1, float x2, float y2);
 
 		/// <summary>
 		/// Calculates the angle in radians from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>).
@@ -340,5 +335,6 @@ namespace WCSharp.Shared
 
 			return textTag;
 		}
+#pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	}
 }
