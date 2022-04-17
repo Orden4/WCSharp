@@ -97,7 +97,7 @@ namespace WCSharp.Missiles
 		{
 			this.casterZ += CasterLaunchZ;
 			this.targetZ += TargetImpactZ;
-			this.totalDistanceToTarget = Util.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+			this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
 			this.arcActive = Arc != 0;
 
 			MissileX = CasterX;
@@ -153,14 +153,14 @@ namespace WCSharp.Missiles
 
 		private bool DirectAction()
 		{
-			if (Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			if (FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return false;
 			}
 
 			var oldZ = MissileZ;
-			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
+			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
 
 			this.yaw = Util.AngleBetweenPointsRad(MissileX, MissileY, TargetX, TargetY);
 
@@ -190,13 +190,13 @@ namespace WCSharp.Missiles
 
 		private bool ArcAction()
 		{
-			if (Util.DistanceBetweenPoints(this.originX, this.originY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			if (FastUtil.DistanceBetweenPoints(this.originX, this.originY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return false;
 			}
 
-			var totalDistance = Util.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+			var totalDistance = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
 
 			// If the target has moved by more than 50 units since the last tick (which is a bit over 3 times the maximum speed)
 			// We stop the arc as we presume the target has teleported
@@ -208,7 +208,7 @@ namespace WCSharp.Missiles
 			}
 
 			this.totalDistanceToTarget = totalDistance;
-			var distanceTravelled = Util.DistanceBetweenPoints(CasterX, CasterY, this.originX, this.originY);
+			var distanceTravelled = FastUtil.DistanceBetweenPoints(CasterX, CasterY, this.originX, this.originY);
 
 			var originYaw = Util.AngleBetweenPointsRad(this.originX, this.originY, TargetX, TargetY);
 
@@ -276,7 +276,7 @@ namespace WCSharp.Missiles
 				CasterY = this.originY;
 				this.casterZ = this.originZ;
 				CasterLaunchZ = 0;
-				this.totalDistanceToTarget = Util.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+				this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
 			}
 		}
 

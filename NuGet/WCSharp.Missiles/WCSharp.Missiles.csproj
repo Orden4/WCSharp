@@ -5,12 +5,11 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Missiles.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Revert base.Property (de)compiler bug workaround
-- Some performance improvements based on benchmarking</PackageReleaseNotes>
+    <PackageReleaseNotes>- Utilise new FastUtils in WCSharp.Shared for better performance.</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the creation and management of missiles in Warcraft III.</Description>
     <Authors>Orden4</Authors>
@@ -22,7 +21,7 @@ This package allows for the creation and management of missiles in Warcraft III.
     <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
     <PackageReference Include="War3Api.Common" Version="1.32.9" />
     <PackageReference Include="WCSharp.Events" Version="2.0.0" />
-    <PackageReference Include="WCSharp.Shared" Version="2.0.0" />
+    <PackageReference Include="WCSharp.Shared" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>

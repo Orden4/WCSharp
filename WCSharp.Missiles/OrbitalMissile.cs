@@ -119,7 +119,8 @@ namespace WCSharp.Missiles
 				this.currentAngle = GetRandomReal(0, Util.PI * 2);
 			}
 
-			(MissileX, MissileY) = Util.PositionWithPolarOffset(TargetX, TargetY, Range, this.currentAngle);
+			MissileX = Util.PositionWithPolarOffsetRadX(TargetX, this.range, this.currentAngle);
+			MissileY = Util.PositionWithPolarOffsetRadY(TargetY, this.range, this.currentAngle);
 			this.missileZ = this.targetZ;
 
 			IntervalLeft = Interval;
@@ -173,7 +174,8 @@ namespace WCSharp.Missiles
 			var oldX = MissileX;
 			var oldY = MissileY;
 			var oldZ = GetZ(MissileX, MissileY);
-			(MissileX, MissileY) = Util.PositionWithPolarOffsetRad(TargetX, TargetY, Range, this.currentAngle);
+			MissileX = Util.PositionWithPolarOffsetRadX(TargetX, this.range, this.currentAngle);
+			MissileY = Util.PositionWithPolarOffsetRadY(TargetY, this.range, this.currentAngle);
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{

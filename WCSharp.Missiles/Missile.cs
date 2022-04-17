@@ -115,7 +115,7 @@ namespace WCSharp.Missiles
 		}
 
 		/// <summary>
-		/// By default impact triggers when the distance is less than the missile's speed per tick.
+		/// By default impact triggers when the distance to the target is less than the missile's speed per tick.
 		/// <para>Use this to increase that distance by a static number (default 0).</para>
 		/// </summary>
 		public float ImpactLeeway { get; set; }
@@ -421,6 +421,7 @@ namespace WCSharp.Missiles
 			MissileY = TargetY;
 			this.missileZ = this.targetZ;
 			BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, MissileZ);
+			BlzSetSpecialEffectPitch(Effect, 0);
 
 			if (Interval > 0)
 			{
