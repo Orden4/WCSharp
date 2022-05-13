@@ -56,9 +56,9 @@ namespace WCSharp.Json
 				.Select(x => x.GetGenericTypeDefinition())
 				.ToList();
 
-			if (interfaces.Contains(typeof(IList<>)))
+			if (interfaces.Contains(typeof(ICollection<>)))
 			{
-				return SerializeList(value, type);
+				return SerializeCollection(value, type);
 			}
 			else if (interfaces.Contains(typeof(IDictionary<,>)))
 			{
@@ -87,7 +87,7 @@ namespace WCSharp.Json
 			}
 		}
 
-		private static object SerializeList(object value, Type type)
+		private static object SerializeCollection(object value, Type type)
 		{
 			var itemType = type.GetGenericArguments()[0];
 			if (!itemType.IsClass || itemType == typeof(string))

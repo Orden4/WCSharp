@@ -19,8 +19,8 @@ namespace WCSharp.Buffs
 			PeriodicEvents.AddPeriodicEvent(Action);
 		}
 
-		private static readonly List<Buff> buffs = new List<Buff>();
-		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new Dictionary<unit, List<Buff>>();
+		private static readonly List<Buff> buffs = new();
+		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new();
 
 		private static int index;
 		private static int size;

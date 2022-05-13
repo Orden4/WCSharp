@@ -8,7 +8,7 @@ namespace WCSharp.Lightnings
 	/// </summary>
 	public static class LightningSystem
 	{
-		private static readonly PeriodicDisposableTrigger<Lightning> periodicTrigger = new PeriodicDisposableTrigger<Lightning>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<Lightning> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
 		/// <summary>
 		/// All active lightnings.
 		/// </summary>

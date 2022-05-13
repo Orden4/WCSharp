@@ -9,7 +9,7 @@ namespace WCSharp.Shared
 	public class Base64
 	{
 		private const string BASE64_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-		private static readonly Base64 @default = new Base64();
+		private static readonly Base64 @default = new();
 		private static readonly object encode = Lua.Call(Lua.Load(@"
 return function(data, b)
     return ((data:gsub('.', function(x) 

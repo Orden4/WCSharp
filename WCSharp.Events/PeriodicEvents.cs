@@ -14,7 +14,7 @@ namespace WCSharp.Events
 		/// </summary>
 		public const float SYSTEM_INTERVAL = 0.03125f;
 
-		private static readonly List<PeriodicEvent> timerEvents = new List<PeriodicEvent>();
+		private static readonly List<PeriodicEvent> timerEvents = new();
 
 		static PeriodicEvents()
 		{

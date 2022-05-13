@@ -9,7 +9,7 @@ namespace WCSharp.Effects
 	/// </summary>
 	public partial class EffectSystem
 	{
-		private static readonly PeriodicTrigger<TimedEffect> periodicTrigger = new PeriodicTrigger<TimedEffect>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicTrigger<TimedEffect> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
 
 		/// <summary>
 		/// Adds an effect for removal after the given duration.

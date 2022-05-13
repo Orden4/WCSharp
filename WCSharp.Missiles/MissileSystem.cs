@@ -9,7 +9,7 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public static class MissileSystem
 	{
-		private static readonly PeriodicDisposableTrigger<Missile> periodicTrigger = new PeriodicDisposableTrigger<Missile>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<Missile> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
 		/// <summary>
 		/// All active missiles.
 		/// </summary>

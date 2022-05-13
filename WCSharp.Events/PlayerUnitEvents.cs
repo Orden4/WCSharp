@@ -12,10 +12,10 @@ namespace WCSharp.Events
 	public static class PlayerUnitEvents
 	{
 		private static readonly Func<int> baseFunc = () => GetUnitTypeId(GetTriggerUnit());
-		private static readonly List<CustomPlayerUnitEvent> customPlayerUnitEvents = new List<CustomPlayerUnitEvent>();
-		private static readonly List<InternalPlayerUnitEventHandler> internalPlayerUnitEventHandlers = new List<InternalPlayerUnitEventHandler>();
-		private static readonly Dictionary<playerunitevent, IPlayerUnitEventHandler> eventHandlers = new Dictionary<playerunitevent, IPlayerUnitEventHandler>();
-		private static readonly Dictionary<PlayerUnitEvent, Func<int>> filterFuncsByPlayerUnitEvent = new Dictionary<PlayerUnitEvent, Func<int>>
+		private static readonly List<CustomPlayerUnitEvent> customPlayerUnitEvents = new();
+		private static readonly List<InternalPlayerUnitEventHandler> internalPlayerUnitEventHandlers = new();
+		private static readonly Dictionary<playerunitevent, IPlayerUnitEventHandler> eventHandlers = new();
+		private static readonly Dictionary<PlayerUnitEvent, Func<int>> filterFuncsByPlayerUnitEvent = new()
 		{
 			{ PlayerUnitEvent.HeroTypeBecomesRevivable, () => GetUnitTypeId(GetRevivableUnit()) },
 			{ PlayerUnitEvent.HeroTypeCancelsRevive, () => GetUnitTypeId(GetRevivingUnit()) },

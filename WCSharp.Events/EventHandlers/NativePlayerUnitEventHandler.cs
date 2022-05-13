@@ -177,11 +177,7 @@ namespace WCSharp.Events.EventHandlers
 				var maxPlayers = GetBJMaxPlayerSlots();
 				for (var i = 0; i < maxPlayers; i++)
 				{
-					var player = Player(i);
-					if (GetPlayerSlotState(player) != PLAYER_SLOT_STATE_EMPTY)
-					{
-						TriggerRegisterPlayerUnitEvent(Trigger, player, NativeEvent, null);
-					}
+					TriggerRegisterPlayerUnitEvent(Trigger, Player(i), NativeEvent, null);
 				}
 			}
 		}

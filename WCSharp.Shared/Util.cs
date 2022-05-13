@@ -159,13 +159,13 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates an x-coordinate that is the given <paramref name="offset"/> away from <paramref name="x"/> at the target <paramref name="degrees"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Cos(0.0174532924 * {2})"
+		/// @CSharpLua.Template = "{0} + ({1} * Cos(0.0174532924 * {2}))"
 		public static extern float PositionWithPolarOffsetX(float x, float offset, float degrees);
 
 		/// <summary>
 		/// Calculates a y-coordinate that is the given <paramref name="offset"/> away from <paramref name="y"/> at the target <paramref name="degrees"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Sin(0.0174532924 * {2})"
+		/// @CSharpLua.Template = "{0} + ({1} * Sin(0.0174532924 * {2}))"
 		public static extern float PositionWithPolarOffsetY(float y, float offset, float degrees);
 
 		/// <summary>
@@ -182,13 +182,13 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates an x-coordinate that is the given <paramref name="offset"/> away from <paramref name="x"/> at the target <paramref name="radians"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Cos({2})"
+		/// @CSharpLua.Template = "{0} + ({1} * Cos({2}))"
 		public static extern float PositionWithPolarOffsetRadX(float x, float offset, float radians);
 
 		/// <summary>
 		/// Calculates a y-coordinate that is the given <paramref name="offset"/> away from <paramref name="y"/> at the target <paramref name="radians"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Sin({2})"
+		/// @CSharpLua.Template = "{0} + ({1} * Sin({2}))"
 		public static extern float PositionWithPolarOffsetRadY(float y, float offset, float radians);
 
 		/// <summary>

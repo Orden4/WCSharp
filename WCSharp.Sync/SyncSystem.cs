@@ -28,9 +28,9 @@ namespace WCSharp.Sync
 		private const string SYNC_HEADER_PREFIX = "__WCSharpSyncHeaders";
 		private const string SYNC_PACKET_PREFIX = "__WCSharpSyncPackets";
 
-		private static readonly List<SyncHandler> syncHandlers = new List<SyncHandler>();
-		private static readonly Dictionary<int, SyncMessage> messages = new Dictionary<int, SyncMessage>();
-		private static readonly HashSet<char> escapeChars = new HashSet<char>
+		private static readonly List<SyncHandler> syncHandlers = new();
+		private static readonly Dictionary<int, SyncMessage> messages = new();
+		private static readonly HashSet<char> escapeChars = new()
 		{
 			'"',
 			'\\',

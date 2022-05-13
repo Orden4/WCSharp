@@ -20,9 +20,9 @@ namespace WCSharp.Json
 				.Select(x => x.GetGenericTypeDefinition())
 				.ToList();
 
-			if (interfaces.Contains(typeof(IList<>)))
+			if (interfaces.Contains(typeof(ICollection<>)))
 			{
-				return DeserializeList(type, instance, table);
+				return DeserializeCollection(type, instance, table);
 			}
 			else if (interfaces.Contains(typeof(IDictionary<,>)))
 			{
@@ -76,7 +76,7 @@ namespace WCSharp.Json
 			return array;
 		}
 
-		private static object DeserializeList(Type type, object instance, LuaTable table)
+		private static object DeserializeCollection(Type type, object instance, LuaTable table)
 		{
 			var genericType = type.GetGenericArguments()[0];
 			var add = type.GetMethod("Add", new Type[] { genericType });

@@ -11,7 +11,7 @@ namespace WCSharp.Shared
 	public static class Delay
 	{
 		private static readonly timer timer = CreateTimer();
-		private static readonly List<Action> funcs = new List<Action>();
+		private static readonly List<Action> funcs = new();
 
 		/// <summary>
 		/// <para>Will execute the given action after a 0 second delay, which translates to a single frame.</para>
