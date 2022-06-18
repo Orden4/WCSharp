@@ -15,6 +15,7 @@ namespace WCSharp.Missiles
 	{
 		// Doesn't fold multiple constant references properly unless you do this
 		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
+		private static readonly location location = Location(0, 0);
 
 		/// <summary>
 		/// Whether the missile is active. This is automatically set to false prior to calling <see cref="OnImpact"/>.
@@ -478,10 +479,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		protected static float GetZ(float x, float y)
 		{
-			var loc = Location(x, y);
-			var z = GetLocationZ(loc);
-			RemoveLocation(loc);
-			return z;
+			MoveLocation(location, x, y);
+			return GetLocationZ(location);
 		}
 
 		/// <inheritdoc/>

@@ -8,6 +8,8 @@ namespace WCSharp.Lightnings
 	/// </summary>
 	public class Lightning : IPeriodicDisposableAction
 	{
+		private static readonly location location = Location(0, 0);
+
 		/// <inheritdoc/>
 		public bool Active { get; set; }
 		/// <summary>
@@ -113,9 +115,8 @@ namespace WCSharp.Lightnings
 		{
 			this.name = name;
 			this.casterZ = BlzGetUnitZ(caster) + GetUnitFlyHeight(caster);
-			var location = Location(targetX, targetY);
+			MoveLocation(location, targetX, targetY);
 			this.targetZ = GetLocationZ(location);
-			RemoveLocation(location);
 
 			Caster = caster;
 			CasterX = GetUnitX(caster);
@@ -136,9 +137,8 @@ namespace WCSharp.Lightnings
 		public Lightning(string name, float casterX, float casterY, unit target)
 		{
 			this.name = name;
-			var location = Location(casterX, casterY);
+			MoveLocation(location, casterX, casterY);
 			this.casterZ = GetLocationZ(location);
-			RemoveLocation(location);
 			this.targetZ = BlzGetUnitZ(target) + GetUnitFlyHeight(target);
 
 			CasterX = casterX;
@@ -160,12 +160,10 @@ namespace WCSharp.Lightnings
 		public Lightning(string name, float casterX, float casterY, float targetX, float targetY)
 		{
 			this.name = name;
-			var location = Location(casterX, casterY);
+			MoveLocation(location, casterX, casterY);
 			this.casterZ = GetLocationZ(location);
-			RemoveLocation(location);
-			location = Location(targetX, targetY);
+			MoveLocation(location, targetX, targetY);
 			this.targetZ = GetLocationZ(location);
-			RemoveLocation(location);
 
 			CasterX = casterX;
 			CasterY = casterY;

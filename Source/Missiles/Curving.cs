@@ -9,7 +9,7 @@ namespace Source.Missiles
 	{
 		public static void Initialise()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.SpellEffect, LaunchMissile, Constants.ABILITY_CURVING_MISSILE);
+			PlayerUnitEvents.Register(SpellEvent.Effect, LaunchMissile, Constants.ABILITY_CURVING_MISSILE);
 		}
 
 		private static void LaunchMissile()
@@ -38,7 +38,7 @@ namespace Source.Missiles
 		public override void OnPeriodic()
 		{
 			DisableArc();
-			Speed = Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) * 2;
+			Speed = FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) * 2;
 			Interval = 0;
 		}
 	}

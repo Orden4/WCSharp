@@ -20,7 +20,7 @@ namespace WCSharp.Dummies
 
 		static DummySystem()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeSpellEndCast, OnDummyCast);
+			PlayerUnitEvents.Register(UnitTypeEvent.SpellEndCast, OnDummyCast);
 		}
 
 		private static void OnDummyCast()

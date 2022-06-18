@@ -8,7 +8,7 @@ namespace Source.Missiles
 	{
 		public static void Initialise()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.SpellEffect, LaunchMissile, Constants.ABILITY_STRAIGHT_MISSILE);
+			PlayerUnitEvents.Register(SpellEvent.Effect, LaunchMissile, Constants.ABILITY_STRAIGHT_MISSILE);
 		}
 
 		private static void LaunchMissile()

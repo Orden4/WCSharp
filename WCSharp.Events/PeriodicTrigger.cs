@@ -43,12 +43,8 @@ namespace WCSharp.Events
 		private bool Periodic()
 		{
 			var size = this.actions.Count;
-			if (size == 0)
-			{
-				return false;
-			}
-
 			var i = 0;
+
 			while (i < size)
 			{
 				var action = this.actions[i];
@@ -65,7 +61,7 @@ namespace WCSharp.Events
 				}
 			}
 
-			return true;
+			return size > 0;
 		}
 	}
 }

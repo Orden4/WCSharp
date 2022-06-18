@@ -33,7 +33,7 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public static void RegisterForOwnershipChanges()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeChangesOwner, OnUnitTypeChangesOwner);
+			PlayerUnitEvents.Register(UnitTypeEvent.ChangesOwner, OnUnitTypeChangesOwner);
 		}
 
 		private static void OnUnitTypeChangesOwner()

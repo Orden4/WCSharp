@@ -20,11 +20,11 @@ namespace Source.Missiles
 			}
 		}
 
-		private readonly List<UnitHit> targetsHitCooldown = new List<UnitHit>();
+		private readonly List<UnitHit> targetsHitCooldown = new();
 
 		public static void Initialise()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.SpellEffect, LaunchMissile, Constants.ABILITY_ORBITAL_MISSILE);
+			PlayerUnitEvents.Register(SpellEvent.Effect, LaunchMissile, Constants.ABILITY_ORBITAL_MISSILE);
 		}
 
 		private static void LaunchMissile()

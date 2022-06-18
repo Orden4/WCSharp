@@ -15,7 +15,7 @@ namespace WCSharp.Buffs
 		static BuffSystem()
 		{
 			// Taking a shortcut from the standard approach and just assuming that there will pretty much always be buffs active and never unregistering these events.
-			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeDies, OnDeath);
+			PlayerUnitEvents.Register(UnitTypeEvent.Dies, OnDeath);
 			PeriodicEvents.AddPeriodicEvent(Action);
 		}
 
@@ -158,7 +158,7 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public static void RegisterForOwnershipChanges()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeChangesOwner, OnUnitTypeChangesOwner);
+			PlayerUnitEvents.Register(UnitTypeEvent.ChangesOwner, OnUnitTypeChangesOwner);
 		}
 
 		private static void OnUnitTypeChangesOwner()
