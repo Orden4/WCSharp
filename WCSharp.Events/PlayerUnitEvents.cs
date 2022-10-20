@@ -328,6 +328,8 @@ namespace WCSharp.Events
 			{ (int)UnitTypeEvent.UsesItem, () => GetUnitTypeId(GetManipulatingUnit()) },
 		};
 
+		internal static bool Debug { get; private set; }
+
 		/// <summary>
 		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for <paramref name="unit"/>.
 		/// </summary>
@@ -459,31 +461,20 @@ namespace WCSharp.Events
 			}
 		}
 
-		private static void Register(int @event, Action action, int filterId = 0)
+		private static void Register(int @event, Action action, int? filterId = null)
 		{
-			var filterFunc = filterId == 0
-				? null
-				: filterFuncsByEvent[@event];
-
-			if (customPlayerUnitEventHandlers.TryGetValue(@event, out var customHandler))
+			Func<int> filterFunc = default;
+			if (filterId.HasValue)
 			{
-				if (customHandler == null)
-				{
-					customHandler = CreateCustomHandler(@event);
-				}
-
-				customHandler.Register(filterFunc, action, filterId);
+				filterFunc = filterFuncsByEvent[@event];
 			}
-			else if (playerUnitEventNativesById.TryGetValue(@event, out var playerUnitEventNative))
+			else
 			{
-				if (!playerUnitEventHandlers.TryGetValue(playerUnitEventNative, out var handler))
-				{
-					handler = new PlayerUnitEventHandler(playerUnitEventNative);
-					playerUnitEventHandlers.Add(playerUnitEventNative, handler);
-				}
-
-				handler.Register(filterFunc, action, filterId);
+				filterId = 0; // Need to be assigned here because CSharpLua can't handle the decompiled filterId ?? 0 statement
 			}
+
+			var handler = GetOrCreateHandler(@event, action, filterId, filterFunc);
+			handler?.Register(action, filterFunc, filterId.Value);
 		}
 
 		/// <summary>
@@ -617,9 +608,45 @@ namespace WCSharp.Events
 			}
 		}
 
-		private static void Unregister(int @event, Action action, int filterId = 0)
+		private static void Unregister(int @event, Action action, int? filterId = null)
 		{
+			Func<int> filterFunc = default;
+			if (filterId.HasValue)
+			{
+				filterFunc = filterFuncsByEvent[@event];
+			}
+			else
+			{
+				filterId = 0; // Need to be assigned here because CSharpLua can't handle the decompiled filterId ?? 0 statement
+			}
 
+			var handler = GetOrCreateHandler(@event, action, filterId, filterFunc);
+			handler?.Unregister(action, filterFunc, filterId.Value);
+		}
+
+		private static IPlayerUnitEventHandler GetOrCreateHandler(int @event, Action action, int? filterId, Func<int> filterFunc)
+		{
+			if (customPlayerUnitEventHandlers.TryGetValue(@event, out var customHandler))
+			{
+				if (customHandler == null)
+				{
+					customHandler = CreateCustomHandler(@event);
+				}
+
+				return customHandler;
+			}
+			else if (playerUnitEventNativesById.TryGetValue(@event, out var playerUnitEventNative))
+			{
+				if (!playerUnitEventHandlers.TryGetValue(playerUnitEventNative, out var handler))
+				{
+					handler = new PlayerUnitEventHandler(playerUnitEventNative);
+					playerUnitEventHandlers.Add(playerUnitEventNative, handler);
+				}
+
+				return handler;
+			}
+
+			return null;
 		}
 
 		/// <summary>
@@ -644,6 +671,16 @@ namespace WCSharp.Events
 
 			customPlayerUnitEventHandlers[@event] = customHandler;
 			return customHandler;
+		}
+
+		/// <summary>
+		/// Call this method to automatically wrap your actions in a try/catch, so that exceptions that lead back to <see cref="PeriodicEvents"/> will automatically output
+		/// information.
+		/// <para>It is recommended to use compilation time conditions to not call this on release mode.</para>
+		/// </summary>
+		public static void EnableDebug()
+		{
+			Debug = true;
 		}
 	}
 }

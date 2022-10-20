@@ -47,9 +47,12 @@ namespace WCSharp.Buffs
 		{
 			dummyPlayer ??= Player(PLAYER_NEUTRAL_PASSIVE);
 			var dummy = DummySystem.GetDummy();
-			SetUnitOwner(dummy, dummyPlayer, true);
+			SetUnitOwner(dummy, dummyPlayer, false);
 			UnitAddAbility(dummy, abilityId);
-			SetUnitAbilityLevel(dummy, abilityId, level);
+			if (level > 1)
+			{
+				SetUnitAbilityLevel(dummy, abilityId, level);
+			}
 			IssueTargetOrderById(dummy, orderId, Target);
 			DummySystem.RecycleDummy(dummy);
 

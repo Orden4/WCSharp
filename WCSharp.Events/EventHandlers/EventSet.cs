@@ -62,7 +62,8 @@ namespace WCSharp.Events.EventHandlers
 
 			while (this.index < this.size)
 			{
-				this.actions[this.index++].Invoke();
+				this.actions[this.index].Invoke();
+				this.index++;
 			}
 		}
 	}

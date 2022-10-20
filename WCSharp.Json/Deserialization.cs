@@ -20,13 +20,13 @@ namespace WCSharp.Json
 				.Select(x => x.GetGenericTypeDefinition())
 				.ToList();
 
-			if (interfaces.Contains(typeof(ICollection<>)))
-			{
-				return DeserializeCollection(type, instance, table);
-			}
-			else if (interfaces.Contains(typeof(IDictionary<,>)))
+			if (interfaces.Contains(typeof(IDictionary<,>)))
 			{
 				return DeserializeDictionary(type, instance, table);
+			}
+			else if (interfaces.Contains(typeof(ICollection<>)))
+			{
+				return DeserializeCollection(type, instance, table);
 			}
 
 			var properties = type.GetProperties();

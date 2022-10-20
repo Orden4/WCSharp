@@ -7,10 +7,6 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 	{
 		public UnitCreatedHandler()
 		{
-			var condition = Condition(Run);
-			TriggerAddCondition(this.trigger, condition);
-			DisableTrigger(this.trigger);
-
 			TriggerRegisterEnterRegion(this.trigger, Rectangle.WorldBounds.Region, null);
 		}
 	}

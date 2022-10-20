@@ -115,7 +115,7 @@ namespace Source
 					}
 				}
 
-				//SaveManager.Initialize();
+				SaveManager.Initialize();
 
 				Arcing.Initialise();
 				Curving.Initialise();
@@ -129,6 +129,7 @@ namespace Source
 				DisplayTextToPlayer(GetLocalPlayer(), 0, 0, ex.Message);
 			}
 		}
+
 		private class Test : Saveable { }
 
 		private static bool DealDamage()

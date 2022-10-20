@@ -56,13 +56,13 @@ namespace WCSharp.Json
 				.Select(x => x.GetGenericTypeDefinition())
 				.ToList();
 
-			if (interfaces.Contains(typeof(ICollection<>)))
-			{
-				return SerializeCollection(value, type);
-			}
-			else if (interfaces.Contains(typeof(IDictionary<,>)))
+			if (interfaces.Contains(typeof(IDictionary<,>)))
 			{
 				return SerializeDictionary(value, type);
+			}
+			else if (interfaces.Contains(typeof(ICollection<>)))
+			{
+				return SerializeCollection(value, type);
 			}
 
 			return ConvertInputToDictionary(value, type);

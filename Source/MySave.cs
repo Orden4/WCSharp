@@ -31,31 +31,6 @@ namespace Source
 		public int X { get; set; }
 		public int Y { get; set; }
 		public int Z { get; set; }
-		public int A1 { get; set; }
-		public int B1 { get; set; }
-		public int C1 { get; set; }
-		public int D1 { get; set; }
-		public int E1 { get; set; }
-		public int F1 { get; set; }
-		public int G1 { get; set; }
-		public int H1 { get; set; }
-		public int I1 { get; set; }
-		public int J1 { get; set; }
-		public int K1 { get; set; }
-		public int L1 { get; set; }
-		public int M1 { get; set; }
-		public int N1 { get; set; }
-		public int O1 { get; set; }
-		public int P1 { get; set; }
-		public int Q1 { get; set; }
-		public int R1 { get; set; }
-		public int S1 { get; set; }
-		public int T1 { get; set; }
-		public int U1 { get; set; }
-		public int V1 { get; set; }
-		public int W1 { get; set; }
-		public int X1 { get; set; }
-		public int Y1 { get; set; }
 		public int Z1 { get; set; }
 	}
 

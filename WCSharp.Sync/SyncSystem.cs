@@ -40,21 +40,27 @@ namespace WCSharp.Sync
 			'\r',
 			'\t'
 		};
-
-		static SyncSystem()
+		private static readonly List<SyncTrigger> syncTriggers = new()
 		{
-			RegisterForPrefix(HandleSyncHeader, SYNC_HEADER_PREFIX);
-			RegisterForPrefix(HandleSyncPacket, SYNC_PACKET_PREFIX);
-		}
+			RegisterForPrefix(HandleSyncHeader, SYNC_HEADER_PREFIX),
+			RegisterForPrefix(HandleSyncPacket, SYNC_PACKET_PREFIX)
+		};
 
-		private static void RegisterForPrefix(Func<bool> action, string prefix)
+		private static SyncTrigger RegisterForPrefix(Func<bool> action, string prefix)
 		{
-			var headerTrigger = CreateTrigger();
-			TriggerAddCondition(headerTrigger, Condition(action));
+			var trigger = CreateTrigger();
+			var condition = Condition(action);
+			TriggerAddCondition(trigger, condition);
 			foreach (var player in Util.EnumeratePlayers())
 			{
-				BlzTriggerRegisterPlayerSyncEvent(headerTrigger, player, prefix, false);
+				BlzTriggerRegisterPlayerSyncEvent(trigger, player, prefix, false);
 			}
+
+			return new SyncTrigger
+			{
+				Condition = condition,
+				Trigger = trigger
+			};
 		}
 
 		private static bool HandleSyncHeader()
@@ -219,6 +225,51 @@ namespace WCSharp.Sync
 				{
 					syncHandlers.RemoveAt(i--);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Call this method to automatically wrap your actions in a try/catch, so that exceptions that lead back to the SyncSystem will automatically output information.
+		/// <para>It is recommended to use compilation time conditions to not call this on release mode.</para>
+		/// </summary>
+		public static void EnableDebug()
+		{
+			foreach (var syncTrigger in syncTriggers)
+			{
+				DestroyCondition(syncTrigger.Condition);
+				DisableTrigger(syncTrigger.Trigger);
+				DestroyTrigger(syncTrigger.Trigger);
+			}
+
+			syncTriggers.Clear();
+			syncTriggers.Add(RegisterForPrefix(headerAction, SYNC_HEADER_PREFIX));
+			syncTriggers.Add(RegisterForPrefix(packetAction, SYNC_PACKET_PREFIX));
+
+			static bool headerAction()
+			{
+				try
+				{
+					HandleSyncHeader();
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+				}
+
+				return false;
+			}
+			static bool packetAction()
+			{
+				try
+				{
+					HandleSyncPacket();
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+				}
+
+				return false;
 			}
 		}
 	}

@@ -6,10 +6,6 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 	{
 		public PlayerUnitEventHandler(playerunitevent @event)
 		{
-			var condition = Condition(Run);
-			TriggerAddCondition(this.trigger, condition);
-			DisableTrigger(this.trigger);
-
 			var maxPlayers = GetBJMaxPlayerSlots();
 			for (var i = 0; i < maxPlayers; i++)
 			{

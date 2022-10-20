@@ -13,7 +13,7 @@ namespace WCSharp.Events.EventHandlers
 
 		public EventSetWithFilter(Func<int> filterFunc)
 		{
-			FilterFunc = filterFunc;
+			FilterFunc = filterFunc ?? throw new ArgumentNullException(nameof(filterFunc));
 			this.actionsByFilterId = new Dictionary<int, Action>();
 			this.eventSetsByAction = new Dictionary<Action, EventSet>();
 		}
@@ -25,9 +25,10 @@ namespace WCSharp.Events.EventHandlers
 				if (!this.eventSetsByAction.TryGetValue(existingAction, out var eventSet))
 				{
 					eventSet = new EventSet();
-					this.actionsByFilterId[filterId] = eventSet.Run;
+					eventSet.Add(existingAction, filterId);
 					this.eventSetsByAction.Add(existingAction, eventSet);
 					this.eventSetsByAction.Add(eventSet.Run, eventSet);
+					this.actionsByFilterId[filterId] = eventSet.Run;
 				}
 
 				eventSet.Add(action, filterId);

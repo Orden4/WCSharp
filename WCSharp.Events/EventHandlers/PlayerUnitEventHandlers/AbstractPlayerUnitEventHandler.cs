@@ -15,9 +15,29 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 		{
 			this.eventSets = new List<IEventSet>();
 			this.trigger = CreateTrigger();
+
+			Func<bool> run = Run;
+			if (PlayerUnitEvents.Debug)
+			{
+				run = () =>
+				{
+					try
+					{
+						Run();
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine(ex);
+					}
+					return false;
+				};
+			}
+			var condition = Condition(run);
+			TriggerAddCondition(this.trigger, condition);
+			DisableTrigger(this.trigger);
 		}
 
-		public void Register(Func<int> filterFunc, Action action, int filterId)
+		public void Register(Action action, Func<int> filterFunc, int filterId)
 		{
 			var searchIndex = -1;
 			for (var i = 0; i < this.eventSets.Count; i++)
@@ -32,7 +52,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			IEventSet eventSet;
 			if (searchIndex == -1)
 			{
-				eventSet = filterId == 0 ? new EventSet() : new EventSetWithFilter(filterFunc);
+				eventSet = filterFunc == null ? new EventSet() : new EventSetWithFilter(filterFunc);
 				this.eventSets.Add(eventSet);
 
 				if (this.eventSets.Count == 1)
@@ -48,7 +68,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			eventSet.Add(action, filterId);
 		}
 
-		public void Unregister(Func<int> filterFunc, Action action, int filterId)
+		public void Unregister(Action action, Func<int> filterFunc, int filterId)
 		{
 			var searchIndex = -1;
 			for (var i = 0; i < this.eventSets.Count; i++)
@@ -66,8 +86,6 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			var eventSet = this.eventSets[searchIndex];
 			if (eventSet.Remove(action, filterId) && eventSet.Count == 0)
 			{
-				DisableTrigger(this.trigger);
-
 				if (searchIndex < this.size)
 				{
 					if (searchIndex <= this.index)
@@ -78,12 +96,11 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 					}
 					else
 					{
-						var actualSize = this.eventSets.Count;
-						this.eventSets[searchIndex] = this.eventSets[this.size - 1];
-						this.eventSets[this.size - 1] = this.eventSets[actualSize - 1];
-						this.eventSets.RemoveAt(actualSize - 1);
-
 						this.size--;
+						var actualSize = this.eventSets.Count;
+						this.eventSets[searchIndex] = this.eventSets[this.size];
+						this.eventSets[this.size] = this.eventSets[actualSize - 1];
+						this.eventSets.RemoveAt(actualSize - 1);
 					}
 				}
 				else
@@ -91,6 +108,11 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 					var actualSize = this.eventSets.Count;
 					this.eventSets[searchIndex] = this.eventSets[actualSize - 1];
 					this.eventSets.RemoveAt(actualSize - 1);
+				}
+
+				if (this.eventSets.Count == 0)
+				{
+					DisableTrigger(this.trigger);
 				}
 			}
 		}
@@ -102,7 +124,8 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 
 			while (this.index < this.size)
 			{
-				this.eventSets[this.index++].Run();
+				this.eventSets[this.index].Run();
+				this.index++;
 			}
 
 			return false;
