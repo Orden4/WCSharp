@@ -8,7 +8,7 @@ namespace WCSharp.Knockbacks
 	/// </summary>
 	public static class KnockbackSystem
 	{
-		private static readonly PeriodicTrigger<Knockback> periodicTrigger = new PeriodicTrigger<Knockback>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicTrigger<Knockback> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
 		/// <summary>
 		/// All active knockbacks.
 		/// </summary>

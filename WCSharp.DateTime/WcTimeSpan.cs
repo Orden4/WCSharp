@@ -59,21 +59,21 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// A timespan with a duration of 0.
 		/// </summary>
-		public static WcTimeSpan Zero => new WcTimeSpan(0);
+		public static WcTimeSpan Zero => new(0);
 		/// <summary>
 		/// A timespan with a duration of <see cref="int.MinValue"/> (in seconds).
 		/// </summary>
-		public static WcTimeSpan MinValue => new WcTimeSpan(int.MinValue);
+		public static WcTimeSpan MinValue => new(int.MinValue);
 		/// <summary>
 		/// A timespan with a duration of <see cref="int.MaxValue"/> (in seconds).
 		/// </summary>
-		public static WcTimeSpan MaxValue => new WcTimeSpan(int.MaxValue);
+		public static WcTimeSpan MaxValue => new(int.MaxValue);
 
 		/// <summary>
 		/// Returns the time that Warcraft III has been running for the current player.
 		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
 		/// </summary>
-		public static WcTimeSpan LocalPlaytime => new WcTimeSpan((int)Os.Clock());
+		public static WcTimeSpan LocalPlaytime => new((int)Os.Clock());
 
 		/// <summary>
 		/// Creates a new <see cref="WcTimeSpan"/> instance with a duration of the given number of seconds.

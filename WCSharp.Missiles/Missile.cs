@@ -15,6 +15,7 @@ namespace WCSharp.Missiles
 	{
 		// Doesn't fold multiple constant references properly unless you do this
 		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
+		private static readonly location location = Location(0, 0);
 
 		/// <summary>
 		/// Whether the missile is active. This is automatically set to false prior to calling <see cref="OnImpact"/>.
@@ -115,7 +116,7 @@ namespace WCSharp.Missiles
 		}
 
 		/// <summary>
-		/// By default impact triggers when the distance is less than the missile's speed per tick.
+		/// By default impact triggers when the distance to the target is less than the missile's speed per tick.
 		/// <para>Use this to increase that distance by a static number (default 0).</para>
 		/// </summary>
 		public float ImpactLeeway { get; set; }
@@ -421,6 +422,7 @@ namespace WCSharp.Missiles
 			MissileY = TargetY;
 			this.missileZ = this.targetZ;
 			BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, MissileZ);
+			BlzSetSpecialEffectPitch(Effect, 0);
 
 			if (Interval > 0)
 			{
@@ -477,10 +479,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		protected static float GetZ(float x, float y)
 		{
-			var loc = Location(x, y);
-			var z = GetLocationZ(loc);
-			RemoveLocation(loc);
-			return z;
+			MoveLocation(location, x, y);
+			return GetLocationZ(location);
 		}
 
 		/// <inheritdoc/>

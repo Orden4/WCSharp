@@ -10,7 +10,7 @@ namespace WCSharp.Buffs
 	/// </summary>
 	public static class AuraSystem
 	{
-		private static readonly PeriodicDisposableTrigger<IAura> periodicTrigger = new PeriodicDisposableTrigger<IAura>(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<IAura> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
 
 		/// <summary>
 		/// All active buffs.
@@ -33,7 +33,7 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public static void RegisterForOwnershipChanges()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeChangesOwner, OnUnitTypeChangesOwner);
+			PlayerUnitEvents.Register(UnitTypeEvent.ChangesOwner, OnUnitTypeChangesOwner);
 		}
 
 		private static void OnUnitTypeChangesOwner()

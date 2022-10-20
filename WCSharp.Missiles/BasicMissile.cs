@@ -72,7 +72,7 @@ namespace WCSharp.Missiles
 			this.casterZ += CasterLaunchZ;
 			this.targetZ += TargetImpactZ;
 			this.followsTerrain = this.casterZ < 300 && Arc == 0;
-			this.totalDistanceToTarget = Util.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+			this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
 
 			if (!this.followsTerrain)
 			{
@@ -118,7 +118,7 @@ namespace WCSharp.Missiles
 				}
 			}
 
-			if (Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			if (FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return;
@@ -128,11 +128,11 @@ namespace WCSharp.Missiles
 
 			if (this.followsTerrain)
 			{
-				this.missileZ += (this.targetZ - this.missileZ) * (this.speed / Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
+				this.missileZ += (this.targetZ - this.missileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
 			}
 			else
 			{
-				var totalDistance = Util.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+				var totalDistance = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
 
 				// If the target has moved by more than 50 units since the last tick (which is a bit over 3 times the maximum speed)
 				// We stop the arc as we presume the target has teleported
@@ -143,7 +143,7 @@ namespace WCSharp.Missiles
 				else
 				{
 					this.totalDistanceToTarget = totalDistance;
-					var percentageTravelled = Util.DistanceBetweenPoints(CasterX, CasterY, MissileX, MissileY) / totalDistance;
+					var percentageTravelled = FastUtil.DistanceBetweenPoints(CasterX, CasterY, MissileX, MissileY) / totalDistance;
 					this.missileZ = this.casterZ
 						+ (percentageTravelled * (this.targetZ - this.casterZ))
 						+ (totalDistance * Arc * Sin(percentageTravelled * Util.PI));
@@ -198,7 +198,7 @@ namespace WCSharp.Missiles
 				CasterY = MissileY;
 				this.casterZ = this.missileZ;
 				CasterLaunchZ = 0;
-				this.totalDistanceToTarget = Util.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+				this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
 			}
 		}
 

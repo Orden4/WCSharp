@@ -132,7 +132,7 @@ namespace WCSharp.Missiles
 				}
 			}
 
-			if (Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			if (FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return;
@@ -169,7 +169,7 @@ namespace WCSharp.Missiles
 			var deltaY = this.speed * Sin(this.yaw);
 			MissileY += deltaY;
 
-			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / Util.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
+			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{

@@ -78,23 +78,23 @@ namespace WCSharp.Shared.Data
 		/// <summary>
 		/// The point corresponding to the top-left of the rectangle.
 		/// </summary>
-		public Point TopLeft => new Point(Left, Top);
+		public Point TopLeft => new(Left, Top);
 		/// <summary>
 		/// The point corresponding to the top-right of the rectangle.
 		/// </summary>
-		public Point TopRight => new Point(Right, Top);
+		public Point TopRight => new(Right, Top);
 		/// <summary>
 		/// The point corresponding to the bottom-left of the rectangle.
 		/// </summary>
-		public Point BottomLeft => new Point(Left, Bottom);
+		public Point BottomLeft => new(Left, Bottom);
 		/// <summary>
 		/// The point corresponding to the bottom-right of the rectangle.
 		/// </summary>
-		public Point BottomRight => new Point(Right, Bottom);
+		public Point BottomRight => new(Right, Bottom);
 		/// <summary>
 		/// The point corresponding to the center of the rectangle.
 		/// </summary>
-		public Point Center => new Point((Left + Right) / 2, (Bottom + Top) / 2);
+		public Point Center => new((Left + Right) / 2, (Bottom + Top) / 2);
 
 		/// <summary>
 		/// A Rectangle is empty if its width or height is 0.

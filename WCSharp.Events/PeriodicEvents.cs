@@ -14,12 +14,35 @@ namespace WCSharp.Events
 		/// </summary>
 		public const float SYSTEM_INTERVAL = 0.03125f;
 
-		private static readonly List<PeriodicEvent> timerEvents = new List<PeriodicEvent>();
+		private static readonly List<PeriodicEvent> timerEvents = new();
+		private static timer timer = Start(Tick);
 
-		static PeriodicEvents()
+		private static timer Start(Action action)
 		{
 			var timer = CreateTimer();
-			TimerStart(timer, SYSTEM_INTERVAL, true, Tick);
+			TimerStart(timer, SYSTEM_INTERVAL, true, action);
+			return timer;
+		}
+
+		/// <summary>
+		/// Call this method to automatically wrap your actions in a try/catch, so that exceptions that lead back to <see cref="PeriodicEvents"/> will automatically output
+		/// information.
+		/// <para>It is recommended to use compilation time conditions to not call this on release mode.</para>
+		/// </summary>
+		public static void EnableDebug()
+		{
+			DestroyTimer(timer);
+			timer = Start(() =>
+			{
+				try
+				{
+					Tick();
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex);
+				}
+			});
 		}
 
 		/// <summary>
@@ -49,6 +72,7 @@ namespace WCSharp.Events
 			while (i < size)
 			{
 				var timerEvent = timerEvents[i];
+				i++; // Purposely written stupidly to make sure this doesn't get decompiled into a for loop
 				timerEvent.IntervalLeft -= SYSTEM_INTERVAL;
 				if (timerEvent.IntervalLeft <= 0)
 				{
@@ -56,12 +80,11 @@ namespace WCSharp.Events
 					if (!timerEvent.Method.Invoke())
 					{
 						size--;
+						i--;
 						timerEvents[i] = timerEvents[size];
 						timerEvents.RemoveAt(size);
-						i--;
 					}
 				}
-				i++;
 			}
 		}
 	}

@@ -26,17 +26,18 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public bool IsMainStack { get; private set; }
 
-		private List<T> buffs;
+		private readonly List<T> buffs;
 
 		/// <summary>
 		/// All buffs contained in this stack.
 		/// <para>Note that this is only filled for the main stack.</para>
 		/// </summary>
-		public IEnumerable<T> Buffs => this.buffs ?? Enumerable.Empty<T>();
+		public IEnumerable<T> Buffs => this.buffs;
 
 		/// <inheritdoc/>
 		public RollingBuff(unit caster, unit target) : base(caster, target)
 		{
+			this.buffs = new List<T>();
 		}
 
 		/// <summary>
@@ -64,10 +65,7 @@ namespace WCSharp.Buffs
 			}
 
 			IsMainStack = true;
-			this.buffs = new List<T>
-			{
-				(T)this
-			};
+			this.buffs.Add((T)this);
 			OnApply();
 		}
 
@@ -87,6 +85,7 @@ namespace WCSharp.Buffs
 				if (x.Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 				{
 					Stacks -= x.Stacks;
+					OnExpireStack(x);
 					x.OnExpire();
 					x.OnDispose();
 					return false;
@@ -115,7 +114,6 @@ namespace WCSharp.Buffs
 		/// <param name="expiredStack">The stack that expired.</param>
 		public virtual void OnExpireStack(T expiredStack)
 		{
-
 		}
 
 		/// <summary>

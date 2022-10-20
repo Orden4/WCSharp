@@ -9,6 +9,7 @@ namespace WCSharp.Shared
 	/// </summary>
 	public static class Util
 	{
+#pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 		/// <summary>
 		/// This multiplier will translate GUI-like floating text size values into the values Warcraft III expects them to be.
 		/// </summary>
@@ -41,10 +42,8 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Displays the given text to everyone at the default position.
 		/// </summary>
-		public static void DisplayTextToAll(string text)
-		{
-			DisplayTextToPlayer(GetLocalPlayer(), 0, 0, text);
-		}
+		/// @CSharpLua.Template = "DisplayTextToPlayer(GetLocalPlayer(), 0, 0, {0})"
+		public static extern void DisplayTextToAll(string text);
 
 		/// <summary>
 		/// Calculates the distance from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
@@ -61,11 +60,9 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(unit source, float x2, float y2)
 		{
-			var x1 = GetUnitX(source);
-			var y1 = GetUnitY(source);
-			var diffx = x1 - x2;
-			var diffy = y1 - y2;
-			return SquareRoot((diffx * diffx) + (diffy * diffy));
+			var dx = GetUnitX(source) - x2;
+			var dy = GetUnitY(source) - y2;
+			return SquareRoot((dx * dx) + (dy * dy));
 		}
 
 		/// <summary>
@@ -73,11 +70,9 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(float x1, float y1, unit target)
 		{
-			var x2 = GetUnitX(target);
-			var y2 = GetUnitY(target);
-			var diffx = x1 - x2;
-			var diffy = y1 - y2;
-			return SquareRoot((diffx * diffx) + (diffy * diffy));
+			var dx = x1 - GetUnitX(target);
+			var dy = y1 - GetUnitY(target);
+			return SquareRoot((dx * dx) + (dy * dy));
 		}
 
 		/// <summary>
@@ -85,31 +80,23 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(unit source, unit target)
 		{
-			var x1 = GetUnitX(source);
-			var y1 = GetUnitY(source);
-			var x2 = GetUnitX(target);
-			var y2 = GetUnitY(target);
-			var diffx = x1 - x2;
-			var diffy = y1 - y2;
-			return SquareRoot((diffx * diffx) + (diffy * diffy));
+			var dx = GetUnitX(source) - GetUnitX(target);
+			var dy = GetUnitY(source) - GetUnitY(target);
+			return SquareRoot((dx * dx) + (dy * dy));
 		}
 
 		/// <summary>
 		/// Calculates the angle in degrees from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		public static float AngleBetweenPoints(float x1, float y1, float x2, float y2)
-		{
-			return 180 + (RAD2DEG * Atan2(y1 - y2, x1 - x2));
-		}
+		/// @CSharpLua.Template = "180 + (57.2957764 * Atan2({1} - {3}, {0} - {2}))"
+		public static extern float AngleBetweenPoints(float x1, float y1, float x2, float y2);
 
 		/// <summary>
 		/// Calculates the angle in degrees from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
 		public static float AngleBetweenPoints(unit source, float x2, float y2)
 		{
-			var x1 = GetUnitX(source);
-			var y1 = GetUnitY(source);
-			return 180 + (RAD2DEG * Atan2(y1 - y2, x1 - x2));
+			return 180 + (RAD2DEG * Atan2(GetUnitY(source) - y2, GetUnitX(source) - x2));
 		}
 
 		/// <summary>
@@ -117,9 +104,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPoints(float x1, float y1, unit target)
 		{
-			var x2 = GetUnitX(target);
-			var y2 = GetUnitY(target);
-			return 180 + (RAD2DEG * Atan2(y1 - y2, x1 - x2));
+			return 180 + (RAD2DEG * Atan2(y1 - GetUnitY(target), x1 - GetUnitX(target)));
 		}
 
 		/// <summary>
@@ -127,29 +112,21 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPoints(unit source, unit target)
 		{
-			var x1 = GetUnitX(source);
-			var y1 = GetUnitY(source);
-			var x2 = GetUnitX(target);
-			var y2 = GetUnitY(target);
-			return 180 + (RAD2DEG * Atan2(y1 - y2, x1 - x2));
+			return 180 + (RAD2DEG * Atan2(GetUnitY(source) - GetUnitY(target), GetUnitX(source) - GetUnitX(target)));
 		}
 
 		/// <summary>
 		/// Calculates the angle in radians from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		public static float AngleBetweenPointsRad(float x1, float y1, float x2, float y2)
-		{
-			return PI + Atan2(y1 - y2, x1 - x2);
-		}
+		/// @CSharpLua.Template = "3.14159274 + Atan2({1} - {3}, {0} - {2})"
+		public static extern float AngleBetweenPointsRad(float x1, float y1, float x2, float y2);
 
 		/// <summary>
 		/// Calculates the angle in radians from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
 		public static float AngleBetweenPointsRad(unit source, float x2, float y2)
 		{
-			var x1 = GetUnitX(source);
-			var y1 = GetUnitY(source);
-			return PI + Atan2(y1 - y2, x1 - x2);
+			return PI + Atan2(GetUnitY(source) - y2, GetUnitX(source) - x2);
 		}
 
 		/// <summary>
@@ -157,9 +134,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPointsRad(float x1, float y1, unit target)
 		{
-			var x2 = GetUnitX(target);
-			var y2 = GetUnitY(target);
-			return PI + Atan2(y1 - y2, x1 - x2);
+			return PI + Atan2(y1 - GetUnitY(target), x1 - GetUnitX(target));
 		}
 
 		/// <summary>
@@ -167,15 +142,11 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPointsRad(unit source, unit target)
 		{
-			var x1 = GetUnitX(source);
-			var y1 = GetUnitY(source);
-			var x2 = GetUnitX(target);
-			var y2 = GetUnitY(target);
-			return PI + Atan2(y1 - y2, x1 - x2);
+			return PI + Atan2(GetUnitY(source) - GetUnitY(target), GetUnitX(source) - GetUnitX(target));
 		}
 
 		/// <summary>
-		/// Calculates a point that is the given offset away from (<paramref name="x"/>, <paramref name="y"/>) at the target degrees.
+		/// Calculates a point that is the given <paramref name="offset"/> away from (<paramref name="x"/>, <paramref name="y"/>) at the target <paramref name="degrees"/>.
 		/// </summary>
 		public static (float x, float y) PositionWithPolarOffset(float x, float y, float offset, float degrees)
 		{
@@ -186,7 +157,19 @@ namespace WCSharp.Shared
 		}
 
 		/// <summary>
-		/// Calculates a point that is the given offset away from (<paramref name="x"/>, <paramref name="y"/>) at the target radians.
+		/// Calculates an x-coordinate that is the given <paramref name="offset"/> away from <paramref name="x"/> at the target <paramref name="degrees"/>.
+		/// </summary>
+		/// @CSharpLua.Template = "{0} + ({1} * Cos(0.0174532924 * {2}))"
+		public static extern float PositionWithPolarOffsetX(float x, float offset, float degrees);
+
+		/// <summary>
+		/// Calculates a y-coordinate that is the given <paramref name="offset"/> away from <paramref name="y"/> at the target <paramref name="degrees"/>.
+		/// </summary>
+		/// @CSharpLua.Template = "{0} + ({1} * Sin(0.0174532924 * {2}))"
+		public static extern float PositionWithPolarOffsetY(float y, float offset, float degrees);
+
+		/// <summary>
+		/// Calculates a point that is the given <paramref name="offset"/> away from (<paramref name="x"/>, <paramref name="y"/>) at the target <paramref name="radians"/>.
 		/// </summary>
 		public static (float x, float y) PositionWithPolarOffsetRad(float x, float y, float offset, float radians)
 		{
@@ -195,6 +178,18 @@ namespace WCSharp.Shared
 				y + (offset * Sin(radians))
 			);
 		}
+
+		/// <summary>
+		/// Calculates an x-coordinate that is the given <paramref name="offset"/> away from <paramref name="x"/> at the target <paramref name="radians"/>.
+		/// </summary>
+		/// @CSharpLua.Template = "{0} + ({1} * Cos({2}))"
+		public static extern float PositionWithPolarOffsetRadX(float x, float offset, float radians);
+
+		/// <summary>
+		/// Calculates a y-coordinate that is the given <paramref name="offset"/> away from <paramref name="y"/> at the target <paramref name="radians"/>.
+		/// </summary>
+		/// @CSharpLua.Template = "{0} + ({1} * Sin({2}))"
+		public static extern float PositionWithPolarOffsetRadY(float y, float offset, float radians);
 
 		/// <summary>
 		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
@@ -340,5 +335,6 @@ namespace WCSharp.Shared
 
 			return textTag;
 		}
+#pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	}
 }

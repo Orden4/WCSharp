@@ -19,7 +19,7 @@ namespace WCSharp.SaveLoad
 		private const int PACKET_SIZE = 185;
 
 		private static List<string> originalTooltips;
-		private static readonly List<int> abilityIds = new List<int>
+		private static readonly List<int> abilityIds = new()
 		{
 			1097690227, // Amls
 			1097359726, // Ahan

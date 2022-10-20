@@ -1,0 +1,1234 @@
+[
+  {
+    "Enum": "BecomesRevivable",
+    "Class": "HeroEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVABLE",
+    "PlayerUnitEventFunc": "GetHandleId(GetRevivableUnit())",
+    "UnitEvent": "EVENT_UNIT_HERO_REVIVABLE",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsRevive",
+    "Class": "HeroEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVE_CANCEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetRevivingUnit())",
+    "UnitEvent": "EVENT_UNIT_HERO_REVIVE_CANCEL",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesRevive",
+    "Class": "HeroEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVE_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetRevivingUnit())",
+    "UnitEvent": "EVENT_UNIT_HERO_REVIVE_FINISH",
+    "Description": ""
+  },
+  {
+    "Enum": "LearnsSpell",
+    "Class": "HeroEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_SKILL",
+    "PlayerUnitEventFunc": "GetHandleId(GetLearningUnit())",
+    "UnitEvent": "EVENT_UNIT_HERO_SKILL",
+    "Description": ""
+  },
+  {
+    "Enum": "Levels",
+    "Class": "HeroEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_LEVEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetLevelingUnit())",
+    "UnitEvent": "EVENT_UNIT_HERO_LEVEL",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsRevive",
+    "Class": "HeroEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVE_START",
+    "PlayerUnitEventFunc": "GetHandleId(GetRevivingUnit())",
+    "UnitEvent": "EVENT_UNIT_HERO_REVIVE_START",
+    "Description": ""
+  },
+  {
+    "Enum": "BecomesRevivable",
+    "Class": "HeroTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVABLE",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetRevivableUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsRevive",
+    "Class": "HeroTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVE_CANCEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetRevivingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesRevive",
+    "Class": "HeroTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVE_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetRevivingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "LearnsSpell",
+    "Class": "HeroTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_SKILL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetLearningUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Levels",
+    "Class": "HeroTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_LEVEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetLevelingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsRevive",
+    "Class": "HeroTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_REVIVE_START",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetRevivingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsAbsorbed",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PICKUP_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(BlzGetAbsorbingItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDropped",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DROP_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsPawned",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PAWN_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsPickedUp",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PICKUP_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSold",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetSoldItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsStacked",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_STACK_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsUsed",
+    "Class": "ItemEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_USE_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsAbsorbed",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PICKUP_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(BlzGetAbsorbingItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDropped",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DROP_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsPawned",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PAWN_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsPickedUp",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PICKUP_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSold",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(GetSoldItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsStacked",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_STACK_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsUsed",
+    "Class": "ItemTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_USE_ITEM",
+    "PlayerUnitEventFunc": "GetItemTypeId(GetManipulatedItem())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "DeselectsUnit",
+    "Class": "PlayerEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DESELECTED",
+    "PlayerUnitEventFunc": "GetPlayerId(GetTriggerPlayer())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "GainsOwnership",
+    "Class": "PlayerEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CHANGE_OWNER",
+    "PlayerUnitEventFunc": "GetPlayerId(GetOwningPlayer(GetTriggerUnit()))",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "LosesOwnership",
+    "Class": "PlayerEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CHANGE_OWNER",
+    "PlayerUnitEventFunc": "GetPlayerId(GetChangingUnitPrevOwner())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SelectsUnit",
+    "Class": "PlayerEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELECTED",
+    "PlayerUnitEventFunc": "GetPlayerId(GetTriggerPlayer())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsCancelled",
+    "Class": "ResearchEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_CANCEL",
+    "PlayerUnitEventFunc": "GetResearched()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsFinished",
+    "Class": "ResearchEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_FINISH",
+    "PlayerUnitEventFunc": "GetResearched()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsStarted",
+    "Class": "ResearchEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_START",
+    "PlayerUnitEventFunc": "GetResearched()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Cast",
+    "Class": "SpellEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CAST",
+    "PlayerUnitEventFunc": "GetSpellAbilityId()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Channel",
+    "Class": "SpellEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CHANNEL",
+    "PlayerUnitEventFunc": "GetSpellAbilityId()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Effect",
+    "Class": "SpellEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_EFFECT",
+    "PlayerUnitEventFunc": "GetSpellAbilityId()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "EndCast",
+    "Class": "SpellEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_ENDCAST",
+    "PlayerUnitEventFunc": "GetSpellAbilityId()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Finish",
+    "Class": "SpellEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_FINISH",
+    "PlayerUnitEventFunc": "GetSpellAbilityId()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Learned",
+    "Class": "SpellEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_HERO_SKILL",
+    "PlayerUnitEventFunc": "GetLearnedSkill()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "AcquiresTarget",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "",
+    "PlayerUnitEventFunc": "",
+    "UnitEvent": "EVENT_UNIT_ACQUIRED_TARGET",
+    "Description": ""
+  },
+  {
+    "Enum": "Attacks",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ATTACKED",
+    "PlayerUnitEventFunc": "GetHandleId(GetAttacker())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "BuysUnit",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL",
+    "PlayerUnitEventFunc": "GetHandleId(GetBuyingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsBeingConstructed",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetCancelledStructure())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsConstruction",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_CONSTRUCT_CANCEL",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsResearch",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_CANCEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetResearchingUnit())",
+    "UnitEvent": "EVENT_UNIT_RESEARCH_CANCEL",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsTraining",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_CANCEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_TRAIN_CANCEL",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsUpgrade",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_UPGRADE_CANCEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_UPGRADE_CANCEL",
+    "Description": ""
+  },
+  {
+    "Enum": "ChangesOwner",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CHANGE_OWNER",
+    "PlayerUnitEventFunc": "GetHandleId(GetChangingUnit())",
+    "UnitEvent": "EVENT_UNIT_CHANGE_OWNER",
+    "Description": ""
+  },
+  {
+    "Enum": "Damaging",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DAMAGING",
+    "PlayerUnitEventFunc": "GetHandleId(GetEventDamageSource())",
+    "UnitEvent": "EVENT_UNIT_DAMAGING",
+    "Description": ""
+  },
+  {
+    "Enum": "Decays",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DECAY",
+    "PlayerUnitEventFunc": "GetHandleId(GetDecayingUnit())",
+    "UnitEvent": "EVENT_UNIT_DECAY",
+    "Description": ""
+  },
+  {
+    "Enum": "Dies",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DEATH",
+    "PlayerUnitEventFunc": "GetHandleId(GetDyingUnit())",
+    "UnitEvent": "EVENT_UNIT_DEATH",
+    "Description": ""
+  },
+  {
+    "Enum": "DropsItem",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DROP_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatingUnit())",
+    "UnitEvent": "EVENT_UNIT_DROP_ITEM",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesBeingConstructed",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetConstructedStructure())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesConstruction",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_CONSTRUCT_FINISH",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesResearch",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetResearchingUnit())",
+    "UnitEvent": "EVENT_UNIT_RESEARCH_FINISH",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesTraining",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_TRAIN_FINISH",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesUpgrade",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_UPGRADE_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_UPGRADE_FINISH",
+    "Description": ""
+  },
+  {
+    "Enum": "IsAttacked",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ATTACKED",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_ATTACKED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDamaged",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DAMAGED",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_DAMAGED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDeselected",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DESELECTED",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_DESELECTED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDetected",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DETECTED",
+    "PlayerUnitEventFunc": "GetHandleId(GetDetectedUnit())",
+    "UnitEvent": "EVENT_UNIT_DETECTED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsHidden",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_HIDDEN",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_HIDDEN",
+    "Description": ""
+  },
+  {
+    "Enum": "IsLoaded",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_LOADED",
+    "PlayerUnitEventFunc": "GetHandleId(GetLoadedUnit())",
+    "UnitEvent": "EVENT_UNIT_LOADED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsRescued",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESCUED",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_RESCUED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSelected",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELECTED",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_SELECTED",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSold",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL",
+    "PlayerUnitEventFunc": "GetHandleId(GetSoldUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Kills",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DEATH",
+    "PlayerUnitEventFunc": "GetHandleId(GetKillingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Loads",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_LOADED",
+    "PlayerUnitEventFunc": "GetHandleId(GetTransportUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "PawnsItem",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PAWN_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatingUnit())",
+    "UnitEvent": "EVENT_UNIT_PAWN_ITEM",
+    "Description": ""
+  },
+  {
+    "Enum": "PicksUpItem",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PICKUP_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatingUnit())",
+    "UnitEvent": "EVENT_UNIT_PICKUP_ITEM",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesOrder",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_ORDER",
+    "PlayerUnitEventFunc": "GetHandleId(GetOrderedUnit())",
+    "UnitEvent": "EVENT_UNIT_ISSUED_ORDER",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesPointOrder",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER",
+    "PlayerUnitEventFunc": "GetHandleId(GetOrderedUnit())",
+    "UnitEvent": "EVENT_UNIT_ISSUED_POINT_ORDER",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesTargetOrder",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER",
+    "PlayerUnitEventFunc": "GetHandleId(GetOrderedUnit())",
+    "UnitEvent": "EVENT_UNIT_ISSUED_TARGET_ORDER",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesUnitTypeOrder",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_UNIT_ORDER",
+    "PlayerUnitEventFunc": "GetHandleId(GetOrderedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Rescues",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESCUED",
+    "PlayerUnitEventFunc": "GetHandleId(GetRescuer())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SellsItem",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetSellingUnit())",
+    "UnitEvent": "EVENT_UNIT_SELL_ITEM",
+    "Description": ""
+  },
+  {
+    "Enum": "SellsUnit",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL",
+    "PlayerUnitEventFunc": "GetHandleId(GetSellingUnit())",
+    "UnitEvent": "EVENT_UNIT_SELL",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellCast",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CAST",
+    "PlayerUnitEventFunc": "GetHandleId(GetSpellAbilityUnit())",
+    "UnitEvent": "EVENT_UNIT_SPELL_CAST",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellCastOn",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CAST",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellChannel",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CHANNEL",
+    "PlayerUnitEventFunc": "GetHandleId(GetSpellAbilityUnit())",
+    "UnitEvent": "EVENT_UNIT_SPELL_CHANNEL",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellChannelOn",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CHANNEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEffect",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_EFFECT",
+    "PlayerUnitEventFunc": "GetHandleId(GetSpellAbilityUnit())",
+    "UnitEvent": "EVENT_UNIT_SPELL_EFFECT",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEffectOn",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_EFFECT",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEndCast",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_ENDCAST",
+    "PlayerUnitEventFunc": "GetHandleId(GetSpellAbilityUnit())",
+    "UnitEvent": "EVENT_UNIT_SPELL_ENDCAST",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEndCastOn",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_ENDCAST",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellFinish",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_FINISH",
+    "PlayerUnitEventFunc": "GetHandleId(GetSpellAbilityUnit())",
+    "UnitEvent": "EVENT_UNIT_SPELL_FINISH",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellFinishOn",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StacksItem",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_STACK_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatingUnit())",
+    "UnitEvent": "EVENT_UNIT_STACK_ITEM",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsConstruction",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_START",
+    "PlayerUnitEventFunc": "GetHandleId(GetConstructingStructure())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsResearch",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_START",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_RESEARCH_START",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsTraining",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_START",
+    "PlayerUnitEventFunc": "GetHandleId(GetResearchingUnit())",
+    "UnitEvent": "EVENT_UNIT_TRAIN_START",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsUpgrade",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_UPGRADE_START",
+    "PlayerUnitEventFunc": "GetHandleId(GetTriggerUnit())",
+    "UnitEvent": "EVENT_UNIT_UPGRADE_START",
+    "Description": ""
+  },
+  {
+    "Enum": "Summons",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SUMMON",
+    "PlayerUnitEventFunc": "GetHandleId(GetSummoningUnit())",
+    "UnitEvent": "EVENT_UNIT_SUMMON",
+    "Description": ""
+  },
+  {
+    "Enum": "UsesItem",
+    "Class": "UnitEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_USE_ITEM",
+    "PlayerUnitEventFunc": "GetHandleId(GetManipulatingUnit())",
+    "UnitEvent": "EVENT_UNIT_USE_ITEM",
+    "Description": ""
+  },
+  {
+    "Enum": "Attacks",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ATTACKED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetAttacker())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "BuysUnit",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetBuyingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsBeingConstructed",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetCancelledStructure())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsBeingTrained",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_CANCEL",
+    "PlayerUnitEventFunc": "GetTrainedUnitType()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsConstruction",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsResearch",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_CANCEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetResearchingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsTraining",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_CANCEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "CancelsUpgrade",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_UPGRADE_CANCEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "ChangesOwner",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CHANGE_OWNER",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetChangingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Damaging",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DAMAGING",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetEventDamageSource())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Decays",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DECAY",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetDecayingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Dies",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DEATH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetDyingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "DropsItem",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DROP_ITEM",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetManipulatingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesBeingConstructed",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetConstructedStructure())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesBeingTrained",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTrainedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesConstruction",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesResearch",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetResearchingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesTraining",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "FinishesUpgrade",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_UPGRADE_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsAttacked",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ATTACKED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsCreated",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": "Based on TriggerRegisterEnterRegion using GetWorldBounds"
+  },
+  {
+    "Enum": "IsDamaged",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DAMAGED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDeselected",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DESELECTED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsDetected",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DETECTED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetDetectedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsHidden",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_HIDDEN",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsLoaded",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_LOADED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetLoadedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsRescued",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESCUED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSelected",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELECTED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSold",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSoldUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "IsSummoned",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SUMMON",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSummonedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Kills",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_DEATH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetKillingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Loads",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_LOADED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTransportUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "PawnsItem",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PAWN_ITEM",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetManipulatingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "PicksUpItem",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_PICKUP_ITEM",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetManipulatingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesOrder",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_ORDER",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetOrderedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesPointOrder",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetOrderedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesTargetOrder",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetOrderedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "ReceivesUnitTypeOrder",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_ISSUED_UNIT_ORDER",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetOrderedUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Rescues",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESCUED",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetRescuer())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SellsItem",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL_ITEM",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSellingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SellsUnit",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SELL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSellingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellCast",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CAST",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellCastOn",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CAST",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellChannel",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CHANNEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellChannelOn",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_CHANNEL",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEffect",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_EFFECT",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEffectOn",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_EFFECT",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEndCast",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_ENDCAST",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellEndCastOn",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_ENDCAST",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellFinish",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "SpellFinishOn",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SPELL_FINISH",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSpellAbilityUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StacksItem",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_STACK_ITEM",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetManipulatingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsBeingConstructed",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_START",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetConstructingStructure())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsBeingTrained",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_START",
+    "PlayerUnitEventFunc": "GetTrainedUnitType()",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsConstruction",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_CONSTRUCT_START",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsResearch",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_RESEARCH_START",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetResearchingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsTraining",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_TRAIN_START",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "StartsUpgrade",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_UPGRADE_START",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetTriggerUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "Summons",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_SUMMON",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetSummoningUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  },
+  {
+    "Enum": "UsesItem",
+    "Class": "UnitTypeEvent",
+    "NativePlayerUnitEvent": "EVENT_PLAYER_UNIT_USE_ITEM",
+    "PlayerUnitEventFunc": "GetUnitTypeId(GetManipulatingUnit())",
+    "UnitEvent": "",
+    "Description": ""
+  }
+]

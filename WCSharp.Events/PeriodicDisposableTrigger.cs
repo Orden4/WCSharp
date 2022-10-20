@@ -34,8 +34,8 @@ namespace WCSharp.Events
 		{
 			if (!this.active)
 			{
-				this.active = true;
 				PeriodicEvents.AddPeriodicEvent(this.timerEvent);
+				this.active = true;
 			}
 
 			periodicTrigger.Active = true;
@@ -45,13 +45,8 @@ namespace WCSharp.Events
 		private bool Periodic()
 		{
 			var size = this.actions.Count;
-			if (size == 0)
-			{
-				this.active = false;
-				return false;
-			}
-
 			var i = 0;
+
 			while (i < size)
 			{
 				var action = this.actions[i];
@@ -73,7 +68,12 @@ namespace WCSharp.Events
 				}
 			}
 
-			return true;
+			if (size == 0)
+			{
+				this.active = this.actions.Count > 0;
+			}
+
+			return this.active;
 		}
 	}
 }

@@ -14,11 +14,11 @@ namespace NuGetPusher
 		{
 			"ConstantGenerator",
 			"Shared",
-			"Events",
 			"Json",
+			"Events",
+			"Effects",
 			"Sync",
 			"SaveLoad",
-			"Effects",
 			"Dummies",
 			"Buffs",
 			"DateTime",

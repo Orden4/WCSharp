@@ -11,4 +11,10 @@
     <PackageReference Include="War3Net.IO.Slk" Version="0.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\PlayerUnitEvents.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

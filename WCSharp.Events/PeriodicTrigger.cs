@@ -13,6 +13,7 @@ namespace WCSharp.Events
 	{
 		private readonly List<T> actions;
 		private readonly PeriodicEvent timerEvent;
+		private bool active;
 
 		/// <summary>
 		/// All currently active periodic actions within this periodic trigger.
@@ -31,9 +32,10 @@ namespace WCSharp.Events
 		/// </summary>
 		public void Add(T periodicTrigger)
 		{
-			if (this.actions.Count == 0)
+			if (!this.active)
 			{
 				PeriodicEvents.AddPeriodicEvent(this.timerEvent);
+				this.active = true;
 			}
 
 			periodicTrigger.Active = true;
@@ -43,12 +45,8 @@ namespace WCSharp.Events
 		private bool Periodic()
 		{
 			var size = this.actions.Count;
-			if (size == 0)
-			{
-				return false;
-			}
-
 			var i = 0;
+
 			while (i < size)
 			{
 				var action = this.actions[i];
@@ -65,7 +63,12 @@ namespace WCSharp.Events
 				}
 			}
 
-			return true;
+			if (size == 0)
+			{
+				this.active = this.actions.Count > 0;
+			}
+
+			return this.active;
 		}
 	}
 }

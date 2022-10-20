@@ -5,7 +5,7 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Lightnings.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.1.0-rc1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
@@ -20,7 +20,7 @@ This package allows for the creation and management of lightning effects in Warc
   <ItemGroup>
     <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
     <PackageReference Include="War3Api.Common" Version="1.32.9" />
-    <PackageReference Include="WCSharp.Events" Version="2.0.0" />
+    <PackageReference Include="WCSharp.Events" Version="2.1.0-rc1" />
   </ItemGroup>
 
   <ItemGroup>

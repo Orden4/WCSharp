@@ -14,13 +14,13 @@ namespace WCSharp.Dummies
 		/// </summary>
 		public const int UNIT_TYPE_DUMMY = 2021161080;
 
-		private static readonly PeriodicEvent periodicEvent = new PeriodicEvent(Countdown, 1.0);
-		private static readonly List<unit> dummiesReady = new List<unit>();
-		private static readonly List<DummyBeingRecycled> dummiesBeingRecycled = new List<DummyBeingRecycled>();
+		private static readonly PeriodicEvent periodicEvent = new(Countdown, 1.0);
+		private static readonly List<unit> dummiesReady = new();
+		private static readonly List<DummyBeingRecycled> dummiesBeingRecycled = new();
 
 		static DummySystem()
 		{
-			PlayerUnitEvents.Register(PlayerUnitEvent.UnitTypeSpellEndCast, OnDummyCast);
+			PlayerUnitEvents.Register(UnitTypeEvent.SpellEndCast, OnDummyCast);
 		}
 
 		private static void OnDummyCast()

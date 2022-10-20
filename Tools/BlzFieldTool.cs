@@ -11,17 +11,17 @@ namespace Tools
 	{
 		private readonly BlzFieldToolArgs args;
 		private readonly Regex nameRegex;
-		private static readonly Regex suffixRegex = new Regex(@".*\('(.*)'\)$");
-		private static readonly Regex prefixRegex = new Regex(@"");
+		private static readonly Regex suffixRegex = new(@".*\('(.*)'\)$");
+		private static readonly Regex prefixRegex = new(@"");
 
-		private static readonly Regex codeRegex = new Regex(@"^(\s*)\[(.{4})\](\s*)$");
-		private static readonly Regex codeNameRegex = new Regex(@"^(\s*)Name(\s*)=(\s*)(.*?)(\s*)$");
-		private readonly Dictionary<string, string> codeToLocalizedName = new Dictionary<string, string>
+		private static readonly Regex codeRegex = new(@"^(\s*)\[(.{4})\](\s*)$");
+		private static readonly Regex codeNameRegex = new(@"^(\s*)Name(\s*)=(\s*)(.*?)(\s*)$");
+		private readonly Dictionary<string, string> codeToLocalizedName = new()
 		{
 			{ "Ansp", "Spy" }
 		};
 
-		private static readonly HashSet<string> illegalCodes = new HashSet<string>
+		private static readonly HashSet<string> illegalCodes = new()
 		{
 			"Aspx", // Referenced but unused
 			"Stpm", // Referenced but unused
@@ -31,7 +31,7 @@ namespace Tools
 			"Ahrs", // Referenced but unused
 			"", // Mistake
 		};
-		private static readonly HashSet<string> illegalFields = new HashSet<string>
+		private static readonly HashSet<string> illegalFields = new()
 		{
 			"ITEM_BF_CAN_BE_DROPPED",
 			"ITEM_BF_CAN_BE_SOLD_TO_MERCHANTS",
@@ -67,6 +67,30 @@ namespace Tools
 			this.args = args;
 			this.nameRegex = new Regex(@$"^(\s*)constant (.*) {args.Identifier}_(.*?)_(.*?)(\s*)=.*");
 			GenerateLocalizedNames();
+		}
+
+		public static void Run(params BlzFieldToolArgs[] args)
+		{
+			var lines = File.ReadAllLines("fields_input.txt")
+				.Where(x => !string.IsNullOrWhiteSpace(x))
+				.ToList();
+
+			var res = new List<string>();
+			foreach (var arg in args)
+			{
+				res.AddRange(new BlzFieldTool(arg).Run());
+			}
+
+			File.WriteAllLines("fields_output.txt", res);
+		}
+
+		public IEnumerable<string> Run()
+		{
+			var lines = File.ReadAllLines("fields_input.txt")
+				.Where(x => !string.IsNullOrWhiteSpace(x))
+				.ToList();
+
+			return lines.SelectMany(x => Convert(x));
 		}
 
 		private void GenerateLocalizedNames()
@@ -134,30 +158,6 @@ namespace Tools
 			}
 
 			return name ?? throw new Exception();
-		}
-
-		public static void Run(params BlzFieldToolArgs[] args)
-		{
-			var lines = File.ReadAllLines("fields_input.txt")
-				.Where(x => !string.IsNullOrWhiteSpace(x))
-				.ToList();
-
-			var res = new List<string>();
-			foreach (var arg in args)
-			{
-				res.AddRange(new BlzFieldTool(arg).Run());
-			}
-
-			File.WriteAllLines("fields_output.txt", res);
-		}
-
-		public IEnumerable<string> Run()
-		{
-			var lines = File.ReadAllLines("fields_input.txt")
-				.Where(x => !string.IsNullOrWhiteSpace(x))
-				.ToList();
-
-			return lines.SelectMany(x => Convert(x));
 		}
 
 		private IEnumerable<string> Convert(string line)

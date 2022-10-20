@@ -3,7 +3,7 @@
 /// <para>To ensure that custom units, abilities etc. are picked up, you should either change
 /// the name from the default of the spell or give it an editor suffix.</para>
 /// <para>If you have issues with duplicate names, you can give everything a unique name using
-/// the IncludeCode property in the ConstantGeneratorOptions (see Launcher/Program.cs).</para>
+/// the IncludeCode property in the ConstantGeneratorOptions (see Launcher/Program.cs in the WCSharp template).</para>
 /// </summary>
 public static class Constants
 {

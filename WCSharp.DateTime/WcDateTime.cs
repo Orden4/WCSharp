@@ -81,20 +81,20 @@ namespace WCSharp.DateTime
 		/// <summary>
 		/// Returns a <see cref="WcTimeSpan"/> representing the hour, minute and second of the day.
 		/// </summary>
-		public WcTimeSpan TimeOfDay => new WcTimeSpan(Hour, Minute, Second);
+		public WcTimeSpan TimeOfDay => new(Hour, Minute, Second);
 
 		/// <summary>
 		/// Returns the zero <see cref="WcDateTime"/> value, equivalent to January 1st, 1970, 00:00:00.
 		/// </summary>
-		public static WcDateTime Zero => new WcDateTime(0);
+		public static WcDateTime Zero => new(0);
 		/// <summary>
 		/// Returns the minimum <see cref="WcDateTime"/> value, equivalent to December 13th, 1901, 20:45:52.
 		/// </summary>
-		public static WcDateTime MinValue => new WcDateTime(int.MinValue);
+		public static WcDateTime MinValue => new(int.MinValue);
 		/// <summary>
 		/// Returns the maximum <see cref="WcDateTime"/> value, equivalent to January 19, 2038, 03:14:07.
 		/// </summary>
-		public static WcDateTime MaxValue => new WcDateTime(int.MaxValue);
+		public static WcDateTime MaxValue => new(int.MaxValue);
 
 		private const int DAYS_PER_4_YEARS = (365 * 4) + 1;
 		private static readonly int[] daysToMonth365 = new[] { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365 };
@@ -566,16 +566,16 @@ namespace WCSharp.DateTime
 		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
 		/// <para>For a danger-free timestamp, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
 		/// </summary>
-		public static WcDateTime LocalTime => new WcDateTime(new LuaTable(Os.Date("*t")));
+		public static WcDateTime LocalTime => new(new LuaTable(Os.Date("*t")));
 		/// <summary>
 		/// The time for the local player in UTC.
 		/// <para>WARNING: Be careful when using this! You may trigger a desync!</para>
 		/// <para>For a danger-free timestamp, use <see cref="GetCurrentTime(Action{WcDateTime}, DateTimeSyncMethod)"/>.</para>
 		/// </summary>
-		public static WcDateTime LocalTimeUtc => new WcDateTime(new LuaTable(Os.Date("!*t")));
+		public static WcDateTime LocalTimeUtc => new(new LuaTable(Os.Date("!*t")));
 
 		private static int baseTime = -1;
-		private static readonly Dictionary<DateTimeSyncMethod, int> offsetByMethod = new Dictionary<DateTimeSyncMethod, int>();
+		private static readonly Dictionary<DateTimeSyncMethod, int> offsetByMethod = new();
 
 		/// <summary>
 		/// This will produce a synchronised time for all players. The given action will be called once a synchronised time has been determined.
