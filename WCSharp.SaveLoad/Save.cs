@@ -726,10 +726,11 @@ namespace WCSharp.SaveLoad
 			{
 				var hash = SaveSystem.Hash1;
 
-				foreach (var keyValue in this.data.OrderBy(x => x.Key))
+				// Bug in current version of CSharpLua makes it return null values when enumerating the dictionary as KeyValuePair, so we do it like this instead
+				foreach (var keyValue in this.data.Keys.OrderBy(x => x))
 				{
-					hash = (hash * SaveSystem.Hash2) ^ GetHashCode(keyValue.Key);
-					hash = (hash * SaveSystem.Hash2) ^ GetHashCode(keyValue.Value);
+					hash = (hash * SaveSystem.Hash2) ^ GetHashCode(keyValue);
+					hash = (hash * SaveSystem.Hash2) ^ GetHashCode(this.data[keyValue]);
 				}
 
 				if (SaveSystem.BindSavesToPlayerName)
