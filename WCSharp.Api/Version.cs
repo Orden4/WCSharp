@@ -21,7 +21,7 @@ namespace WCSharp.Api
 		public static extern Version FrozenThrone { get; }
 
 		/// @CSharpLua.Template = "ConvertVersion({0})"
-		public static extern Version Convert(int version);
+		public static extern Version Convert(int versionId);
 
 		/// @CSharpLua.Get = "VersionGet()"
 		public static extern Version Current { get; }

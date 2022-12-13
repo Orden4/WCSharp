@@ -23,6 +23,6 @@ namespace WCSharp.Api
 		public static extern PlayerSlotState Left { get; }
 
 		/// @CSharpLua.Template = "ConvertPlayerSlotState({0})"
-		public static extern PlayerSlotState Convert(int playerSlotState);
+		public static extern PlayerSlotState Convert(int playerSlotStateId);
 	}
 }

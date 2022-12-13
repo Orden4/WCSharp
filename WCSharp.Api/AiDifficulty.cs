@@ -23,7 +23,7 @@ namespace WCSharp.Api
 		public static extern AiDifficulty Insane { get; }
 
 		/// @CSharpLua.Template = "ConvertAIDifficulty({0})"
-		public static extern AiDifficulty Convert(int difficulty);
+		public static extern AiDifficulty Convert(int difficultyId);
 
 		/// @CSharpLua.Template = "GetAIDifficulty({0})"
 		public static extern AiDifficulty Get(Player player);

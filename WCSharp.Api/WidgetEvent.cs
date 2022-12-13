@@ -14,5 +14,11 @@ namespace WCSharp.Api
 		public static extern implicit operator widgetevent(WidgetEvent x);
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator WidgetEvent(widgetevent x);
+
+		/// @CSharpLua.Get = "EVENT_WIDGET_DEATH"
+		public static extern WidgetEvent EventWidgetDeath { get; }
+
+		/// @CSharpLua.Template = "ConvertWidgetEvent({0})"
+		public static extern WidgetEvent Convert(int widgetEventId);
 	}
 }

@@ -15,6 +15,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator Ability(ability x);
 
+		#region Field editing
 		/// @CSharpLua.Get = "GetAbilityBooleanField({0}, ABILITY_BF_HERO_ABILITY)"
 		/// @CSharpLua.Set = "SetAbilityBooleanField({0}, ABILITY_BF_HERO_ABILITY, {1})"
 		public extern bool HeroAbility { get; set; }
@@ -102,7 +103,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetAbilityStringField({0}, ABILITY_SF_EFFECT_SOUND_LOOPING)"
 		/// @CSharpLua.Set = "SetAbilityStringField({0}, ABILITY_SF_EFFECT_SOUND_LOOPING, {1})"
 		public extern string EffectSoundLooping { get; set; }
+		#endregion
 
+		#region Level field editing
 		/// <summary>
 		/// <para>Used by:</para>
 		/// <list type="bullet">
@@ -12863,5 +12866,6 @@ namespace WCSharp.Api
 		/// </summary>
 		/// @CSharpLua.Template = "SetAbilityStringLevelField({0}, ABILITY_SLF_SPAWN_UNIT_ID_NSY2, {1}, {2})"
 		public extern void SetSpawnUnitId_Nsy2(int level, string spawnUnitId);
+		#endregion
 	}
 }

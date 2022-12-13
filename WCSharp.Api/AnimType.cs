@@ -39,7 +39,7 @@ namespace WCSharp.Api
 		public static extern AnimType Portrait { get; }
 
 		/// @CSharpLua.Template = "ConvertAnimType({0})"
-		public static extern AnimType Convert(int animType);
+		public static extern AnimType Convert(int animTypeId);
 
 		/// @CSharpLua.Get = "BlzGetAnimName({0})"
 		public extern string Name { get; }

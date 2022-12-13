@@ -1,18 +1,18 @@
 ﻿using static War3Api.Common;
 
-namespace WCSharp.Api
+namespace WCSharp.Api.Legacy
 {
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	/// @CSharpLua.Ignore
-	public class RacePreference
+	public class MapVisibility
 	{
-		internal RacePreference()
+		internal MapVisibility()
 		{
 		}
 
 		/// @CSharpLua.Template = "{0}"
-		public static extern implicit operator racepreference(RacePreference x);
+		public static extern implicit operator mapvisibility(MapVisibility x);
 		/// @CSharpLua.Template = "{0}"
-		public static extern implicit operator RacePreference(racepreference x);
+		public static extern implicit operator MapVisibility(mapvisibility x);
 	}
 }

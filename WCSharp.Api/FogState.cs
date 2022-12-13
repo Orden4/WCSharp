@@ -23,6 +23,6 @@ namespace WCSharp.Api
 		public static extern FogState Visible { get; }
 
 		/// @CSharpLua.Template = "ConvertFogState({0})"
-		public static extern FogState Convert(int fogState);
+		public static extern FogState Convert(int fogStateId);
 	}
 }

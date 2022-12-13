@@ -29,6 +29,6 @@ namespace WCSharp.Api
 		public static extern MapControl None { get; }
 
 		/// @CSharpLua.Template = "ConvertMapControl({0})"
-		public static extern MapControl Convert(int mapControl);
+		public static extern MapControl Convert(int mapControlId);
 	}
 }

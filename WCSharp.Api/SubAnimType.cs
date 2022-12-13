@@ -121,6 +121,6 @@ namespace WCSharp.Api
 		public static extern SubAnimType Berserk { get; }
 
 		/// @CSharpLua.Template = "ConvertSubAnimType({0})"
-		public static extern SubAnimType Convert(int subAnimType);
+		public static extern SubAnimType Convert(int subAnimTypeId);
 	}
 }

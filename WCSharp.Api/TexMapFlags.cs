@@ -25,6 +25,6 @@ namespace WCSharp.Api
 		public static extern SubAnimType WrapUV { get; }
 
 		/// @CSharpLua.Template = "ConvertTexMapFlags({0})"
-		public static extern TexMapFlags Convert(int textMapFlags);
+		public static extern TexMapFlags Convert(int textMapFlagsId);
 	}
 }

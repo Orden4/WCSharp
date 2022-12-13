@@ -31,6 +31,6 @@ namespace WCSharp.Api
 		public static extern EffectType Lightning { get; }
 
 		/// @CSharpLua.Template = "ConvertEffectType({0})"
-		public static extern EffectType Convert(int effectType);
+		public static extern EffectType Convert(int effectTypeId);
 	}
 }

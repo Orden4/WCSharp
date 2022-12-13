@@ -33,10 +33,8 @@ namespace WCSharp.Api
 		public static extern ItemType Unknown { get; }
 		/// @CSharpLua.Get = "ITEM_TYPE_ANY"
 		public static extern ItemType Any { get; }
-		/// @CSharpLua.Get = "ITEM_TYPE_TOME"
-		public static extern ItemType Tome { get; }
 
 		/// @CSharpLua.Template = "ConvertItemType({0})"
-		public static extern ItemType Convert(int itemType);
+		public static extern ItemType Convert(int itemTypeId);
 	}
 }

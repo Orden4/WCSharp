@@ -14,5 +14,17 @@ namespace WCSharp.Api
 		public static extern implicit operator playergameresult(PlayerGameResult x);
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator PlayerGameResult(playergameresult x);
+
+		/// @CSharpLua.Get = "PLAYER_GAME_RESULT_VICTORY"
+		public static extern PlayerGameResult Victory { get; }
+		/// @CSharpLua.Get = "PLAYER_GAME_RESULT_DEFEAT"
+		public static extern PlayerGameResult Defeat { get; }
+		/// @CSharpLua.Get = "PLAYER_GAME_RESULT_TIE"
+		public static extern PlayerGameResult Tie { get; }
+		/// @CSharpLua.Get = "PLAYER_GAME_RESULT_NEUTRAL"
+		public static extern PlayerGameResult Neutral { get; }
+
+		/// @CSharpLua.Template = "ConvertPlayerGameResult({0})"
+		public static extern PlayerGameResult Convert(int playerGameResultId);
 	}
 }

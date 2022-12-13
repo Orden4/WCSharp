@@ -22,11 +22,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "MultiboardSetItemValue({0}, {1})"
 		public extern void SetText(string value);
 
-		/// @CSharpLua.Template = "MultiboardSetItemValueColor({0}, {1}, {2}, 255)"
-		public extern void SetColor(int red, int green, int blue);
-
 		/// @CSharpLua.Template = "MultiboardSetItemValueColor({0}, {1}, {2}, {3})"
-		public extern void SetColor(int red, int green, int blue, int alpha);
+		public extern void SetColor(int red, int green, int blue, int alpha = 255);
 
 		/// @CSharpLua.Template = "MultiboardSetItemWidth({0}, {1})"
 		public extern void SetWidth(float width);

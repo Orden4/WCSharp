@@ -37,6 +37,6 @@ namespace WCSharp.Api
 		public static extern AllianceType SharedVisionForced { get; }
 
 		/// @CSharpLua.Template = "ConvertAllianceType({0})"
-		public static extern AllianceType Convert(int allianceType);
+		public static extern AllianceType Convert(int allianceTypeId);
 	}
 }

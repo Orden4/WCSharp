@@ -19,7 +19,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateMultiboard()"
 		public static extern Multiboard Create();
 
-		/// @CSharpLua.Template = "CreateMultiboard(~{0})"
+		/// @CSharpLua.Template = "MultiboardSuppressDisplay(~{0})"
 		public static extern void SetVisibility(bool visible);
 
 		/// @CSharpLua.Get = "IsMultiboardDisplayed({0})"
@@ -54,11 +54,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "MultiboardSetItemsValue({0}, {1})"
 		public extern void SetChildText(string value);
 
-		/// @CSharpLua.Template = "MultiboardSetItemsValueColor({0}, {1}, {2}, 255)"
-		public extern void SetChildColor(int red, int green, int blue);
-
 		/// @CSharpLua.Template = "MultiboardSetItemsValueColor({0}, {1}, {2}, {3})"
-		public extern void SetChildColor(int red, int green, int blue, int alpha);
+		public extern void SetChildColor(int red, int green, int blue, int alpha = 255);
 
 		/// @CSharpLua.Template = "MultiboardSetItemsWidth({0}, {1})"
 		public extern void SetChildWidth(float width);

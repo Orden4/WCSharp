@@ -35,5 +35,8 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Template = "AddSpellEffectTargetById({1}, {3}, {0}, {2})"
 		public extern Effect AddSpellEffect(int abilityId, string attachmentPoint, EffectType type);
+
+		/// @CSharpLua.Template = "AddIndicator({0}, {1}, {2}, {3}, {4})"
+		public extern Effect AddIndicator(int red, int green, int blue, int alpha = 255);
 	}
 }

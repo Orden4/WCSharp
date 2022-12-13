@@ -36,7 +36,7 @@ namespace WCSharp.Api
 		public static extern GameType Selected { get; }
 
 		/// @CSharpLua.Template = "ConvertGameType({0})"
-		public static extern AiDifficulty Convert(int gameType);
+		public static extern GameType Convert(int gameTypeId);
 
 		/// @CSharpLua.Get = "IsGameTypeSupported({0})"
 		/// @CSharpLua.Set = "SetGameTypeSupported({0}, {1})"

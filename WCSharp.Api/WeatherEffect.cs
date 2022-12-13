@@ -16,6 +16,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator WeatherEffect(weathereffect x);
 
+		/// @CSharpLua.Template = "AddWeatherEffect({0}, {1})"
+		public static extern WeatherEffect Create(Rect rect, int weatherEffectId);
+
 		/// @CSharpLua.Template = "EnableWeatherEffect({0}, true)"
 		public extern void Enable();
 

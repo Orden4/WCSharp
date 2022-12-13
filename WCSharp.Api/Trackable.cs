@@ -14,5 +14,8 @@ namespace WCSharp.Api
 		public static extern implicit operator trackable(Trackable x);
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator Trackable(trackable x);
+
+		/// @CSharpLua.Template = "CreateTrackable({0}, {1}, {2}, {3})"
+		public static extern Trackable Create(string modelPath, float x, float y, float facing);
 	}
 }

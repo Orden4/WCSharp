@@ -33,6 +33,6 @@ namespace WCSharp.Api
 		public static extern GameSpeed Default { get; set; }
 
 		/// @CSharpLua.Template = "ConvertGameDifficulty({0})"
-		public static extern MouseButtonType Convert(int gameDifficulty);
+		public static extern MouseButtonType Convert(int gameDifficultyId);
 	}
 }

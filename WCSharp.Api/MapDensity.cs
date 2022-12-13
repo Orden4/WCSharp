@@ -16,13 +16,13 @@ namespace WCSharp.Api
 		public static extern implicit operator MapDensity(mapdensity x);
 
 		/// @CSharpLua.Get = "MAP_DENSITY_NONE"
-		public static extern MapControl None { get; }
+		public static extern MapDensity None { get; }
 		/// @CSharpLua.Get = "MAP_DENSITY_LIGHT"
-		public static extern MapControl Light { get; }
+		public static extern MapDensity Light { get; }
 		/// @CSharpLua.Get = "MAP_DENSITY_MEDIUM"
-		public static extern MapControl Medium { get; }
+		public static extern MapDensity Medium { get; }
 		/// @CSharpLua.Get = "MAP_DENSITY_HEAVY"
-		public static extern MapControl Heavy { get; }
+		public static extern MapDensity Heavy { get; }
 
 		/// @CSharpLua.Get = "GetResourceDensity()"
 		/// @CSharpLua.Set = "SetResourceDensity({0})"
@@ -33,6 +33,6 @@ namespace WCSharp.Api
 		public static extern GameSpeed CreatureDensity { get; set; }
 
 		/// @CSharpLua.Template = "ConvertMapDensity({0})"
-		public static extern MapControl Convert(int mapDensity);
+		public static extern MapDensity Convert(int mapDensityId);
 	}
 }

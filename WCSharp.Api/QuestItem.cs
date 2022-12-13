@@ -14,5 +14,15 @@ namespace WCSharp.Api
 		public static extern implicit operator questitem(QuestItem x);
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator QuestItem(questitem x);
+
+		/// @CSharpLua.Template = "QuestCreateItem({0})"
+		public static extern QuestItem Create(Quest quest);
+
+		/// @CSharpLua.Get = "IsQuestItemCompleted({0})"
+		/// @CSharpLua.Set = "QuestItemSetCompleted({0}, {1})"
+		public extern float IsCompleted { get; set; }
+
+		/// @CSharpLua.Template = "QuestItemSetDescription({0}, {1})"
+		public extern void SetDescription(string description);
 	}
 }

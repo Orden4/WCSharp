@@ -23,6 +23,6 @@ namespace WCSharp.Api
 		public static extern MouseButtonType Right { get; }
 
 		/// @CSharpLua.Template = "ConvertMouseButtonType({0})"
-		public static extern MouseButtonType Convert(int mouseButtonType);
+		public static extern MouseButtonType Convert(int mouseButtonTypeId);
 	}
 }

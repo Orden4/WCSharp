@@ -31,6 +31,6 @@ namespace WCSharp.Api
 		public static extern GameSpeed Current { get; set; }
 
 		/// @CSharpLua.Template = "ConvertGameSpeed({0})"
-		public static extern MouseButtonType Convert(int gameSpeed);
+		public static extern MouseButtonType Convert(int gameSpeedId);
 	}
 }

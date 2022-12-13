@@ -14,5 +14,17 @@ namespace WCSharp.Api
 		public static extern implicit operator unitstate(UnitState x);
 		/// @CSharpLua.Template = "{0}"
 		public static extern implicit operator UnitState(unitstate x);
+
+		/// @CSharpLua.Get = "UNIT_STATE_LIFE"
+		public static extern UnitState Life { get; }
+		/// @CSharpLua.Get = "UNIT_STATE_MAX_LIFE"
+		public static extern UnitState MaxLife { get; }
+		/// @CSharpLua.Get = "UNIT_STATE_MANA"
+		public static extern UnitState Mana { get; }
+		/// @CSharpLua.Get = "UNIT_STATE_MAX_MANA"
+		public static extern UnitState MaxMana { get; }
+
+		/// @CSharpLua.Template = "ConvertUnitState({0})"
+		public static extern UnitState Convert(int unitStateId);
 	}
 }
