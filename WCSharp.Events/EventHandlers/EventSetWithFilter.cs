@@ -9,30 +9,29 @@ namespace WCSharp.Events.EventHandlers
 		public int Count => this.actionsByFilterId.Count;
 
 		private readonly Dictionary<int, Action> actionsByFilterId;
-		private readonly Dictionary<Action, EventSet> eventSetsByAction;
+		private readonly Dictionary<int, EventSet> eventSetsByFilterId;
 
 		public EventSetWithFilter(Func<int> filterFunc)
 		{
 			FilterFunc = filterFunc ?? throw new ArgumentNullException(nameof(filterFunc));
 			this.actionsByFilterId = new Dictionary<int, Action>();
-			this.eventSetsByAction = new Dictionary<Action, EventSet>();
+			this.eventSetsByFilterId = new Dictionary<int, EventSet>();
 		}
 
 		public void Add(Action action, int filterId)
 		{
-			if (this.actionsByFilterId.TryGetValue(filterId, out var existingAction))
+			if (this.eventSetsByFilterId.TryGetValue(filterId, out var eventSet))
 			{
-				if (!this.eventSetsByAction.TryGetValue(existingAction, out var eventSet))
-				{
-					eventSet = new EventSet();
-					eventSet.Add(existingAction, filterId);
-					this.eventSetsByAction.Add(existingAction, eventSet);
-					this.eventSetsByAction.Add(eventSet.Run, eventSet);
-					this.actionsByFilterId[filterId] = eventSet.Run;
-				}
-
 				eventSet.Add(action, filterId);
-				this.eventSetsByAction.Add(action, eventSet);
+			}
+			else if (this.actionsByFilterId.TryGetValue(filterId, out var existingAction))
+			{
+				this.actionsByFilterId.Remove(filterId);
+				eventSet = new EventSet();
+				eventSet.Add(existingAction, filterId);
+				eventSet.Add(action, filterId);
+				this.actionsByFilterId.Add(filterId, eventSet.Run);
+				this.eventSetsByFilterId.Add(filterId, eventSet);
 			}
 			else
 			{
@@ -42,17 +41,16 @@ namespace WCSharp.Events.EventHandlers
 
 		public bool Remove(Action action, int filterId)
 		{
-			if (this.eventSetsByAction.TryGetValue(action, out var eventSet))
+			if (this.eventSetsByFilterId.TryGetValue(filterId, out var eventSet))
 			{
 				if (eventSet.Remove(action, filterId))
 				{
 					if (eventSet.Count == 0)
 					{
-						this.eventSetsByAction.Remove(eventSet.Run);
 						this.actionsByFilterId.Remove(filterId);
+						this.eventSetsByFilterId.Remove(filterId);
 					}
 
-					this.eventSetsByAction.Remove(action);
 					return true;
 				}
 
