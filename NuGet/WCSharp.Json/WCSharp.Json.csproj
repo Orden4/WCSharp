@@ -9,7 +9,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Upgrade to .NET 6</PackageReleaseNotes>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the (de)serialization of class structures to JSON within Warcraft III.</Description>
     <Authors>Orden4</Authors>
