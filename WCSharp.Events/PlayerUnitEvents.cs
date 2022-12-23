@@ -387,7 +387,16 @@ namespace WCSharp.Events
 		}
 
 		/// <summary>
+		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for <paramref name="player"/>.
+		/// </summary>
+		public static void Register(PlayerEvent @event, Action action, player player)
+		{
+			Register((int)@event, action, GetPlayerId(player));
+		}
+
+		/// <summary>
 		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for <paramref name="playerId"/>.
+		/// <para>Note: <paramref name="playerId"/> start at 0. So player 1 (red) is 0.</para>
 		/// </summary>
 		public static void Register(PlayerEvent @event, Action action, int playerId)
 		{

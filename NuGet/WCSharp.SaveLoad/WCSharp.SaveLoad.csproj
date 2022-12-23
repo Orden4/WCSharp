@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.SaveLoad.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.0-rc1</Version>
+    <Version>2.1.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>- Added a warning when adding invalid ability IDs to the save system. Note that this will likely only work on EN localisation.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Upgrade to .NET 6</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 The SaveLoad package provides a system that can be used to save and load data between separate games by (de)serializing class structures, making it easy to store complex and large amounts of data.</Description>
     <Authors>Orden4</Authors>
@@ -18,11 +18,11 @@ The SaveLoad package provides a system that can be used to save and load data be
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
-    <PackageReference Include="War3Api.Common" Version="1.32.9" />
-    <PackageReference Include="WCSharp.Json" Version="2.1.0-rc1" />
-    <PackageReference Include="WCSharp.Shared" Version="2.1.0-rc1" />
-    <PackageReference Include="WCSharp.Sync" Version="2.1.0-rc1" />
+    <PackageReference Include="War3Api.Blizzard" Version="1.33.0" />
+    <PackageReference Include="War3Api.Common" Version="1.33.0" />
+    <PackageReference Include="WCSharp.Json" Version="2.1.0" />
+    <PackageReference Include="WCSharp.Shared" Version="2.1.0" />
+    <PackageReference Include="WCSharp.Sync" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Dummies.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
-    <PackageReference Include="War3Api.Common" Version="1.32.9" />
+    <PackageReference Include="War3Api.Blizzard" Version="1.33.0" />
+    <PackageReference Include="War3Api.Common" Version="1.33.0" />
   </ItemGroup>
 
   <ItemGroup>
