@@ -56,11 +56,11 @@ namespace WCSharp.SaveLoad
 		private readonly Base64 base64;
 
 		/// <summary>
-		/// Event handler for when a save is loaded. Note that the save will be instantiated even if it is empty.
+		/// Event handler for when a save is loaded. The save will be instantiated even if it is empty or failed to load.
 		/// </summary>
 		/// <param name="save">The save that was loaded.</param>
-		/// <param name="isEmptySave">Whether the save file is empty (i.e. did not exist before).</param>
-		public delegate void OnSaveLoadedHandler(T save, bool isEmptySave);
+		/// <param name="loadResult">Indicates the state of the loaded save file, i.e. whether it's a newly created save, an existing save, or if it failed to load.</param>
+		public delegate void OnSaveLoadedHandler(T save, LoadResult loadResult);
 
 		/// <summary>
 		/// This event will be invoked when a new save is loaded in, providing the given class and a boolean indicating whether the save is newly created or not.
@@ -128,7 +128,7 @@ namespace WCSharp.SaveLoad
 			var data = message.SaveData ?? Activator.CreateInstance<T>();
 			data.player = Player(message.PlayerId);
 			data.saveSlot = message.SaveSlot;
-			OnSaveLoaded?.Invoke(data, message.SaveData == null);
+			OnSaveLoaded?.Invoke(data, message.LoadResult);
 		}
 
 		/// <summary>
@@ -173,9 +173,9 @@ namespace WCSharp.SaveLoad
 		}
 
 		/// <summary>
-		/// Loads a save for the given player, using the given slot.
-		/// <para>If no save exists on the given slot, will load an empty save.</para>
-		/// <para>Use <see cref="HandleSaveLoadedMessage"/> to receive the save.</para>
+		/// Loads a save for the given player on the given save slot.
+		/// <para>If no save exists on the given slot, or if loading failed for any reason, a new, empty save will be returned.</para>
+		/// <para>Use <see cref="OnSaveLoaded"/> to receive the save.</para>
 		/// </summary>
 		/// <param name="player">The player to create the save for.</param>
 		/// <param name="saveSlot">The slot to save to.</param>
@@ -212,32 +212,50 @@ namespace WCSharp.SaveLoad
 				}
 			}
 
-			var save = TryLoadSave(sb);
+			var loadResult = TryDecode(sb, out var save);
 			var message = new SaveLoadedMessage<T>
 			{
 				PlayerId = GetPlayerId(player),
-				SaveSlot = saveSlot
+				SaveSlot = saveSlot,
+				LoadResult = loadResult
 			};
 
-			if (save?.SaveData != null && save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+			if (save?.SaveData != null)
 			{
-				message.SaveData = save.SaveData;
+				if (save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+				{
+					message.SaveData = save.SaveData;
+				}
+				else
+				{
+					message.LoadResult = LoadResult.FailedHash;
+				}
 			}
 
 			SyncSystem.Send(message);
 		}
 
-		private Save<T> TryLoadSave(StringBuilder sb)
+		private LoadResult TryDecode(StringBuilder sb, out Save<T> save)
 		{
+			var saveString = sb.ToString();
+			if (string.IsNullOrEmpty(saveString))
+			{
+				save = null;
+				return LoadResult.NewSave;
+			}
+
+			var result = LoadResult.FailedDecode;
 			try
 			{
-				var contents = this.base64.Decode(sb.ToString());
-				var save = JsonConvert.Deserialize<Save<T>>(contents);
-				return save;
+				var contents = this.base64.Decode(saveString);
+				result = LoadResult.FailedDeserialize;
+				save = JsonConvert.Deserialize<Save<T>>(contents);
+				return LoadResult.Success;
 			}
 			catch (Exception)
 			{
-				return null;
+				save = null;
+				return result;
 			}
 		}
 
