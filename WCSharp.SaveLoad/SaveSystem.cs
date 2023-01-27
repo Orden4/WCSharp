@@ -187,8 +187,7 @@ namespace WCSharp.SaveLoad
 				return;
 			}
 
-			var filename = GetFileName(player, saveSlot);
-			Preloader(filename);
+			Preloader(GetFileName(player, saveSlot));
 			var sb = new StringBuilder();
 
 			for (var i = 0; i < abilityIds.Count; i++)
