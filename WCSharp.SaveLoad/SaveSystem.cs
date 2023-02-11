@@ -15,7 +15,7 @@ namespace WCSharp.SaveLoad
 	public class SaveSystem<T> : IDisposable
 		where T : Saveable
 	{
-		internal const int CURRENT_VERSION = 1;
+		internal const int CURRENT_VERSION = 2;
 		private const int PACKET_SIZE = 185;
 
 		private static List<string> originalTooltips;
@@ -150,11 +150,12 @@ namespace WCSharp.SaveLoad
 				return;
 			}
 
+			var saveData = JsonConvert.Serialize(saveable);
 			var save = new Save<T>
 			{
 				Version = CURRENT_VERSION,
-				HashCode = GetSaveHash(JsonConvert.Serialize(saveable), saveable.player),
-				SaveData = saveable,
+				HashCode = GetSaveHash(saveData, saveable.player),
+				SaveString = saveData,
 			};
 
 			var contents = this.base64.Encode(JsonConvert.Serialize(save));
@@ -218,8 +219,7 @@ namespace WCSharp.SaveLoad
 				}
 			}
 
-			var saveDataString = sb.ToString();
-			var loadResult = TryDecode(saveDataString, out var save);
+			var loadResult = TryDecode(sb, out var save);
 			var message = new SaveLoadedMessage<T>
 			{
 				SaveSystemId = this.id,
@@ -228,24 +228,45 @@ namespace WCSharp.SaveLoad
 				LoadResult = loadResult
 			};
 
-			if (save?.SaveData != null)
+			if (save.Version == 1)
 			{
-				if (save.HashCode == GetSaveHash(saveDataString, player))
+				// Version 1 used a flawed way of verifying the hash, but we allow loading it anyway for backwards compatability.
+				if (save?.SaveData != null)
 				{
-					message.SaveData = save.SaveData;
-				}
-				else
-				{
-					message.LoadResult = LoadResult.FailedHash;
+					if (save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+					{
+						message.SaveData = save.SaveData;
+					}
+					else
+					{
+						message.LoadResult = LoadResult.FailedHash;
+					}
 				}
 			}
+			else if (save.Version == 2)
+			{
+				// Version 2 stores the save data as a string so that we don't have to re-serialize it in order to verify the hash, as re-serializing it may change the save.
+				if (!string.IsNullOrEmpty(save?.SaveString))
+				{
+					if (TryDeserialize(save.SaveString, out var saveDataObject))
+					{
+						message.SaveData = saveDataObject;
+					}
+					else
+					{
+						message.LoadResult = LoadResult.FailedDeserialize;
+					}
+				}
+			}
+
 
 			SyncSystem.Send(message);
 		}
 
-		private LoadResult TryDecode(string saveDataString, out Save<T> save)
+		private LoadResult TryDecode(StringBuilder sb, out Save<T> save)
 		{
-			if (string.IsNullOrEmpty(saveDataString))
+			var saveData = sb.ToString();
+			if (string.IsNullOrEmpty(saveData))
 			{
 				save = null;
 				return LoadResult.NewSave;
@@ -254,7 +275,7 @@ namespace WCSharp.SaveLoad
 			var result = LoadResult.FailedDecode;
 			try
 			{
-				var contents = this.base64.Decode(saveDataString);
+				var contents = this.base64.Decode(saveData);
 				result = LoadResult.FailedDeserialize;
 				save = JsonConvert.Deserialize<Save<T>>(contents);
 				return LoadResult.Success;
@@ -263,6 +284,20 @@ namespace WCSharp.SaveLoad
 			{
 				save = null;
 				return result;
+			}
+		}
+
+		private static bool TryDeserialize(string saveData, out T saveDataObject)
+		{
+			try
+			{
+				saveDataObject = JsonConvert.Deserialize<T>(saveData);
+				return true;
+			}
+			catch (Exception)
+			{
+				saveDataObject = null;
+				return false;
 			}
 		}
 
