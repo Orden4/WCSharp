@@ -8,7 +8,7 @@ namespace WCSharp.Shared.Data
 	/// <summary>
 	/// Data class that mimics the functions of the standard Rect.cs while providing access to WC3 rect and region representations.
 	/// </summary>
-	public class Rectangle : IDisposable
+	public class Rectangle : IDisposable, IEquatable<Rectangle>
 	{
 		/// <summary>
 		/// Represents the world bounds of the map. Automatically initialised.
@@ -41,11 +41,7 @@ namespace WCSharp.Shared.Data
 		{
 			get
 			{
-				if (this.rect == null)
-				{
-					this.rect = Rect(Left, Bottom, Right, Top);
-				}
-
+				this.rect ??= Rect(Left, Bottom, Right, Top);
 				return this.rect;
 			}
 		}
@@ -153,7 +149,7 @@ namespace WCSharp.Shared.Data
 		/// </summary>
 		public static bool operator ==(Rectangle rect1, Rectangle rect2)
 		{
-			return rect1.Left == rect2.Left && rect1.Bottom == rect2.Bottom && rect1.Right == rect2.Right && rect1.Top == rect2.Top;
+			return rect1 is null ? rect2 is null : rect1.Equals(rect2);
 		}
 
 		/// <summary>
@@ -161,7 +157,7 @@ namespace WCSharp.Shared.Data
 		/// </summary>
 		public static bool operator !=(Rectangle rect1, Rectangle rect2)
 		{
-			return rect1.Left != rect2.Left || rect1.Bottom != rect2.Bottom || rect1.Right != rect2.Right || rect1.Top != rect2.Top;
+			return !(rect1 == rect2);
 		}
 
 		/// <summary>
@@ -292,13 +288,19 @@ namespace WCSharp.Shared.Data
 		}
 
 		/// <inheritdoc/>
+		public bool Equals(Rectangle other)
+		{
+			return other is not null
+				&& Left == other.Left
+				&& Bottom == other.Bottom
+				&& Right == other.Right
+				&& Top == other.Top;
+		}
+
+		/// <inheritdoc/>
 		public override bool Equals(object obj)
 		{
-			return obj is Rectangle rect &&
-				Left == rect.Left &&
-				Bottom == rect.Bottom &&
-				Right == rect.Right &&
-				Top == rect.Top;
+			return obj is Rectangle rect && Equals(rect);
 		}
 
 		/// <inheritdoc/>

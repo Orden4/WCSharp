@@ -47,6 +47,9 @@ namespace WCSharp.SaveLoad
 			}
 		}
 
+		private static int idCounter = 1;
+
+		private readonly int id;
 		private readonly string saveFolder;
 		private readonly string salt;
 		private readonly int hash1;
@@ -90,6 +93,7 @@ namespace WCSharp.SaveLoad
 				}
 			}
 
+			this.id = idCounter++;
 			this.saveFolder = options.SaveFolder;
 			this.hash1 = options.Hash1;
 			this.hash2 = options.Hash2;
@@ -125,10 +129,13 @@ namespace WCSharp.SaveLoad
 
 		private void HandleSaveLoadedMessage(SaveLoadedMessage<T> message)
 		{
-			var data = message.SaveData ?? Activator.CreateInstance<T>();
-			data.player = Player(message.PlayerId);
-			data.saveSlot = message.SaveSlot;
-			OnSaveLoaded?.Invoke(data, message.LoadResult);
+			if (message.SaveSystemId == this.id)
+			{
+				var data = message.SaveData ?? Activator.CreateInstance<T>();
+				data.player = Player(message.PlayerId);
+				data.saveSlot = message.SaveSlot;
+				OnSaveLoaded?.Invoke(data, message.LoadResult);
+			}
 		}
 
 		/// <summary>
@@ -214,6 +221,7 @@ namespace WCSharp.SaveLoad
 			var loadResult = TryDecode(sb, out var save);
 			var message = new SaveLoadedMessage<T>
 			{
+				SaveSystemId = this.id,
 				PlayerId = GetPlayerId(player),
 				SaveSlot = saveSlot,
 				LoadResult = loadResult

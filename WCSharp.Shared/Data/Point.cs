@@ -5,7 +5,7 @@ namespace WCSharp.Shared.Data
 	/// <summary>
 	/// Data class for a simple point coordinate.
 	/// </summary>
-	public class Point
+	public class Point : IEquatable<Point>
 	{
 		/// <summary>
 		/// The X-coordinate of this point.
@@ -30,7 +30,7 @@ namespace WCSharp.Shared.Data
 		/// </summary>
 		public static bool operator ==(Point point1, Point point2)
 		{
-			return point1.X == point2.X && point1.Y == point2.Y;
+			return point1 is null ? point2 is null : point1.Equals(point2);
 		}
 
 		/// <summary>
@@ -38,15 +38,21 @@ namespace WCSharp.Shared.Data
 		/// </summary>
 		public static bool operator !=(Point point1, Point point2)
 		{
-			return point1.X != point2.X || point1.Y != point2.Y;
+			return !(point1 == point2);
+		}
+
+		/// <inheritdoc/>
+		public bool Equals(Point other)
+		{
+			return other is not null
+				&& X == other.X
+				&& Y == other.Y;
 		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object obj)
 		{
-			return obj is Point point &&
-				   X == point.X &&
-				   Y == point.Y;
+			return obj is Point point && Equals(point);
 		}
 
 		/// <inheritdoc/>

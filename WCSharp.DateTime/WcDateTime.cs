@@ -140,7 +140,7 @@ namespace WCSharp.DateTime
 			TotalSeconds = GetSeconds(year, month, day, hour, minute, second);
 		}
 
-		private int GetSeconds(int year, int month, int day, int hour, int minute, int second)
+		private static int GetSeconds(int year, int month, int day, int hour, int minute, int second)
 		{
 			var seconds = 0;
 
@@ -208,7 +208,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator ==(WcDateTime a, WcDateTime b)
 		{
-			return a.TotalSeconds == b.TotalSeconds;
+			return a is null ? b is null : a.TotalSeconds == b.TotalSeconds;
 		}
 
 
@@ -217,7 +217,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator !=(WcDateTime a, WcDateTime b)
 		{
-			return a.TotalSeconds != b.TotalSeconds;
+			return !(a == b);
 		}
 
 		/// <summary>
@@ -225,7 +225,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator <(WcDateTime a, WcDateTime b)
 		{
-			return a.TotalSeconds < b.TotalSeconds;
+			return a is not null && b is not null && a.TotalSeconds < b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -233,7 +233,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator <=(WcDateTime a, WcDateTime b)
 		{
-			return a.TotalSeconds <= b.TotalSeconds;
+			return a is not null && b is not null && a.TotalSeconds <= b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -241,7 +241,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator >(WcDateTime a, WcDateTime b)
 		{
-			return a.TotalSeconds > b.TotalSeconds;
+			return a is not null && b is not null && a.TotalSeconds > b.TotalSeconds;
 		}
 
 		/// <summary>
@@ -249,7 +249,7 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator >=(WcDateTime a, WcDateTime b)
 		{
-			return a.TotalSeconds >= b.TotalSeconds;
+			return a is not null && b is not null && a.TotalSeconds >= b.TotalSeconds;
 		}
 
 		private int GetDatePart(DatePart part)
@@ -421,13 +421,13 @@ namespace WCSharp.DateTime
 		/// <inheritdoc/>
 		public int CompareTo(WcDateTime other)
 		{
-			return TotalSeconds.CompareTo(other.TotalSeconds);
+			return other is null ? 1 : TotalSeconds.CompareTo(other.TotalSeconds);
 		}
 
 		/// <inheritdoc/>
 		public bool Equals(WcDateTime other)
 		{
-			return TotalSeconds == other.TotalSeconds;
+			return other is not null && TotalSeconds == other.TotalSeconds;
 		}
 
 		/// <inheritdoc/>
@@ -470,39 +470,39 @@ namespace WCSharp.DateTime
 				format = format.Replace("yyy", ZeroPad(year % 1000, 3));
 			else if (format.Contains("yy"))
 				format = format.Replace("yy", ZeroPad(year % 100, 2));
-			else if (format.Contains("y"))
+			else if (format.Contains('y'))
 				format = format.Replace("y", (year % 100).ToString());
 
 			if (format.Contains("MM"))
 				format = format.Replace("MM", ZeroPad(Month, 2));
-			else if (format.Contains("M"))
+			else if (format.Contains('M'))
 				format = format.Replace("M", Month.ToString());
 
 			if (format.Contains("dd"))
 				format = format.Replace("dd", ZeroPad(day, 2));
-			else if (format.Contains("d"))
+			else if (format.Contains('d'))
 				format = format.Replace("d", day.ToString());
 
 			if (format.Contains("hh"))
 				format = format.Replace("hh", ZeroPad((Hour + 1) % 12, 2));
-			else if (format.Contains("h"))
+			else if (format.Contains('h'))
 				format = format.Replace("h", ((Hour + 1) % 12).ToString());
 			else if (format.Contains("HH"))
 				format = format.Replace("HH", ZeroPad(Hour, 2));
-			else if (format.Contains("H"))
+			else if (format.Contains('H'))
 				format = format.Replace("H", Hour.ToString());
 
 			if (format.Contains("mm"))
 				format = format.Replace("mm", ZeroPad(Minute, 2));
-			else if (format.Contains("m"))
+			else if (format.Contains('m'))
 				format = format.Replace("m", Minute.ToString());
 
 			if (format.Contains("ss"))
 				format = format.Replace("ss", ZeroPad(Second, 2));
-			else if (format.Contains("s"))
+			else if (format.Contains('s'))
 				format = format.Replace("s", Second.ToString());
 
-			if (format.Contains("t"))
+			if (format.Contains('t'))
 				format = format.Replace("t", Hour >= 12 ? "P" : "A");
 			else if (format.Contains("tt"))
 				format = format.Replace("tt", Hour >= 12 ? "PM" : "AM");
@@ -529,12 +529,7 @@ namespace WCSharp.DateTime
 		/// <returns></returns>
 		public string Format(string format)
 		{
-			if (format == "*t" || format == "!*t")
-			{
-				return format;
-			}
-
-			return Os.Date(format, TotalSeconds);
+			return format == "*t" || format == "!*t" ? format : Os.Date(format, TotalSeconds);
 		}
 
 		/// <summary>
@@ -543,12 +538,7 @@ namespace WCSharp.DateTime
 		/// <returns>Null if <paramref name="string"/> is not a valid integer.</returns>
 		public static WcDateTime Deserialize(string @string)
 		{
-			if (int.TryParse(@string, out var seconds))
-			{
-				return new WcDateTime(seconds);
-			}
-
-			return null;
+			return int.TryParse(@string, out var seconds) ? new WcDateTime(seconds) : null;
 		}
 
 		/// <summary>

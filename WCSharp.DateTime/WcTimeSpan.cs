@@ -143,37 +143,37 @@ namespace WCSharp.DateTime
 		/// </summary>
 		public static bool operator ==(WcTimeSpan a, WcTimeSpan b)
 		{
-			return a.seconds == b.seconds;
+			return a is null ? b is null : a.seconds == b.seconds;
 		}
 
 		/// Returns true if <paramref name="a"/> does not represent an equally long time as <paramref name="b"/>.
 		public static bool operator !=(WcTimeSpan a, WcTimeSpan b)
 		{
-			return a.seconds != b.seconds;
+			return !(a == b);
 		}
 
 		/// Returns true if <paramref name="a"/> represents a shorter time than <paramref name="b"/>.
 		public static bool operator <(WcTimeSpan a, WcTimeSpan b)
 		{
-			return a.seconds < b.seconds;
+			return a is not null && b is not null && a.seconds < b.seconds;
 		}
 
 		/// Returns true if <paramref name="a"/> represents a shorter or equivalent time as <paramref name="b"/>.
 		public static bool operator <=(WcTimeSpan a, WcTimeSpan b)
 		{
-			return a.seconds <= b.seconds;
+			return a is not null && b is not null && a.seconds <= b.seconds;
 		}
 
 		/// Returns true if <paramref name="a"/> represents a longer time than <paramref name="b"/>.
 		public static bool operator >(WcTimeSpan a, WcTimeSpan b)
 		{
-			return a.seconds > b.seconds;
+			return a is not null && b is not null && a.seconds > b.seconds;
 		}
 
 		/// Returns true if <paramref name="a"/> represents a longer or equivalent time as <paramref name="b"/>.
 		public static bool operator >=(WcTimeSpan a, WcTimeSpan b)
 		{
-			return a.seconds >= b.seconds;
+			return a is not null && b is not null && a.seconds >= b.seconds;
 		}
 
 		/// <summary>
@@ -219,16 +219,16 @@ namespace WCSharp.DateTime
 		/// <inheritdoc/>
 		public int CompareTo(WcTimeSpan other)
 		{
-			return this.seconds.CompareTo(other.seconds);
+			return other is null ? 1 : this.seconds.CompareTo(other.seconds);
 		}
 
 		/// <inheritdoc/>
 		public bool Equals(WcTimeSpan other)
 		{
-			return this.seconds == other.seconds;
+			return other is not null && this.seconds == other.seconds;
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc/>S
 		public override bool Equals(object obj)
 		{
 			return obj is WcTimeSpan other && this.seconds == other.seconds;
@@ -246,9 +246,7 @@ namespace WCSharp.DateTime
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return Days > 0
-				? ToString("d:hh:mm:ss")
-				: ToString("hh:mm:ss");
+			return Days > 0 ? ToString("d:hh:mm:ss") : ToString("hh:mm:ss");
 		}
 
 		/// <summary>
@@ -259,22 +257,22 @@ namespace WCSharp.DateTime
 		public string ToString(string format)
 		{
 			// Lord, forgive me, for I have sinned.
-			if (format.Contains("d"))
+			if (format.Contains('d'))
 				format = format.Replace("d", Days.ToString());
 
 			if (format.Contains("hh"))
 				format = format.Replace("hh", WcDateTime.ZeroPad(Hours, 2));
-			else if (format.Contains("h"))
+			else if (format.Contains('h'))
 				format = format.Replace("h", Hours.ToString());
 
 			if (format.Contains("mm"))
 				format = format.Replace("mm", WcDateTime.ZeroPad(Minutes, 2));
-			else if (format.Contains("m"))
+			else if (format.Contains('m'))
 				format = format.Replace("m", Minutes.ToString());
 
 			if (format.Contains("ss"))
 				format = format.Replace("ss", WcDateTime.ZeroPad(Seconds, 2));
-			else if (format.Contains("s"))
+			else if (format.Contains('s'))
 				format = format.Replace("s", Seconds.ToString());
 
 			return format;
@@ -286,12 +284,7 @@ namespace WCSharp.DateTime
 		/// <returns>Null if <paramref name="string"/> is not a valid integer.</returns>
 		public static WcTimeSpan Deserialize(string @string)
 		{
-			if (int.TryParse(@string, out var seconds))
-			{
-				return new WcTimeSpan(seconds);
-			}
-
-			return null;
+			return int.TryParse(@string, out var seconds) ? new WcTimeSpan(seconds) : null;
 		}
 
 		/// <summary>
