@@ -228,37 +228,39 @@ namespace WCSharp.SaveLoad
 				LoadResult = loadResult
 			};
 
-			if (save.Version == 1)
+			if (save != null)
 			{
-				// Version 1 used a flawed way of verifying the hash, but we allow loading it anyway for backwards compatability.
-				if (save?.SaveData != null)
+				if (save.Version == 1)
 				{
-					if (save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+					// Version 1 used a flawed way of verifying the hash, but we allow loading it anyway for backwards compatability.
+					if (save.SaveData != null)
 					{
-						message.SaveData = save.SaveData;
+						if (save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+						{
+							message.SaveData = save.SaveData;
+						}
+						else
+						{
+							message.LoadResult = LoadResult.FailedHash;
+						}
 					}
-					else
+				}
+				else if (save.Version == 2)
+				{
+					// Version 2 stores the save data as a string so that we don't have to re-serialize it in order to verify the hash, as re-serializing it may change the save.
+					if (!string.IsNullOrEmpty(save.SaveString))
 					{
-						message.LoadResult = LoadResult.FailedHash;
+						if (TryDeserialize(save.SaveString, out var saveDataObject))
+						{
+							message.SaveData = saveDataObject;
+						}
+						else
+						{
+							message.LoadResult = LoadResult.FailedDeserialize;
+						}
 					}
 				}
 			}
-			else if (save.Version == 2)
-			{
-				// Version 2 stores the save data as a string so that we don't have to re-serialize it in order to verify the hash, as re-serializing it may change the save.
-				if (!string.IsNullOrEmpty(save?.SaveString))
-				{
-					if (TryDeserialize(save.SaveString, out var saveDataObject))
-					{
-						message.SaveData = saveDataObject;
-					}
-					else
-					{
-						message.LoadResult = LoadResult.FailedDeserialize;
-					}
-				}
-			}
-
 
 			SyncSystem.Send(message);
 		}
