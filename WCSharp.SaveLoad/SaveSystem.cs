@@ -129,13 +129,13 @@ namespace WCSharp.SaveLoad
 
 		private void HandleSaveLoadedMessage(SaveLoadedMessage<T> message)
 		{
-			if (message.SaveSystemId == this.id)
-			{
-				var data = message.SaveData ?? Activator.CreateInstance<T>();
-				data.player = Player(message.PlayerId);
-				data.saveSlot = message.SaveSlot;
-				OnSaveLoaded?.Invoke(data, message.LoadResult);
-			}
+			if (message.SaveSystemId != this.id)
+				return;
+
+			var data = message.SaveData ?? Activator.CreateInstance<T>();
+			data.player = Player(message.PlayerId);
+			data.saveSlot = message.SaveSlot;
+			OnSaveLoaded?.Invoke(data, message.LoadResult);
 		}
 
 		/// <summary>
@@ -218,7 +218,8 @@ namespace WCSharp.SaveLoad
 				}
 			}
 
-			var loadResult = TryDecode(sb, out var save);
+			var saveDataString = sb.ToString();
+			var loadResult = TryDecode(saveDataString, out var save);
 			var message = new SaveLoadedMessage<T>
 			{
 				SaveSystemId = this.id,
@@ -229,7 +230,7 @@ namespace WCSharp.SaveLoad
 
 			if (save?.SaveData != null)
 			{
-				if (save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+				if (save.HashCode == GetSaveHash(saveDataString, player))
 				{
 					message.SaveData = save.SaveData;
 				}
@@ -242,10 +243,9 @@ namespace WCSharp.SaveLoad
 			SyncSystem.Send(message);
 		}
 
-		private LoadResult TryDecode(StringBuilder sb, out Save<T> save)
+		private LoadResult TryDecode(string saveDataString, out Save<T> save)
 		{
-			var saveString = sb.ToString();
-			if (string.IsNullOrEmpty(saveString))
+			if (string.IsNullOrEmpty(saveDataString))
 			{
 				save = null;
 				return LoadResult.NewSave;
@@ -254,7 +254,7 @@ namespace WCSharp.SaveLoad
 			var result = LoadResult.FailedDecode;
 			try
 			{
-				var contents = this.base64.Decode(saveString);
+				var contents = this.base64.Decode(saveDataString);
 				result = LoadResult.FailedDeserialize;
 				save = JsonConvert.Deserialize<Save<T>>(contents);
 				return LoadResult.Success;
