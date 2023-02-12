@@ -9,17 +9,15 @@ using static War3Api.Common;
 namespace WCSharp.SaveLoad
 {
 	/// <summary>
-	/// System capable of saving C# data structures on a players local files to create save files that can be loaded at a later date/map.
+	/// Contains logic shared between all different generic <see cref="SaveSystem{T}"/> instances.
 	/// </summary>
-	/// <typeparam name="T">The <see cref="Saveable"/> type that this instance will be saving/loading</typeparam>
-	public class SaveSystem<T> : IDisposable
-		where T : Saveable
+	public class SaveSystem
 	{
-		internal const int CURRENT_VERSION = 2;
-		private const int PACKET_SIZE = 185;
 
-		private static List<string> originalTooltips;
-		private static readonly List<int> abilityIds = new()
+		private static int NextId { get; set; }
+
+		internal static List<string> OriginalTooltips { get; } = new();
+		internal static List<int> AbilityIds { get; } = new()
 		{
 			1097690227, // Amls
 			1097359726, // Ahan
@@ -31,23 +29,80 @@ namespace WCSharp.SaveLoad
 			1097098598, // Adef
 			1097099635, // Adis
 			1097228916, // Afbt
+			1097228907, // Afbk
+			1097231467, // Aflk
+			1097231457, // Afla
+			1097300322, // Agyb
+			1097233256, // Afsh
+			1097360737, // Ahea
+			1097362536, // Ahlh
+			1097428582, // Ainf
+			1097430643, // Aivs
+			1097364073, // Ahri
+			1097688166, // Amdf
+			1097102451, // Adts
+			1097889894, // Apxf
+			1097886841, // Aply
+			1097364080, // Ahrp
+			1095267425, // AHta
+			1098083439, // Aslo
+			1098084467, // Asps
+			1098085480, // Asth
+			1097364322, // Ahsb
 		};
 
 		/// <summary>
 		/// Adds an additional ability id for use as temporary data storage.
-		/// <para>By default, you have 2000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.</para>
+		/// <para>By default, you have 6000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.</para>
 		/// <para>This should be done upon map start, before anything attempts to use the SaveSystem.</para>
+		/// <para>The default includes most of the Human abilities:</para>
+		/// <para>Amls, Ahan, Aroc, Amic, Amil, Aclf, Acmg, Adef, Adis, Afbt, Afbk, Aflk, Afla, Agyb, Afsh,
+		/// Ahea, Ahlh, Ainf, Aivs, Ahri, Amdf, Adts, Apxf, Aply, Ahrp, AHta, Aslo, Asps, Asth, Ahsb</para>
 		/// </summary>
 		/// <param name="abilityId"></param>
 		public static void AddAbilityId(int abilityId)
 		{
-			if (originalTooltips == null)
+			if (OriginalTooltips == null)
 			{
-				abilityIds.Add(abilityId);
+				if (AbilityIds.Contains(abilityId))
+				{
+					throw new ArgumentException($"ERROR: Tooltip {abilityId} is already in use by the save system.");
+				}
+				AbilityIds.Add(abilityId);
 			}
 		}
 
-		private static int idCounter = 1;
+		internal static void Init()
+		{
+			for (var i = 0; i < AbilityIds.Count; i++)
+			{
+				var tooltip = BlzGetAbilityTooltip(AbilityIds[i], 0);
+				if (tooltip != "Tool tip missing!")
+				{
+					OriginalTooltips.Add(tooltip);
+				}
+				else
+				{
+					throw new ArgumentException($"ERROR: Tooltip {AbilityIds[i]} cannot be modified for the SaveLoad system. See the WCSharp wiki for more info on Save/Load storage space.");
+				}
+			}
+		}
+
+		internal static int GetNextId()
+		{
+			return ++NextId;
+		}
+	}
+
+	/// <summary>
+	/// System capable of saving C# data structures on a players local files to create save files that can be loaded at a later date/map.
+	/// </summary>
+	/// <typeparam name="T">The <see cref="Saveable"/> type that this instance will be saving/loading</typeparam>
+	public class SaveSystem<T> : IDisposable
+		where T : Saveable
+	{
+		internal const int CURRENT_VERSION = 2;
+		private const int PACKET_SIZE = 185;
 
 		private readonly int id;
 		private readonly string saveFolder;
@@ -75,25 +130,12 @@ namespace WCSharp.SaveLoad
 		/// </summary>
 		public SaveSystem(SaveSystemOptions options)
 		{
-			if (originalTooltips == null)
+			if (SaveSystem.OriginalTooltips.Count == 0)
 			{
-				originalTooltips = new List<string>();
-
-				for (var i = 0; i < abilityIds.Count; i++)
-				{
-					var tooltip = BlzGetAbilityTooltip(abilityIds[i], 0);
-					if (tooltip != "Tool tip missing!")
-					{
-						originalTooltips.Add(tooltip);
-					}
-					else
-					{
-						throw new ArgumentException($"ERROR: Tooltip {abilityIds[i]} cannot be modified for the SaveLoad system. See the WCSharp wiki for more info on Save/Load storage space.");
-					}
-				}
+				SaveSystem.Init();
 			}
 
-			this.id = idCounter++;
+			this.id = SaveSystem.GetNextId();
 			this.saveFolder = options.SaveFolder;
 			this.hash1 = options.Hash1;
 			this.hash2 = options.Hash2;
@@ -161,7 +203,7 @@ namespace WCSharp.SaveLoad
 			var contents = this.base64.Encode(JsonConvert.Serialize(save));
 
 			var filename = GetFileName(saveable.player, saveable.saveSlot);
-			if (contents.Length > PACKET_SIZE * abilityIds.Count)
+			if (contents.Length > PACKET_SIZE * SaveSystem.AbilityIds.Count)
 			{
 				Console.WriteLine("ERROR: Maximum save file size has been reached. Unable to save file. Please contact the mapmaker to increase storage space.");
 				return;
@@ -171,7 +213,7 @@ namespace WCSharp.SaveLoad
 			PreloadGenStart();
 			for (var i = 0; i * PACKET_SIZE < contents.Length; i++)
 			{
-				var nextAbilityId = abilityIds[i];
+				var nextAbilityId = SaveSystem.AbilityIds[i];
 				var startIndex = i * PACKET_SIZE;
 				var endIndex = Math.Min(contents.Length - startIndex, PACKET_SIZE);
 				Preload($"\" )\ncall BlzSetAbilityTooltip({nextAbilityId}, \"{contents.Substring(startIndex, endIndex)}\", 0)//");
@@ -198,17 +240,17 @@ namespace WCSharp.SaveLoad
 			Preloader(GetFileName(player, saveSlot));
 			var sb = new StringBuilder();
 
-			for (var i = 0; i < abilityIds.Count; i++)
+			for (var i = 0; i < SaveSystem.AbilityIds.Count; i++)
 			{
-				var abilityId = abilityIds[i];
-				var originalTooltip = originalTooltips[i];
+				var abilityId = SaveSystem.AbilityIds[i];
+				var originalTooltip = SaveSystem.OriginalTooltips[i];
 
 				var packet = BlzGetAbilityTooltip(abilityId, 0);
 				if (packet == originalTooltip)
 				{
-					if (i * 2 > abilityIds.Count)
+					if (i * 3 / 4 > SaveSystem.AbilityIds.Count)
 					{
-						Console.WriteLine("WARNING: More than 50% of the save file storage space is in use. Please contact the mapmaker to increase storage space.");
+						Console.WriteLine("WARNING: 75% or more of the save file storage space is in use. Please contact the mapmaker to increase storage space.");
 					}
 					break;
 				}
