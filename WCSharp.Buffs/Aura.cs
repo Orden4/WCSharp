@@ -56,14 +56,7 @@ namespace WCSharp.Buffs
 						{
 							DestroyEffect(Effect);
 						}
-						if (!string.IsNullOrEmpty(value))
-						{
-							Effect = AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
-						}
-						else
-						{
-							Effect = null;
-						}
+						Effect = string.IsNullOrEmpty(value) ? null : AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
 					}
 				}
 			}
@@ -155,7 +148,7 @@ namespace WCSharp.Buffs
 				SearchIntervalLeft = SearchInterval;
 				GroupEnumUnitsInRange(this.group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
 
-				foreach (var unit in this.group.Enumerate())
+				foreach (var unit in this.group.ToList())
 				{
 					if (ActiveBuffsByUnit.TryGetValue(unit, out var buff))
 					{

@@ -347,14 +347,9 @@ namespace WCSharp.SaveLoad
 
 		private string GetFileName(player player, int saveSlot)
 		{
-			if (this.bindSavesToPlayerName)
-			{
-				return $"{this.saveFolder}\\{GetPlayerName(player)}-save-{saveSlot}{this.suffix}.pld";
-			}
-			else
-			{
-				return $"{this.saveFolder}\\save-{saveSlot}{this.suffix}.pld";
-			}
+			return this.bindSavesToPlayerName
+				? $"{this.saveFolder}\\{GetPlayerName(player)}-save-{saveSlot}{this.suffix}.pld"
+				: $"{this.saveFolder}\\save-{saveSlot}{this.suffix}.pld";
 		}
 
 		private int GetSaveHash(string saveData, player player)

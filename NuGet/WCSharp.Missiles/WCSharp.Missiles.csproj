@@ -5,7 +5,7 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Missiles.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
@@ -21,7 +21,7 @@ This package allows for the creation and management of missiles in Warcraft III.
     <PackageReference Include="War3Api.Blizzard" Version="1.33.0" />
     <PackageReference Include="War3Api.Common" Version="1.33.0" />
     <PackageReference Include="WCSharp.Events" Version="2.1.0" />
-    <PackageReference Include="WCSharp.Shared" Version="2.1.0" />
+    <PackageReference Include="WCSharp.Shared" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>

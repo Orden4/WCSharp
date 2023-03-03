@@ -404,7 +404,7 @@ namespace WCSharp.Missiles
 		protected void RunCollisions()
 		{
 			GroupEnumUnitsInRange(this.group, MissileX, MissileY, this.collisionRadius, null);
-			foreach (var unit in this.group.Enumerate())
+			foreach (var unit in this.group.ToList())
 			{
 				if (TargetsHit.Add(unit))
 				{

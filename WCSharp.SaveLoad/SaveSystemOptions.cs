@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WCSharp.Shared;
+﻿using WCSharp.Shared;
 
 namespace WCSharp.SaveLoad
 {
@@ -52,12 +51,5 @@ namespace WCSharp.SaveLoad
 		/// <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
 		/// </summary>
 		public Base64 Base64Provider { get; set; }
-
-		/// <summary>
-		/// Optional. By default, you have 5000 characters to use as storage. If you approach that limit, you can use this to expand the amount of storage space.
-		/// <para>By default, the following ability ids are included:</para>
-		/// <para>Amls, Ahan, Aroc, Amic, Amil, Aclf, Acmg, Adef, Adis, Afbt</para>
-		/// </summary>
-		public IEnumerable<int> AdditionalAbilityIds { get; set; }
 	}
 }
