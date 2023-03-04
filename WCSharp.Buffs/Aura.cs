@@ -13,6 +13,8 @@ namespace WCSharp.Buffs
 	public abstract class Aura<T> : IAura
 		where T : Buff
 	{
+		private static readonly group group = CreateGroup();
+
 		/// <inheritdoc/>
 		public bool Active { get; set; }
 		/// <inheritdoc/>
@@ -103,8 +105,6 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public effect Effect { get; set; }
 
-		private readonly group group = CreateGroup();
-
 		/// <summary>
 		/// Creates a new aura centered around the given caster.
 		/// </summary>
@@ -146,9 +146,8 @@ namespace WCSharp.Buffs
 			if (SearchIntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				SearchIntervalLeft = SearchInterval;
-				GroupEnumUnitsInRange(this.group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
-
-				foreach (var unit in this.group.ToList())
+				GroupEnumUnitsInRange(group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
+				foreach (var unit in group.ToList())
 				{
 					if (ActiveBuffsByUnit.TryGetValue(unit, out var buff))
 					{
@@ -202,7 +201,6 @@ namespace WCSharp.Buffs
 			{
 				DestroyEffect(Effect);
 			}
-			DestroyGroup(this.group);
 		}
 	}
 }

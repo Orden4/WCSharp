@@ -153,14 +153,15 @@ namespace WCSharp.Missiles
 
 		private bool DirectAction()
 		{
-			if (FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			var distance = FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY);
+			if (distance < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return false;
 			}
 
 			var oldZ = MissileZ;
-			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
+			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / distance);
 
 			this.yaw = Util.AngleBetweenPointsRad(MissileX, MissileY, TargetX, TargetY);
 

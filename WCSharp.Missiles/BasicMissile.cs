@@ -118,7 +118,8 @@ namespace WCSharp.Missiles
 				}
 			}
 
-			if (FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			var distance = FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY);
+			if (distance < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return;
@@ -128,7 +129,7 @@ namespace WCSharp.Missiles
 
 			if (this.followsTerrain)
 			{
-				this.missileZ += (this.targetZ - this.missileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
+				this.missileZ += (this.targetZ - this.missileZ) * (this.speed / distance);
 			}
 			else
 			{

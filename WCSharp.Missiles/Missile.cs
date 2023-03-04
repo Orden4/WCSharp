@@ -16,6 +16,7 @@ namespace WCSharp.Missiles
 		// Doesn't fold multiple constant references properly unless you do this
 		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
 		private static readonly location location = Location(0, 0);
+		private static readonly group group = CreateGroup();
 
 		/// <summary>
 		/// Whether the missile is active. This is automatically set to false prior to calling <see cref="OnImpact"/>.
@@ -127,7 +128,6 @@ namespace WCSharp.Missiles
 		/// <para>Removing a unit from this means <see cref="OnCollision(unit)"/> will trigger for that unit once more.</para>
 		/// </summary>
 		public HashSet<unit> TargetsHit { get; private set; }
-		private protected group group;
 		private protected float collisionRadius;
 		/// <summary>
 		/// The collision radius of the missile which is used to trigger <see cref="OnCollision(unit)"/>.
@@ -142,7 +142,6 @@ namespace WCSharp.Missiles
 				if (this.collisionRadius > 0 && TargetsHit == null)
 				{
 					TargetsHit = new HashSet<unit>();
-					this.group = CreateGroup();
 				}
 			}
 		}
@@ -403,8 +402,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		protected void RunCollisions()
 		{
-			GroupEnumUnitsInRange(this.group, MissileX, MissileY, this.collisionRadius, null);
-			foreach (var unit in this.group.ToList())
+			GroupEnumUnitsInRange(group, MissileX, MissileY, this.collisionRadius, null);
+			foreach (var unit in group.ToList())
 			{
 				if (TargetsHit.Add(unit))
 				{
@@ -490,10 +489,6 @@ namespace WCSharp.Missiles
 			if (Effect != null)
 			{
 				DestroyEffect(Effect);
-			}
-			if (this.group != null)
-			{
-				DestroyGroup(this.group);
 			}
 		}
 	}
