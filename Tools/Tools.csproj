@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NuGet.Protocol" Version="6.4.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.5.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
-    <PackageReference Include="War3Net.IO.Slk" Version="5.6.0" />
+    <PackageReference Include="War3Net.IO.Slk" Version="5.6.1" />
   </ItemGroup>
 
   <ItemGroup>
