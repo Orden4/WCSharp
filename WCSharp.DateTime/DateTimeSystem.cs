@@ -68,7 +68,7 @@ namespace WCSharp.DateTime
 		private WcDateTime ResolveAverage()
 		{
 			var count = this.timestamps.Count;
-			var averageSeconds = this.timestamps.Values.Sum(x => x.TotalSeconds / count);
+			var averageSeconds = this.timestamps.Values.OrderBy(x => x.TotalSeconds).Sum(x => x.TotalSeconds / count);
 			return new WcDateTime(averageSeconds);
 		}
 
@@ -82,7 +82,7 @@ namespace WCSharp.DateTime
 				var middle = this.timestamps.Count / 2;
 				var t1 = ordered[middle - 1];
 				var t2 = ordered[middle];
-				var avg = this.timestamps.Values.Sum(x => x.TotalSeconds / this.timestamps.Count);
+				var avg = ordered.Sum(x => x.TotalSeconds / this.timestamps.Count);
 				if (Math.Abs(t1.TotalSeconds - avg) < Math.Abs(t2.TotalSeconds - avg))
 				{
 					return t1;

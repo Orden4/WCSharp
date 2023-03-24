@@ -20,7 +20,6 @@ namespace WCSharp.SaveLoad
 		internal static List<int> AbilityIds { get; } = new()
 		{
 			1097690227, // Amls
-			1097359726, // Ahan
 			1098018659, // Aroc
 			1097689443, // Amic
 			1097689452, // Amil
@@ -35,10 +34,8 @@ namespace WCSharp.SaveLoad
 			1097300322, // Agyb
 			1097233256, // Afsh
 			1097360737, // Ahea
-			1097362536, // Ahlh
 			1097428582, // Ainf
 			1097430643, // Aivs
-			1097364073, // Ahri
 			1097688166, // Amdf
 			1097102451, // Adts
 			1097889894, // Apxf
@@ -48,7 +45,10 @@ namespace WCSharp.SaveLoad
 			1098083439, // Aslo
 			1098084467, // Asps
 			1098085480, // Asth
-			1097364322, // Ahsb
+			1098085480, // Agyv
+			1098085480, // Aast
+			1098085480, // Abtl
+			1098085480, // Sbtl
 		};
 
 		/// <summary>

@@ -27,7 +27,8 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 					}
 					catch (Exception ex)
 					{
-						Console.WriteLine(ex);
+						Console.WriteLine(ex.Message);
+						Console.WriteLine(ex.StackTrace);
 					}
 					return false;
 				};

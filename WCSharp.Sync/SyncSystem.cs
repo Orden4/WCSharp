@@ -253,7 +253,8 @@ namespace WCSharp.Sync
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine(ex);
+					Console.WriteLine(ex.Message);
+					Console.WriteLine(ex.StackTrace);
 				}
 
 				return false;
@@ -266,7 +267,8 @@ namespace WCSharp.Sync
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine(ex);
+					Console.WriteLine(ex.Message);
+					Console.WriteLine(ex.StackTrace);
 				}
 
 				return false;
