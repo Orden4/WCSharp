@@ -189,7 +189,7 @@ namespace WCSharp.Sync
 				}
 			}
 
-			if (startIndex < content.Length - 1)
+			if (startIndex < content.Length)
 			{
 				yield return new SyncPacket
 				{
