@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WCSharp.Events;
 using static War3Api.Common;
 
 namespace WCSharp.Buffs
@@ -11,7 +12,7 @@ namespace WCSharp.Buffs
 	public abstract class Buff
 	{
 		/// <summary>
-		/// Indicates the active state of this buff. Set this to false to disable and dispose this instance.
+		/// Indicates the active state of this buff. Setting this to false will cause it to be removed on the next update cycle (at most <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> later).
 		/// </summary>
 		public bool Active { get; set; }
 		/// <summary>
@@ -143,6 +144,8 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public effect Effect { get; protected set; }
 
+		internal bool Disposed { get; set; }
+
 		/// <summary>
 		/// Will set Caster, CastingPlayer, Target and TargetPlayer accordingly.
 		/// </summary>
@@ -220,6 +223,20 @@ namespace WCSharp.Buffs
 		public virtual void OnExpire()
 		{
 
+		}
+
+		/// <summary>
+		/// Will instantly remove this buff from the unit, including calling <see cref="OnDispose"/> and any other relevant steps.
+		/// <para>It's recommended to just set <see cref="Active"/> to false unless the removal should not be delayed for some reason.</para>
+		/// </summary>
+		public void RemoveInstantly()
+		{
+			if (Active)
+			{
+				Active = false;
+				Disposed = true;
+				Dispose();
+			}
 		}
 
 		/// <summary>

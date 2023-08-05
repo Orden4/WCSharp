@@ -52,7 +52,10 @@ namespace WCSharp.Buffs
 					size--;
 					buffs[index] = buffs[size];
 					buffs.RemoveAt(size);
-					buff.Dispose();
+					if (!buff.Disposed)
+					{
+						buff.Dispose();
+					}
 				}
 			}
 
@@ -185,19 +188,11 @@ namespace WCSharp.Buffs
 		/// <summary>
 		/// Uses a dictionary to quickly find all buffs attached to the given unit.
 		/// </summary>
-		public static IEnumerable<Buff> GetBuffsOnUnit(unit unit)
+		public static IList<Buff> GetBuffsOnUnit(unit unit)
 		{
-			if (buffsByUnit.TryGetValue(unit, out var boffsOnUnit))
-			{
-				for (var i = 0; i < boffsOnUnit.Count; i++)
-				{
-					var buff = boffsOnUnit[i];
-					if (buff.Active)
-					{
-						yield return buff;
-					}
-				}
-			}
+			return buffsByUnit.TryGetValue(unit, out var buffsOnUnit)
+				? buffsOnUnit.Where(x => x.Active).ToList()
+				: Array.Empty<Buff>();
 		}
 
 		/// <summary>
@@ -208,8 +203,9 @@ namespace WCSharp.Buffs
 		/// <param name="isBeneficial">Whether to dispel beneficial or detrimental buffs.</param>
 		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
 		/// <returns>All dispels.</returns>
-		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount)
+		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount)
 		{
+			var dispels = new List<Dispel>();
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial)
@@ -220,17 +216,16 @@ namespace WCSharp.Buffs
 
 					if (buff.Stacks == 0)
 					{
-						buff.Active = false;
+						buff.RemoveInstantly();
 					}
 
-					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+					dispels.Add(new Dispel(buff, chargesConsumed, stacks - buff.Stacks));
 
 					if (dispelAmount <= 0)
-					{
-						yield break;
-					}
+						break;
 				}
 			}
+			return dispels;
 		}
 
 		/// <summary>
@@ -242,8 +237,9 @@ namespace WCSharp.Buffs
 		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
 		/// <param name="dispelType">The type of buffs that can be dispelled.</param>
 		/// <returns>All dispels.</returns>
-		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, string dispelType)
+		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, string dispelType)
 		{
+			var dispels = new List<Dispel>();
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Contains(dispelType))
@@ -254,17 +250,16 @@ namespace WCSharp.Buffs
 
 					if (buff.Stacks == 0)
 					{
-						buff.Active = false;
+						buff.RemoveInstantly();
 					}
 
-					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+					dispels.Add(new Dispel(buff, chargesConsumed, stacks - buff.Stacks));
 
 					if (dispelAmount <= 0)
-					{
-						yield break;
-					}
+						break;
 				}
 			}
+			return dispels;
 		}
 
 		/// <summary>
@@ -276,8 +271,9 @@ namespace WCSharp.Buffs
 		/// <param name="dispelAmount">The maximum number of buffs to dispel.</param>
 		/// <param name="dispelTypes">The buff types that can be dispelled.</param>
 		/// <returns>All dispels.</returns>
-		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, params string[] dispelTypes)
+		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, params string[] dispelTypes)
 		{
+			var dispels = new List<Dispel>();
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)))
@@ -288,17 +284,16 @@ namespace WCSharp.Buffs
 
 					if (buff.Stacks == 0)
 					{
-						buff.Active = false;
+						buff.RemoveInstantly();
 					}
 
-					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+					dispels.Add(new Dispel(buff, chargesConsumed, stacks - buff.Stacks));
 
 					if (dispelAmount <= 0)
-					{
-						yield break;
-					}
+						break;
 				}
 			}
+			return dispels;
 		}
 
 		/// <summary>
@@ -311,8 +306,9 @@ namespace WCSharp.Buffs
 		/// <param name="dispelTypes">The buff types that can be dispelled.</param>
 		/// <param name="exclusions">Will not dispel buffs with any of the given exclusion types.</param>
 		/// <returns>All dispels.</returns>
-		public static IEnumerable<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, List<string> dispelTypes, List<string> exclusions)
+		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, List<string> dispelTypes, List<string> exclusions)
 		{
+			var dispels = new List<Dispel>();
 			foreach (var buff in GetBuffsOnUnit(target))
 			{
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)) && !buff.BuffTypes.Any(x => exclusions.Contains(x)))
@@ -323,17 +319,16 @@ namespace WCSharp.Buffs
 
 					if (buff.Stacks == 0)
 					{
-						buff.Active = false;
+						buff.RemoveInstantly();
 					}
 
-					yield return new Dispel(buff, chargesConsumed, stacks - buff.Stacks);
+					dispels.Add(new Dispel(buff, chargesConsumed, stacks - buff.Stacks));
 
 					if (dispelAmount <= 0)
-					{
-						yield break;
-					}
+						break;
 				}
 			}
+			return dispels;
 		}
 	}
 }

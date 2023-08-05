@@ -193,14 +193,39 @@ namespace WCSharp.Shared
 
 		/// <summary>
 		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
-		/// <para>A tolernace of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
+		/// <para>A tolerance of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
 		/// </summary>
 		/// <param name="attacker">The unit performing the attack.</param>
 		/// <param name="attacked">The unit being attacked.</param>
 		/// <param name="tolerance">In degrees.</param>
 		public static bool IsAttackerBehindUnit(unit attacker, unit attacked, float tolerance)
 		{
-			var attackerAngle = AngleBetweenPoints(GetUnitX(attacker), GetUnitY(attacker), GetUnitX(attacked), GetUnitY(attacked));
+			return IsAttackerBehindUnit(GetUnitX(attacker), GetUnitY(attacker), attacked, tolerance);
+		}
+
+		/// <summary>
+		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
+		/// <para>A tolerance of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
+		/// </summary>
+		/// <param name="attackerX">The X position of the attacker.</param>
+		/// <param name="attackerY">The Y position of the attacker.</param>
+		/// <param name="attacked">The unit being attacked.</param>
+		/// <param name="tolerance">In degrees.</param>
+		public static bool IsAttackerBehindUnit(float attackerX, float attackerY, unit attacked, float tolerance)
+		{
+			var attackerAngle = AngleBetweenPoints(attackerX, attackerY, GetUnitX(attacked), GetUnitY(attacked));
+			return IsAttackerBehindUnit(attackerAngle, attacked, tolerance);
+		}
+
+		/// <summary>
+		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
+		/// <para>A tolerance of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
+		/// </summary>
+		/// <param name="attackerAngle">The angle of the attacker.</param>
+		/// <param name="attacked">The unit being attacked.</param>
+		/// <param name="tolerance">In degrees.</param>
+		public static bool IsAttackerBehindUnit(float attackerAngle, unit attacked, float tolerance)
+		{
 			var attackedAngle = GetUnitFacing(attacked);
 			var maxAllowedAngle = 360 - (0.5f * tolerance);
 			var minAllowedAngle = 0.5f * tolerance;
@@ -212,7 +237,7 @@ namespace WCSharp.Shared
 
 		/// <summary>
 		/// <para>Determines whether the attacker is in front of the attacked with the given tolerance in degrees.</para>
-		/// <para>A tolernace of 360 means the target can be attacked from anywhere while being considered "infront".</para>
+		/// <para>A tolerance of 360 means the target can be attacked from anywhere while being considered "infront".</para>
 		/// </summary>
 		/// <param name="attacker">The unit performing the attack.</param>
 		/// <param name="attacked">The unit being attacked.</param>

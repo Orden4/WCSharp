@@ -37,10 +37,6 @@ namespace WCSharp.Buffs
 		public float SearchInterval { get; set; } = 1.0f;
 		/// <inheritdoc/>
 		public StackBehaviour StackBehaviour { get; set; }
-		/// <summary>
-		/// A dictionary mapping units to active buffs.
-		/// </summary>
-		public Dictionary<unit, AuraBuffDuration<T>> ActiveBuffsByUnit { get; set; }
 
 		private string effectString;
 		/// <inheritdoc/>
@@ -105,6 +101,8 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public effect Effect { get; set; }
 
+		private readonly List<AuraBuffDuration<T>> activeBuffs;
+
 		/// <summary>
 		/// Creates a new aura centered around the given caster.
 		/// </summary>
@@ -112,7 +110,7 @@ namespace WCSharp.Buffs
 		{
 			Caster = caster;
 			CastingPlayer = GetOwningPlayer(caster);
-			ActiveBuffsByUnit = new Dictionary<unit, AuraBuffDuration<T>>();
+			this.activeBuffs = new();
 		}
 
 		/// <summary>
@@ -149,16 +147,18 @@ namespace WCSharp.Buffs
 				GroupEnumUnitsInRange(group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
 				foreach (var unit in group.ToList())
 				{
-					if (ActiveBuffsByUnit.TryGetValue(unit, out var buff))
+					var handleId = GetHandleId(unit);
+					var existingBuff = this.activeBuffs.FirstOrDefault(x => x.HandleId == handleId);
+					if (existingBuff != null)
 					{
-						buff.Duration = Duration;
-						buff.Buff.Duration = Duration;
+						existingBuff.Duration = Duration;
+						existingBuff.Buff.Duration = Duration;
 					}
 					else if (UnitFilter(unit))
 					{
 						var aura = (T)BuffSystem.Add(CreateAuraBuff(unit), StackBehaviour);
 						aura.Duration = Duration;
-						ActiveBuffsByUnit.Add(unit, new AuraBuffDuration<T>(aura, Duration));
+						this.activeBuffs.Add(new AuraBuffDuration<T>(handleId, aura, Duration));
 					}
 				}
 			}
@@ -167,31 +167,25 @@ namespace WCSharp.Buffs
 				SearchIntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
 			}
 
-			var removals = new List<unit>();
-
-			foreach (var buff in ActiveBuffsByUnit)
+			for (var i = this.activeBuffs.Count - 1; i >= 0; i--)
 			{
-				if (buff.Value.Duration <= 0)
+				var buff = this.activeBuffs[i];
+				if (buff.Duration <= 0)
 				{
-					removals.Add(buff.Key);
-					buff.Value.Buff.Stacks--;
+					buff.Buff.Stacks--;
+					this.activeBuffs.RemoveAt(i);
 				}
 				else
 				{
-					buff.Value.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+					buff.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
 				}
-			}
-
-			for (var i = 0; i < removals.Count; i++)
-			{
-				ActiveBuffsByUnit.Remove(removals[i]);
 			}
 		}
 
 		/// <inheritdoc/>
 		public IEnumerable<Buff> GetActiveBuffs()
 		{
-			return ActiveBuffsByUnit.Values.Select(x => x.Buff);
+			return this.activeBuffs.Select(x => x.Buff);
 		}
 
 		/// <inheritdoc/>
