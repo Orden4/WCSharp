@@ -5,6 +5,8 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.W3MMD.xml</DocumentationFile>
 	<DefaultDocumentationFolder>../Docs/WCSharp.W3MMD</DefaultDocumentationFolder>
+	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.W3MMD.txt</DefaultDocumentationLinksOutputFile>
+	<DefaultDocumentationLinksBaseUrl>../WCSharp.W3MMD/</DefaultDocumentationLinksBaseUrl>
 	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
 
