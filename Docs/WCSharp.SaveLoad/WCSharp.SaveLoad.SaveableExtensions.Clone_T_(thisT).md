@@ -1,3 +1,4 @@
+#### [WCSharp.SaveLoad](index.md 'index')
 ### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[SaveableExtensions](WCSharp.SaveLoad.SaveableExtensions.md 'WCSharp.SaveLoad.SaveableExtensions')
 
 ## SaveableExtensions.Clone<T>(this T) Method

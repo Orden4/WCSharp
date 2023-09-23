@@ -1,3 +1,4 @@
+#### [WCSharp.SaveLoad](index.md 'index')
 ### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[LoadResultExtensions](WCSharp.SaveLoad.LoadResultExtensions.md 'WCSharp.SaveLoad.LoadResultExtensions')
 
 ## LoadResultExtensions.Failed(this LoadResult) Method

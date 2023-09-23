@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[Buff](WCSharp.Buffs.Buff.md 'WCSharp.Buffs.Buff')
 
 ## Buff.Apply() Method

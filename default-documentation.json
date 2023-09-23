@@ -1,6 +1,5 @@
 {
 	"GeneratedAccessModifiers": "Public",
-	"ExternLinksFilePaths": [
-		"DefaultDocumentation/*.txt"
-	]
+	"GeneratedPages": "Assembly,Namespaces,Types,Members",
+	"ExternLinksFilePaths": ["DefaultDocumentation/*.txt"]
 }

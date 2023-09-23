@@ -1,3 +1,4 @@
+#### [WCSharp.Events](index.md 'index')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[PeriodicEvents](WCSharp.Events.PeriodicEvents.md 'WCSharp.Events.PeriodicEvents')
 
 ## PeriodicEvents.AddPeriodicEvent(PeriodicEvent) Method

@@ -1,3 +1,4 @@
+#### [WCSharp.Missiles](index.md 'index')
 ### [WCSharp.Missiles](WCSharp.Missiles.md 'WCSharp.Missiles').[CurveMissile](WCSharp.Missiles.CurveMissile.md 'WCSharp.Missiles.CurveMissile')
 
 ## CurveMissile(player, float, float, float, float) Constructor

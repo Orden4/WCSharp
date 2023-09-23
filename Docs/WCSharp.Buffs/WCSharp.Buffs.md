@@ -1,3 +1,5 @@
+#### [WCSharp.Buffs](index.md 'index')
+
 ## WCSharp.Buffs Namespace
 
 | Classes | |

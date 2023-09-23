@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[Dispel](WCSharp.Buffs.Dispel.md 'WCSharp.Buffs.Dispel')
 
 ## Dispel.Buff Property

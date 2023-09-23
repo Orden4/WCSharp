@@ -1,3 +1,4 @@
+#### [WCSharp.Events](index.md 'index')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[IPeriodicDisposableAction](WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp.Events.IPeriodicDisposableAction')
 
 ## IPeriodicDisposableAction.Dispose() Method

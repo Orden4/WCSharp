@@ -1,3 +1,5 @@
+#### [WCSharp.Dummies](index.md 'index')
+
 ## WCSharp.Dummies Namespace
 
 | Classes | |

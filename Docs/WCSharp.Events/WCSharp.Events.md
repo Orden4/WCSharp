@@ -1,3 +1,5 @@
+#### [WCSharp.Events](index.md 'index')
+
 ## WCSharp.Events Namespace
 
 | Classes | |

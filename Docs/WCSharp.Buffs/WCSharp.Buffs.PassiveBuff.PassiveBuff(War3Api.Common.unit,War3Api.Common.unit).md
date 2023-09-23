@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[PassiveBuff](WCSharp.Buffs.PassiveBuff.md 'WCSharp.Buffs.PassiveBuff')
 
 ## PassiveBuff(unit, unit) Constructor

@@ -1,3 +1,4 @@
+#### [WCSharp.Events](index.md 'index')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[PeriodicEvent](WCSharp.Events.PeriodicEvent.md 'WCSharp.Events.PeriodicEvent')
 
 ## PeriodicEvent(Func<bool>, double) Constructor

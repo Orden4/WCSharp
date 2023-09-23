@@ -1,3 +1,5 @@
+#### [WCSharp.SaveLoad](index.md 'index')
+
 ## WCSharp.SaveLoad Namespace
 
 | Classes | |

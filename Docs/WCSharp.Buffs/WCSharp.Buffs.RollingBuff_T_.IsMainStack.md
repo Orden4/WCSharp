@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[RollingBuff&lt;T&gt;](WCSharp.Buffs.RollingBuff_T_.md 'WCSharp.Buffs.RollingBuff<T>')
 
 ## RollingBuff<T>.IsMainStack Property

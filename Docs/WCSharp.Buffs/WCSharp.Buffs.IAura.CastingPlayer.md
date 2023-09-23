@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[IAura](WCSharp.Buffs.IAura.md 'WCSharp.Buffs.IAura')
 
 ## IAura.CastingPlayer Property

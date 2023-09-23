@@ -1,3 +1,4 @@
+#### [WCSharp.W3MMD](index.md 'index')
 ### [WCSharp.W3MMD](WCSharp.W3MMD.md 'WCSharp.W3MMD').[W3MmdIntVar](WCSharp.W3MMD.W3MmdIntVar.md 'WCSharp.W3MMD.W3MmdIntVar')
 
 ## W3MmdIntVar.GoalType Property

@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[AuraBoundBuff](WCSharp.Buffs.AuraBoundBuff.md 'WCSharp.Buffs.AuraBoundBuff')
 
 ## AuraBoundBuff.OnStack(Buff) Method

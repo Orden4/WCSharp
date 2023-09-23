@@ -1,3 +1,4 @@
+#### [WCSharp.Events](index.md 'index')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[IPeriodicAction](WCSharp.Events.IPeriodicAction.md 'WCSharp.Events.IPeriodicAction')
 
 ## IPeriodicAction.Active Property

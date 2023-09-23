@@ -1,3 +1,4 @@
+#### [WCSharp.Effects](index.md 'index')
 ### [WCSharp.Effects](WCSharp.Effects.md 'WCSharp.Effects')
 
 ## EffectSystem Class

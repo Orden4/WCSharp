@@ -1,3 +1,5 @@
+#### [WCSharp.Effects](index.md 'index')
+
 ## WCSharp.Effects Namespace
 
 | Classes | |

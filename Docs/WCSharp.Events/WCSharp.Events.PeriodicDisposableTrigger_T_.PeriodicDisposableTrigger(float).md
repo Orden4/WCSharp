@@ -1,3 +1,4 @@
+#### [WCSharp.Events](index.md 'index')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[PeriodicDisposableTrigger&lt;T&gt;](WCSharp.Events.PeriodicDisposableTrigger_T_.md 'WCSharp.Events.PeriodicDisposableTrigger<T>')
 
 ## PeriodicDisposableTrigger(float) Constructor

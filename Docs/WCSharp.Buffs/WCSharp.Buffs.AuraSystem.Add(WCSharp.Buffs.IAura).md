@@ -1,3 +1,4 @@
+#### [WCSharp.Buffs](index.md 'index')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[AuraSystem](WCSharp.Buffs.AuraSystem.md 'WCSharp.Buffs.AuraSystem')
 
 ## AuraSystem.Add(IAura) Method
