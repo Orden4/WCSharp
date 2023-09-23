@@ -12,3 +12,4 @@ robocopy "WCSharp.Missiles" "NuGet/WCSharp.Missiles" *.cs /s /mir /xd "bin" "obj
 robocopy "WCSharp.SaveLoad" "NuGet/WCSharp.SaveLoad" *.cs /s /mir /xd "bin" "obj"
 robocopy "WCSharp.Shared" "NuGet/WCSharp.Shared" *.cs /s /mir /xd "bin" "obj"
 robocopy "WCSharp.Sync" "NuGet/WCSharp.Sync" *.cs /s /mir /xd "bin" "obj"
+robocopy "WCSharp.W3MMD" "NuGet/WCSharp.W3MMD" *.cs /s /mir /xd "bin" "obj"

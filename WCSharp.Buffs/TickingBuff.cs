@@ -42,10 +42,13 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+			if (Interval > 0)
 			{
-				IntervalLeft += Interval;
-				OnTick();
+				while (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+				{
+					IntervalLeft += Interval;
+					OnTick();
+				}
 			}
 
 			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;

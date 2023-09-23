@@ -13,23 +13,50 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class CurveMissile : Missile
 	{
+		/// <summary>
+		/// The flight modes of this missile type.
+		/// </summary>
+		public enum FlightMode
+		{
+			/// <summary>
+			/// Default value prior to the missile being launched.
+			/// <para>Will change to <see cref="Direct"/> if launched from a high altitude or with a non-zero <see cref="Arc"/>.</para>
+			/// </summary>
+			Default,
+			/// <summary>
+			/// The missile will follow the height of the terrain.
+			/// </summary>
+			FollowTerrain,
+			/// <summary>
+			/// The missile will ignore the height of the terrain.
+			/// </summary>
+			Direct
+		}
+
 		/// <inheritdoc/>
 		public sealed override float CasterZ
 		{
-			get => this.casterZ + GetZ(CasterX, CasterY);
-			set => this.casterZ = value - GetZ(CasterX, CasterY);
+			get => Mode == FlightMode.FollowTerrain ? InternalCasterZ + Util.GetZ(CasterX, CasterY) : InternalCasterZ;
+			set => InternalCasterZ = Mode == FlightMode.FollowTerrain ? value - Util.GetZ(CasterX, CasterY) : value;
 		}
 		/// <inheritdoc/>
 		public sealed override float TargetZ
 		{
-			get => this.targetZ + GetZ(TargetX, TargetY);
-			set => this.targetZ = value - GetZ(TargetX, TargetY);
+			get => Mode == FlightMode.FollowTerrain ? InternalTargetZ + Util.GetZ(TargetX, TargetY) : InternalTargetZ;
+			set => InternalTargetZ = Mode == FlightMode.FollowTerrain ? value - Util.GetZ(TargetX, TargetY) : value;
 		}
 		/// <inheritdoc/>
 		public sealed override float MissileZ
 		{
-			get => this.missileZ + GetZ(MissileX, MissileY);
-			set => this.missileZ = value - GetZ(MissileX, MissileY);
+			get => Mode == FlightMode.FollowTerrain ? InternalMissileZ + Util.GetZ(MissileX, MissileY) : InternalMissileZ;
+			set => InternalMissileZ = Mode == FlightMode.FollowTerrain ? value - Util.GetZ(MissileX, MissileY) : value;
+		}
+		private float speed;
+		/// <inheritdoc/>
+		public sealed override float SpeedPerTick
+		{
+			get => this.speed;
+			set => this.speed = value;
 		}
 		/// <inheritdoc/>
 		public sealed override float Speed
@@ -43,34 +70,80 @@ namespace WCSharp.Missiles
 		/// <para>If you want a fixed height arc, set the Arc equal to (arc height/distance to target).</para>
 		/// </summary>
 		public float Arc { get; set; }
+
 		/// <summary>
-		/// The internal curve of the projectile in radians.
+		/// The curve of the projectile, expressed in radians.
+		/// <para>This alters the arc, a pi/2 or -pi/2 degree curve is a boomerang.</para>
 		/// </summary>
-		private float curve;
+		public float CurveRad { get; set; }
 		/// <summary>
-		/// The curve of the projectile in degrees. This alters the arc, a 90 or -90 degree curve is a boomerang.
+		/// The curve of the projectile, expressed in degrees.
+		/// <para>This alters the arc, a 90 or -90 degree curve is a boomerang.</para>
 		/// </summary>
 		public float Curve
 		{
-			get => this.curve * Util.RAD2DEG;
-			set => this.curve = value * Util.DEG2RAD;
+			get => CurveRad * Util.RAD2DEG;
+			set => CurveRad = value * Util.DEG2RAD;
 		}
-
-		private bool arcActive;
-		private float totalDistanceToTarget;
 
 		/// <summary>
 		/// The internal X of the missile without the arc/curve.
 		/// </summary>
-		protected float originX;
+		public float OriginX { get; set; }
 		/// <summary>
 		/// The internal Y of the missile without the arc/curve.
 		/// </summary>
-		protected float originY;
+		public float OriginY { get; set; }
 		/// <summary>
-		/// The internal Z of the missile without the arc/curve.
+		/// The internal Z of the missile without the arc/curve and terrain height.
 		/// </summary>
-		protected float originZ;
+		public float OriginZ { get; set; }
+
+		private FlightMode mode;
+		/// <summary>
+		/// The current flight mode of the projectile.
+		/// <para>Automatically set at launch unless changed to a value other than <see cref="FlightMode.Default"/>.</para>
+		/// </summary>
+		public FlightMode Mode
+		{
+			get => this.mode;
+			set
+			{
+				if (Active)
+					SetFlightMode(value);
+				else
+					this.mode = value;
+			}
+		}
+
+		private bool isArcingOrCurving;
+		/// <summary>
+		/// Whether the projectile is currently performing an arc or curve motion.
+		/// <para>Automatically set at launch according to the <see cref="Arc"/> and <see cref="Curve"/>/<see cref="CurveRad"/> value.</para>
+		/// <para>This is automatically disabled if the target moves more than 50 units in a single <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).</para>
+		/// <para>Warning: Setting this to <see langword="true"/> mid-flight will cause the stored caster position to be changed to the missiles current position.</para>
+		/// </summary>
+		public bool IsArcingOrCurving
+		{
+			get => this.isArcingOrCurving;
+			set
+			{
+				if (!this.isArcingOrCurving && value)
+				{
+					OriginX = MissileX;
+					OriginY = MissileY;
+					OriginZ = MissileZ;
+					CasterX = OriginX;
+					CasterY = OriginY;
+					CasterLaunchZ = 0;
+					InternalCasterZ = OriginZ;
+					this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+				}
+				this.isArcingOrCurving = value;
+			}
+		}
+
+		private float totalDistanceToTarget;
 
 		/// <inheritdoc/>
 		public CurveMissile(unit caster, unit target) : base(caster, target)
@@ -92,21 +165,62 @@ namespace WCSharp.Missiles
 		{
 		}
 
+		private void SetFlightMode(FlightMode value = FlightMode.Default)
+		{
+			if (value == FlightMode.Default)
+			{
+				value = Arc != 0 || GetUnitFlyHeight(Caster) + CasterLaunchZ >= 300
+					? FlightMode.Direct
+					: FlightMode.FollowTerrain;
+			}
+
+			if (this.mode == FlightMode.Direct)
+			{
+				if (value == FlightMode.FollowTerrain)
+				{
+					InternalCasterZ -= Util.GetZ(CasterX, CasterY);
+					InternalMissileZ -= Util.GetZ(MissileX, MissileY);
+					InternalTargetZ -= Util.GetZ(TargetX, TargetY);
+				}
+			}
+			else if (value == FlightMode.Direct)
+			{
+				InternalCasterZ += Util.GetZ(CasterX, CasterY);
+				InternalMissileZ += Util.GetZ(MissileX, MissileY);
+				InternalTargetZ += Util.GetZ(TargetX, TargetY);
+			}
+
+			this.mode = value;
+		}
+
 		/// <inheritdoc/>
 		public sealed override void Launch()
 		{
-			this.casterZ += CasterLaunchZ;
-			this.targetZ += TargetImpactZ;
-			this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
-			this.arcActive = Arc != 0;
-
+			InternalCasterZ += CasterLaunchZ;
+			InternalTargetZ += TargetImpactZ;
+			InternalMissileZ = InternalCasterZ;
+			IntervalLeft = Interval;
 			MissileX = CasterX;
 			MissileY = CasterY;
-			this.originX = CasterX;
-			this.originY = CasterY;
-			this.originZ = this.casterZ;
+			OriginX = CasterX;
+			OriginY = CasterY;
+			OriginZ = InternalCasterZ;
+			RollRad = CurveRad;
 
-			IntervalLeft = Interval;
+			this.isArcingOrCurving = Arc != 0 || Curve != 0;
+			this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
+
+			if (this.mode == FlightMode.Default)
+			{
+				SetFlightMode();
+			}
+			else
+			{
+				var actualMode = this.mode;
+				this.mode = FlightMode.Default;
+				SetFlightMode();
+				SetFlightMode(actualMode);
+			}
 
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
@@ -117,8 +231,6 @@ namespace WCSharp.Missiles
 					BlzSetSpecialEffectScale(Effect, this.effectScale);
 				}
 			}
-
-			this.roll = this.curve;
 		}
 
 		/// <inheritdoc/>
@@ -130,7 +242,7 @@ namespace WCSharp.Missiles
 				{
 					TargetX = GetUnitX(Target);
 					TargetY = GetUnitY(Target);
-					this.targetZ = GetUnitFlyHeight(Target) + TargetImpactZ;
+					InternalTargetZ = GetUnitFlyHeight(Target) + TargetImpactZ;
 				}
 				else
 				{
@@ -138,7 +250,7 @@ namespace WCSharp.Missiles
 				}
 			}
 
-			if (this.arcActive ? ArcAction() : DirectAction())
+			if (this.isArcingOrCurving ? ArcAction() : DirectAction())
 			{
 				if (Interval > 0)
 				{
@@ -161,14 +273,14 @@ namespace WCSharp.Missiles
 			}
 
 			var oldZ = MissileZ;
-			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / distance);
+			InternalMissileZ += (InternalTargetZ - InternalMissileZ) * (this.speed / distance);
 
-			this.yaw = Util.AngleBetweenPointsRad(MissileX, MissileY, TargetX, TargetY);
+			YawRad = Util.AngleBetweenPointsRad(MissileX, MissileY, TargetX, TargetY);
 
-			var deltaX = this.speed * Cos(this.yaw);
+			var deltaX = this.speed * Cos(YawRad);
 			MissileX += deltaX;
 
-			var deltaY = this.speed * Sin(this.yaw);
+			var deltaY = this.speed * Sin(YawRad);
 			MissileY += deltaY;
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
@@ -179,11 +291,11 @@ namespace WCSharp.Missiles
 
 			if (Effect != null)
 			{
-				this.roll += this.spinPeriod;
+				RollRad += SpinVelocityRad;
 				var newZ = MissileZ;
-				this.pitch = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
+				PitchRad = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
 				BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, newZ);
-				BlzSetSpecialEffectOrientation(Effect, this.yaw, this.pitch, this.roll);
+				BlzSetSpecialEffectOrientation(Effect, YawRad, PitchRad, RollRad);
 			}
 
 			return true;
@@ -191,7 +303,7 @@ namespace WCSharp.Missiles
 
 		private bool ArcAction()
 		{
-			if (FastUtil.DistanceBetweenPoints(this.originX, this.originY, TargetX, TargetY) < this.speed + ImpactLeeway)
+			if (FastUtil.DistanceBetweenPoints(OriginX, OriginY, TargetX, TargetY) < this.speed + ImpactLeeway)
 			{
 				Impact();
 				return false;
@@ -203,26 +315,26 @@ namespace WCSharp.Missiles
 			// We stop the arc as we presume the target has teleported
 			if (Math.Abs(this.totalDistanceToTarget - totalDistance) > 50)
 			{
-				DisableArc();
+				this.isArcingOrCurving = false;
 				DirectAction();
 				return true;
 			}
 
 			this.totalDistanceToTarget = totalDistance;
-			var distanceTravelled = FastUtil.DistanceBetweenPoints(CasterX, CasterY, this.originX, this.originY);
+			var distanceTravelled = FastUtil.DistanceBetweenPoints(CasterX, CasterY, OriginX, OriginY);
 
-			var originYaw = Util.AngleBetweenPointsRad(this.originX, this.originY, TargetX, TargetY);
+			var originYaw = Util.AngleBetweenPointsRad(OriginX, OriginY, TargetX, TargetY);
 
 			var deltaX = this.speed * Cos(originYaw);
-			this.originX += deltaX;
+			OriginX += deltaX;
 
 			var deltaY = this.speed * Sin(originYaw);
-			this.originY += deltaY;
+			OriginY += deltaY;
 
-			var oldOriginZ = this.originZ;
-			this.originZ = this.casterZ
-					+ (distanceTravelled / totalDistance * (this.targetZ - this.casterZ));
-			var pitch = Atan2(oldOriginZ - this.originZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
+			var oldOriginZ = OriginZ;
+			OriginZ = InternalCasterZ
+					+ (distanceTravelled / totalDistance * (InternalTargetZ - InternalCasterZ));
+			var pitch = Atan2(oldOriginZ - OriginZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
 
 			var oldX = MissileX;
 			var oldY = MissileY;
@@ -231,13 +343,13 @@ namespace WCSharp.Missiles
 
 			var cosYaw = Cos(originYaw);
 			var sinYaw = Sin(originYaw);
-			var cosRoll = Cos(this.curve);
-			var sinRoll = Sin(this.curve);
+			var cosRoll = Cos(CurveRad);
+			var sinRoll = Sin(CurveRad);
 			var sinPitchCosRoll = Sin(pitch) * cosRoll;
 
-			MissileX = this.originX + (arcHeight * ((cosYaw * sinPitchCosRoll) + (sinYaw * sinRoll)));
-			MissileY = this.originY + (arcHeight * ((sinYaw * sinPitchCosRoll) - (cosYaw * sinRoll)));
-			this.missileZ = this.originZ + (arcHeight * Cos(pitch) * cosRoll);
+			MissileX = OriginX + (arcHeight * ((cosYaw * sinPitchCosRoll) + (sinYaw * sinRoll)));
+			MissileY = OriginY + (arcHeight * ((sinYaw * sinPitchCosRoll) - (cosYaw * sinRoll)));
+			InternalMissileZ = OriginZ + (arcHeight * Cos(pitch) * cosRoll);
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{
@@ -251,42 +363,14 @@ namespace WCSharp.Missiles
 				deltaY = oldY - MissileY;
 				var newZ = MissileZ;
 
-				this.yaw = Util.AngleBetweenPointsRad(oldX, oldY, MissileX, MissileY);
-				base.pitch = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
-				this.roll += this.spinPeriod;
+				YawRad = Util.AngleBetweenPointsRad(oldX, oldY, MissileX, MissileY);
+				PitchRad = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
+				RollRad += SpinVelocityRad;
 				BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, newZ);
-				BlzSetSpecialEffectOrientation(Effect, this.yaw, base.pitch, this.roll);
+				BlzSetSpecialEffectOrientation(Effect, YawRad, PitchRad, RollRad);
 			}
 
 			return true;
-		}
-
-		/// <summary>
-		/// If the arc behaviour has or would disable itself (because of a large change in target position), you can forcefully re-activate it using this method.
-		/// <para>Note: Will set the caster position to the missiles current position.</para>
-		/// </summary>
-		public void ReactivateArc()
-		{
-			if (!this.arcActive && Arc != 0)
-			{
-				this.arcActive = true;
-				this.originX = MissileX;
-				this.originY = MissileY;
-				this.originZ = MissileZ;
-				CasterX = this.originX;
-				CasterY = this.originY;
-				this.casterZ = this.originZ;
-				CasterLaunchZ = 0;
-				this.totalDistanceToTarget = FastUtil.DistanceBetweenPoints(CasterX, CasterY, TargetX, TargetY);
-			}
-		}
-
-		/// <summary>
-		/// Disables the arc and causes the missile to fly in a straight line towards the target.
-		/// </summary>
-		public void DisableArc()
-		{
-			this.arcActive = false;
 		}
 	}
 }

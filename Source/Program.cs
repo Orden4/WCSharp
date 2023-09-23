@@ -94,7 +94,7 @@ namespace Source
 
 				var group = CreateGroup();
 				GroupEnumUnitsInRange(group, 0, 0, 10000, null);
-				foreach (var a in group.Enumerate())
+				foreach (var a in group.ToList())
 				{
 					if (GetUnitTypeId(a) == FourCC("hctw") || GetUnitTypeId(a) == FourCC("hbar"))
 					{
@@ -106,7 +106,7 @@ namespace Source
 
 				var g = CreateGroup();
 				GroupEnumUnitsInRect(g, Rectangle.WorldBounds.Rect, null);
-				foreach (var unit in g.Enumerate())
+				foreach (var unit in g.ToList())
 				{
 					if (GetUnitTypeId(unit) == FourCC("hfoo"))
 					{

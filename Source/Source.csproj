@@ -23,5 +23,6 @@
 	  <ProjectReference Include="..\WCSharp.SaveLoad\WCSharp.SaveLoad.csproj" />
 	  <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
 	  <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
+	  <ProjectReference Include="..\WCSharp.W3MMD\WCSharp.W3MMD.csproj" />
 	</ItemGroup>
 </Project>

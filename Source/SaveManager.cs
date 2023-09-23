@@ -31,11 +31,10 @@ namespace Source
 			saveSystem.Load(Player(0), 2);
 		}
 
-		public static void SaveManager_OnSaveLoaded(MySave save, bool isEmptySave)
+		public static void SaveManager_OnSaveLoaded(MySave save, LoadResult loadResult)
 		{
 			SavesByPlayer[save.GetPlayer()] = save;
-			Console.WriteLine($"Empty: {isEmptySave}");
-			if (isEmptySave)
+			if (loadResult == LoadResult.NewSave)
 			{
 				// You can also set the default value of the property to this, if you want
 				// This is just to illustrate why you may want to know when it is an empty save,

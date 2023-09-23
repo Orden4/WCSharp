@@ -46,7 +46,7 @@ namespace Source.Missiles
 		{
 			var group = CreateGroup();
 			GroupEnumUnitsInRange(group, MissileX, MissileY, 300, null);
-			foreach (var unit in group.Enumerate())
+			foreach (var unit in group.ToList())
 			{
 				UnitDamageTarget(Caster, unit, 100, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS);
 			}

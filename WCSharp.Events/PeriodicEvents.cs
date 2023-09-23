@@ -50,7 +50,10 @@ namespace WCSharp.Events
 		/// Adds the given method to the periodic system. In most cases, you can ignore the return value.
 		/// </summary>
 		/// <param name="method">The method to execute. Must return a boolean to indicate whether to continue looping or abort the periodic event.</param>
-		/// <param name="period">The speed at which this event should fire.</param>
+		/// <param name="period">
+		/// The speed at which this event should fire.
+		/// <para>Periods below <see cref="SYSTEM_INTERVAL"/> (0.03125) will run multiple times on certain ticks.</para>
+		/// </param>
 		public static PeriodicEvent AddPeriodicEvent(Func<bool> method, double period = SYSTEM_INTERVAL)
 		{
 			var timerEvent = new PeriodicEvent(method, period);
@@ -75,7 +78,7 @@ namespace WCSharp.Events
 				var timerEvent = timerEvents[i];
 				i++; // Purposely written stupidly to make sure this doesn't get decompiled into a for loop
 				timerEvent.IntervalLeft -= SYSTEM_INTERVAL;
-				if (timerEvent.IntervalLeft <= 0)
+				while (timerEvent.IntervalLeft <= 0)
 				{
 					timerEvent.IntervalLeft += timerEvent.Interval;
 					if (!timerEvent.Method.Invoke())
@@ -84,6 +87,7 @@ namespace WCSharp.Events
 						i--;
 						timerEvents[i] = timerEvents[size];
 						timerEvents.RemoveAt(size);
+						break;
 					}
 				}
 			}

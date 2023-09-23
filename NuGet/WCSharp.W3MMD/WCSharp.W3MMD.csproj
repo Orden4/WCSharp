@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <DocumentationFile>WCSharp.W3MMD.xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.1.2</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+This package is a C# port of the W3MMD library, allowing you to define custom events and variables in your maps for tracking by stat aggregators such as wc3stats.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="War3Api.Blizzard" Version="1.33.0" />
+    <PackageReference Include="War3Api.Common" Version="1.33.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

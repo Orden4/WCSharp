@@ -10,6 +10,8 @@ namespace WCSharp.Shared
 	public static class Util
 	{
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
+		private static readonly location location = Location(0, 0);
+
 		/// <summary>
 		/// This multiplier will translate GUI-like floating text size values into the values Warcraft III expects them to be.
 		/// </summary>
@@ -359,6 +361,16 @@ namespace WCSharp.Shared
 			SetTextTagVisibility(textTag, true);
 
 			return textTag;
+		}
+
+		/// <summary>
+		/// Retrieves the LocationZ at the given (X, Y) coordinates.
+		/// <para>Re-uses an internal location to provide a faster and easier solution to <see cref="GetLocationZ(location)"/>.</para>
+		/// </summary>
+		public static float GetZ(float x, float y)
+		{
+			MoveLocation(location, x, y);
+			return GetLocationZ(location);
 		}
 #pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	}
