@@ -7,7 +7,7 @@
 	<DefaultDocumentationFolder>../Docs/WCSharp.DateTime</DefaultDocumentationFolder>
 	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.DateTime.txt</DefaultDocumentationLinksOutputFile>
 	<DefaultDocumentationLinksBaseUrl>../WCSharp.DateTime/</DefaultDocumentationLinksBaseUrl>
-	<DefaultDocumentationConfigurationFile>default-documentation.json</DefaultDocumentationConfigurationFile>
+	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
 
   <ItemGroup>
