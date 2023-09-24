@@ -5,7 +5,9 @@
 
 The amount of time it takes for the projectile to spin once during flight in seconds.  
   
-Use negative values to go clockwise.
+Use negative values to go clockwise.  
+  
+Alternatively, use [SpinVelocityRad](WCSharp.Missiles.Missile.SpinVelocityRad.md 'WCSharp.Missiles.Missile.SpinVelocityRad').
 
 ```csharp
 public float SpinPeriod { get; set; }

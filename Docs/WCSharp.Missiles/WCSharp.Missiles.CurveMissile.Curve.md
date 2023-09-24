@@ -5,7 +5,9 @@
 
 The curve of the projectile, expressed in degrees.  
   
-This alters the arc, a 90 or -90 degree curve is a boomerang.
+This alters the arc, a 90 or -90 degree curve is a boomerang.  
+  
+Alternatively, use [CurveRad](WCSharp.Missiles.CurveMissile.CurveRad.md 'WCSharp.Missiles.CurveMissile.CurveRad').
 
 ```csharp
 public float Curve { get; set; }

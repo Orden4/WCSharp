@@ -3,7 +3,9 @@
 
 ## BasicMissile.Speed Property
 
-The speed of the missile, expressed in units per second.
+The speed of the missile, expressed in units per second.  
+  
+Alternatively, use [SpeedPerTick](WCSharp.Missiles.Missile.SpeedPerTick.md 'WCSharp.Missiles.Missile.SpeedPerTick').
 
 ```csharp
 public sealed override float Speed { get; set; }

@@ -5,7 +5,9 @@
 
 The pitch of the projectile, expressed in radians.  
   
-Depending on the type of missile, pitch sets may be ignored.
+Depending on the type of missile, pitch sets may be ignored.  
+  
+Alternatively, use [Pitch](WCSharp.Missiles.Missile.Pitch.md 'WCSharp.Missiles.Missile.Pitch').
 
 ```csharp
 public float PitchRad { get; set; }

@@ -5,7 +5,9 @@
 
 The velocity of the spin, expressed in radians per [SYSTEM_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL').  
   
-Use negative values to go clockwise.
+Use negative values to go clockwise.  
+  
+Alternatively, use [SpinPeriod](WCSharp.Missiles.Missile.SpinPeriod.md 'WCSharp.Missiles.Missile.SpinPeriod').
 
 ```csharp
 public float SpinVelocityRad { get; set; }

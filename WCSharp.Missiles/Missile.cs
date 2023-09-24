@@ -105,10 +105,12 @@ namespace WCSharp.Missiles
 
 		/// <summary>
 		/// The speed of the missile, expressed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
+		/// <para>Alternatively, use <see cref="Speed"/>.</para>
 		/// </summary>
 		public abstract float SpeedPerTick { get; set; }
 		/// <summary>
 		/// The speed of the missile, expressed in units per second.
+		/// <para>Alternatively, use <see cref="SpeedPerTick"/>.</para>
 		/// </summary>
 		public abstract float Speed { get; set; }
 
@@ -156,11 +158,13 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The velocity of the spin, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
 		/// <para>Use negative values to go clockwise.</para>
+		/// <para>Alternatively, use <see cref="SpinPeriod"/>.</para>
 		/// </summary>
 		public float SpinVelocityRad { get; set; }
 		/// <summary>
 		/// The amount of time it takes for the projectile to spin once during flight in seconds.
 		/// <para>Use negative values to go clockwise.</para>
+		/// <para>Alternatively, use <see cref="SpinVelocityRad"/>.</para>
 		/// </summary>
 		public float SpinPeriod
 		{
@@ -171,11 +175,13 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The yaw of the projectile, expressed in radians.
 		/// <para>Depending on the type of missile, yaw sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="Yaw"/>.</para>
 		/// </summary>
 		public float YawRad { get; set; }
 		/// <summary>
 		/// The yaw of the projectile, expressed in degrees.
 		/// <para>Depending on the type of missile, yaw sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="YawRad"/>.</para>
 		/// </summary>
 		public float Yaw
 		{
@@ -185,11 +191,13 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The pitch of the projectile, expressed in radians.
 		/// <para>Depending on the type of missile, pitch sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="Pitch"/>.</para>
 		/// </summary>
 		public float PitchRad { get; set; }
 		/// <summary>
 		/// The pitch of the projectile. Defined in degrees.
 		/// <para>Depending on the type of missile, pitch sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="PitchRad"/>.</para>
 		/// </summary>
 		public float Pitch
 		{
@@ -199,11 +207,13 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The roll of the projectile, expressed in radians.
 		/// <para>Depending on the type of missile, roll sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="Roll"/>.</para>
 		/// </summary>
 		public float RollRad { get; set; }
 		/// <summary>
 		/// The roll of the projectile, expressed in degrees.
 		/// <para>Depending on the type of missile, roll sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="RollRad"/>.</para>
 		/// </summary>
 		public float Roll
 		{

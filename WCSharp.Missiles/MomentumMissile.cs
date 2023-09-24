@@ -72,11 +72,13 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The acceleration in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
 		/// <para>This is used to make adjustments to the trajectory.</para>
+		/// <para>Alternatively, use <see cref="Acceleration"/>.</para>
 		/// </summary>
 		public float AccelerationPerTick { get; set; }
 		/// <summary>
 		/// The acceleration in units per second.
 		/// <para>This is used to make adjustments to the trajectory.</para>
+		/// <para>Alternatively, use <see cref="AccelerationPerTick"/>.</para>
 		/// </summary>
 		public float Acceleration
 		{
@@ -85,10 +87,12 @@ namespace WCSharp.Missiles
 		}
 		/// <summary>
 		/// The maximum speed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+		/// <para>Alternatively, use <see cref="MaximumSpeed"/>.</para>
 		/// </summary>
 		public float MaximumSpeedPerTick { get; set; }
 		/// <summary>
 		/// The maximum speed in units per second.
+		/// <para>Alternatively, use <see cref="MaximumSpeedPerTick"/>.</para>
 		/// </summary>
 		public float MaximumSpeed
 		{

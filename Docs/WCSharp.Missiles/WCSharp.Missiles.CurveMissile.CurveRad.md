@@ -5,7 +5,9 @@
 
 The curve of the projectile, expressed in radians.  
   
-This alters the arc, a pi/2 or -pi/2 degree curve is a boomerang.
+This alters the arc, a pi/2 or -pi/2 degree curve is a boomerang.  
+  
+Alternatively, use [Curve](WCSharp.Missiles.CurveMissile.Curve.md 'WCSharp.Missiles.CurveMissile.Curve').
 
 ```csharp
 public float CurveRad { get; set; }

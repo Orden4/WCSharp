@@ -7,7 +7,7 @@ The amount of time it takes to make one rotation in seconds.
   
 Use negative values to go clockwise.  
   
-This can be used instead of [Speed](WCSharp.Missiles.OrbitalMissile.Speed.md 'WCSharp.Missiles.OrbitalMissile.Speed'), and will ensure a consistent orbital period through [Range](WCSharp.Missiles.OrbitalMissile.Range.md 'WCSharp.Missiles.OrbitalMissile.Range') adjustments.
+Alternatively, use [Speed](WCSharp.Missiles.OrbitalMissile.Speed.md 'WCSharp.Missiles.OrbitalMissile.Speed'), [SpeedPerTick](WCSharp.Missiles.OrbitalMissile.SpeedPerTick.md 'WCSharp.Missiles.OrbitalMissile.SpeedPerTick') or [OrbitalVelocityRad](WCSharp.Missiles.OrbitalMissile.OrbitalVelocityRad.md 'WCSharp.Missiles.OrbitalMissile.OrbitalVelocityRad').
 
 ```csharp
 public float OrbitalPeriod { get; set; }

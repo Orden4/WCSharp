@@ -62,7 +62,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The speed of the missile, expressed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
 		/// <para>Use negative values to go clockwise.</para>
-		/// <para>This can be used instead of <see cref="OrbitalPeriod"/>, and will ensure a consistent speed for the missile itself through <see cref="Range"/> adjustments.</para>
+		/// <para>Alternatively, use <see cref="Speed"/>, <see cref="OrbitalVelocityRad"/> or <see cref="OrbitalPeriod"/>.</para>
 		/// </summary>
 		public sealed override float SpeedPerTick
 		{
@@ -76,7 +76,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The speed of the missile, expressed in units per second.
 		/// <para>Use negative values to go clockwise.</para>
-		/// <para>This can be used instead of <see cref="OrbitalPeriod"/>, and will ensure a consistent speed for the missile itself through <see cref="Range"/> adjustments.</para>
+		/// <para>Alternatively, use <see cref="SpeedPerTick"/>, <see cref="OrbitalVelocityRad"/> or <see cref="OrbitalPeriod"/>.</para>
 		/// </summary>
 		public sealed override float Speed
 		{
@@ -90,7 +90,8 @@ namespace WCSharp.Missiles
 		private float range;
 		/// <summary>
 		/// The distance at which the <see cref="OrbitalMissile"/> orbits from the origin.
-		/// <para>The speed of the missile after a range adjustment is determined by whether it was set via <see cref="Speed"/> or <see cref="OrbitalPeriod"/>.</para>
+		/// <para>The speed of the missile after a range adjustment is determined by whether it was set via <see cref="Speed"/>/<see cref="SpeedPerTick"/>
+		/// or <see cref="OrbitalPeriod"/>/<see cref="OrbitalVelocityRad"/>.</para>
 		/// </summary>
 		public float Range
 		{
@@ -107,6 +108,8 @@ namespace WCSharp.Missiles
 		}
 		/// <summary>
 		/// The speed at which the missile is orbiting, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
+		/// <para>Use negative values to go clockwise.</para>
+		/// <para>Alternatively, use <see cref="Speed"/>, <see cref="SpeedPerTick"/> or <see cref="OrbitalPeriod"/>.</para>
 		/// </summary>
 		public float OrbitalVelocityRad
 		{
@@ -120,7 +123,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The amount of time it takes to make one rotation in seconds.
 		/// <para>Use negative values to go clockwise.</para>
-		/// <para>This can be used instead of <see cref="Speed"/>, and will ensure a consistent orbital period through <see cref="Range"/> adjustments.</para>
+		/// <para>Alternatively, use <see cref="Speed"/>, <see cref="SpeedPerTick"/> or <see cref="OrbitalVelocityRad"/>.</para>
 		/// </summary>
 		public float OrbitalPeriod
 		{
@@ -136,11 +139,13 @@ namespace WCSharp.Missiles
 		/// The current angle from the target of the orbit to the missile, expressed in radians.
 		/// <para>Ranges between 0 (inclusive) and 2pi (exclusive).</para>
 		/// <para>Automatically set to a random angle.</para>
+		/// <para>Alternatively, use <see cref="OrbitalAngle"/>.</para>
 		/// </summary>
 		public float OrbitalAngleRad { get; set; } = GetRandomReal(0, Util.PI * 2);
 		/// <summary>
 		/// The current angle from the target of the orbit to the missile, expressed in degrees.
 		/// <para>Automatically set to a random angle.</para>
+		/// <para>Alternatively, use <see cref="OrbitalAngleRad"/>.</para>
 		/// </summary>
 		public float OrbitalAngle
 		{

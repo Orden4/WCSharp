@@ -5,7 +5,9 @@
 
 The acceleration in units per second.  
   
-This is used to make adjustments to the trajectory.
+This is used to make adjustments to the trajectory.  
+  
+Alternatively, use [AccelerationPerTick](WCSharp.Missiles.MomentumMissile.AccelerationPerTick.md 'WCSharp.Missiles.MomentumMissile.AccelerationPerTick').
 
 ```csharp
 public float Acceleration { get; set; }

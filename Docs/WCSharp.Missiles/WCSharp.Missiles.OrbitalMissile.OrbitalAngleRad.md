@@ -7,7 +7,9 @@ The current angle from the target of the orbit to the missile, expressed in radi
   
 Ranges between 0 (inclusive) and 2pi (exclusive).  
   
-Automatically set to a random angle.
+Automatically set to a random angle.  
+  
+Alternatively, use [OrbitalAngle](WCSharp.Missiles.OrbitalMissile.OrbitalAngle.md 'WCSharp.Missiles.OrbitalMissile.OrbitalAngle').
 
 ```csharp
 public float OrbitalAngleRad { get; set; }

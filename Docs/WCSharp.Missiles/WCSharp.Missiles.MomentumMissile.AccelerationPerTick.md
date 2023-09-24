@@ -5,7 +5,9 @@
 
 The acceleration in units per [SYSTEM_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL') (0.03125).  
   
-This is used to make adjustments to the trajectory.
+This is used to make adjustments to the trajectory.  
+  
+Alternatively, use [Acceleration](WCSharp.Missiles.MomentumMissile.Acceleration.md 'WCSharp.Missiles.MomentumMissile.Acceleration').
 
 ```csharp
 public float AccelerationPerTick { get; set; }

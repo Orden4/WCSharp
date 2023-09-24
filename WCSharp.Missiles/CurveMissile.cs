@@ -74,11 +74,13 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The curve of the projectile, expressed in radians.
 		/// <para>This alters the arc, a pi/2 or -pi/2 degree curve is a boomerang.</para>
+		/// <para>Alternatively, use <see cref="Curve"/>.</para>
 		/// </summary>
 		public float CurveRad { get; set; }
 		/// <summary>
 		/// The curve of the projectile, expressed in degrees.
 		/// <para>This alters the arc, a 90 or -90 degree curve is a boomerang.</para>
+		/// <para>Alternatively, use <see cref="CurveRad"/>.</para>
 		/// </summary>
 		public float Curve
 		{

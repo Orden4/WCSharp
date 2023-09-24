@@ -5,7 +5,9 @@
 
 The roll of the projectile, expressed in radians.  
   
-Depending on the type of missile, roll sets may be ignored.
+Depending on the type of missile, roll sets may be ignored.  
+  
+Alternatively, use [Roll](WCSharp.Missiles.Missile.Roll.md 'WCSharp.Missiles.Missile.Roll').
 
 ```csharp
 public float RollRad { get; set; }

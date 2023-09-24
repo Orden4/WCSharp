@@ -3,7 +3,9 @@
 
 ## MomentumMissile.MaximumSpeed Property
 
-The maximum speed in units per second.
+The maximum speed in units per second.  
+  
+Alternatively, use [MaximumSpeedPerTick](WCSharp.Missiles.MomentumMissile.MaximumSpeedPerTick.md 'WCSharp.Missiles.MomentumMissile.MaximumSpeedPerTick').
 
 ```csharp
 public float MaximumSpeed { get; set; }

@@ -67,10 +67,12 @@ namespace WCSharp.Missiles
 
 		/// <summary>
 		/// The speed at which the missile can turn, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
+		/// <para>Alternatively, use <see cref="TurnRate"/> or <see cref="TurnPeriod"/>.</para>
 		/// </summary>
 		public float TurnVelocityRad { get; set; }
 		/// <summary>
 		/// The rate at which the missile can turn, expressed in degrees per second.
+		/// <para>Alternatively, use <see cref="TurnVelocityRad"/> or <see cref="TurnPeriod"/>.</para>
 		/// </summary>
 		public float TurnRate
 		{
@@ -79,6 +81,7 @@ namespace WCSharp.Missiles
 		}
 		/// <summary>
 		/// The rate at which the missile can turn, expressed in degrees per second.
+		/// <para>Alternatively, use <see cref="TurnVelocityRad"/> or <see cref="TurnRate"/>.</para>
 		/// </summary>
 		public float TurnPeriod
 		{
