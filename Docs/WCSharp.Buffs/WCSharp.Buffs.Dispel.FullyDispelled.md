@@ -1,4 +1,4 @@
-#### [WCSharp.Buffs](index.md 'index')
+#### [WCSharp.Buffs](README.md 'README')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[Dispel](WCSharp.Buffs.Dispel.md 'WCSharp.Buffs.Dispel')
 
 ## Dispel.FullyDispelled Property

@@ -1,4 +1,4 @@
-#### [WCSharp.Lightnings](index.md 'index')
+#### [WCSharp.Lightnings](README.md 'README')
 
 ## WCSharp.Lightnings Assembly
 

@@ -1,4 +1,4 @@
-#### [WCSharp.W3MMD](index.md 'index')
+#### [WCSharp.W3MMD](README.md 'README')
 
 ## WCSharp.W3MMD Namespace
 

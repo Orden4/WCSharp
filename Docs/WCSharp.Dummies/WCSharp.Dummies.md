@@ -1,4 +1,4 @@
-#### [WCSharp.Dummies](index.md 'index')
+#### [WCSharp.Dummies](README.md 'README')
 
 ## WCSharp.Dummies Namespace
 

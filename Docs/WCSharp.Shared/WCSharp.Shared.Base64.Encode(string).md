@@ -1,4 +1,4 @@
-#### [WCSharp.Shared](index.md 'index')
+#### [WCSharp.Shared](README.md 'README')
 ### [WCSharp.Shared](WCSharp.Shared.md 'WCSharp.Shared').[Base64](WCSharp.Shared.Base64.md 'WCSharp.Shared.Base64')
 
 ## Base64.Encode(string) Method

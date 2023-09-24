@@ -1,4 +1,4 @@
-#### [WCSharp.Shared](index.md 'index')
+#### [WCSharp.Shared](README.md 'README')
 ### [WCSharp.Shared.Data](WCSharp.Shared.Data.md 'WCSharp.Shared.Data').[Point](WCSharp.Shared.Data.Point.md 'WCSharp.Shared.Data.Point')
 
 ## Point.Equals(object) Method

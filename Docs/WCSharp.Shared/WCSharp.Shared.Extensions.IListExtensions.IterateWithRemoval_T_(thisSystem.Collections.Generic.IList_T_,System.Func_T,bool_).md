@@ -1,4 +1,4 @@
-#### [WCSharp.Shared](index.md 'index')
+#### [WCSharp.Shared](README.md 'README')
 ### [WCSharp.Shared.Extensions](WCSharp.Shared.Extensions.md 'WCSharp.Shared.Extensions').[IListExtensions](WCSharp.Shared.Extensions.IListExtensions.md 'WCSharp.Shared.Extensions.IListExtensions')
 
 ## IListExtensions.IterateWithRemoval<T>(this IList<T>, Func<T,bool>) Method

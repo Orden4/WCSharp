@@ -1,4 +1,4 @@
-#### [WCSharp.Json](index.md 'index')
+#### [WCSharp.Json](README.md 'README')
 ### [WCSharp.Json](WCSharp.Json.md 'WCSharp.Json').[JsonConvert](WCSharp.Json.JsonConvert.md 'WCSharp.Json.JsonConvert')
 
 ## JsonConvert.Serialize<T>(T) Method

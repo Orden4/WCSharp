@@ -1,4 +1,4 @@
-#### [WCSharp.Sync](index.md 'index')
+#### [WCSharp.Sync](README.md 'README')
 
 ## WCSharp.Sync Assembly
 

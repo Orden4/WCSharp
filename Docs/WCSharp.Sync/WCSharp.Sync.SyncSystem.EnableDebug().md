@@ -1,4 +1,4 @@
-#### [WCSharp.Sync](index.md 'index')
+#### [WCSharp.Sync](README.md 'README')
 ### [WCSharp.Sync](WCSharp.Sync.md 'WCSharp.Sync').[SyncSystem](WCSharp.Sync.SyncSystem.md 'WCSharp.Sync.SyncSystem')
 
 ## SyncSystem.EnableDebug() Method

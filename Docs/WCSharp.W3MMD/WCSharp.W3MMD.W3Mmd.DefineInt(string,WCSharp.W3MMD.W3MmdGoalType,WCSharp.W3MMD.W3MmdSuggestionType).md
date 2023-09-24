@@ -1,4 +1,4 @@
-#### [WCSharp.W3MMD](index.md 'index')
+#### [WCSharp.W3MMD](README.md 'README')
 ### [WCSharp.W3MMD](WCSharp.W3MMD.md 'WCSharp.W3MMD').[W3Mmd](WCSharp.W3MMD.W3Mmd.md 'WCSharp.W3MMD.W3Mmd')
 
 ## W3Mmd.DefineInt(string, W3MmdGoalType, W3MmdSuggestionType) Method

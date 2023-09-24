@@ -1,4 +1,4 @@
-#### [WCSharp.Shared](index.md 'index')
+#### [WCSharp.Shared](README.md 'README')
 ### [WCSharp.Shared.Extensions](WCSharp.Shared.Extensions.md 'WCSharp.Shared.Extensions').[GroupExtensions](WCSharp.Shared.Extensions.GroupExtensions.md 'WCSharp.Shared.Extensions.GroupExtensions')
 
 ## GroupExtensions.FirstOrDefault(this group, Func<unit,bool>) Method

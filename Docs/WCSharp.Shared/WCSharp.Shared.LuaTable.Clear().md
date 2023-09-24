@@ -1,4 +1,4 @@
-#### [WCSharp.Shared](index.md 'index')
+#### [WCSharp.Shared](README.md 'README')
 ### [WCSharp.Shared](WCSharp.Shared.md 'WCSharp.Shared').[LuaTable](WCSharp.Shared.LuaTable.md 'WCSharp.Shared.LuaTable')
 
 ## LuaTable.Clear() Method

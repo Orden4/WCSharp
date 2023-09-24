@@ -1,4 +1,4 @@
-#### [WCSharp.SaveLoad](index.md 'index')
+#### [WCSharp.SaveLoad](README.md 'README')
 ### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[SaveSystemOptions](WCSharp.SaveLoad.SaveSystemOptions.md 'WCSharp.SaveLoad.SaveSystemOptions')
 
 ## SaveSystemOptions.BindSavesToPlayerName Property

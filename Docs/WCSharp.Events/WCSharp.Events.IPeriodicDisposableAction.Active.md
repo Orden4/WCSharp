@@ -1,4 +1,4 @@
-#### [WCSharp.Events](index.md 'index')
+#### [WCSharp.Events](README.md 'README')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[IPeriodicDisposableAction](WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp.Events.IPeriodicDisposableAction')
 
 ## IPeriodicDisposableAction.Active Property

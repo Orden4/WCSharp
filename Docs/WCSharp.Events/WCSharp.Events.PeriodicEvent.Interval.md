@@ -1,4 +1,4 @@
-#### [WCSharp.Events](index.md 'index')
+#### [WCSharp.Events](README.md 'README')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[PeriodicEvent](WCSharp.Events.PeriodicEvent.md 'WCSharp.Events.PeriodicEvent')
 
 ## PeriodicEvent.Interval Property

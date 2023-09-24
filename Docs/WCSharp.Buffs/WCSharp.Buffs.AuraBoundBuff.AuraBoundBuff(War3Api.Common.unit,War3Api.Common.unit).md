@@ -1,4 +1,4 @@
-#### [WCSharp.Buffs](index.md 'index')
+#### [WCSharp.Buffs](README.md 'README')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[AuraBoundBuff](WCSharp.Buffs.AuraBoundBuff.md 'WCSharp.Buffs.AuraBoundBuff')
 
 ## AuraBoundBuff(unit, unit) Constructor

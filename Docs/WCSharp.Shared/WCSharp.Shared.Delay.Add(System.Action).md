@@ -1,4 +1,4 @@
-#### [WCSharp.Shared](index.md 'index')
+#### [WCSharp.Shared](README.md 'README')
 ### [WCSharp.Shared](WCSharp.Shared.md 'WCSharp.Shared').[Delay](WCSharp.Shared.Delay.md 'WCSharp.Shared.Delay')
 
 ## Delay.Add(Action) Method

@@ -1,4 +1,4 @@
-#### [WCSharp.Events](index.md 'index')
+#### [WCSharp.Events](README.md 'README')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[PeriodicDisposableTrigger&lt;T&gt;](WCSharp.Events.PeriodicDisposableTrigger_T_.md 'WCSharp.Events.PeriodicDisposableTrigger<T>')
 
 ## PeriodicDisposableTrigger<T>.Add(T) Method

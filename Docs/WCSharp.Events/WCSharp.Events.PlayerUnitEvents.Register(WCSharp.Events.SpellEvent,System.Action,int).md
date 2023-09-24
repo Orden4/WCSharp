@@ -1,4 +1,4 @@
-#### [WCSharp.Events](index.md 'index')
+#### [WCSharp.Events](README.md 'README')
 ### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events').[PlayerUnitEvents](WCSharp.Events.PlayerUnitEvents.md 'WCSharp.Events.PlayerUnitEvents')
 
 ## PlayerUnitEvents.Register(SpellEvent, Action, int) Method

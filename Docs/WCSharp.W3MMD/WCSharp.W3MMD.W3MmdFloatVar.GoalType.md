@@ -1,4 +1,4 @@
-#### [WCSharp.W3MMD](index.md 'index')
+#### [WCSharp.W3MMD](README.md 'README')
 ### [WCSharp.W3MMD](WCSharp.W3MMD.md 'WCSharp.W3MMD').[W3MmdFloatVar](WCSharp.W3MMD.W3MmdFloatVar.md 'WCSharp.W3MMD.W3MmdFloatVar')
 
 ## W3MmdFloatVar.GoalType Property

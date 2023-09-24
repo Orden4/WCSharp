@@ -1,4 +1,4 @@
-#### [WCSharp.Buffs](index.md 'index')
+#### [WCSharp.Buffs](README.md 'README')
 ### [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs').[Aura&lt;T&gt;](WCSharp.Buffs.Aura_T_.md 'WCSharp.Buffs.Aura<T>')
 
 ## Aura<T>.Active Property

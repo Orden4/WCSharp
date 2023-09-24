@@ -1,4 +1,4 @@
-#### [WCSharp.SaveLoad](index.md 'index')
+#### [WCSharp.SaveLoad](README.md 'README')
 ### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[Saveable](WCSharp.SaveLoad.Saveable.md 'WCSharp.SaveLoad.Saveable')
 
 ## Saveable.GetPlayer() Method

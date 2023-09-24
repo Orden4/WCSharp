@@ -1,4 +1,4 @@
-#### [WCSharp.Lightnings](index.md 'index')
+#### [WCSharp.Lightnings](README.md 'README')
 ### [WCSharp.Lightnings](WCSharp.Lightnings.md 'WCSharp.Lightnings').[Lightning](WCSharp.Lightnings.Lightning.md 'WCSharp.Lightnings.Lightning')
 
 ## Lightning.Target Property

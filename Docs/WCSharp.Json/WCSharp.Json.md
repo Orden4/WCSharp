@@ -1,4 +1,4 @@
-#### [WCSharp.Json](index.md 'index')
+#### [WCSharp.Json](README.md 'README')
 
 ## WCSharp.Json Namespace
 
