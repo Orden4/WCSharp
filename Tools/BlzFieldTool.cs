@@ -71,7 +71,7 @@ namespace Tools
 
 		public static void Run(params BlzFieldToolArgs[] args)
 		{
-			var lines = File.ReadAllLines("fields_input.txt")
+			var lines = File.ReadAllLines("data/common.j")
 				.Where(x => !string.IsNullOrWhiteSpace(x))
 				.ToList();
 
@@ -86,7 +86,7 @@ namespace Tools
 
 		public IEnumerable<string> Run()
 		{
-			var lines = File.ReadAllLines("fields_input.txt")
+			var lines = File.ReadAllLines("data/common.j")
 				.Where(x => !string.IsNullOrWhiteSpace(x))
 				.ToList();
 
@@ -117,7 +117,7 @@ namespace Tools
 
 			return Enumerable.Empty<string>();
 
-			IEnumerable<string> getRelatedCodes(string related)
+			static IEnumerable<string> getRelatedCodes(string related)
 			{
 				return string.IsNullOrWhiteSpace(related) ? Enumerable.Empty<string>() : related.Split(',', '.').Where(x => !illegalCodes.Contains(x));
 			}
@@ -226,7 +226,7 @@ namespace Tools
 			}
 		}
 
-		private IEnumerable<string> ConsolidateUsedBy(List<string> relatedNames, List<string> relatedCodes)
+		private static IEnumerable<string> ConsolidateUsedBy(List<string> relatedNames, List<string> relatedCodes)
 		{
 			return relatedNames
 				.Select((x, i) => (x, i))
@@ -235,7 +235,7 @@ namespace Tools
 				.OrderBy(x => x);
 		}
 
-		private string CleanName(string name, string line)
+		private static string CleanName(string name, string line)
 		{
 			var match = suffixRegex.Match(line);
 			if (match.Success && name.EndsWith(match.Groups[1].Value, StringComparison.InvariantCultureIgnoreCase))
@@ -253,7 +253,7 @@ namespace Tools
 			return name;
 		}
 
-		private string ConvertCamelCase(string name)
+		private static string ConvertCamelCase(string name)
 		{
 			name = name.ToLower();
 
@@ -268,7 +268,7 @@ namespace Tools
 			return name;
 		}
 
-		private string ConvertPascalCase(string name)
+		private static string ConvertPascalCase(string name)
 		{
 			name = ConvertCamelCase(name);
 			return char.ToUpper(name[0]) + name.Substring(1);

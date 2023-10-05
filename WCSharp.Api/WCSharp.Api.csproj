@@ -5,9 +5,12 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="War3Api.Blizzard" Version="1.32.9" />
-    <PackageReference Include="War3Api.Common" Version="1.32.9" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS0626;IDE0130</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CS0626;IDE0130</NoWarn>
+  </PropertyGroup>
 
 </Project>
