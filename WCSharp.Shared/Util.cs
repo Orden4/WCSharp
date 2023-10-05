@@ -10,6 +10,8 @@ namespace WCSharp.Shared
 	public static class Util
 	{
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
+		private static readonly location location = Location(0, 0);
+
 		/// <summary>
 		/// This multiplier will translate GUI-like floating text size values into the values Warcraft III expects them to be.
 		/// </summary>
@@ -88,7 +90,7 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates the angle in degrees from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		/// @CSharpLua.Template = "180 + (57.2957764 * Atan2({1} - {3}, {0} - {2}))"
+		/// @CSharpLua.Template = "(180 + (57.2957764 * Atan2({1} - {3}, {0} - {2})))"
 		public static extern float AngleBetweenPoints(float x1, float y1, float x2, float y2);
 
 		/// <summary>
@@ -118,7 +120,7 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates the angle in radians from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// </summary>
-		/// @CSharpLua.Template = "3.14159274 + Atan2({1} - {3}, {0} - {2})"
+		/// @CSharpLua.Template = "(3.14159274 + Atan2({1} - {3}, {0} - {2}))"
 		public static extern float AngleBetweenPointsRad(float x1, float y1, float x2, float y2);
 
 		/// <summary>
@@ -159,13 +161,13 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates an x-coordinate that is the given <paramref name="offset"/> away from <paramref name="x"/> at the target <paramref name="degrees"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Cos(0.0174532924 * {2}))"
+		/// @CSharpLua.Template = "({0} + ({1} * Cos(0.0174532924 * {2})))"
 		public static extern float PositionWithPolarOffsetX(float x, float offset, float degrees);
 
 		/// <summary>
 		/// Calculates a y-coordinate that is the given <paramref name="offset"/> away from <paramref name="y"/> at the target <paramref name="degrees"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Sin(0.0174532924 * {2}))"
+		/// @CSharpLua.Template = "({0} + ({1} * Sin(0.0174532924 * {2})))"
 		public static extern float PositionWithPolarOffsetY(float y, float offset, float degrees);
 
 		/// <summary>
@@ -182,25 +184,50 @@ namespace WCSharp.Shared
 		/// <summary>
 		/// Calculates an x-coordinate that is the given <paramref name="offset"/> away from <paramref name="x"/> at the target <paramref name="radians"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Cos({2}))"
+		/// @CSharpLua.Template = "({0} + ({1} * Cos({2})))"
 		public static extern float PositionWithPolarOffsetRadX(float x, float offset, float radians);
 
 		/// <summary>
 		/// Calculates a y-coordinate that is the given <paramref name="offset"/> away from <paramref name="y"/> at the target <paramref name="radians"/>.
 		/// </summary>
-		/// @CSharpLua.Template = "{0} + ({1} * Sin({2}))"
+		/// @CSharpLua.Template = "({0} + ({1} * Sin({2})))"
 		public static extern float PositionWithPolarOffsetRadY(float y, float offset, float radians);
 
 		/// <summary>
 		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
-		/// <para>A tolernace of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
+		/// <para>A tolerance of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
 		/// </summary>
 		/// <param name="attacker">The unit performing the attack.</param>
 		/// <param name="attacked">The unit being attacked.</param>
 		/// <param name="tolerance">In degrees.</param>
 		public static bool IsAttackerBehindUnit(unit attacker, unit attacked, float tolerance)
 		{
-			var attackerAngle = AngleBetweenPoints(GetUnitX(attacker), GetUnitY(attacker), GetUnitX(attacked), GetUnitY(attacked));
+			return IsAttackerBehindUnit(GetUnitX(attacker), GetUnitY(attacker), attacked, tolerance);
+		}
+
+		/// <summary>
+		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
+		/// <para>A tolerance of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
+		/// </summary>
+		/// <param name="attackerX">The X position of the attacker.</param>
+		/// <param name="attackerY">The Y position of the attacker.</param>
+		/// <param name="attacked">The unit being attacked.</param>
+		/// <param name="tolerance">In degrees.</param>
+		public static bool IsAttackerBehindUnit(float attackerX, float attackerY, unit attacked, float tolerance)
+		{
+			var attackerAngle = AngleBetweenPoints(attackerX, attackerY, GetUnitX(attacked), GetUnitY(attacked));
+			return IsAttackerBehindUnit(attackerAngle, attacked, tolerance);
+		}
+
+		/// <summary>
+		/// <para>Determines whether the attacker is behind the attacked with the given tolerance in degrees.</para>
+		/// <para>A tolerance of 360 would mean the target can be attacked from anywhere while being considered "behind".</para>
+		/// </summary>
+		/// <param name="attackerAngle">The angle of the attacker.</param>
+		/// <param name="attacked">The unit being attacked.</param>
+		/// <param name="tolerance">In degrees.</param>
+		public static bool IsAttackerBehindUnit(float attackerAngle, unit attacked, float tolerance)
+		{
 			var attackedAngle = GetUnitFacing(attacked);
 			var maxAllowedAngle = 360 - (0.5f * tolerance);
 			var minAllowedAngle = 0.5f * tolerance;
@@ -212,7 +239,7 @@ namespace WCSharp.Shared
 
 		/// <summary>
 		/// <para>Determines whether the attacker is in front of the attacked with the given tolerance in degrees.</para>
-		/// <para>A tolernace of 360 means the target can be attacked from anywhere while being considered "infront".</para>
+		/// <para>A tolerance of 360 means the target can be attacked from anywhere while being considered "infront".</para>
 		/// </summary>
 		/// <param name="attacker">The unit performing the attack.</param>
 		/// <param name="attacked">The unit being attacked.</param>
@@ -334,6 +361,16 @@ namespace WCSharp.Shared
 			SetTextTagVisibility(textTag, true);
 
 			return textTag;
+		}
+
+		/// <summary>
+		/// Retrieves the LocationZ at the given (X, Y) coordinates.
+		/// <para>Re-uses an internal location to provide a faster and easier solution to <see cref="GetLocationZ(location)"/>.</para>
+		/// </summary>
+		public static float GetZ(float x, float y)
+		{
+			MoveLocation(location, x, y);
+			return GetLocationZ(location);
 		}
 #pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	}

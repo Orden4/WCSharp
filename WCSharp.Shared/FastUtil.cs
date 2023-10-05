@@ -27,42 +27,42 @@ namespace WCSharp.Shared
 		/// Calculates the angle in degrees from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// <para><paramref name="source"/> must be pre-calculated.</para>
 		/// </summary>
-		/// @CSharpLua.Template = "180 + (57.2957764 * Atan2(GetUnitY({0}) - {2}, GetUnitX({0}) - {1}))"
+		/// @CSharpLua.Template = "(180 + (57.2957764 * Atan2(GetUnitY({0}) - {2}, GetUnitX({0}) - {1})))"
 		public static extern float AngleBetweenPoints(unit source, float x2, float y2);
 
 		/// <summary>
 		/// Calculates the angle in degrees from (<paramref name="x1"/>, <paramref name="y1"/>) to <paramref name="target"/> unit.
 		/// <para><paramref name="target"/> must be pre-calculated.</para>
 		/// </summary>
-		/// @CSharpLua.Template = "180 + (57.2957764 * Atan2({1} - GetUnitY({2}), {0} - GetUnitX({2})))"
+		/// @CSharpLua.Template = "(180 + (57.2957764 * Atan2({1} - GetUnitY({2}), {0} - GetUnitX({2}))))"
 		public static extern float AngleBetweenPoints(float x1, float y1, unit target);
 
 		/// <summary>
 		/// Calculates the angle in degrees from <paramref name="source"/> unit to <paramref name="target"/> unit.
 		/// <para>All parameters must be pre-calculated.</para>
 		/// </summary>
-		/// @CSharpLua.Template = "180 + (57.2957764 * Atan2(GetUnitY({0}) - GetUnitY({1}), GetUnitX({0}) - GetUnitX({1})))"
+		/// @CSharpLua.Template = "(180 + (57.2957764 * Atan2(GetUnitY({0}) - GetUnitY({1}), GetUnitX({0}) - GetUnitX({1}))))"
 		public static extern float AngleBetweenPoints(unit source, unit target);
 
 		/// <summary>
 		/// Calculates the angle in radians from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>).
 		/// <para><paramref name="source"/> must be pre-calculated.</para>
 		/// </summary>
-		/// @CSharpLua.Template = "3.14159274 + Atan2(GetUnitY({0}) - {2}, GetUnitX({0}) - {1})"
+		/// @CSharpLua.Template = "(3.14159274 + Atan2(GetUnitY({0}) - {2}, GetUnitX({0}) - {1}))"
 		public static extern float AngleBetweenPointsRad(unit source, float x2, float y2);
 
 		/// <summary>
 		/// Calculates the angle in radians from (<paramref name="x1"/>, <paramref name="y1"/>) to <paramref name="target"/> unit.
 		/// <para><paramref name="target"/> must be pre-calculated.</para>
 		/// </summary>
-		/// @CSharpLua.Template = "3.14159274 + Atan2({1} - GetUnitY({2}), {0} - GetUnitX({2}))"
+		/// @CSharpLua.Template = "(3.14159274 + Atan2({1} - GetUnitY({2}), {0} - GetUnitX({2})))"
 		public static extern float AngleBetweenPointsRad(float x1, float y1, unit target);
 
 		/// <summary>
 		/// Calculates the angle in radians from <paramref name="source"/> unit to <paramref name="target"/> unit.
 		/// <para>All parameters must be pre-calculated.</para>
 		/// </summary>
-		/// @CSharpLua.Template = "3.14159274 + Atan2(GetUnitY({0}) - GetUnitY({1}), GetUnitX({0}) - GetUnitX({1}))"
+		/// @CSharpLua.Template = "(3.14159274 + Atan2(GetUnitY({0}) - GetUnitY({1}), GetUnitX({0}) - GetUnitX({1})))"
 		public static extern float AngleBetweenPointsRad(unit source, unit target);
 	}
 #pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it

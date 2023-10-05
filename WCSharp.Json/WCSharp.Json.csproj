@@ -1,10 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Json.xml</DocumentationFile>
+	<DefaultDocumentationFolder>../Docs/WCSharp.Json</DefaultDocumentationFolder>
+	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.Json.txt</DefaultDocumentationLinksOutputFile>
+	<DefaultDocumentationLinksBaseUrl>../WCSharp.Json/</DefaultDocumentationLinksBaseUrl>
+	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DefaultDocumentation" Version="0.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />

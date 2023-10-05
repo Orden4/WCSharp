@@ -1,4 +1,5 @@
-﻿using static War3Api.Common;
+﻿using WCSharp.Json;
+using static War3Api.Common;
 
 namespace WCSharp.SaveLoad
 {
@@ -42,6 +43,24 @@ namespace WCSharp.SaveLoad
 		public void SetSaveSlot(int saveSlot)
 		{
 			this.saveSlot = saveSlot;
+		}
+	}
+
+	/// <summary>
+	/// Provides some type-explicit extension methods for <see cref="Saveable"/>s.
+	/// </summary>
+	public static class SaveableExtensions
+	{
+		/// <summary>
+		/// Creates a clone of the given save by converting it to JSON and back, and re-sets the player and save slot.
+		/// <para>Useful for if you want to create a clone to compare save data before and after a game.</para>
+		/// </summary>
+		public static T Clone<T>(this T saveable) where T : Saveable
+		{
+			var clone = JsonConvert.Deserialize<T>(JsonConvert.Serialize(saveable));
+			clone.SetPlayer(saveable.GetPlayer());
+			clone.SetSaveSlot(saveable.GetSaveSlot());
+			return clone;
 		}
 	}
 }

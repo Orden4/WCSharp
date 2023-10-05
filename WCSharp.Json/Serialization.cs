@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace WCSharp.Json
 {
@@ -92,18 +91,34 @@ namespace WCSharp.Json
 			var itemType = type.GetGenericArguments()[0];
 			if (!itemType.IsClass || itemType == typeof(string))
 			{
-				// Only primitives, will serialize fine
-				return value;
-			}
-			else
-			{
-				var newList = new List<Dictionary<string, object>>();
-				foreach (var item in (IEnumerable)value)
+				if (type.GetGenericTypeDefinition() == typeof(HashSet<>))
 				{
-					newList.Add(ConvertInputToDictionary(item, itemType));
+					return SerializeHashSet(value);
 				}
-				return newList;
+				else
+				{
+					return value;
+				}
 			}
+
+			var newList = new List<Dictionary<string, object>>();
+			foreach (var item in (IEnumerable)value)
+			{
+				newList.Add(ConvertInputToDictionary(item, itemType));
+			}
+			return newList;
+		}
+
+		private static object SerializeHashSet(object value)
+		{
+			// Internally CSharpLua hashtables are tables mapping values to a true boolean
+			// If we don't convert it to a list first, Rxi will just output an array of "true" values
+			var newList = new List<object>();
+			foreach (var item in (IEnumerable)value)
+			{
+				newList.Add(item);
+			}
+			return newList;
 		}
 
 		private static object SerializeDictionary(object value, Type type)
@@ -114,29 +129,26 @@ namespace WCSharp.Json
 
 			var serializeValue = genericArguments[1].IsClass && genericArguments[1] != typeof(string);
 			var newDict = new Dictionary<string, object>();
-			PropertyInfo keyProp = null;
-			PropertyInfo valueProp = null;
 			foreach (var item in (IEnumerable)value)
 			{
-				if (keyProp == null)
-				{
-					var itemType = item.GetType();
-					keyProp = itemType.GetProperty("Key");
-					valueProp = itemType.GetProperty("Value");
-				}
-
-				var itemKeyValue = keyProp.GetValue(item);
-				if (itemKeyValue != null)
-				{
-					var itemValue = valueProp.GetValue(item);
-					var serializedValue = serializeValue
-						? ConvertInputToDictionary(itemValue, genericArguments[1])
-						: itemValue;
-					newDict.Add(itemKeyValue.ToString(), serializedValue);
-				}
+				// KeyValuePairs were changed from having a key/value property to just being 1 and 2 indexed, which we can't access with reflection
+				// So we just use CSharpLua.Templates to just directly work on the KeyValuePair table
+				var itemKeyValue = GetKey(item);
+				var itemValue = GetValue(item);
+				var serializedValue = serializeValue
+					? ConvertInputToDictionary(itemValue, genericArguments[1])
+					: itemValue;
+				newDict.Add(itemKeyValue.ToString(), serializedValue);
 			}
 
 			return newDict;
 		}
+
+#pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
+		/// @CSharpLua.Template = "{0}[1]"
+		private static extern object GetKey(object item);
+		/// @CSharpLua.Template = "{0}[2]"
+		private static extern object GetValue(object item);
+#pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	}
 }

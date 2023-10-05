@@ -9,20 +9,17 @@ using static War3Api.Common;
 namespace WCSharp.SaveLoad
 {
 	/// <summary>
-	/// System capable of saving C# data structures on a players local files to create save files that can be loaded at a later date/map.
+	/// Contains logic shared between all different generic <see cref="SaveSystem{T}"/> instances.
 	/// </summary>
-	/// <typeparam name="T">The <see cref="Saveable"/> type that this instance will be saving/loading</typeparam>
-	public class SaveSystem<T> : IDisposable
-		where T : Saveable
+	public class SaveSystem
 	{
-		internal const int CURRENT_VERSION = 1;
-		private const int PACKET_SIZE = 185;
 
-		private static List<string> originalTooltips;
-		private static readonly List<int> abilityIds = new()
+		private static int NextId { get; set; }
+
+		internal static List<string> OriginalTooltips { get; } = new();
+		internal static List<int> AbilityIds { get; } = new()
 		{
 			1097690227, // Amls
-			1097359726, // Ahan
 			1098018659, // Aroc
 			1097689443, // Amic
 			1097689452, // Amil
@@ -31,22 +28,83 @@ namespace WCSharp.SaveLoad
 			1097098598, // Adef
 			1097099635, // Adis
 			1097228916, // Afbt
+			1097228907, // Afbk
+			1097231467, // Aflk
+			1097231457, // Afla
+			1097300322, // Agyb
+			1097233256, // Afsh
+			1097360737, // Ahea
+			1097428582, // Ainf
+			1097430643, // Aivs
+			1097688166, // Amdf
+			1097102451, // Adts
+			1097889894, // Apxf
+			1097886841, // Aply
+			1097364080, // Ahrp
+			1095267425, // AHta
+			1098083439, // Aslo
+			1098084467, // Asps
+			1098085480, // Asth
+			1098085480, // Agyv
+			1098085480, // Aast
+			1098085480, // Abtl
+			1098085480, // Sbtl
 		};
 
 		/// <summary>
 		/// Adds an additional ability id for use as temporary data storage.
-		/// <para>By default, you have 2000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.</para>
+		/// <para>By default, you have 6000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.</para>
 		/// <para>This should be done upon map start, before anything attempts to use the SaveSystem.</para>
+		/// <para>The default includes most of the Human abilities:</para>
+		/// <para>Amls, Ahan, Aroc, Amic, Amil, Aclf, Acmg, Adef, Adis, Afbt, Afbk, Aflk, Afla, Agyb, Afsh,
+		/// Ahea, Ahlh, Ainf, Aivs, Ahri, Amdf, Adts, Apxf, Aply, Ahrp, AHta, Aslo, Asps, Asth, Ahsb</para>
 		/// </summary>
 		/// <param name="abilityId"></param>
 		public static void AddAbilityId(int abilityId)
 		{
-			if (originalTooltips == null)
+			if (OriginalTooltips == null)
 			{
-				abilityIds.Add(abilityId);
+				if (AbilityIds.Contains(abilityId))
+				{
+					throw new ArgumentException($"ERROR: Tooltip {abilityId} is already in use by the save system.");
+				}
+				AbilityIds.Add(abilityId);
 			}
 		}
 
+		internal static void Init()
+		{
+			for (var i = 0; i < AbilityIds.Count; i++)
+			{
+				var tooltip = BlzGetAbilityTooltip(AbilityIds[i], 0);
+				if (tooltip != "Tool tip missing!")
+				{
+					OriginalTooltips.Add(tooltip);
+				}
+				else
+				{
+					throw new ArgumentException($"ERROR: Tooltip {AbilityIds[i]} cannot be modified for the SaveLoad system. See the WCSharp wiki for more info on Save/Load storage space.");
+				}
+			}
+		}
+
+		internal static int GetNextId()
+		{
+			return ++NextId;
+		}
+	}
+
+	/// <summary>
+	/// System capable of saving C# data structures on a players local files to create save files that can be loaded at a later date/map.
+	/// </summary>
+	/// <typeparam name="T">The <see cref="Saveable"/> type that this instance will be saving/loading</typeparam>
+	public class SaveSystem<T> : IDisposable
+		where T : Saveable
+	{
+		internal const int CURRENT_VERSION = 2;
+		private const int PACKET_SIZE = 185;
+
+		private readonly int id;
 		private readonly string saveFolder;
 		private readonly string salt;
 		private readonly int hash1;
@@ -56,11 +114,11 @@ namespace WCSharp.SaveLoad
 		private readonly Base64 base64;
 
 		/// <summary>
-		/// Event handler for when a save is loaded. Note that the save will be instantiated even if it is empty.
+		/// Event handler for when a save is loaded. The save will be instantiated even if it is empty or failed to load.
 		/// </summary>
 		/// <param name="save">The save that was loaded.</param>
-		/// <param name="isEmptySave">Whether the save file is empty (i.e. did not exist before).</param>
-		public delegate void OnSaveLoadedHandler(T save, bool isEmptySave);
+		/// <param name="loadResult">Indicates the state of the loaded save file, i.e. whether it's a newly created save, an existing save, or if it failed to load.</param>
+		public delegate void OnSaveLoadedHandler(T save, LoadResult loadResult);
 
 		/// <summary>
 		/// This event will be invoked when a new save is loaded in, providing the given class and a boolean indicating whether the save is newly created or not.
@@ -72,24 +130,12 @@ namespace WCSharp.SaveLoad
 		/// </summary>
 		public SaveSystem(SaveSystemOptions options)
 		{
-			if (originalTooltips == null)
+			if (SaveSystem.OriginalTooltips.Count == 0)
 			{
-				originalTooltips = new List<string>();
-
-				for (var i = 0; i < abilityIds.Count; i++)
-				{
-					var tooltip = BlzGetAbilityTooltip(abilityIds[i], 0);
-					if (tooltip != "Tool tip missing!")
-					{
-						originalTooltips.Add(tooltip);
-					}
-					else
-					{
-						throw new ArgumentException($"ERROR: Tooltip {abilityIds[i]} cannot be modified for the SaveLoad system. See the WCSharp wiki for more info on Save/Load storage space.");
-					}
-				}
+				SaveSystem.Init();
 			}
 
+			this.id = SaveSystem.GetNextId();
 			this.saveFolder = options.SaveFolder;
 			this.hash1 = options.Hash1;
 			this.hash2 = options.Hash2;
@@ -125,10 +171,13 @@ namespace WCSharp.SaveLoad
 
 		private void HandleSaveLoadedMessage(SaveLoadedMessage<T> message)
 		{
+			if (message.SaveSystemId != this.id)
+				return;
+
 			var data = message.SaveData ?? Activator.CreateInstance<T>();
 			data.player = Player(message.PlayerId);
 			data.saveSlot = message.SaveSlot;
-			OnSaveLoaded?.Invoke(data, message.SaveData == null);
+			OnSaveLoaded?.Invoke(data, message.LoadResult);
 		}
 
 		/// <summary>
@@ -143,17 +192,18 @@ namespace WCSharp.SaveLoad
 				return;
 			}
 
+			var saveData = JsonConvert.Serialize(saveable);
 			var save = new Save<T>
 			{
 				Version = CURRENT_VERSION,
-				HashCode = GetSaveHash(JsonConvert.Serialize(saveable), saveable.player),
-				SaveData = saveable,
+				HashCode = GetSaveHash(saveData, saveable.player),
+				SaveString = saveData,
 			};
 
 			var contents = this.base64.Encode(JsonConvert.Serialize(save));
 
 			var filename = GetFileName(saveable.player, saveable.saveSlot);
-			if (contents.Length > PACKET_SIZE * abilityIds.Count)
+			if (contents.Length > PACKET_SIZE * SaveSystem.AbilityIds.Count)
 			{
 				Console.WriteLine("ERROR: Maximum save file size has been reached. Unable to save file. Please contact the mapmaker to increase storage space.");
 				return;
@@ -163,7 +213,7 @@ namespace WCSharp.SaveLoad
 			PreloadGenStart();
 			for (var i = 0; i * PACKET_SIZE < contents.Length; i++)
 			{
-				var nextAbilityId = abilityIds[i];
+				var nextAbilityId = SaveSystem.AbilityIds[i];
 				var startIndex = i * PACKET_SIZE;
 				var endIndex = Math.Min(contents.Length - startIndex, PACKET_SIZE);
 				Preload($"\" )\ncall BlzSetAbilityTooltip({nextAbilityId}, \"{contents.Substring(startIndex, endIndex)}\", 0)//");
@@ -173,9 +223,9 @@ namespace WCSharp.SaveLoad
 		}
 
 		/// <summary>
-		/// Loads a save for the given player, using the given slot.
-		/// <para>If no save exists on the given slot, will load an empty save.</para>
-		/// <para>Use <see cref="HandleSaveLoadedMessage"/> to receive the save.</para>
+		/// Loads a save for the given player on the given save slot.
+		/// <para>If no save exists on the given slot, or if loading failed for any reason, a new, empty save will be returned.</para>
+		/// <para>Use <see cref="OnSaveLoaded"/> to receive the save.</para>
 		/// </summary>
 		/// <param name="player">The player to create the save for.</param>
 		/// <param name="saveSlot">The slot to save to.</param>
@@ -187,21 +237,20 @@ namespace WCSharp.SaveLoad
 				return;
 			}
 
-			var filename = GetFileName(player, saveSlot);
-			Preloader(filename);
+			Preloader(GetFileName(player, saveSlot));
 			var sb = new StringBuilder();
 
-			for (var i = 0; i < abilityIds.Count; i++)
+			for (var i = 0; i < SaveSystem.AbilityIds.Count; i++)
 			{
-				var abilityId = abilityIds[i];
-				var originalTooltip = originalTooltips[i];
+				var abilityId = SaveSystem.AbilityIds[i];
+				var originalTooltip = SaveSystem.OriginalTooltips[i];
 
 				var packet = BlzGetAbilityTooltip(abilityId, 0);
 				if (packet == originalTooltip)
 				{
-					if (i * 2 > abilityIds.Count)
+					if (i * 3 / 4 > SaveSystem.AbilityIds.Count)
 					{
-						Console.WriteLine("WARNING: More than 50% of the save file storage space is in use. Please contact the mapmaker to increase storage space.");
+						Console.WriteLine("WARNING: 75% or more of the save file storage space is in use. Please contact the mapmaker to increase storage space.");
 					}
 					break;
 				}
@@ -212,45 +261,95 @@ namespace WCSharp.SaveLoad
 				}
 			}
 
-			var save = TryLoadSave(sb);
+			var loadResult = TryDecode(sb, out var save);
 			var message = new SaveLoadedMessage<T>
 			{
+				SaveSystemId = this.id,
 				PlayerId = GetPlayerId(player),
-				SaveSlot = saveSlot
+				SaveSlot = saveSlot,
+				LoadResult = loadResult
 			};
 
-			if (save?.SaveData != null && save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+			if (save != null)
 			{
-				message.SaveData = save.SaveData;
+				if (save.Version == 1)
+				{
+					// Version 1 used a flawed way of verifying the hash, but we allow loading it anyway for backwards compatability.
+					if (save.SaveData != null)
+					{
+						if (save.HashCode == GetSaveHash(JsonConvert.Serialize(save.SaveData), player))
+						{
+							message.SaveData = save.SaveData;
+						}
+						else
+						{
+							message.LoadResult = LoadResult.FailedHash;
+						}
+					}
+				}
+				else if (save.Version == 2)
+				{
+					// Version 2 stores the save data as a string so that we don't have to re-serialize it in order to verify the hash, as re-serializing it may change the save.
+					if (!string.IsNullOrEmpty(save.SaveString))
+					{
+						if (TryDeserialize(save.SaveString, out var saveDataObject))
+						{
+							message.SaveData = saveDataObject;
+						}
+						else
+						{
+							message.LoadResult = LoadResult.FailedDeserialize;
+						}
+					}
+				}
 			}
 
 			SyncSystem.Send(message);
 		}
 
-		private Save<T> TryLoadSave(StringBuilder sb)
+		private LoadResult TryDecode(StringBuilder sb, out Save<T> save)
 		{
+			var saveData = sb.ToString();
+			if (string.IsNullOrEmpty(saveData))
+			{
+				save = null;
+				return LoadResult.NewSave;
+			}
+
+			var result = LoadResult.FailedDecode;
 			try
 			{
-				var contents = this.base64.Decode(sb.ToString());
-				var save = JsonConvert.Deserialize<Save<T>>(contents);
-				return save;
+				var contents = this.base64.Decode(saveData);
+				result = LoadResult.FailedDeserialize;
+				save = JsonConvert.Deserialize<Save<T>>(contents);
+				return LoadResult.Success;
 			}
 			catch (Exception)
 			{
-				return null;
+				save = null;
+				return result;
+			}
+		}
+
+		private static bool TryDeserialize(string saveData, out T saveDataObject)
+		{
+			try
+			{
+				saveDataObject = JsonConvert.Deserialize<T>(saveData);
+				return true;
+			}
+			catch (Exception)
+			{
+				saveDataObject = null;
+				return false;
 			}
 		}
 
 		private string GetFileName(player player, int saveSlot)
 		{
-			if (this.bindSavesToPlayerName)
-			{
-				return $"{this.saveFolder}\\{GetPlayerName(player)}-save-{saveSlot}{this.suffix}.pld";
-			}
-			else
-			{
-				return $"{this.saveFolder}\\save-{saveSlot}{this.suffix}.pld";
-			}
+			return this.bindSavesToPlayerName
+				? $"{this.saveFolder}\\{GetPlayerName(player)}-save-{saveSlot}{this.suffix}.pld"
+				: $"{this.saveFolder}\\save-{saveSlot}{this.suffix}.pld";
 		}
 
 		private int GetSaveHash(string saveData, player player)

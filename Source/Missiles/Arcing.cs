@@ -16,7 +16,7 @@ namespace Source.Missiles
 		{
 			var missile = new Arcing(GetTriggerUnit(), GetSpellTargetX(), GetSpellTargetY());
 			MissileSystem.Add(missile);
-			missile.DisableArc();
+			missile.IsArcing = false;
 		}
 
 		public Arcing(unit caster, float targetX, float targetY) : base(caster, targetX, targetY)

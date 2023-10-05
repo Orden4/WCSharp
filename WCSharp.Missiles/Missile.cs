@@ -15,7 +15,7 @@ namespace WCSharp.Missiles
 	{
 		// Doesn't fold multiple constant references properly unless you do this
 		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
-		private static readonly location location = Location(0, 0);
+		private static readonly group group = CreateGroup();
 
 		/// <summary>
 		/// Whether the missile is active. This is automatically set to false prior to calling <see cref="OnImpact"/>.
@@ -44,8 +44,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public virtual float CasterZ
 		{
-			get => this.casterZ + GetZ(CasterX, CasterY);
-			set => this.casterZ = value - GetZ(CasterX, CasterY);
+			get => InternalCasterZ + Util.GetZ(CasterX, CasterY);
+			set => InternalCasterZ = value - Util.GetZ(CasterX, CasterY);
 		}
 		/// <summary>
 		/// Use this to adjust the origin height of the missile when firing, as it will by default fire from the ground (plus unit flying height).
@@ -69,13 +69,14 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float TargetY { get; set; }
 		/// <summary>
-		/// The Z coordinate that this missile is moving towards. While <see cref="Target"/> is alive, this will automatically be updated.
+		/// The Z coordinate that this missile is moving towards.
+		/// <para>While <see cref="Target"/> is alive, this will automatically be updated.</para>
 		/// <para>By default, this is equal to UnitFlyHeight + <see cref="TargetImpactZ"/> + GetLocationZ.</para>
 		/// </summary>
 		public virtual float TargetZ
 		{
-			get => this.targetZ + GetZ(TargetX, TargetY);
-			set => this.targetZ = value - GetZ(TargetX, TargetY);
+			get => InternalTargetZ + Util.GetZ(TargetX, TargetY);
+			set => InternalTargetZ = value - Util.GetZ(TargetX, TargetY);
 		}
 		/// <summary>
 		/// Use this to adjust the target height of the missile, as it will by default aim towards the ground (plus unit flying height).
@@ -98,22 +99,20 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public virtual float MissileZ
 		{
-			get => this.missileZ + GetZ(MissileX, MissileY);
-			set => this.missileZ = value - GetZ(MissileX, MissileY);
+			get => InternalMissileZ + Util.GetZ(MissileX, MissileY);
+			set => InternalMissileZ = value - Util.GetZ(MissileX, MissileY);
 		}
 
 		/// <summary>
-		/// The internal speed field. Defined in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
+		/// The speed of the missile, expressed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
+		/// <para>Alternatively, use <see cref="Speed"/>.</para>
 		/// </summary>
-		private protected float speed;
+		public abstract float SpeedPerTick { get; set; }
 		/// <summary>
-		/// The speed of the missile. Defined in units per second.
+		/// The speed of the missile, expressed in units per second.
+		/// <para>Alternatively, use <see cref="SpeedPerTick"/>.</para>
 		/// </summary>
-		public virtual float Speed
-		{
-			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
-			set => this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
-		}
+		public abstract float Speed { get; set; }
 
 		/// <summary>
 		/// By default impact triggers when the distance to the target is less than the missile's speed per tick.
@@ -127,7 +126,6 @@ namespace WCSharp.Missiles
 		/// <para>Removing a unit from this means <see cref="OnCollision(unit)"/> will trigger for that unit once more.</para>
 		/// </summary>
 		public HashSet<unit> TargetsHit { get; private set; }
-		private protected group group;
 		private protected float collisionRadius;
 		/// <summary>
 		/// The collision radius of the missile which is used to trigger <see cref="OnCollision(unit)"/>.
@@ -142,13 +140,14 @@ namespace WCSharp.Missiles
 				if (this.collisionRadius > 0 && TargetsHit == null)
 				{
 					TargetsHit = new HashSet<unit>();
-					this.group = CreateGroup();
 				}
 			}
 		}
 
 		/// <summary>
-		/// The interval at which the missile will call <see cref="OnPeriodic"/>. Leave at default (0) to disable.
+		/// The interval at which the missile will call <see cref="OnPeriodic"/>.
+		/// <para>Leave at default (0) to disable.</para>
+		/// <para>Intervals lower with <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> will occassionally run multiple times per tick.</para>
 		/// </summary>
 		public float Interval { get; set; }
 		/// <summary>
@@ -157,48 +156,69 @@ namespace WCSharp.Missiles
 		public float IntervalLeft { get; set; }
 
 		/// <summary>
-		/// The internal spin period field. Defined in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
+		/// The velocity of the spin, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
+		/// <para>Use negative values to go clockwise.</para>
+		/// <para>Alternatively, use <see cref="SpinPeriod"/>.</para>
 		/// </summary>
-		private protected float spinPeriod;
+		public float SpinVelocityRad { get; set; }
 		/// <summary>
 		/// The amount of time it takes for the projectile to spin once during flight in seconds.
 		/// <para>Use negative values to go clockwise.</para>
+		/// <para>Alternatively, use <see cref="SpinVelocityRad"/>.</para>
 		/// </summary>
 		public float SpinPeriod
 		{
-			get => this.spinPeriod == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / this.spinPeriod;
-			set => this.spinPeriod = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
+			get => SpinVelocityRad == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / SpinVelocityRad;
+			set => SpinVelocityRad = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
 		}
 
-		private protected float yaw;
 		/// <summary>
-		/// The yaw of the projectile. Defined in degrees.
+		/// The yaw of the projectile, expressed in radians.
 		/// <para>Depending on the type of missile, yaw sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="Yaw"/>.</para>
+		/// </summary>
+		public float YawRad { get; set; }
+		/// <summary>
+		/// The yaw of the projectile, expressed in degrees.
+		/// <para>Depending on the type of missile, yaw sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="YawRad"/>.</para>
 		/// </summary>
 		public float Yaw
 		{
-			get => this.yaw * Util.RAD2DEG;
-			set => this.yaw = value * Util.DEG2RAD;
+			get => YawRad * Util.RAD2DEG;
+			set => YawRad = value * Util.DEG2RAD;
 		}
-		private protected float pitch;
+		/// <summary>
+		/// The pitch of the projectile, expressed in radians.
+		/// <para>Depending on the type of missile, pitch sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="Pitch"/>.</para>
+		/// </summary>
+		public float PitchRad { get; set; }
 		/// <summary>
 		/// The pitch of the projectile. Defined in degrees.
 		/// <para>Depending on the type of missile, pitch sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="PitchRad"/>.</para>
 		/// </summary>
 		public float Pitch
 		{
-			get => this.pitch * Util.RAD2DEG;
-			set => this.pitch = value * Util.DEG2RAD;
+			get => PitchRad * Util.RAD2DEG;
+			set => PitchRad = value * Util.DEG2RAD;
 		}
-		private protected float roll;
 		/// <summary>
-		/// The roll of the projectile. Defined in degrees.
+		/// The roll of the projectile, expressed in radians.
 		/// <para>Depending on the type of missile, roll sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="Roll"/>.</para>
+		/// </summary>
+		public float RollRad { get; set; }
+		/// <summary>
+		/// The roll of the projectile, expressed in degrees.
+		/// <para>Depending on the type of missile, roll sets may be ignored.</para>
+		/// <para>Alternatively, use <see cref="RollRad"/>.</para>
 		/// </summary>
 		public float Roll
 		{
-			get => this.roll * Util.RAD2DEG;
-			set => this.roll = value * Util.DEG2RAD;
+			get => RollRad * Util.RAD2DEG;
+			set => RollRad = value * Util.DEG2RAD;
 		}
 
 		/// <summary>
@@ -206,8 +226,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float CurrentAngle
 		{
-			get => this.yaw * Util.RAD2DEG;
-			set => this.yaw = value * Util.DEG2RAD;
+			get => YawRad * Util.RAD2DEG;
+			set => YawRad = value * Util.DEG2RAD;
 		}
 
 		/// <summary>
@@ -236,7 +256,7 @@ namespace WCSharp.Missiles
 						{
 							Effect = AddSpecialEffect(value, MissileX, MissileY);
 							BlzSetSpecialEffectZ(Effect, MissileZ);
-							BlzSetSpecialEffectOrientation(Effect, this.yaw, this.pitch, this.roll);
+							BlzSetSpecialEffectOrientation(Effect, YawRad, PitchRad, RollRad);
 							if (this.effectScale != 1)
 							{
 								BlzSetSpecialEffectScale(Effect, this.effectScale);
@@ -276,17 +296,20 @@ namespace WCSharp.Missiles
 		public effect Effect { get; protected set; }
 
 		/// <summary>
-		/// The Z of the missile without accounting for terrain.
+		/// The internal Z coordinate of the missile. This is what the system uses and may or may not be the actual position.
+		/// <para>For standard purposes, you should use <see cref="MissileZ"/> instead.</para>
 		/// </summary>
-		private protected float missileZ;
+		public float InternalMissileZ { get; set; }
 		/// <summary>
-		/// The Z of the caster without accounting for terrain.
+		/// The internal Z coordinate of the caster. This is what the system uses and may or may not be the actual position.
+		/// <para>For standard purposes, you should use <see cref="CasterZ"/> instead.</para>
 		/// </summary>
-		private protected float casterZ;
+		public float InternalCasterZ { get; set; }
 		/// <summary>
-		/// The Z of the target without accounting for terrain.
+		/// The internal Z coordinate of the target. This is what the system uses and may or may not be the actual position.
+		/// <para>For standard purposes, you should use <see cref="TargetZ"/> instead.</para>
 		/// </summary>
-		private protected float targetZ;
+		public float InternalTargetZ { get; set; }
 
 		private Missile(unit caster)
 		{
@@ -294,7 +317,7 @@ namespace WCSharp.Missiles
 			CastingPlayer = GetOwningPlayer(caster);
 			CasterX = GetUnitX(caster);
 			CasterY = GetUnitY(caster);
-			this.casterZ = GetUnitFlyHeight(caster);
+			InternalCasterZ = GetUnitFlyHeight(caster);
 		}
 
 		private Missile(player castingPlayer, float casterX, float casterY)
@@ -315,7 +338,7 @@ namespace WCSharp.Missiles
 			TargetPlayer = GetOwningPlayer(target);
 			TargetX = GetUnitX(target);
 			TargetY = GetUnitY(target);
-			this.targetZ = GetUnitFlyHeight(target);
+			InternalTargetZ = GetUnitFlyHeight(target);
 		}
 
 		/// <summary>
@@ -338,7 +361,7 @@ namespace WCSharp.Missiles
 			TargetPlayer = GetOwningPlayer(target);
 			TargetX = GetUnitX(target);
 			TargetY = GetUnitY(target);
-			this.targetZ = GetUnitFlyHeight(target);
+			InternalTargetZ = GetUnitFlyHeight(target);
 		}
 
 		/// <summary>
@@ -386,12 +409,12 @@ namespace WCSharp.Missiles
 		}
 
 		/// <summary>
-		/// Runs the Interval related code. Do not call if <see cref="Interval"/> is 0.
+		/// Runs the Interval related code. Do not call if <see cref="Interval"/> is 0 (will cause an infinite loop!).
 		/// </summary>
 		protected void RunInterval()
 		{
 			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
-			if (IntervalLeft <= 0)
+			while (IntervalLeft <= 0)
 			{
 				IntervalLeft += Interval;
 				OnPeriodic();
@@ -403,8 +426,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		protected void RunCollisions()
 		{
-			GroupEnumUnitsInRange(this.group, MissileX, MissileY, this.collisionRadius, null);
-			foreach (var unit in this.group.Enumerate())
+			GroupEnumUnitsInRange(group, MissileX, MissileY, this.collisionRadius, null);
+			foreach (var unit in group.ToList())
 			{
 				if (TargetsHit.Add(unit))
 				{
@@ -420,7 +443,7 @@ namespace WCSharp.Missiles
 		{
 			MissileX = TargetX;
 			MissileY = TargetY;
-			this.missileZ = this.targetZ;
+			InternalMissileZ = InternalTargetZ;
 			BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, MissileZ);
 			BlzSetSpecialEffectPitch(Effect, 0);
 
@@ -474,15 +497,6 @@ namespace WCSharp.Missiles
 
 		}
 
-		/// <summary>
-		/// Retrieves the LocationZ at the given (X, Y) coordinates.
-		/// </summary>
-		protected static float GetZ(float x, float y)
-		{
-			MoveLocation(location, x, y);
-			return GetLocationZ(location);
-		}
-
 		/// <inheritdoc/>
 		public void Dispose()
 		{
@@ -490,10 +504,6 @@ namespace WCSharp.Missiles
 			if (Effect != null)
 			{
 				DestroyEffect(Effect);
-			}
-			if (this.group != null)
-			{
-				DestroyGroup(this.group);
 			}
 		}
 	}

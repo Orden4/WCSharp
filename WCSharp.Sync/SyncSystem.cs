@@ -189,7 +189,7 @@ namespace WCSharp.Sync
 				}
 			}
 
-			if (startIndex < content.Length - 1)
+			if (startIndex < content.Length)
 			{
 				yield return new SyncPacket
 				{
@@ -253,7 +253,8 @@ namespace WCSharp.Sync
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine(ex);
+					Console.WriteLine(ex.Message);
+					Console.WriteLine(ex.StackTrace);
 				}
 
 				return false;
@@ -266,7 +267,8 @@ namespace WCSharp.Sync
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine(ex);
+					Console.WriteLine(ex.Message);
+					Console.WriteLine(ex.StackTrace);
 				}
 
 				return false;

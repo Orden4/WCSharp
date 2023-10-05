@@ -458,7 +458,6 @@ return json
 		/// </summary>
 		public static string Serialize<T>(T input)
 		{
-			Console.WriteLine(Rxi.Encode(parser, Serialization.SerializeClass(input, typeof(T))));
 			return Rxi.Encode(parser, Serialization.SerializeClass(input, typeof(T)));
 		}
 	}

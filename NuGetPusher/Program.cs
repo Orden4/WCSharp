@@ -14,12 +14,13 @@ namespace NuGetPusher
 		{
 			"ConstantGenerator",
 			"Shared",
+			"W3MMD",
 			"Json",
 			"Events",
+			"Dummies",
 			"Effects",
 			"Sync",
 			"SaveLoad",
-			"Dummies",
 			"Buffs",
 			"DateTime",
 			"Knockbacks",
@@ -31,7 +32,7 @@ namespace NuGetPusher
 		public static string Source { get; set; }
 
 		[STAThread]
-		private static async Task Main(string[] args)
+		private static async Task Main()
 		{
 			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName;
 			await CopyFiles();

@@ -58,10 +58,9 @@ namespace WCSharp.Buffs
 		{
 			if (Interval > 0)
 			{
-				if (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+				while (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 				{
 					IntervalLeft += Interval;
-
 					OnTick();
 
 					if (Active)

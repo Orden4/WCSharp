@@ -2,7 +2,7 @@
 artifacts
 *.xml
 NuGetPusher/app.config
-
+DefaultDocumentation/**
 
 
 

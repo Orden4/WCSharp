@@ -1,0 +1,13 @@
+#### [WCSharp.DateTime](README.md 'README')
+### [WCSharp.DateTime](WCSharp.DateTime.md 'WCSharp.DateTime').[WcTimeSpan](WCSharp.DateTime.WcTimeSpan.md 'WCSharp.DateTime.WcTimeSpan')
+
+## WcTimeSpan.Negate() Method
+
+Returns a new [WcTimeSpan](WCSharp.DateTime.WcTimeSpan.md 'WCSharp.DateTime.WcTimeSpan') whose value is the negated value of this instance.
+
+```csharp
+public WCSharp.DateTime.WcTimeSpan Negate();
+```
+
+#### Returns
+[WcTimeSpan](WCSharp.DateTime.WcTimeSpan.md 'WCSharp.DateTime.WcTimeSpan')

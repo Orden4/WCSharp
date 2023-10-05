@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30320.27
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33927.249
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEDA3054-0F91-4506-AE00-10F20D7320C6}"
 	ProjectSection(SolutionItems) = preProject
@@ -43,6 +43,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Api", "WCSharp.Api\WCSharp.Api.csproj", "{C77EEA24-F2D0-4BA7-A11C-A6762158A0E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools", "Tools\Tools.csproj", "{4AD3E5CB-B952-4672-B91C-484541DFB3E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.W3MMD", "WCSharp.W3MMD\WCSharp.W3MMD.csproj", "{02636F7C-C567-4D6A-8574-8F44760F8380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,6 +124,10 @@ Global
 		{4AD3E5CB-B952-4672-B91C-484541DFB3E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AD3E5CB-B952-4672-B91C-484541DFB3E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AD3E5CB-B952-4672-B91C-484541DFB3E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02636F7C-C567-4D6A-8574-8F44760F8380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02636F7C-C567-4D6A-8574-8F44760F8380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02636F7C-C567-4D6A-8574-8F44760F8380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02636F7C-C567-4D6A-8574-8F44760F8380}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

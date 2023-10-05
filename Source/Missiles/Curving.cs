@@ -37,7 +37,7 @@ namespace Source.Missiles
 
 		public override void OnPeriodic()
 		{
-			DisableArc();
+			IsArcingOrCurving = false;
 			Speed = FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY) * 2;
 			Interval = 0;
 		}

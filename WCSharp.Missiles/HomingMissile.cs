@@ -13,23 +13,50 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public abstract class HomingMissile : Missile
 	{
+		/// <summary>
+		/// The flight modes of this missile type.
+		/// </summary>
+		public enum FlightMode
+		{
+			/// <summary>
+			/// Default value prior to the missile being launched.
+			/// <para>Will automatically change to <see cref="FollowTerrain"/>.</para>
+			/// </summary>
+			Default,
+			/// <summary>
+			/// The missile will follow the height of the terrain.
+			/// </summary>
+			FollowTerrain,
+			/// <summary>
+			/// The missile will ignore the height of the terrain.
+			/// </summary>
+			Direct
+		}
+
 		/// <inheritdoc/>
 		public sealed override float CasterZ
 		{
-			get => this.casterZ + GetZ(CasterX, CasterY);
-			set => this.casterZ = value - GetZ(CasterX, CasterY);
+			get => this.mode == FlightMode.FollowTerrain ? InternalCasterZ + Util.GetZ(CasterX, CasterY) : InternalCasterZ;
+			set => InternalCasterZ = this.mode == FlightMode.FollowTerrain ? value - Util.GetZ(CasterX, CasterY) : value;
 		}
 		/// <inheritdoc/>
 		public sealed override float TargetZ
 		{
-			get => this.targetZ + GetZ(TargetX, TargetY);
-			set => this.targetZ = value - GetZ(TargetX, TargetY);
+			get => this.mode == FlightMode.FollowTerrain ? InternalTargetZ + Util.GetZ(TargetX, TargetY) : InternalTargetZ;
+			set => InternalTargetZ = this.mode == FlightMode.FollowTerrain ? value - Util.GetZ(TargetX, TargetY) : value;
 		}
 		/// <inheritdoc/>
 		public sealed override float MissileZ
 		{
-			get => this.missileZ + GetZ(MissileX, MissileY);
-			set => this.missileZ = value - GetZ(MissileX, MissileY);
+			get => this.mode == FlightMode.FollowTerrain ? InternalMissileZ + Util.GetZ(MissileX, MissileY) : InternalMissileZ;
+			set => InternalMissileZ = this.mode == FlightMode.FollowTerrain ? value - Util.GetZ(MissileX, MissileY) : value;
+		}
+		private float speed;
+		/// <inheritdoc/>
+		public sealed override float SpeedPerTick
+		{
+			get => this.speed;
+			set => this.speed = value;
 		}
 		/// <inheritdoc/>
 		public sealed override float Speed
@@ -39,22 +66,50 @@ namespace WCSharp.Missiles
 		}
 
 		/// <summary>
-		/// The internal rate at which the missile can turn in radians per second.
+		/// The speed at which the missile can turn, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
+		/// <para>Alternatively, use <see cref="TurnRate"/> or <see cref="TurnPeriod"/>.</para>
 		/// </summary>
-		private float turnRate;
-
+		public float TurnVelocityRad { get; set; }
 		/// <summary>
-		/// The rate at which the missile can turn in degrees per second.
+		/// The rate at which the missile can turn, expressed in degrees per second.
+		/// <para>Alternatively, use <see cref="TurnVelocityRad"/> or <see cref="TurnPeriod"/>.</para>
 		/// </summary>
 		public float TurnRate
 		{
-			get => this.turnRate * Util.RAD2DEG / PeriodicEvents.SYSTEM_INTERVAL;
-			set => this.turnRate = value * Util.DEG2RAD * PeriodicEvents.SYSTEM_INTERVAL;
+			get => TurnVelocityRad * Util.RAD2DEG / PeriodicEvents.SYSTEM_INTERVAL;
+			set => TurnVelocityRad = value * Util.DEG2RAD * PeriodicEvents.SYSTEM_INTERVAL;
 		}
+		/// <summary>
+		/// The rate at which the missile can turn, expressed in degrees per second.
+		/// <para>Alternatively, use <see cref="TurnVelocityRad"/> or <see cref="TurnRate"/>.</para>
+		/// </summary>
+		public float TurnPeriod
+		{
+			get => TurnVelocityRad == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / TurnVelocityRad;
+			set => TurnVelocityRad = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
+		}
+
 		/// <summary>
 		/// The initial angle in degrees. If left at null, will default to the angle towards the target.
 		/// </summary>
 		public float? InitialAngle { get; set; } = null;
+
+		private FlightMode mode;
+		/// <summary>
+		/// The current flight mode of the projectile.
+		/// <para>Automatically set at launch unless changed to a value other than <see cref="FlightMode.Default"/>.</para>
+		/// </summary>
+		public FlightMode Mode
+		{
+			get => this.mode;
+			set
+			{
+				if (Active)
+					SetFlightMode(value);
+				else
+					this.mode = value;
+			}
+		}
 
 		/// <inheritdoc/>
 		public HomingMissile(unit caster, unit target) : base(caster, target)
@@ -76,33 +131,68 @@ namespace WCSharp.Missiles
 		{
 		}
 
+		private void SetFlightMode(FlightMode value = FlightMode.Default)
+		{
+			if (value == FlightMode.Default)
+				value = FlightMode.FollowTerrain;
+
+			if (this.mode == FlightMode.Direct)
+			{
+				if (value == FlightMode.FollowTerrain)
+				{
+					InternalCasterZ -= Util.GetZ(CasterX, CasterY);
+					InternalMissileZ -= Util.GetZ(MissileX, MissileY);
+					InternalTargetZ -= Util.GetZ(TargetX, TargetY);
+				}
+			}
+			else if (value == FlightMode.Direct)
+			{
+				InternalCasterZ += Util.GetZ(CasterX, CasterY);
+				InternalMissileZ += Util.GetZ(MissileX, MissileY);
+				InternalTargetZ += Util.GetZ(TargetX, TargetY);
+			}
+
+			this.mode = value;
+		}
+
 		/// <inheritdoc/>
 		public sealed override void Launch()
 		{
-			this.casterZ += CasterLaunchZ;
-			this.targetZ += TargetImpactZ;
-
+			InternalCasterZ += CasterLaunchZ;
+			InternalTargetZ += TargetImpactZ;
+			InternalMissileZ = InternalCasterZ;
+			IntervalLeft = Interval;
 			MissileX = CasterX;
 			MissileY = CasterY;
-			this.missileZ = this.casterZ;
+
+			if (this.mode == FlightMode.Default)
+			{
+				SetFlightMode();
+			}
+			else
+			{
+				var actualMode = this.mode;
+				this.mode = FlightMode.Default;
+				SetFlightMode();
+				SetFlightMode(actualMode);
+			}
+
 			if (InitialAngle.HasValue)
 			{
-				this.yaw = InitialAngle.Value * Util.DEG2RAD;
-				if (this.yaw < 0)
+				YawRad = InitialAngle.Value * Util.DEG2RAD;
+				if (YawRad < 0)
 				{
-					this.yaw += Util.PI * 2;
+					YawRad += Util.PI * 2;
 				}
-				else if (this.yaw > Util.PI * 2)
+				else if (YawRad > Util.PI * 2)
 				{
-					this.yaw -= Util.PI * 2;
+					YawRad -= Util.PI * 2;
 				}
 			}
 			else
 			{
-				this.yaw = Util.AngleBetweenPointsRad(CasterX, CasterY, TargetX, TargetY);
+				YawRad = Util.AngleBetweenPointsRad(CasterX, CasterY, TargetX, TargetY);
 			}
-
-			IntervalLeft = Interval;
 
 			if (!string.IsNullOrEmpty(this.effectString))
 			{
@@ -124,7 +214,7 @@ namespace WCSharp.Missiles
 				{
 					TargetX = GetUnitX(Target);
 					TargetY = GetUnitY(Target);
-					this.targetZ = GetUnitFlyHeight(Target) + TargetImpactZ;
+					InternalTargetZ = GetUnitFlyHeight(Target) + TargetImpactZ;
 				}
 				else
 				{
@@ -141,35 +231,35 @@ namespace WCSharp.Missiles
 			var oldZ = MissileZ;
 
 			var desiredYaw = Util.AngleBetweenPointsRad(MissileX, MissileY, TargetX, TargetY);
-			if (Math.Abs(desiredYaw - this.yaw) < this.turnRate)
+			if (Math.Abs(desiredYaw - YawRad) < TurnVelocityRad)
 			{
-				this.yaw = desiredYaw;
+				YawRad = desiredYaw;
 			}
-			else if ((this.yaw < desiredYaw && desiredYaw < this.yaw + Util.PI) || desiredYaw < this.yaw - Util.PI)
+			else if ((YawRad < desiredYaw && desiredYaw < YawRad + Util.PI) || desiredYaw < YawRad - Util.PI)
 			{
-				this.yaw += this.turnRate;
+				YawRad += TurnVelocityRad;
 			}
 			else
 			{
-				this.yaw -= this.turnRate;
+				YawRad -= TurnVelocityRad;
 			}
 
-			if (this.yaw < 0)
+			if (YawRad < 0)
 			{
-				this.yaw += Util.PI * 2;
+				YawRad += Util.PI * 2;
 			}
-			else if (this.yaw > Util.PI * 2)
+			else if (YawRad > Util.PI * 2)
 			{
-				this.yaw -= Util.PI * 2;
+				YawRad -= Util.PI * 2;
 			}
 
-			var deltaX = this.speed * Cos(this.yaw);
+			var deltaX = this.speed * Cos(YawRad);
 			MissileX += deltaX;
 
-			var deltaY = this.speed * Sin(this.yaw);
+			var deltaY = this.speed * Sin(YawRad);
 			MissileY += deltaY;
 
-			this.missileZ += (this.targetZ - this.missileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
+			InternalMissileZ += (InternalTargetZ - InternalMissileZ) * (this.speed / FastUtil.DistanceBetweenPoints(MissileX, MissileY, TargetX, TargetY));
 
 			if (!Rectangle.WorldBounds.Contains(MissileX, MissileY))
 			{
@@ -179,11 +269,11 @@ namespace WCSharp.Missiles
 
 			if (Effect != null)
 			{
-				this.roll += this.spinPeriod;
+				RollRad += SpinVelocityRad;
 				var newZ = MissileZ;
-				this.pitch = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
+				PitchRad = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
 				BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, newZ);
-				BlzSetSpecialEffectOrientation(Effect, this.yaw, this.pitch, this.roll);
+				BlzSetSpecialEffectOrientation(Effect, YawRad, PitchRad, RollRad);
 			}
 
 			if (Interval > 0)

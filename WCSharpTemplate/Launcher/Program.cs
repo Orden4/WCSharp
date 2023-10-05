@@ -17,7 +17,6 @@ namespace Launcher
 	{
 		// Input
 		private const string SOURCE_CODE_PROJECT_FOLDER_PATH = @"..\..\..\..\Source";
-		private const string ASSETS_FOLDER_PATH = @"..\..\..\..\Assets\";
 		private const string BASE_MAP_PATH = @"..\..\..\..\source.w3x";
 
 		// Output
@@ -70,14 +69,12 @@ namespace Launcher
 		public static void Build(bool launch)
 		{
 			// Ensure these folders exist
-			Directory.CreateDirectory(ASSETS_FOLDER_PATH);
 			Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
 
 			// Load existing map data
 			var map = Map.Open(BASE_MAP_PATH);
 			var builder = new MapBuilder(map);
 			builder.AddFiles(BASE_MAP_PATH, "*", SearchOption.AllDirectories);
-			builder.AddFiles(ASSETS_FOLDER_PATH, "*", SearchOption.AllDirectories);
 
 			// Set debug options if necessary, configure compiler
 			var csc = DEBUG ? "-debug -define:DEBUG" : null;
@@ -88,7 +85,7 @@ namespace Launcher
 				IsModule = false,
 				IsInlineSimpleProperty = false,
 				IsPreventDebugObject = true,
-				IsCommentsDisabled = !DEBUG
+				IsCommentsDisabled = !DEBUG,
 			};
 
 			// Collect required paths and compile

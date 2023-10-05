@@ -24,8 +24,8 @@ namespace WCSharp.Shared.Extensions
 		/// <summary>
 		/// Shorthand for healing a unit.
 		/// </summary>
-		/// @CSharpLua.Template = "SetUnitState({0}, UNIT_STATE_LIFE, GetUnitState({0}, UNIT_STATE_LIFE) + {1})"
-		public static extern void Heal(this unit target, float amount);
+		/// @CSharpLua.Template = "SetWidgetLife({0}, GetWidgetLife({0}) + {1})"
+		public static extern void Heal(this widget target, float amount);
 
 		/// <summary>
 		/// Shorthand for replenishing a units mana.

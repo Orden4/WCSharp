@@ -1,4 +1,5 @@
 ﻿using WCSharp.Events;
+using WCSharp.Shared;
 using static War3Api.Common;
 
 namespace WCSharp.Lightnings
@@ -8,8 +9,6 @@ namespace WCSharp.Lightnings
 	/// </summary>
 	public class Lightning : IPeriodicDisposableAction
 	{
-		private static readonly location location = Location(0, 0);
-
 		/// <inheritdoc/>
 		public bool Active { get; set; }
 		/// <summary>
@@ -78,6 +77,7 @@ namespace WCSharp.Lightnings
 
 		/// <summary>
 		/// The actual lightning effect.
+		/// <para>Automatically created based on the supplied name when added to <see cref="LightningSystem"/>.</para>
 		/// </summary>
 		protected lightning lightning;
 
@@ -115,8 +115,7 @@ namespace WCSharp.Lightnings
 		{
 			this.name = name;
 			this.casterZ = BlzGetUnitZ(caster) + GetUnitFlyHeight(caster);
-			MoveLocation(location, targetX, targetY);
-			this.targetZ = GetLocationZ(location);
+			this.targetZ = Util.GetZ(targetX, targetY);
 
 			Caster = caster;
 			CasterX = GetUnitX(caster);
@@ -137,8 +136,7 @@ namespace WCSharp.Lightnings
 		public Lightning(string name, float casterX, float casterY, unit target)
 		{
 			this.name = name;
-			MoveLocation(location, casterX, casterY);
-			this.casterZ = GetLocationZ(location);
+			this.casterZ = Util.GetZ(casterX, casterY);
 			this.targetZ = BlzGetUnitZ(target) + GetUnitFlyHeight(target);
 
 			CasterX = casterX;
@@ -160,10 +158,8 @@ namespace WCSharp.Lightnings
 		public Lightning(string name, float casterX, float casterY, float targetX, float targetY)
 		{
 			this.name = name;
-			MoveLocation(location, casterX, casterY);
-			this.casterZ = GetLocationZ(location);
-			MoveLocation(location, targetX, targetY);
-			this.targetZ = GetLocationZ(location);
+			this.casterZ = Util.GetZ(casterX, casterY);
+			this.targetZ = Util.GetZ(targetX, targetY);
 
 			CasterX = casterX;
 			CasterY = casterY;
