@@ -34,7 +34,7 @@ namespace WCSharp.Api
 		public string DialogueText { get; set; }
 
 		/// @CSharpLua.Get = "GetSoundIsPlaying({0})"
-		/// @CSharpLua.Set = "(if {1} then StartSound({0}) else StopSound({0}) end)"
+		/// @CSharpLua.Set = "if {1} then StartSound({0}) else StopSound({0}) end"
 		public bool IsPlaying { get; set; }
 
 		/// @CSharpLua.Get = "GetSoundIsLoading({0})"
