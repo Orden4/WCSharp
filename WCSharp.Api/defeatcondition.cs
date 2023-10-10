@@ -9,7 +9,7 @@ namespace WCSharp.Api
 		}
 
 		/// @CSharpLua.Template = "CreateDefeatCondition()"
-		public extern defeatcondition Create();
+		public static extern defeatcondition Create();
 
 		/// @CSharpLua.Template = "DefeatConditionSetDescription({0})"
 		public extern string SetDescription(string description);

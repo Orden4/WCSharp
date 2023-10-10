@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class playercolor
+	public class playercolor : handle
 	{
 		internal playercolor()
 		{

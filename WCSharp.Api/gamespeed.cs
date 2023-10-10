@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class gamespeed
+	public class gamespeed : handle
 	{
 		internal gamespeed()
 		{
@@ -23,6 +23,6 @@
 		public static extern gamespeed Current { get; set; }
 
 		/// @CSharpLua.Template = "ConvertGameSpeed({0})"
-		public static extern mousebuttontype Convert(int gameSpeedId);
+		public static extern gamespeed Convert(int gameSpeedId);
 	}
 }

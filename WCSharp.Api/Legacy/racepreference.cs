@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class racepreference
+	public class racepreference : handle
 	{
 		internal racepreference()
 		{

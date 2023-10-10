@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class pathingtype
+	public class pathingtype : handle
 	{
 		internal pathingtype()
 		{
@@ -28,7 +28,7 @@
 		public static extern pathingtype Convert(int pathingTypeId);
 
 		/// @CSharpLua.Template = "IsTerrainPathable({1}, {2}, {0})"
-		public extern bool IsPathable(float x, float y);
+		public extern bool GetPathable(float x, float y);
 
 		/// @CSharpLua.Template = "SetTerrainPathable({1}, {2}, {0}, {3})"
 		public extern void SetPathable(float x, float y, bool pathable);

@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class fogstate
+	public class fogstate : handle
 	{
 		internal fogstate()
 		{

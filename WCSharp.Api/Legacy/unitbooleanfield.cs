@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class unitbooleanfield
+	public class unitbooleanfield : handle
 	{
 		internal unitbooleanfield()
 		{

@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class ubersplat : IDisposable
+	public class ubersplat : handle, IDisposable
 	{
 		internal ubersplat()
 		{

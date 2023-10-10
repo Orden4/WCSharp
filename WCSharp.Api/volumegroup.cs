@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class volumegroup
+	public class volumegroup : handle
 	{
 		internal volumegroup()
 		{

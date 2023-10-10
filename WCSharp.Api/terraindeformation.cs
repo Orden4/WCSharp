@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class terraindeformation
+	public class terraindeformation : handle
 	{
 		internal terraindeformation()
 		{

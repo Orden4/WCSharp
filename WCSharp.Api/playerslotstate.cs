@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class playerslotstate
+	public class playerslotstate : handle
 	{
 		internal playerslotstate()
 		{

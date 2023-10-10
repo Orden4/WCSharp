@@ -7,6 +7,9 @@
 		{
 		}
 
+		/// @CSharpLua.Get = "BlzGetAbilityId({0})"
+		public extern int Id { get; }
+
 		#region Field editing
 		/// @CSharpLua.Get = "GetAbilityBooleanField({0}, ABILITY_BF_HERO_ABILITY)"
 		/// @CSharpLua.Set = "SetAbilityBooleanField({0}, ABILITY_BF_HERO_ABILITY, {1})"

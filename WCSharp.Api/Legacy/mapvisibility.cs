@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class mapvisibility
+	public class mapvisibility : handle
 	{
 		internal mapvisibility()
 		{

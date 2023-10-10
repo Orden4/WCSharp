@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class lightning : IDisposable
+	public class lightning : handle, IDisposable
 	{
 		internal lightning()
 		{

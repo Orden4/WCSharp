@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class agent
+	public class agent : handle
 	{
 		internal agent()
 		{

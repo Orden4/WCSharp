@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class minimapicon : IDisposable
+	public class minimapicon : handle, IDisposable
 	{
 		internal minimapicon()
 		{

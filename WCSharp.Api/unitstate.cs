@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class unitstate
+	public class unitstate : handle
 	{
 		internal unitstate()
 		{

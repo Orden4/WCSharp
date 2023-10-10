@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class hashtable
+	public class hashtable : handle
 	{
 		internal hashtable()
 		{

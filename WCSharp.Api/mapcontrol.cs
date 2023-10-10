@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class mapcontrol
+	public class mapcontrol : handle
 	{
 		internal mapcontrol()
 		{

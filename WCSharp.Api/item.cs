@@ -8,10 +8,19 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Get = "CreateItem({0}, {1}, {2})"
+		/// @CSharpLua.Template = "CreateItem({0}, {1}, {2})"
 		public static extern item Create(int itemId, float x, float y);
-		/// @CSharpLua.Get = "BlzCreateItemWithSkin({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "BlzCreateItemWithSkin({0}, {1}, {2}, {3})"
 		public static extern item Create(int itemId, float x, float y, int skinId);
+
+		/// @CSharpLua.Template = "IsItemIdPowerup({0})"
+		public static extern bool IsIdPowerup(int itemId);
+		/// @CSharpLua.Template = "IsItemIdSellable({0})"
+		public static extern bool IsIdSellable(int itemId);
+		/// @CSharpLua.Template = "IsItemIdPawnable({0})"
+		public static extern bool IsIdPawnable(int itemId);
+		/// @CSharpLua.Template = "EnumItemsInRect({0}, {1}, {2})"
+		public static extern void EnumInRect(rect rect, boolexpr filter, Action action);
 
 		/// @CSharpLua.Get = "GetItemTypeId({0})"
 		public extern int TypeId { get; }
@@ -20,10 +29,12 @@ namespace WCSharp.Api
 		public extern itemtype Type { get; }
 
 		/// @CSharpLua.Get = "GetWidgetX({0})"
-		public extern float X { get; }
+		/// @CSharpLua.Set = "SetItemPosition({0}, GetWidgetY({0}))"
+		public extern float X { get; set; }
 
 		/// @CSharpLua.Get = "GetWidgetY({0})"
-		public extern float Y { get; }
+		/// @CSharpLua.Set = "SetItemPosition(GetWidgetX({0}), {0})"
+		public extern float Y { get; set; }
 
 		/// @CSharpLua.Get = "GetItemPlayer({0})"
 		/// @CSharpLua.Set = "SetItemPlayer({0}, {1})"
@@ -97,19 +108,14 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Template = "SetItemDropID({0}, {1})"
 		public extern void SetDropId(int unitId);
-
 		/// @CSharpLua.Template = "BlzGetItemAbilityByIndex({0}, {1})"
 		public extern ability GetAbilityByIndex(int index);
-
 		/// @CSharpLua.Template = "BlzGetItemAbility({0}, {1})"
 		public extern ability GetAbility(int abilityId);
-
 		/// @CSharpLua.Template = "BlzItemAddAbility({0}, {1})"
 		public extern bool AddAbility(int abilityId);
-
 		/// @CSharpLua.Template = "BlzItemRemoveAbility({0}, {1})"
 		public extern bool RemoveAbility(int abilityId);
-
 		/// @CSharpLua.Template = "RemoveItem({0})"
 		public extern void Dispose();
 

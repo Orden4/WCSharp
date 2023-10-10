@@ -1,6 +1,4 @@
-﻿using WCSharp.Api.Legacy;
-
-namespace WCSharp.Api
+﻿namespace WCSharp.Api
 {
 #pragma warning disable IDE1006 // Naming Styles
 	/// @CSharpLua.Ignore
@@ -3611,7 +3609,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "S2R({0})"
 		public static extern float S2R(string s);
 		/// @CSharpLua.Template = "GetHandleId({0})"
-		public static extern int GetHandleId(object h);
+		public static extern int GetHandleId(handle h);
 		/// @CSharpLua.Template = "SubString({0}, {1}, {2})"
 		public static extern string SubString(string source, int start, int end);
 		/// @CSharpLua.Template = "StringLength({0})"
@@ -3818,8 +3816,6 @@ namespace WCSharp.Api
 		public static extern void ForceClear(force whichForce);
 		/// @CSharpLua.Template = "ForceEnumPlayers({0}, {1})"
 		public static extern void ForceEnumPlayers(force whichForce, boolexpr filter);
-		/// @CSharpLua.Template = "ForceEnumPlayersCounted({0}, {1}, {2})"
-		public static extern void ForceEnumPlayersCounted(force whichForce, boolexpr filter, int countLimit);
 		/// @CSharpLua.Template = "ForceEnumAllies({0}, {1}, {2})"
 		public static extern void ForceEnumAllies(force whichForce, player whichPlayer, boolexpr filter);
 		/// @CSharpLua.Template = "ForceEnumEnemies({0}, {1}, {2})"

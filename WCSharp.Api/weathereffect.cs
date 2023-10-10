@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class weathereffect : IDisposable
+	public class weathereffect : handle, IDisposable
 	{
 		internal weathereffect()
 		{

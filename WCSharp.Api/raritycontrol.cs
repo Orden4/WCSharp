@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class raritycontrol
+	public class raritycontrol : handle
 	{
 		internal raritycontrol()
 		{

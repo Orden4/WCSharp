@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class oskeytype
+	public class oskeytype : handle
 	{
 		internal oskeytype()
 		{

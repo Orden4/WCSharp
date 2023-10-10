@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class commandbuttoneffect : IDisposable
+	public class commandbuttoneffect : handle, IDisposable
 	{
 		internal commandbuttoneffect()
 		{

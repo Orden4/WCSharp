@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class triggeraction
+	public class triggeraction : handle
 	{
 		internal triggeraction()
 		{

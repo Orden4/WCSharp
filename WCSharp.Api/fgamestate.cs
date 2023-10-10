@@ -14,8 +14,7 @@
 		/// @CSharpLua.Set = "SetFloatGameState({0}, {1})"
 		public extern float Value { get; set; }
 
-
 		/// @CSharpLua.Template = "ConvertFGameState({0})"
-		public static extern fgamestate Convert(int id);
+		public static extern fgamestate Convert(int fGameStateId);
 	}
 }

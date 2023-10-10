@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class textaligntype
+	public class textaligntype : handle
 	{
 		internal textaligntype()
 		{

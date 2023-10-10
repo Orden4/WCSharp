@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class animtype
+	public class animtype : handle
 	{
 		internal animtype()
 		{

@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class soundtype
+	public class soundtype : handle
 	{
 		internal soundtype()
 		{

@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class effecttype
+	public class effecttype : handle
 	{
 		internal effecttype()
 		{

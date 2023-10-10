@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class unittype
+	public class unittype : handle
 	{
 		internal unittype()
 		{

@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class itemtype
+	public class itemtype : handle
 	{
 		internal itemtype()
 		{

@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class unitstringfield
+	public class unitstringfield : handle
 	{
 		internal unitstringfield()
 		{

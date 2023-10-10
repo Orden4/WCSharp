@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class weapontype
+	public class weapontype : handle
 	{
 		internal weapontype()
 		{

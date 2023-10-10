@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class texttag : IDisposable
+	public class texttag : handle, IDisposable
 	{
 		internal texttag()
 		{

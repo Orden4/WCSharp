@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class mapsetting
+	public class mapsetting : handle
 	{
 		internal mapsetting()
 		{

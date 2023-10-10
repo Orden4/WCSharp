@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class startlocprio
+	public class startlocprio : handle
 	{
 		internal startlocprio()
 		{

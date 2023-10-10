@@ -21,7 +21,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "PlayerGetLeaderboard({0})"
 		/// @CSharpLua.Set = "PlayerSetLeaderboard({0}, {1})"
-		public extern player player { get; set; }
+		public extern player Player { get; set; }
 
 		/// @CSharpLua.Get = "LeaderboardGetItemCount({0})"
 		public extern int ItemCount { get; }

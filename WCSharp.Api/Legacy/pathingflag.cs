@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class pathingflag
+	public class pathingflag : handle
 	{
 		internal pathingflag()
 		{

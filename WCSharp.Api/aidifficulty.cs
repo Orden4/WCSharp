@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class aidifficulty
+	public class aidifficulty : handle
 	{
 		internal aidifficulty()
 		{

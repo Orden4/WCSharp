@@ -19,6 +19,6 @@
 
 
 		/// @CSharpLua.Template = "ConvertIGameState({0})"
-		public static extern igamestate Convert(int id);
+		public static extern igamestate Convert(int iGameStateId);
 	}
 }

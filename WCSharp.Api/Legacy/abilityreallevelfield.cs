@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class abilityreallevelfield
+	public class abilityreallevelfield : handle
 	{
 		internal abilityreallevelfield()
 		{

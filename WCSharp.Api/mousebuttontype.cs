@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class mousebuttontype
+	public class mousebuttontype : handle
 	{
 		internal mousebuttontype()
 		{

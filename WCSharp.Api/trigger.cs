@@ -8,8 +8,11 @@ namespace WCSharp.Api
 		{
 		}
 
+		/// @CSharpLua.Template = "CreateTrigger({0})"
+		public static extern trigger Create();
+
 		/// @CSharpLua.Get = "IsTriggerEnabled({0})"
-		/// @CSharpLua.Set = "if {1} then EnableTrigger({0}) else DisableTrigger({1}) end"
+		/// @CSharpLua.Set = "(if {1} then EnableTrigger({0}) else DisableTrigger({1}) end)"
 		public extern bool Enabled { get; set; }
 		/// @CSharpLua.Get = "IsTriggerWaitOnSleeps({0})"
 		/// @CSharpLua.Set = "TriggerWaitOnSleeps({0}, {1})"
@@ -18,9 +21,6 @@ namespace WCSharp.Api
 		public extern int EvalCount { get; }
 		/// @CSharpLua.Get = "GetTriggerExecCount({0})"
 		public extern int ExecCount { get; }
-
-		/// @CSharpLua.Template = "CreateTrigger({0})"
-		public extern trigger Create();
 
 		/// @CSharpLua.Template = "EnableTrigger({0})"
 		public extern void Enable();

@@ -1,5 +1,4 @@
-﻿using WCSharp.Api.Legacy;
-using static WCSharp.Api.Common;
+﻿using static WCSharp.Api.Common;
 
 namespace WCSharp.Api
 {

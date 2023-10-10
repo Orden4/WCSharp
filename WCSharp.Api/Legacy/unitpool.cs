@@ -2,7 +2,7 @@
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class unitpool : IDisposable
+	public class unitpool : handle, IDisposable
 	{
 		internal unitpool()
 		{

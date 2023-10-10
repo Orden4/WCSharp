@@ -1,7 +1,7 @@
 ﻿namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
-	public class placement
+	public class placement : handle
 	{
 		internal placement()
 		{
