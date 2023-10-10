@@ -25,10 +25,10 @@
 		/// @CSharpLua.Template = "ConvertVolumeGroup({0})"
 		public static extern volumegroup Convert(int volumeGroupId);
 
-		/// @CSharpLua.Template = "VolumeGroupSetVolume({0}, {1})"
+		/// @CSharpLua.Template = "VolumeGroupSetVolume({this}, {0})"
 		public extern void SetVolume(float scale);
 
-		/// @CSharpLua.Template = "VolumeGroupReset({0})"
+		/// @CSharpLua.Template = "VolumeGroupReset({this})"
 		public extern void Reset();
 	}
 }

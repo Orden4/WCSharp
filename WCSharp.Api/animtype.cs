@@ -33,7 +33,7 @@
 		/// @CSharpLua.Template = "ConvertAnimType({0})"
 		public static extern animtype Convert(int animTypeId);
 
-		/// @CSharpLua.Get = "BlzGetAnimName({0})"
+		/// @CSharpLua.Get = "BlzGetAnimName({this})"
 		public extern string Name { get; }
 	}
 }

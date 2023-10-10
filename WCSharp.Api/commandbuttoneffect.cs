@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "DestroyCommandButtonEffect({0})"
+		/// @CSharpLua.Template = "DestroyCommandButtonEffect({this})"
 		public extern void Dispose();
 	}
 }

@@ -57,7 +57,7 @@
 		/// @CSharpLua.Template = "ConvertOriginFrameType({0})"
 		public static extern originframetype Convert(int originFrameTypeId);
 
-		/// @CSharpLua.Template = "BlzGetOriginFrame({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetOriginFrame({this}, {0})"
 		public extern framehandle GetOriginFrame(int index);
 	}
 }

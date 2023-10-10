@@ -11,18 +11,18 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "DialogCreate({0})"
 		public static extern void Create();
 
-		/// @CSharpLua.Template = "DialogClear({0})"
+		/// @CSharpLua.Template = "DialogClear({this})"
 		public extern void Clear();
-		/// @CSharpLua.Template = "DialogSetMessage({0})"
+		/// @CSharpLua.Template = "DialogSetMessage({this})"
 		public extern void SetMessage(string message);
-		/// @CSharpLua.Template = "DialogAddButton({0}, {1}, {2})"
+		/// @CSharpLua.Template = "DialogAddButton({this}, {0}, {1})"
 		public extern button AddButton(string buttonText, int hotkey);
-		/// @CSharpLua.Template = "DialogAddQuitButton({0}, {3}, {1}, {2})"
+		/// @CSharpLua.Template = "DialogAddQuitButton({this}, {2}, {0}, {1})"
 		public extern button AddQuitButton(string buttonText, int hotkey, bool doScoreScreen);
-		/// @CSharpLua.Template = "DialogDisplay({1}, {0}, {2})"
+		/// @CSharpLua.Template = "DialogDisplay({0}, {this}, {1})"
 		public extern void SetVisibility(player player, bool visibility);
 
-		/// @CSharpLua.Template = "DialogDestroy({0})"
+		/// @CSharpLua.Template = "DialogDestroy({this})"
 		public extern void Dispose();
 	}
 }

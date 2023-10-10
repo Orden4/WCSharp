@@ -30,8 +30,8 @@
 		/// @CSharpLua.Template = "ConvertGameType({0})"
 		public static extern gametype Convert(int gameTypeId);
 
-		/// @CSharpLua.Get = "IsGameTypeSupported({0})"
-		/// @CSharpLua.Set = "SetGameTypeSupported({0}, {1})"
+		/// @CSharpLua.Get = "IsGameTypeSupported({this})"
+		/// @CSharpLua.Set = "SetGameTypeSupported({this}, {0})"
 		public extern bool Supported { get; set; }
 	}
 }

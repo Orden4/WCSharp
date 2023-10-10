@@ -26,47 +26,47 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzCreateDeadDestructableZWithSkin({0}, {1}, {2}, {3}, {5}, {6}, {7}, {4})"
 		public static extern destructable CreateDead(int typeId, float x, float y, float z, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 
-		/// @CSharpLua.Get = "GetWidgetX({0})"
+		/// @CSharpLua.Get = "GetWidgetX({this})"
 		public extern float X { get; }
 
-		/// @CSharpLua.Get = "GetWidgetY({0})"
+		/// @CSharpLua.Get = "GetWidgetY({this})"
 		public extern float Y { get; }
 
-		/// @CSharpLua.Get = "GetDestructableMaxLife({0})"
-		/// @CSharpLua.Set = "SetDestructableMaxLife({0}, {1})"
+		/// @CSharpLua.Get = "GetDestructableMaxLife({this})"
+		/// @CSharpLua.Set = "SetDestructableMaxLife({this}, {0})"
 		public extern float MaxLife { get; set; }
 
-		/// @CSharpLua.Get = "IsDestructableInvulnerable({0})"
-		/// @CSharpLua.Set = "SetDestructableInvulnerable({0}, {1})"
+		/// @CSharpLua.Get = "IsDestructableInvulnerable({this})"
+		/// @CSharpLua.Set = "SetDestructableInvulnerable({this}, {0})"
 		public extern bool IsInvulnerable { get; set; }
 
-		/// @CSharpLua.Get = "GetDestructableTypeId({0})"
+		/// @CSharpLua.Get = "GetDestructableTypeId({this})"
 		public extern int Type { get; }
 
-		/// @CSharpLua.Get = "GetDestructableName({0})"
+		/// @CSharpLua.Get = "GetDestructableName({this})"
 		public extern string Name { get; }
 
-		/// @CSharpLua.Get = "GetDestructableOccluderHeight({0})"
-		/// @CSharpLua.Set = "SetDestructableOccluderHeight({0}, {1})"
+		/// @CSharpLua.Get = "GetDestructableOccluderHeight({this})"
+		/// @CSharpLua.Set = "SetDestructableOccluderHeight({this}, {0})"
 		public extern float OccluderHeight { get; }
 
-		/// @CSharpLua.Get = "BlzGetDestructableSkin({0})"
-		/// @CSharpLua.Set = "BlzSetDestructableSkin({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetDestructableSkin({this})"
+		/// @CSharpLua.Set = "BlzSetDestructableSkin({this}, {0})"
 		public extern int Skin { get; set; }
 
-		/// @CSharpLua.Template = "DestructableRestoreLife({0}, {1}, {2})"
+		/// @CSharpLua.Template = "DestructableRestoreLife({this}, {0}, {1})"
 		public extern void RestoreLife(float life, bool birth);
-		/// @CSharpLua.Template = "QueueDestructableAnimation({0}, {1})"
+		/// @CSharpLua.Template = "QueueDestructableAnimation({this}, {0})"
 		public extern void QueueAnimation(string animation);
-		/// @CSharpLua.Template = "SetDestructableAnimation({0}, {1})"
+		/// @CSharpLua.Template = "SetDestructableAnimation({this}, {0})"
 		public extern void SetAnimation(string animation);
-		/// @CSharpLua.Template = "SetDestructableAnimationSpeed({0}, {1})"
+		/// @CSharpLua.Template = "SetDestructableAnimationSpeed({this}, {0})"
 		public extern void SetAnimationSpeed(float speedFactor);
-		/// @CSharpLua.Template = "ShowDestructable({0}, {1})"
+		/// @CSharpLua.Template = "ShowDestructable({this}, {0})"
 		public extern void SetVisibility(bool visibility);
-		/// @CSharpLua.Template = "KillDestructable({0})"
+		/// @CSharpLua.Template = "KillDestructable({this})"
 		public extern void Kill();
-		/// @CSharpLua.Template = "RemoveDestructable({0})"
+		/// @CSharpLua.Template = "RemoveDestructable({this})"
 		public extern void Dispose();
 	}
 }

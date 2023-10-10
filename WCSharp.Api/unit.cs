@@ -21,829 +21,829 @@ namespace WCSharp.Api
 		public static extern int FoodMadeBy(int unitType);
 
 
-		/// @CSharpLua.Get = "GetUnitX({0})"
-		/// @CSharpLua.Set = "SetUnitX({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitX({this})"
+		/// @CSharpLua.Set = "SetUnitX({this}, {0})"
 		public extern float X { get; set; }
-		/// @CSharpLua.Get = "GetUnitY({0})"
-		/// @CSharpLua.Set = "SetUnitY({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitY({this})"
+		/// @CSharpLua.Set = "SetUnitY({this}, {0})"
 		public extern float Y { get; set; }
-		/// @CSharpLua.Get = "GetUnitState({0}, UNIT_STATE_MANA)"
-		/// @CSharpLua.Set = "SetUnitState({0}, {1}, UNIT_STATE_MANA)"
+		/// @CSharpLua.Get = "GetUnitState({this}, UNIT_STATE_MANA)"
+		/// @CSharpLua.Set = "SetUnitState({this}, {0}, UNIT_STATE_MANA)"
 		public extern float Mana { get; set; }
-		/// @CSharpLua.Get = "BlzGetUnitMaxHP({0})"
-		/// @CSharpLua.Set = "BlzSetUnitMaxHP({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetUnitMaxHP({this})"
+		/// @CSharpLua.Set = "BlzSetUnitMaxHP({this}, {0})"
 		public extern int MaxLife { get; set; }
-		/// @CSharpLua.Get = "BlzGetUnitMaxMana({0})"
-		/// @CSharpLua.Set = "BlzSetUnitMaxMana({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetUnitMaxMana({this})"
+		/// @CSharpLua.Set = "BlzSetUnitMaxMana({this}, {0})"
 		public extern int MaxMana { get; set; }
-		/// @CSharpLua.Get = "GetOwningPlayer({0})"
-		/// @CSharpLua.Set = "SetUnitOwner({0}, {1}, true)"
+		/// @CSharpLua.Get = "GetOwningPlayer({this})"
+		/// @CSharpLua.Set = "SetUnitOwner({this}, {0}, true)"
 		public extern player Owner { get; set; }
-		/// @CSharpLua.Get = "GetUnitFacing({0})"
-		/// @CSharpLua.Set = "BlzSetUnitFacingEx({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitFacing({this})"
+		/// @CSharpLua.Set = "BlzSetUnitFacingEx({this}, {0})"
 		public extern float Facing { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultMoveSpeed({0})"
-		/// @CSharpLua.Set = "SetUnitMoveSpeed({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitDefaultMoveSpeed({this})"
+		/// @CSharpLua.Set = "SetUnitMoveSpeed({this}, {0})"
 		public extern float BaseMovementSpeed { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultTurnSpeed({0})"
-		/// @CSharpLua.Set = "SetUnitTurnSpeed({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitDefaultTurnSpeed({this})"
+		/// @CSharpLua.Set = "SetUnitTurnSpeed({this}, {0})"
 		public extern float DefaultTurnSpeed { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultPropWindow({0})"
-		/// @CSharpLua.Set = "SetUnitPropWindow({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitDefaultPropWindow({this})"
+		/// @CSharpLua.Set = "SetUnitPropWindow({this}, {0})"
 		public extern float DefaultPropWindow { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultAcquireRange({0})"
-		/// @CSharpLua.Set = "SetUnitAcquireRange({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitDefaultAcquireRange({this})"
+		/// @CSharpLua.Set = "SetUnitAcquireRange({this}, {0})"
 		public extern float DefaultAcquireRange { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultFlyHeight({0})"
-		/// @CSharpLua.Set = "SetUnitFlyHeight({0}, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitDefaultFlyHeight({this})"
+		/// @CSharpLua.Set = "SetUnitFlyHeight({this}, {0}, 0)"
 		public extern float DefaultFlyHeight { get; set; }
-		/// @CSharpLua.Get = "GetUnitCreepGuard({0})"
-		/// @CSharpLua.Set = "SetUnitCreepGuard({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitCreepGuard({this})"
+		/// @CSharpLua.Set = "SetUnitCreepGuard({this}, {0})"
 		public extern bool IsCreepGuard { get; set; }
-		/// @CSharpLua.Get = "GetHeroStr({0}, false)"
-		/// @CSharpLua.Set = "SetHeroStr({0}, {1}, false)"
+		/// @CSharpLua.Get = "GetHeroStr({this}, false)"
+		/// @CSharpLua.Set = "SetHeroStr({this}, {0}, false)"
 		public extern int BaseStrength { get; set; }
-		/// @CSharpLua.Get = "GetHeroAgi({0}, false)"
-		/// @CSharpLua.Set = "SetHeroAgi({0}, {1}, false)"
+		/// @CSharpLua.Get = "GetHeroAgi({this}, false)"
+		/// @CSharpLua.Set = "SetHeroAgi({this}, {0}, false)"
 		public extern int BaseAgility { get; set; }
-		/// @CSharpLua.Get = "GetHeroInt({0}, false)"
-		/// @CSharpLua.Set = "SetHeroInt({0}, {1}, false)"
+		/// @CSharpLua.Get = "GetHeroInt({this}, false)"
+		/// @CSharpLua.Set = "SetHeroInt({this}, {0}, false)"
 		public extern int BaseIntelligence { get; set; }
-		/// @CSharpLua.Get = "GetHeroStr({0}, true)"
-		/// @CSharpLua.Set = "SetHeroStr({0}, {1}, true)"
+		/// @CSharpLua.Get = "GetHeroStr({this}, true)"
+		/// @CSharpLua.Set = "SetHeroStr({this}, {0}, true)"
 		public extern int Strength { get; set; }
-		/// @CSharpLua.Get = "GetHeroAgi({0}, true)"
-		/// @CSharpLua.Set = "SetHeroAgi({0}, {1}, true)"
+		/// @CSharpLua.Get = "GetHeroAgi({this}, true)"
+		/// @CSharpLua.Set = "SetHeroAgi({this}, {0}, true)"
 		public extern int Agility { get; set; }
-		/// @CSharpLua.Get = "GetHeroInt({0}, true)"
-		/// @CSharpLua.Set = "SetHeroInt({0}, {1}, true)"
+		/// @CSharpLua.Get = "GetHeroInt({this}, true)"
+		/// @CSharpLua.Set = "SetHeroInt({this}, {0}, true)"
 		public extern int Intelligence { get; set; }
-		/// @CSharpLua.Get = "GetHeroSkillPoints({0})"
-		/// @CSharpLua.Set = "UnitModifySkillPoints({0}, {1} - GetHeroSkillPoints({0}))"
+		/// @CSharpLua.Get = "GetHeroSkillPoints({this})"
+		/// @CSharpLua.Set = "UnitModifySkillPoints({this}, {0} - GetHeroSkillPoints({this}))"
 		public extern int SkillPoints { get; set; }
-		/// @CSharpLua.Get = "IsSuspendedXP({0})"
-		/// @CSharpLua.Set = "SuspendHeroXP({0}, {1})"
+		/// @CSharpLua.Get = "IsSuspendedXP({this})"
+		/// @CSharpLua.Set = "SuspendHeroXP({this}, {0})"
 		public extern bool CanGainXp { get; set; }
-		/// @CSharpLua.Get = "BlzIsUnitInvulnerable({0})"
-		/// @CSharpLua.Set = "SetUnitInvulnerable({0}, {1})"
+		/// @CSharpLua.Get = "BlzIsUnitInvulnerable({this})"
+		/// @CSharpLua.Set = "SetUnitInvulnerable({this}, {0})"
 		public extern bool IsInvulnerable { get; set; }
-		/// @CSharpLua.Get = "IsUnitPaused({0})"
-		/// @CSharpLua.Set = "PauseUnit({0}, {1})"
+		/// @CSharpLua.Get = "IsUnitPaused({this})"
+		/// @CSharpLua.Set = "PauseUnit({this}, {0})"
 		public extern bool IsPaused { get; set; }
-		/// @CSharpLua.Get = "GetUnitName({0})"
-		/// @CSharpLua.Set = "BlzSetUnitName({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitName({this})"
+		/// @CSharpLua.Set = "BlzSetUnitName({this}, {0})"
 		public extern string Name { get; set; }
-		/// @CSharpLua.Get = "GetHeroProperName({0})"
-		/// @CSharpLua.Set = "BlzSetHeroProperName({0}, {1})"
+		/// @CSharpLua.Get = "GetHeroProperName({this})"
+		/// @CSharpLua.Set = "BlzSetHeroProperName({this}, {0})"
 		public extern string HeroName { get; set; }
-		/// @CSharpLua.Get = "GetUnitUserData({0})"
-		/// @CSharpLua.Set = "SetUnitUserData({0}, {1})"
+		/// @CSharpLua.Get = "GetUnitUserData({this})"
+		/// @CSharpLua.Set = "SetUnitUserData({this}, {0})"
 		public extern int UserData { get; set; }
-		/// @CSharpLua.Get = "IsUnitHidden({0})"
-		/// @CSharpLua.Set = "ShowUnit({0}, {1})"
+		/// @CSharpLua.Get = "IsUnitHidden({this})"
+		/// @CSharpLua.Set = "ShowUnit({this}, {0})"
 		public extern int IsVisible { get; set; }
-		/// @CSharpLua.Get = "UnitIgnoreAlarmToggled({0})"
-		/// @CSharpLua.Set = "UnitIgnoreAlarm({0}, {1})"
+		/// @CSharpLua.Get = "UnitIgnoreAlarmToggled({this})"
+		/// @CSharpLua.Set = "UnitIgnoreAlarm({this}, {0})"
 		public extern bool IgnoreAlarm { get; set; }
-		/// @CSharpLua.Get = "GetHeroXP({0})"
-		/// @CSharpLua.Set = "SetHeroXP({0}, {1}, true)"
+		/// @CSharpLua.Get = "GetHeroXP({this})"
+		/// @CSharpLua.Set = "SetHeroXP({this}, {0}, true)"
 		public extern int Experience { get; set; }
-		/// @CSharpLua.Get = "GetHeroLevel({0})"
-		/// @CSharpLua.Set = "SetHeroLevel({0}, {1}, true)"
+		/// @CSharpLua.Get = "GetHeroLevel({this})"
+		/// @CSharpLua.Set = "SetHeroLevel({this}, {0}, true)"
 		public extern int HeroLevel { get; set; }
-		/// @CSharpLua.Get = "GetResourceAmount({0})"
-		/// @CSharpLua.Set = "SetResourceAmount({0}, {1})"
+		/// @CSharpLua.Get = "GetResourceAmount({this})"
+		/// @CSharpLua.Set = "SetResourceAmount({this}, {0})"
 		public extern int ResourceAmount { get; set; }
-		/// @CSharpLua.Get = "WaygateGetDestinationX({0})"
-		/// @CSharpLua.Set = "WaygateSetDestination({0}, {1}, WaygateGetDestinationY({0}))"
+		/// @CSharpLua.Get = "WaygateGetDestinationX({this})"
+		/// @CSharpLua.Set = "WaygateSetDestination({this}, {0}, WaygateGetDestinationY({this}))"
 		public extern int WaygateDestinationX { get; set; }
-		/// @CSharpLua.Get = "WaygateGetDestinationX({0})"
-		/// @CSharpLua.Set = "WaygateSetDestination({0}, WaygateGetDestinationX({0}), {1})"
+		/// @CSharpLua.Get = "WaygateGetDestinationX({this})"
+		/// @CSharpLua.Set = "WaygateSetDestination({this}, WaygateGetDestinationX({this}), {0})"
 		public extern int WaygateDestinationY { get; set; }
-		/// @CSharpLua.Get = "WaygateIsActive({0})"
-		/// @CSharpLua.Set = "WaygateActivate({0}, {1})"
+		/// @CSharpLua.Get = "WaygateIsActive({this})"
+		/// @CSharpLua.Set = "WaygateActivate({this}, {0})"
 		public extern bool WaygateActive { get; set; }
-		/// @CSharpLua.Get = "BlzGetUnitArmor({0})"
-		/// @CSharpLua.Set = "BlzSetUnitArmor({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetUnitArmor({this})"
+		/// @CSharpLua.Set = "BlzSetUnitArmor({this}, {0})"
 		public extern float Armor { get; set; }
-		/// @CSharpLua.Get = "BlzGetUnitSkin({0})"
-		/// @CSharpLua.Set = "BlzSetUnitSkin({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetUnitSkin({this})"
+		/// @CSharpLua.Set = "BlzSetUnitSkin({this}, {0})"
 		public extern int Skin { get; set; }
-		/// @CSharpLua.Get = "UnitCanSleep({0})"
-		/// @CSharpLua.Set = "UnitAddSleep({0}, {1})"
+		/// @CSharpLua.Get = "UnitCanSleep({this})"
+		/// @CSharpLua.Set = "UnitAddSleep({this}, {0})"
 		public extern bool CanSleep { get; set; }
-		/// @CSharpLua.Get = "UnitCanSleepPerm({0})"
-		/// @CSharpLua.Set = "UnitAddSleepPerm({0}, {1})"
+		/// @CSharpLua.Get = "UnitCanSleepPerm({this})"
+		/// @CSharpLua.Set = "UnitAddSleepPerm({this}, {0})"
 		public extern bool CanSleepPerm { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRallyPoint({0})"
+		/// @CSharpLua.Get = "GetUnitRallyPoint({this})"
 		public extern location RallyPoint { get; }
-		/// @CSharpLua.Get = "GetUnitRallyUnit({0})"
+		/// @CSharpLua.Get = "GetUnitRallyUnit({this})"
 		public extern unit RallyUnit { get; }
-		/// @CSharpLua.Get = "GetUnitRallyDestructable({0})"
+		/// @CSharpLua.Get = "GetUnitRallyDestructable({this})"
 		public extern destructable RallyDestructable { get; }
 
-		/// @CSharpLua.Get = "BlzGetUnitZ({0})"
+		/// @CSharpLua.Get = "BlzGetUnitZ({this})"
 		public extern float Z { get; }
-		/// @CSharpLua.Get = "BlzGetLocalUnitZ({0})"
+		/// @CSharpLua.Get = "BlzGetLocalUnitZ({this})"
 		public extern float LocalZ { get; }
-		/// @CSharpLua.Get = "GetUnitMoveSpeed({0})"
+		/// @CSharpLua.Get = "GetUnitMoveSpeed({this})"
 		public extern float MovementSpeed { get; }
-		/// @CSharpLua.Get = "GetUnitTurnSpeed({0})"
+		/// @CSharpLua.Get = "GetUnitTurnSpeed({this})"
 		public extern float TurnSpeed { get; }
-		/// @CSharpLua.Get = "GetUnitPropWindow({0})"
+		/// @CSharpLua.Get = "GetUnitPropWindow({this})"
 		public extern float PropWindow { get; }
-		/// @CSharpLua.Get = "GetUnitAcquireRange({0})"
+		/// @CSharpLua.Get = "GetUnitAcquireRange({this})"
 		public extern float AcquireRange { get; }
-		/// @CSharpLua.Get = "GetUnitFlyHeight({0})"
+		/// @CSharpLua.Get = "GetUnitFlyHeight({this})"
 		public extern float FlyHeight { get; }
-		/// @CSharpLua.Get = "GetUnitPointValue({0})"
+		/// @CSharpLua.Get = "GetUnitPointValue({this})"
 		public extern bool PointValue { get; }
-		/// @CSharpLua.Get = "GetUnitCurrentOrder({0})"
+		/// @CSharpLua.Get = "GetUnitCurrentOrder({this})"
 		public extern int CurrentOrder { get; }
-		/// @CSharpLua.Get = "GetUnitLevel({0})"
+		/// @CSharpLua.Get = "GetUnitLevel({this})"
 		public extern int Level { get; }
-		/// @CSharpLua.Get = "GetUnitFoodUsed({0})"
+		/// @CSharpLua.Get = "GetUnitFoodUsed({this})"
 		public extern int FoodUsed { get; }
-		/// @CSharpLua.Get = "GetUnitFoodMade({0})"
+		/// @CSharpLua.Get = "GetUnitFoodMade({this})"
 		public extern int FoodMade { get; }
-		/// @CSharpLua.Get = "UnitIsSleeping({0})"
+		/// @CSharpLua.Get = "UnitIsSleeping({this})"
 		public extern bool IsSleeping { get; }
-		/// @CSharpLua.Get = "UnitInventorySize({0})"
+		/// @CSharpLua.Get = "UnitInventorySize({this})"
 		public extern int InventorySize { get; }
-		/// @CSharpLua.Get = "IsUnitIllusion({0})"
+		/// @CSharpLua.Get = "IsUnitIllusion({this})"
 		public extern bool IsIllusion { get; }
-		/// @CSharpLua.Get = "IsUnitLoaded({0})"
+		/// @CSharpLua.Get = "IsUnitLoaded({this})"
 		public extern bool IsLoaded { get; }
-		/// @CSharpLua.Get = "BlzGetUnitCollisionSize({0})"
+		/// @CSharpLua.Get = "BlzGetUnitCollisionSize({this})"
 		public extern float CollisionSize { get; }
-		/// @CSharpLua.Get = "BlzIsUnitSelectable({0})"
+		/// @CSharpLua.Get = "BlzIsUnitSelectable({this})"
 		public extern bool Selectable { get; }
 
-		/// @CSharpLua.Template = "SetUnitColor({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitColor({this}, {0})"
 		public extern void SetColor(playercolor color);
-		/// @CSharpLua.Template = "SetUnitBlendTime({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitBlendTime({this}, {0})"
 		public extern void SetBlendTime(float blendTime);
-		/// @CSharpLua.Template = "UnitSetConstructionProgress({0}, {1})"
+		/// @CSharpLua.Template = "UnitSetConstructionProgress({this}, {0})"
 		public extern void SetConstructionProgress(int percentage);
-		/// @CSharpLua.Template = "SetUnitFacing({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitFacing({this}, {0})"
 		public extern void SetFacing(float facingAngle);
-		/// @CSharpLua.Template = "SetUnitFacingTimed({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetUnitFacingTimed({this}, {0}, {1})"
 		public extern void SetFacing(float facingAngle, float duration);
-		/// @CSharpLua.Template = "SetUnitFlyHeight({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetUnitFlyHeight({this}, {0}, {1})"
 		public extern void SetFlyHeight(float flyHeight, float rate);
-		/// @CSharpLua.Template = "BlzShowUnitTeamGlow({0}, {1})"
+		/// @CSharpLua.Template = "BlzShowUnitTeamGlow({this}, {0})"
 		public extern void SetGlowVisibility(bool visible);
-		/// @CSharpLua.Template = "SetHeroXP({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetHeroXP({this}, {0}, {1})"
 		public extern void SetExperience(int xp, bool showEyeCandy = false);
-		/// @CSharpLua.Template = "SetUnitExploded({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitExploded({this}, {0})"
 		public extern void SetExploded(bool exploded);
-		/// @CSharpLua.Template = "SetItemTypeSlots({0}, {1})"
+		/// @CSharpLua.Template = "SetItemTypeSlots({this}, {0})"
 		public extern void SetItemTypeSlots(int slots);
-		/// @CSharpLua.Template = "SetUnitOwner({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetUnitOwner({this}, {0}, {1})"
 		public extern void SetOwner(player player, bool changeColor = true);
-		/// @CSharpLua.Template = "SetUnitPosition({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitPosition({this}, {0})"
 		public extern void SetPosition(float x, float y);
-		/// @CSharpLua.Template = "SetUnitRescuable({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitRescuable({this}, {0})"
 		public extern void SetRescuable(bool rescuable);
-		/// @CSharpLua.Template = "SetUnitRescueRange({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitRescueRange({this}, {0})"
 		public extern void SetRescueRange(float range);
-		/// @CSharpLua.Template = "SetUnitScale({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SetUnitScale({this}, {0}, {1}, {2})"
 		public extern void SetScale(float scaleX, float scaleY, float scaleZ);
-		/// @CSharpLua.Template = "UnitShareVision({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitShareVision({this}, {0}, {1})"
 		public extern void SetSharedVision(player player, bool share);
-		/// @CSharpLua.Template = "UnitSuspendDecay({0}, {1})"
+		/// @CSharpLua.Template = "UnitSuspendDecay({this}, {0})"
 		public extern void SetSuspendDecay(bool suspend);
-		/// @CSharpLua.Template = "SetUnitTimeScale({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitTimeScale({this}, {0})"
 		public extern void SetTimeScale(float timeScale);
-		/// @CSharpLua.Template = "UnitSetUpgradeProgress({0}, {1})"
+		/// @CSharpLua.Template = "UnitSetUpgradeProgress({this}, {0})"
 		public extern void SetUpgradeProgress(int percentage);
-		/// @CSharpLua.Template = "UnitSetUsesAltIcon({0}, {1})"
+		/// @CSharpLua.Template = "UnitSetUsesAltIcon({this}, {0})"
 		public extern void SetUsesAltIcon(bool usesAltIcon);
-		/// @CSharpLua.Template = "SetUnitTypeSlots({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitTypeSlots({this}, {0})"
 		public extern void SetUnitTypeSlots(int slots);
-		/// @CSharpLua.Template = "SetUnitVertexColor({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SetUnitVertexColor({this}, {0}, {1}, {2})"
 		public extern void SetVertexColor(int red, int green, int blue, int alpha = 255);
-		/// @CSharpLua.Template = "WaygateSetDestination({0}, {1}, {2})"
+		/// @CSharpLua.Template = "WaygateSetDestination({this}, {0}, {1})"
 		public extern void SetWaygateDestination(float x, float y);
 
-		/// @CSharpLua.Template = "IsUnitAlly({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitAlly({this}, {0})"
 		public extern bool IsAllyTo(player player);
-		/// @CSharpLua.Template = "IsUnitEnemy({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitEnemy({this}, {0})"
 		public extern bool IsEnemyTo(player player);
-		/// @CSharpLua.Template = "IsUnitVisible({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitVisible({this}, {0})"
 		public extern bool IsVisibleTo(player player);
-		/// @CSharpLua.Template = "IsUnitDetected({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitDetected({this}, {0})"
 		public extern bool IsDetectedBy(player player);
-		/// @CSharpLua.Template = "IsUnitInvisible({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitInvisible({this}, {0})"
 		public extern bool IsInvisibleTo(player player);
-		/// @CSharpLua.Template = "IsUnitFogged({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitFogged({this}, {0})"
 		public extern bool IsFoggedTo(player player);
-		/// @CSharpLua.Template = "IsUnitMasked({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitMasked({this}, {0})"
 		public extern bool IsMaskedTo(player player);
-		/// @CSharpLua.Template = "IsUnitSelected({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitSelected({this}, {0})"
 		public extern bool IsSelectedTo(player player);
-		/// @CSharpLua.Template = "IsUnitType({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitType({this}, {0})"
 		public extern bool IsUnitType(unittype player);
-		/// @CSharpLua.Template = "IsUnitInTransport({0}, {1})"
+		/// @CSharpLua.Template = "IsUnitInTransport({this}, {0})"
 		public extern bool IsInTransport(unit tranportUnit);
-		/// @CSharpLua.Template = "IsUnitInRange({0}, {1}, {2})"
+		/// @CSharpLua.Template = "IsUnitInRange({this}, {0}, {1})"
 		public extern bool IsInRange(unit target, float distance);
-		/// @CSharpLua.Template = "IsUnitInRange({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "IsUnitInRange({this}, {0}, {1}, {2})"
 		public extern bool IsInRange(float x, float y, float distance);
 
-		/// @CSharpLua.Template = "UnitAddItem({0}, {1})"
+		/// @CSharpLua.Template = "UnitAddItem({this}, {0})"
 		public extern bool AddItem(item item);
-		/// @CSharpLua.Template = "UnitAddItemById({0}, {1})"
+		/// @CSharpLua.Template = "UnitAddItemById({this}, {0})"
 		public extern item AddItem(int itemId);
-		/// @CSharpLua.Template = "UnitAddItemToSlotById({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitAddItemToSlotById({this}, {0}, {1})"
 		public extern item AddItem(int itemId, int itemSlot);
-		/// @CSharpLua.Template = "UnitRemoveItem({0}, {1})"
+		/// @CSharpLua.Template = "UnitRemoveItem({this}, {0})"
 		public extern void RemoveItem(item item);
-		/// @CSharpLua.Template = "UnitRemoveItemFromSlot({0}, {1})"
+		/// @CSharpLua.Template = "UnitRemoveItemFromSlot({this}, {0})"
 		public extern item RemoveItem(int itemSlot);
-		/// @CSharpLua.Template = "UnitDropItemPoint({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "UnitDropItemPoint({this}, {0}, {1}, {2})"
 		public extern bool DropItem(item item, float x, float y);
-		/// @CSharpLua.Template = "UnitDropItemSlot({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitDropItemSlot({this}, {0}, {1})"
 		public extern bool DropItem(item item, int itemSlot);
-		/// @CSharpLua.Template = "UnitDropItemTarget({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitDropItemTarget({this}, {0}, {1})"
 		public extern bool DropItem(item item, widget target);
-		/// @CSharpLua.Template = "UnitUseItem({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "UnitUseItem({this}, {0}, {1}, {2})"
 		public extern bool UseItem(item item, float x, float y);
-		/// @CSharpLua.Template = "UnitUseItemPoint({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitUseItemPoint({this}, {0}, {1})"
 		public extern bool UseItem(item item, int itemSlot);
-		/// @CSharpLua.Template = "UnitUseItemTarget({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitUseItemTarget({this}, {0}, {1})"
 		public extern bool UseItem(item item, widget target);
-		/// @CSharpLua.Template = "UnitHasItem({0}, {1})"
+		/// @CSharpLua.Template = "UnitHasItem({this}, {0})"
 		public extern bool HasItem(item item);
-		/// @CSharpLua.Template = "UnitItemInSlot({0}, {1})"
+		/// @CSharpLua.Template = "UnitItemInSlot({this}, {0})"
 		public extern item ItemAtOrDefault(item item);
 
-		/// @CSharpLua.Template = "BlzGetUnitBaseDamage({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetUnitBaseDamage({this}, {0})"
 		public extern int GetBaseDamage(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitBaseDamage({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzSetUnitBaseDamage({this}, {0}, {1})"
 		public extern void SetBaseDamage(int baseDamage, int weaponIndex);
-		/// @CSharpLua.Template = "BlzGetUnitDiceNumber({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetUnitDiceNumber({this}, {0})"
 		public extern int GetDiceNumber(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitDiceNumber({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzSetUnitDiceNumber({this}, {0}, {1})"
 		public extern void SetDiceNumber(int diceNumber, int weaponIndex);
-		/// @CSharpLua.Template = "BlzGetUnitDiceSides({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetUnitDiceSides({this}, {0})"
 		public extern int GetDiceSides(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitDiceSides({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzSetUnitDiceSides({this}, {0}, {1})"
 		public extern void SetDiceSides(int diceSides, int weaponIndex);
-		/// @CSharpLua.Template = "BlzGetUnitAttackCooldown({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetUnitAttackCooldown({this}, {0})"
 		public extern float GetAttackCooldown(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitAttackCooldown({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzSetUnitAttackCooldown({this}, {0}, {1})"
 		public extern void SetAttackCooldown(float attackCooldown, int weaponIndex);
 
-		/// @CSharpLua.Template = "UnitModifySkillPoints({0}, {1})"
+		/// @CSharpLua.Template = "UnitModifySkillPoints({this}, {0})"
 		public extern bool AddSkillPoints(int skillPoints);
-		/// @CSharpLua.Template = "UnitStripHeroLevel({0}, {1})"
+		/// @CSharpLua.Template = "UnitStripHeroLevel({this}, {0})"
 		public extern bool RemoveHeroLevels(int levels);
 
-		/// @CSharpLua.Template = "UnitAddType({0}, {1})"
+		/// @CSharpLua.Template = "UnitAddType({this}, {0})"
 		public extern bool AddType(unittype unitType);
-		/// @CSharpLua.Template = "UnitRemoveType({0}, {1})"
+		/// @CSharpLua.Template = "UnitRemoveType({this}, {0})"
 		public extern bool RemoveType(unittype unitType);
 
-		/// @CSharpLua.Template = "UnitAddAbility({0}, {1})"
+		/// @CSharpLua.Template = "UnitAddAbility({this}, {0})"
 		public extern bool AddAbility(int abilityId);
-		/// @CSharpLua.Template = "UnitRemoveAbility({0}, {1})"
+		/// @CSharpLua.Template = "UnitRemoveAbility({this}, {0})"
 		public extern bool RemoveAbility(int abilityId);
-		/// @CSharpLua.Template = "GetUnitAbilityLevel({0}, {1})"
+		/// @CSharpLua.Template = "GetUnitAbilityLevel({this}, {0})"
 		public extern int GetAbilityLevel(int abilityId);
-		/// @CSharpLua.Template = "SetUnitAbilityLevel({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetUnitAbilityLevel({this}, {0}, {1})"
 		public extern int SetAbilityLevel(int abilityId, int level);
-		/// @CSharpLua.Template = "IncUnitAbilityLevel({0}, {1})"
+		/// @CSharpLua.Template = "IncUnitAbilityLevel({this}, {0})"
 		public extern int IncrementAbilityLevel(int abilityId);
-		/// @CSharpLua.Template = "DecUnitAbilityLevel({0}, {1})"
+		/// @CSharpLua.Template = "DecUnitAbilityLevel({this}, {0})"
 		public extern int DecrementAbilityLevel(int abilityId);
-		/// @CSharpLua.Template = "BlzUnitHideAbility({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzUnitHideAbility({this}, {0}, {1})"
 		public extern void HideAbility(int abilityId, bool hide);
-		/// @CSharpLua.Template = "BlzUnitDisableAbility({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "BlzUnitDisableAbility({this}, {0}, {1}, {2})"
 		public extern void DisableAbility(int abilityId, bool disable, bool hide);
-		/// @CSharpLua.Template = "BlzGetUnitAbilityCooldown({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzGetUnitAbilityCooldown({this}, {0}, {1})"
 		public extern void GetAbilityCooldown(int abilityId, int level);
-		/// @CSharpLua.Template = "BlzSetUnitAbilityCooldown({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "BlzSetUnitAbilityCooldown({this}, {0}, {1}, {2})"
 		public extern void SetAbilityCooldown(int abilityId, int level, float cooldown);
-		/// @CSharpLua.Template = "BlzGetUnitAbilityCooldownRemaining({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetUnitAbilityCooldownRemaining({this}, {0})"
 		public extern void GetAbilityCooldownRemaining(int abilityId);
-		/// @CSharpLua.Template = "BlzStartUnitAbilityCooldown({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzStartUnitAbilityCooldown({this}, {0}, {1})"
 		public extern void SetAbilityCooldownRemaining(int abilityId, float cooldown);
-		/// @CSharpLua.Template = "BlzGetUnitAbilityManaCost({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetUnitAbilityManaCost({this}, {0})"
 		public extern void GetAbilityManaCost(int abilityId, int manaCost);
-		/// @CSharpLua.Template = "BlzSetUnitAbilityManaCost({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzSetUnitAbilityManaCost({this}, {0}, {1})"
 		public extern void SetAbilityManaCost(int abilityId, int manaCost);
-		/// @CSharpLua.Template = "UnitMakeAbilityPermanent({0}, {2}, {1})"
+		/// @CSharpLua.Template = "UnitMakeAbilityPermanent({this}, {1}, {0})"
 		public extern bool SetAbilityPermanent(int abilityId, bool permanent);
 
-		/// @CSharpLua.Template = "UnitRemoveBuffsEx({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitRemoveBuffsEx({this}, {0}, {1})"
 		public extern void RemoveBuffs(bool positive, bool negative);
-		/// @CSharpLua.Template = "UnitRemoveBuffsEx({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})"
+		/// @CSharpLua.Template = "UnitRemoveBuffsEx({this}, {0}, {1}, {2}, {3}, {4}, {5}, {6})"
 		public extern void RemoveBuffs(bool positive, bool negative, bool magic, bool physical, bool timedLife, bool aura, bool autoDispel);
-		/// @CSharpLua.Template = "UnitHasBuffsEx({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})"
+		/// @CSharpLua.Template = "UnitHasBuffsEx({this}, {0}, {1}, {2}, {3}, {4}, {5}, {6})"
 		public extern bool HasBuffs(bool positive, bool negative, bool magic, bool physical, bool timedLife, bool aura, bool autoDispel);
-		/// @CSharpLua.Template = "UnitCountBuffsEx({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})"
+		/// @CSharpLua.Template = "UnitCountBuffsEx({this}, {0}, {1}, {2}, {3}, {4}, {5}, {6})"
 		public extern int CountBuffs(bool positive, bool negative, bool magic, bool physical, bool timedLife, bool aura, bool autoDispel);
 
-		/// @CSharpLua.Template = "IssueImmediateOrder({0}, {1})"
+		/// @CSharpLua.Template = "IssueImmediateOrder({this}, {0})"
 		public extern bool IssueImmediateOrder(string order);
-		/// @CSharpLua.Template = "IssueImmediateOrderById({0}, {1})"
+		/// @CSharpLua.Template = "IssueImmediateOrderById({this}, {0})"
 		public extern bool IssueImmediateOrder(int order);
-		/// @CSharpLua.Template = "IssuePointOrder({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "IssuePointOrder({this}, {0}, {1}, {2})"
 		public extern bool IssuePointOrder(string order, float x, float y);
-		/// @CSharpLua.Template = "IssuePointOrderById({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "IssuePointOrderById({this}, {0}, {1}, {2})"
 		public extern bool IssuePointOrder(int order, float x, float y);
-		/// @CSharpLua.Template = "IssueTargetOrder({0}, {1}, {2})"
+		/// @CSharpLua.Template = "IssueTargetOrder({this}, {0}, {1})"
 		public extern bool IssueTargetOrder(string order, widget target);
-		/// @CSharpLua.Template = "IssueTargetOrderById({0}, {1}, {2})"
+		/// @CSharpLua.Template = "IssueTargetOrderById({this}, {0}, {1})"
 		public extern bool IssueTargetOrder(int order, widget target);
-		/// @CSharpLua.Template = "IssueInstantPointOrder({0}, {1}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "IssueInstantPointOrder({this}, {0}, {1}, {2}, {3})"
 		public extern bool IssueInstantPointOrder(string order, float x, float y, widget instantTarget);
-		/// @CSharpLua.Template = "IssueInstantPointOrderById({0}, {1}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "IssueInstantPointOrderById({this}, {0}, {1}, {2}, {3})"
 		public extern bool IssueInstantPointOrder(int order, float x, float y, widget instantTarget);
-		/// @CSharpLua.Template = "IssueInstantTargetOrder({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "IssueInstantTargetOrder({this}, {0}, {1}, {2})"
 		public extern bool IssueInstantTargetOrder(string order, widget target, widget instantTarget);
-		/// @CSharpLua.Template = "IssueInstantTargetOrderById({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "IssueInstantTargetOrderById({this}, {0}, {1}, {2})"
 		public extern bool IssueInstantTargetOrder(int order, widget target, widget instantTarget);
-		/// @CSharpLua.Template = "IssueBuildOrder({0}, {1}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "IssueBuildOrder({this}, {0}, {1}, {2}, {3})"
 		public extern bool IssueBuildOrder(string order, int unitId, float x, float y);
-		/// @CSharpLua.Template = "IssueBuildOrderById({0}, {1}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "IssueBuildOrderById({this}, {0}, {1}, {2}, {3})"
 		public extern bool IssueBuildOrder(int order, int unitId, float x, float y);
 
-		/// @CSharpLua.Template = "IssueNeutralImmediateOrder({1}, {0}, {2})"
+		/// @CSharpLua.Template = "IssueNeutralImmediateOrder({0}, {this}, {1})"
 		public extern bool IssueNeutralImmediateOrder(player player, string unitId);
-		/// @CSharpLua.Template = "IssueNeutralImmediateOrderById({1}, {0}, {2})"
+		/// @CSharpLua.Template = "IssueNeutralImmediateOrderById({0}, {this}, {1})"
 		public extern bool IssueNeutralImmediateOrder(player player, int unitId);
-		/// @CSharpLua.Template = "IssueNeutralPointOrder({1}, {0}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "IssueNeutralPointOrder({0}, {this}, {1}, {2}, {3})"
 		public extern bool IssueNeutralPointOrder(player player, string unitId, float x, float y);
-		/// @CSharpLua.Template = "IssueNeutralPointOrderById({1}, {0}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "IssueNeutralPointOrderById({0}, {this}, {1}, {2}, {3})"
 		public extern bool IssueNeutralPointOrder(player player, int unitId, float x, float y);
-		/// @CSharpLua.Template = "IssueNeutralTargetOrder({1}, {0}, {2}, {3})"
+		/// @CSharpLua.Template = "IssueNeutralTargetOrder({0}, {this}, {1}, {2})"
 		public extern bool IssueNeutralTargetOrder(player player, string unitId, widget target);
-		/// @CSharpLua.Template = "IssueNeutralTargetOrderById({1}, {0}, {2}, {3})"
+		/// @CSharpLua.Template = "IssueNeutralTargetOrderById({0}, {this}, {1}, {2})"
 		public extern bool IssueNeutralTargetOrder(player player, int unitId, widget target);
 
-		/// @CSharpLua.Template = "AddItemToStock({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "AddItemToStock({this}, {0}, {1}, {2})"
 		public extern void AddItemToStock(int itemId, int stock, int stockMax);
-		/// @CSharpLua.Template = "AddUnitToStock({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "AddUnitToStock({this}, {0}, {1}, {2})"
 		public extern void AddUnitToStock(int unitId, int stock, int stockMax);
-		/// @CSharpLua.Template = "RemoveItemFromStock({0}, {1})"
+		/// @CSharpLua.Template = "RemoveItemFromStock({this}, {0})"
 		public extern void RemoveItemFromStock(int itemId);
-		/// @CSharpLua.Template = "RemoveUnitFromStock({0}, {1})"
+		/// @CSharpLua.Template = "RemoveUnitFromStock({this}, {0})"
 		public extern void RemoveUnitFromStock(int unitId);
 
-		/// @CSharpLua.Template = "AddUnitAnimationProperties({0}, {1}, true)"
+		/// @CSharpLua.Template = "AddUnitAnimationProperties({this}, {0}, true)"
 		public extern void AddAnimationProperty(string animationProperty);
-		/// @CSharpLua.Template = "AddUnitAnimationProperties({0}, {1}, false)"
+		/// @CSharpLua.Template = "AddUnitAnimationProperties({this}, {0}, false)"
 		public extern void RemoveAnimationProperty(string animationProperty);
 
-		/// @CSharpLua.Template = "SetUnitLookAt({0}, {1}, {2}, {3}, {4}, {5})"
+		/// @CSharpLua.Template = "SetUnitLookAt({this}, {0}, {1}, {2}, {3}, {4})"
 		public extern void SetLookAt(string bone, unit target, float offsetX = 0, float offsetY = 0, float offsetZ = 0);
-		/// @CSharpLua.Template = "ResetUnitLookAt({0})"
+		/// @CSharpLua.Template = "ResetUnitLookAt({this})"
 		public extern void ResetLookAt();
 
-		/// @CSharpLua.Template = "UnitApplyTimedLife({0}, {1}, {2})"
+		/// @CSharpLua.Template = "UnitApplyTimedLife({this}, {0}, {1})"
 		public extern void ApplyTimedLife(int buffId, float duration);
-		/// @CSharpLua.Template = "UnitPauseTimedLife({0}, true)"
+		/// @CSharpLua.Template = "UnitPauseTimedLife({this}, true)"
 		public extern void PauseTimedLife();
-		/// @CSharpLua.Template = "UnitPauseTimedLife({0}, false)"
+		/// @CSharpLua.Template = "UnitPauseTimedLife({this}, false)"
 		public extern void ResumeTimedLife();
-		/// @CSharpLua.Template = "BlzUnitCancelTimedLife({0})"
+		/// @CSharpLua.Template = "BlzUnitCancelTimedLife({this})"
 		public extern void CancelTimedLife();
 
-		/// @CSharpLua.Template = "QueueUnitAnimation({0}, {1})"
+		/// @CSharpLua.Template = "QueueUnitAnimation({this}, {0})"
 		public extern void QueueAnimation(string animation);
-		/// @CSharpLua.Template = "SetUnitAnimation({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitAnimation({this}, {0})"
 		public extern void SetAnimation(string animation);
-		/// @CSharpLua.Template = "SetUnitAnimationByIndex({0}, {1})"
+		/// @CSharpLua.Template = "SetUnitAnimationByIndex({this}, {0})"
 		public extern void SetAnimation(int animationId);
-		/// @CSharpLua.Template = "SetUnitAnimationWithRarity({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetUnitAnimationWithRarity({this}, {0}, {1})"
 		public extern void SetAnimation(string animation, raritycontrol rarity);
 
-		/// @CSharpLua.Template = "UnitDamagePoint({0}, {8}, {3}, {1}, {2}, {4}, {5}, {6}, {7}, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS)"
+		/// @CSharpLua.Template = "UnitDamagePoint({this}, {7}, {2}, {0}, {1}, {3}, {4}, {5}, {6}, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS)"
 		public extern bool DealDamage(float x, float y, float radius, float damage, bool attack, bool ranged, attacktype attackType, float delay = 0);
-		/// @CSharpLua.Template = "UnitDamagePoint({0}, {10}, {3}, {1}, {2}, {4}, {5}, {6}, {7}, {8}, {9})"
+		/// @CSharpLua.Template = "UnitDamagePoint({this}, {9}, {2}, {0}, {1}, {3}, {4}, {5}, {6}, {7}, {8})"
 		public extern bool DealDamage(float x, float y, float radius, float damage, bool attack, bool ranged, attacktype attackType, damagetype damageType, weapontype weaponType, float delay = 0);
-		/// @CSharpLua.Template = "UnitDamageTarget({0}, {1}, {2}, {3}, {4}, {5}, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS)"
+		/// @CSharpLua.Template = "UnitDamageTarget({this}, {0}, {1}, {2}, {3}, {4}, DAMAGE_TYPE_UNKNOWN, WEAPON_TYPE_WHOKNOWS)"
 		public extern bool DealDamage(widget target, float damage, bool attack, bool ranged, attacktype attackType);
-		/// @CSharpLua.Template = "UnitDamageTarget({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})"
+		/// @CSharpLua.Template = "UnitDamageTarget({this}, {0}, {1}, {2}, {3}, {4}, {5}, {6})"
 		public extern bool DealDamage(widget target, float damage, bool attack, bool ranged, attacktype attackType, damagetype damageType, weapontype weaponType);
 
-		/// @CSharpLua.Template = "AddResourceAmount({0}, {1})"
+		/// @CSharpLua.Template = "AddResourceAmount({this}, {0})"
 		public extern void AddResourceAmount(int amount);
-		/// @CSharpLua.Template = "SelectUnit({0}, {1})"
+		/// @CSharpLua.Template = "SelectUnit({this}, {0})"
 		public extern void Select(bool value = true);
-		/// @CSharpLua.Template = "SelectHeroSkill({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SelectHeroSkill({this}, {0}, {1}, {2})"
 		public extern void SelectHeroSkill(int abilityId);
-		/// @CSharpLua.Template = "ReviveHero({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "ReviveHero({this}, {0}, {1}, {2})"
 		public extern void Revive(float x, float y, bool doEyeCandy = true);
-		/// @CSharpLua.Template = "UnitResetCooldown({0})"
+		/// @CSharpLua.Template = "UnitResetCooldown({this})"
 		public extern void ResetCooldowns();
-		/// @CSharpLua.Template = "BlzUnitInterruptAttack({0})"
+		/// @CSharpLua.Template = "BlzUnitInterruptAttack({this})"
 		public extern void InterruptAttack();
-		/// @CSharpLua.Template = "UnitWakeUp({0})"
+		/// @CSharpLua.Template = "UnitWakeUp({this})"
 		public extern void WakeUp();
-		/// @CSharpLua.Template = "KillUnit({0})"
+		/// @CSharpLua.Template = "KillUnit({this})"
 		public extern void Kill();
-		/// @CSharpLua.Template = "RemoveUnit({0})"
+		/// @CSharpLua.Template = "RemoveUnit({this})"
 		public extern void Dispose();
 
 		#region Field editing
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_RAISABLE)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_RAISABLE, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_RAISABLE)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_RAISABLE, {0})"
 		public extern bool Raisable { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_DECAYABLE)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_DECAYABLE, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_DECAYABLE)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_DECAYABLE, {0})"
 		public extern bool Decayable { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_IS_A_BUILDING)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_IS_A_BUILDING, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_IS_A_BUILDING)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_IS_A_BUILDING, {0})"
 		public extern bool IsABuilding { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_USE_EXTENDED_LINE_OF_SIGHT)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_USE_EXTENDED_LINE_OF_SIGHT, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_USE_EXTENDED_LINE_OF_SIGHT)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_USE_EXTENDED_LINE_OF_SIGHT, {0})"
 		public extern bool UseExtendedLineOfSight { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_NEUTRAL_BUILDING_SHOWS_MINIMAP_ICON)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_NEUTRAL_BUILDING_SHOWS_MINIMAP_ICON, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_NEUTRAL_BUILDING_SHOWS_MINIMAP_ICON)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_NEUTRAL_BUILDING_SHOWS_MINIMAP_ICON, {0})"
 		public extern bool NeutralBuildingShowsMinimapIcon { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_HERO_HIDE_HERO_INTERFACE_ICON)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_HERO_HIDE_HERO_INTERFACE_ICON, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_HERO_HIDE_HERO_INTERFACE_ICON)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_HERO_HIDE_HERO_INTERFACE_ICON, {0})"
 		public extern bool HeroHideHeroInterfaceIcon { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_HERO_HIDE_HERO_MINIMAP_DISPLAY)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_HERO_HIDE_HERO_MINIMAP_DISPLAY, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_HERO_HIDE_HERO_MINIMAP_DISPLAY)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_HERO_HIDE_HERO_MINIMAP_DISPLAY, {0})"
 		public extern bool HeroHideHeroMinimapDisplay { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_HERO_HIDE_HERO_DEATH_MESSAGE)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_HERO_HIDE_HERO_DEATH_MESSAGE, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_HERO_HIDE_HERO_DEATH_MESSAGE)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_HERO_HIDE_HERO_DEATH_MESSAGE, {0})"
 		public extern bool HeroHideHeroDeathMessage { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_HIDE_MINIMAP_DISPLAY)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_HIDE_MINIMAP_DISPLAY, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_HIDE_MINIMAP_DISPLAY)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_HIDE_MINIMAP_DISPLAY, {0})"
 		public extern bool HideMinimapDisplay { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_SCALE_PROJECTILES)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_SCALE_PROJECTILES, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_SCALE_PROJECTILES)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_SCALE_PROJECTILES, {0})"
 		public extern bool ScaleProjectiles { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_SELECTION_CIRCLE_ON_WATER)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_SELECTION_CIRCLE_ON_WATER, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_SELECTION_CIRCLE_ON_WATER)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_SELECTION_CIRCLE_ON_WATER, {0})"
 		public extern bool SelectionCircleOnWater { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitBooleanField({0}, UNIT_BF_HAS_WATER_SHADOW)"
-		/// @CSharpLua.Set = "SetUnitBooleanField({0}, UNIT_BF_HAS_WATER_SHADOW, {1})"
+		/// @CSharpLua.Get = "GetUnitBooleanField({this}, UNIT_BF_HAS_WATER_SHADOW)"
+		/// @CSharpLua.Set = "SetUnitBooleanField({this}, UNIT_BF_HAS_WATER_SHADOW, {0})"
 		public extern bool HasWaterShadow { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_DEFENSE_TYPE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_DEFENSE_TYPE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_DEFENSE_TYPE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_DEFENSE_TYPE, {0})"
 		public extern int DefenseType { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_ARMOR_TYPE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_ARMOR_TYPE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_ARMOR_TYPE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_ARMOR_TYPE, {0})"
 		public extern int ArmorType { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_LOOPING_FADE_IN_RATE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_LOOPING_FADE_IN_RATE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_LOOPING_FADE_IN_RATE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_LOOPING_FADE_IN_RATE, {0})"
 		public extern int LoopingFadeInRate { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_LOOPING_FADE_OUT_RATE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_LOOPING_FADE_OUT_RATE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_LOOPING_FADE_OUT_RATE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_LOOPING_FADE_OUT_RATE, {0})"
 		public extern int LoopingFadeOutRate { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_GOLD_BOUNTY_AWARDED_NUMBER_OF_DICE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_GOLD_BOUNTY_AWARDED_NUMBER_OF_DICE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_GOLD_BOUNTY_AWARDED_NUMBER_OF_DICE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_GOLD_BOUNTY_AWARDED_NUMBER_OF_DICE, {0})"
 		public extern int GoldBountyAwardedNumberOfDice { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_GOLD_BOUNTY_AWARDED_BASE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_GOLD_BOUNTY_AWARDED_BASE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_GOLD_BOUNTY_AWARDED_BASE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_GOLD_BOUNTY_AWARDED_BASE, {0})"
 		public extern int GoldBountyAwardedBase { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_GOLD_BOUNTY_AWARDED_SIDES_PER_DIE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_GOLD_BOUNTY_AWARDED_SIDES_PER_DIE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_GOLD_BOUNTY_AWARDED_SIDES_PER_DIE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_GOLD_BOUNTY_AWARDED_SIDES_PER_DIE, {0})"
 		public extern int GoldBountyAwardedSidesPerDie { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_LUMBER_BOUNTY_AWARDED_NUMBER_OF_DICE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_LUMBER_BOUNTY_AWARDED_NUMBER_OF_DICE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_LUMBER_BOUNTY_AWARDED_NUMBER_OF_DICE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_LUMBER_BOUNTY_AWARDED_NUMBER_OF_DICE, {0})"
 		public extern int LumberBountyAwardedNumberOfDice { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_LUMBER_BOUNTY_AWARDED_BASE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_LUMBER_BOUNTY_AWARDED_BASE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_LUMBER_BOUNTY_AWARDED_BASE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_LUMBER_BOUNTY_AWARDED_BASE, {0})"
 		public extern int LumberBountyAwardedBase { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_LUMBER_BOUNTY_AWARDED_SIDES_PER_DIE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_LUMBER_BOUNTY_AWARDED_SIDES_PER_DIE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_LUMBER_BOUNTY_AWARDED_SIDES_PER_DIE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_LUMBER_BOUNTY_AWARDED_SIDES_PER_DIE, {0})"
 		public extern int LumberBountyAwardedSidesPerDie { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_FORMATION_RANK)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_FORMATION_RANK, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_FORMATION_RANK)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_FORMATION_RANK, {0})"
 		public extern int FormationRank { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_ORIENTATION_INTERPOLATION)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_ORIENTATION_INTERPOLATION, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_ORIENTATION_INTERPOLATION)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_ORIENTATION_INTERPOLATION, {0})"
 		public extern int OrientationInterpolation { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_ELEVATION_SAMPLE_POINTS)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_ELEVATION_SAMPLE_POINTS, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_ELEVATION_SAMPLE_POINTS)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_ELEVATION_SAMPLE_POINTS, {0})"
 		public extern int ElevationSamplePoints { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_RED)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_RED, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_RED)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_RED, {0})"
 		public extern int TintingColorRed { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_GREEN)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_GREEN, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_GREEN)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_GREEN, {0})"
 		public extern int TintingColorGreen { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_BLUE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_BLUE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_BLUE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_BLUE, {0})"
 		public extern int TintingColorBlue { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_ALPHA)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_TINTING_COLOR_ALPHA, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_ALPHA)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_ALPHA, {0})"
 		public extern int TintingColorAlpha { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_MOVE_TYPE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_MOVE_TYPE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_MOVE_TYPE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_MOVE_TYPE, {0})"
 		public extern int MoveType { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_TARGETED_AS)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_TARGETED_AS, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_TARGETED_AS)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_TARGETED_AS, {0})"
 		public extern int TargetedAs { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_UNIT_CLASSIFICATION)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_UNIT_CLASSIFICATION, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_UNIT_CLASSIFICATION)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_UNIT_CLASSIFICATION, {0})"
 		public extern int UnitClassification { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_HIT_POINTS_REGENERATION_TYPE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_HIT_POINTS_REGENERATION_TYPE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_HIT_POINTS_REGENERATION_TYPE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_HIT_POINTS_REGENERATION_TYPE, {0})"
 		public extern int HitPointsRegenerationType { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_PLACEMENT_PREVENTED_BY)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_PLACEMENT_PREVENTED_BY, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_PLACEMENT_PREVENTED_BY)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_PLACEMENT_PREVENTED_BY, {0})"
 		public extern int PlacementPreventedBy { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitIntegerField({0}, UNIT_IF_PRIMARY_ATTRIBUTE)"
-		/// @CSharpLua.Set = "SetUnitIntegerField({0}, UNIT_IF_PRIMARY_ATTRIBUTE, {1})"
+		/// @CSharpLua.Get = "GetUnitIntegerField({this}, UNIT_IF_PRIMARY_ATTRIBUTE)"
+		/// @CSharpLua.Set = "SetUnitIntegerField({this}, UNIT_IF_PRIMARY_ATTRIBUTE, {0})"
 		public extern int PrimaryAttribute { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_STRENGTH_PER_LEVEL)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_STRENGTH_PER_LEVEL, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_STRENGTH_PER_LEVEL)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_STRENGTH_PER_LEVEL, {0})"
 		public extern float StrengthPerLevel { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_AGILITY_PER_LEVEL)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_AGILITY_PER_LEVEL, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_AGILITY_PER_LEVEL)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_AGILITY_PER_LEVEL, {0})"
 		public extern float AgilityPerLevel { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_INTELLIGENCE_PER_LEVEL)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_INTELLIGENCE_PER_LEVEL, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_INTELLIGENCE_PER_LEVEL)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_INTELLIGENCE_PER_LEVEL, {0})"
 		public extern float IntelligencePerLevel { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_HIT_POINTS_REGENERATION_RATE)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_HIT_POINTS_REGENERATION_RATE, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_HIT_POINTS_REGENERATION_RATE)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_HIT_POINTS_REGENERATION_RATE, {0})"
 		public extern float HitPointsRegenerationRate { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_DEATH_TIME)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_DEATH_TIME, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_DEATH_TIME)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_DEATH_TIME, {0})"
 		public extern float DeathTime { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_ELEVATION_SAMPLE_RADIUS)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_ELEVATION_SAMPLE_RADIUS, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_ELEVATION_SAMPLE_RADIUS)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_ELEVATION_SAMPLE_RADIUS, {0})"
 		public extern float ElevationSampleRadius { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_FOG_OF_WAR_SAMPLE_RADIUS)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_FOG_OF_WAR_SAMPLE_RADIUS, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_FOG_OF_WAR_SAMPLE_RADIUS)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_FOG_OF_WAR_SAMPLE_RADIUS, {0})"
 		public extern float FogOfWarSampleRadius { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_MAXIMUM_PITCH_ANGLE_DEGREES)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_MAXIMUM_PITCH_ANGLE_DEGREES, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_MAXIMUM_PITCH_ANGLE_DEGREES)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_MAXIMUM_PITCH_ANGLE_DEGREES, {0})"
 		public extern float MaximumPitchAngleDegrees { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_MAXIMUM_ROLL_ANGLE_DEGREES)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_MAXIMUM_ROLL_ANGLE_DEGREES, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_MAXIMUM_ROLL_ANGLE_DEGREES)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_MAXIMUM_ROLL_ANGLE_DEGREES, {0})"
 		public extern float MaximumRollAngleDegrees { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SCALING_VALUE)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SCALING_VALUE, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SCALING_VALUE)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SCALING_VALUE, {0})"
 		public extern float ScalingValue { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_ANIMATION_RUN_SPEED)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_ANIMATION_RUN_SPEED, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_ANIMATION_RUN_SPEED)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_ANIMATION_RUN_SPEED, {0})"
 		public extern float AnimationRunSpeed { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SELECTION_SCALE)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SELECTION_SCALE, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SELECTION_SCALE)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SELECTION_SCALE, {0})"
 		public extern float SelectionScale { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SELECTION_CIRCLE_HEIGHT)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SELECTION_CIRCLE_HEIGHT, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SELECTION_CIRCLE_HEIGHT)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SELECTION_CIRCLE_HEIGHT, {0})"
 		public extern float SelectionCircleHeight { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_HEIGHT)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_HEIGHT, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_HEIGHT)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_HEIGHT, {0})"
 		public extern float ShadowImageHeight { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_WIDTH)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_WIDTH, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_WIDTH)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_WIDTH, {0})"
 		public extern float ShadowImageWidth { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_CENTER_X)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_CENTER_X, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_CENTER_X)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_CENTER_X, {0})"
 		public extern float ShadowImageCenterX { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_CENTER_Y)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SHADOW_IMAGE_CENTER_Y, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_CENTER_Y)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SHADOW_IMAGE_CENTER_Y, {0})"
 		public extern float ShadowImageCenterY { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_ANIMATION_WALK_SPEED)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_ANIMATION_WALK_SPEED, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_ANIMATION_WALK_SPEED)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_ANIMATION_WALK_SPEED, {0})"
 		public extern float AnimationWalkSpeed { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_DEFENSE)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_DEFENSE, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_DEFENSE)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_DEFENSE, {0})"
 		public extern float Defense { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_SIGHT_RADIUS)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_SIGHT_RADIUS, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_SIGHT_RADIUS)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_SIGHT_RADIUS, {0})"
 		public extern float SightRadius { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_PRIORITY)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_PRIORITY, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_PRIORITY)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_PRIORITY, {0})"
 		public extern float Priority { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_OCCLUDER_HEIGHT)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_OCCLUDER_HEIGHT, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_OCCLUDER_HEIGHT)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_OCCLUDER_HEIGHT, {0})"
 		public extern float OccluderHeight { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_CAST_BACK_SWING)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_CAST_BACK_SWING, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_CAST_BACK_SWING)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_CAST_BACK_SWING, {0})"
 		public extern float CastBackSwing { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_CAST_POINT)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_CAST_POINT, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_CAST_POINT)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_CAST_POINT, {0})"
 		public extern float CastPoint { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitRealField({0}, UNIT_RF_MINIMUM_ATTACK_RANGE)"
-		/// @CSharpLua.Set = "SetUnitRealField({0}, UNIT_RF_MINIMUM_ATTACK_RANGE, {1})"
+		/// @CSharpLua.Get = "GetUnitRealField({this}, UNIT_RF_MINIMUM_ATTACK_RANGE)"
+		/// @CSharpLua.Set = "SetUnitRealField({this}, UNIT_RF_MINIMUM_ATTACK_RANGE, {0})"
 		public extern float MinimumAttackRange { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitStringField({0}, UNIT_SF_GROUND_TEXTURE)"
-		/// @CSharpLua.Set = "SetUnitStringField({0}, UNIT_SF_GROUND_TEXTURE, {1})"
+		/// @CSharpLua.Get = "GetUnitStringField({this}, UNIT_SF_GROUND_TEXTURE)"
+		/// @CSharpLua.Set = "SetUnitStringField({this}, UNIT_SF_GROUND_TEXTURE, {0})"
 		public extern string GroundTexture { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitStringField({0}, UNIT_SF_SHADOW_IMAGE_UNIT)"
-		/// @CSharpLua.Set = "SetUnitStringField({0}, UNIT_SF_SHADOW_IMAGE_UNIT, {1})"
+		/// @CSharpLua.Get = "GetUnitStringField({this}, UNIT_SF_SHADOW_IMAGE_UNIT)"
+		/// @CSharpLua.Set = "SetUnitStringField({this}, UNIT_SF_SHADOW_IMAGE_UNIT, {0})"
 		public extern string ShadowImageUnit { get; set; }
 		#endregion
 
 		#region Weapon 1 field editing
-		/// @CSharpLua.Get = "GetUnitWeaponBooleanField({0}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponBooleanField({0}, UNIT_WEAPON_BF_ATTACKS_ENABLED, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, {0}, 0)"
 		public extern bool AttacksEnabled1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0)"
 		public extern int AttackMaximumNumberOfTargets1 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, {0}, 0)"
 		public extern int AttackAttackType1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, {0}, 0)"
 		public extern int AttackWeaponSound1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, {0}, 0)"
 		public extern int AttackTargetsAllowed1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, {0}, 0)"
 		public extern float AttackBackswingPoint1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, {0}, 0)"
 		public extern float AttackDamagePoint1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 0)"
 		public extern float AttackDamageLossFactor1 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, {0}, 0)"
 		public extern float AttackDamageFactorMedium1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, {0}, 0)"
 		public extern float AttackDamageFactorSmall1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 0)"
 		public extern float AttackDamageSpillDistance1 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 0)"
 		public extern float AttackDamageSpillRadius1 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, {0}, 0)"
 		public extern float AttackProjectileSpeed1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, {0}, 0)"
 		public extern float AttackProjectileArc1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, {0}, 0)"
 		public extern float AttackAreaOfEffectFullDamage1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, {0}, 0)"
 		public extern float AttackAreaOfEffectMediumDamage1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, {0}, 0)"
 		public extern float AttackAreaOfEffectSmallDamage1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_RANGE, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_RANGE, {1} - GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_RANGE, 1), 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, {0} - GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1), 1)"
 		public extern float AttackRange1 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponStringField({0}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 0)"
-		/// @CSharpLua.Set = "SetUnitWeaponStringField({0}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, {1}, 0)"
+		/// @CSharpLua.Get = "GetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 0)"
+		/// @CSharpLua.Set = "SetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, {0}, 0)"
 		public extern string AttackProjectileArt1 { get; set; }
 		#endregion
 
 		#region Weapon 2 field editing
-		/// @CSharpLua.Get = "GetUnitWeaponBooleanField({0}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponBooleanField({0}, UNIT_WEAPON_BF_ATTACKS_ENABLED, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, {0}, 1)"
 		public extern bool AttacksEnabled2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 1)"
 		public extern int AttackMaximumNumberOfTargets2 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, {0}, 1)"
 		public extern int AttackAttackType2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, {0}, 1)"
 		public extern int AttackWeaponSound2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({0}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, {0}, 1)"
 		public extern int AttackTargetsAllowed2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, {0}, 1)"
 		public extern float AttackBackswingPoint2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_POINT, {0}, 1)"
 		public extern float AttackDamagePoint2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 1)"
 		public extern float AttackDamageLossFactor2 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, {0}, 1)"
 		public extern float AttackDamageFactorMedium2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_SMALL, {0}, 1)"
 		public extern float AttackDamageFactorSmall2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 1)"
 		public extern float AttackDamageSpillDistance2 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 1)"
 		public extern float AttackDamageSpillRadius2 { get; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, {0}, 1)"
 		public extern float AttackProjectileSpeed2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_ARC, {0}, 1)"
 		public extern float AttackProjectileArc2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_FULL_DAMAGE, {0}, 1)"
 		public extern float AttackAreaOfEffectFullDamage2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_MEDIUM_DAMAGE, {0}, 1)"
 		public extern float AttackAreaOfEffectMediumDamage2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, {0}, 1)"
 		public extern float AttackAreaOfEffectSmallDamage2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_RANGE, 2)"
-		/// @CSharpLua.Set = "SetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_RANGE, {1} - GetUnitWeaponRealField({0}, UNIT_WEAPON_RF_ATTACK_RANGE, 2), 2)"
+		/// @CSharpLua.Get = "GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 2)"
+		/// @CSharpLua.Set = "SetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, {0} - GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 2), 2)"
 		public extern float AttackRange2 { get; set; }
 
-		/// @CSharpLua.Get = "GetUnitWeaponStringField({0}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 1)"
-		/// @CSharpLua.Set = "SetUnitWeaponStringField({0}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, {1}, 1)"
+		/// @CSharpLua.Get = "GetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 1)"
+		/// @CSharpLua.Set = "SetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, {0}, 1)"
 		public extern string AttackProjectileArt2 { get; set; }
 		#endregion
 	}

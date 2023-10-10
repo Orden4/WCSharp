@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "DestroyBoolExpr({0})"
+		/// @CSharpLua.Template = "DestroyBoolExpr({this})"
 		public extern virtual void Dispose();
 	}
 }

@@ -27,10 +27,10 @@
 		/// @CSharpLua.Template = "ConvertPathingType({0})"
 		public static extern pathingtype Convert(int pathingTypeId);
 
-		/// @CSharpLua.Template = "IsTerrainPathable({1}, {2}, {0})"
+		/// @CSharpLua.Template = "IsTerrainPathable({0}, {1}, {this})"
 		public extern bool GetPathable(float x, float y);
 
-		/// @CSharpLua.Template = "SetTerrainPathable({1}, {2}, {0}, {3})"
+		/// @CSharpLua.Template = "SetTerrainPathable({0}, {1}, {this}, {2})"
 		public extern void SetPathable(float x, float y, bool pathable);
 	}
 }

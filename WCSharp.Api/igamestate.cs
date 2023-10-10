@@ -13,8 +13,8 @@
 		/// @CSharpLua.Get = "GAME_STATE_DISCONNECTED"
 		public static extern igamestate Disconnected { get; }
 
-		/// @CSharpLua.Get = "GetIntegerGameState({0})"
-		/// @CSharpLua.Set = "SetIntegerGameState({0}, {1})"
+		/// @CSharpLua.Get = "GetIntegerGameState({this})"
+		/// @CSharpLua.Set = "SetIntegerGameState({this}, {0})"
 		public extern int Value { get; set; }
 
 

@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Get = "GetHandleId({0})"
+		/// @CSharpLua.Get = "GetHandleId({this})"
 		public extern int HandleId { get; }
 
 		[EditorBrowsable(EditorBrowsableState.Never)]

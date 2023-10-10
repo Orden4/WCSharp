@@ -22,158 +22,158 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "EnumItemsInRect({0}, {1}, {2})"
 		public static extern void EnumInRect(rect rect, boolexpr filter, Action action);
 
-		/// @CSharpLua.Get = "GetItemTypeId({0})"
+		/// @CSharpLua.Get = "GetItemTypeId({this})"
 		public extern int TypeId { get; }
 
-		/// @CSharpLua.Get = "GetItemType({0})"
+		/// @CSharpLua.Get = "GetItemType({this})"
 		public extern itemtype Type { get; }
 
-		/// @CSharpLua.Get = "GetWidgetX({0})"
-		/// @CSharpLua.Set = "SetItemPosition({0}, GetWidgetY({0}))"
+		/// @CSharpLua.Get = "GetWidgetX({this})"
+		/// @CSharpLua.Set = "SetItemPosition({this}, GetWidgetY({this}))"
 		public extern float X { get; set; }
 
-		/// @CSharpLua.Get = "GetWidgetY({0})"
-		/// @CSharpLua.Set = "SetItemPosition(GetWidgetX({0}), {0})"
+		/// @CSharpLua.Get = "GetWidgetY({this})"
+		/// @CSharpLua.Set = "SetItemPosition(GetWidgetX({this}), {this})"
 		public extern float Y { get; set; }
 
-		/// @CSharpLua.Get = "GetItemPlayer({0})"
-		/// @CSharpLua.Set = "SetItemPlayer({0}, {1})"
+		/// @CSharpLua.Get = "GetItemPlayer({this})"
+		/// @CSharpLua.Set = "SetItemPlayer({this}, {0})"
 		public extern player Owner { get; set; }
 
-		/// @CSharpLua.Get = "GetItemBooleanField({0}, ITEM_BF_DROPPED_WHEN_CARRIER_DIES)"
-		/// @CSharpLua.Set = "SetItemDropOnDeath({0}, {1})"
+		/// @CSharpLua.Get = "GetItemBooleanField({this}, ITEM_BF_DROPPED_WHEN_CARRIER_DIES)"
+		/// @CSharpLua.Set = "SetItemDropOnDeath({this}, {0})"
 		public extern bool IsDroppedOnDeath { get; set; }
 
-		/// @CSharpLua.Get = "GetItemBooleanField({0}, ITEM_BF_CAN_BE_DROPPED)"
-		/// @CSharpLua.Set = "SetItemDroppable({0}, {1})"
+		/// @CSharpLua.Get = "GetItemBooleanField({this}, ITEM_BF_CAN_BE_DROPPED)"
+		/// @CSharpLua.Set = "SetItemDroppable({this}, {0})"
 		public extern bool IsDroppable { get; set; }
 
-		/// @CSharpLua.Get = "IsItemVisible({0})"
-		/// @CSharpLua.Set = "SetItemVisible({0}, {1})"
+		/// @CSharpLua.Get = "IsItemVisible({this})"
+		/// @CSharpLua.Set = "SetItemVisible({this}, {0})"
 		public extern bool IsVisible { get; set; }
 
-		/// @CSharpLua.Get = "IsItemPawnable({0})"
-		/// @CSharpLua.Set = "SetItemPawnable({0}, {1})"
+		/// @CSharpLua.Get = "IsItemPawnable({this})"
+		/// @CSharpLua.Set = "SetItemPawnable({this}, {0})"
 		public extern bool IsPawnable { get; set; }
 
-		/// @CSharpLua.Get = "IsItemInvulnerable({0})"
-		/// @CSharpLua.Set = "SetItemInvulnerable({0}, {1})"
+		/// @CSharpLua.Get = "IsItemInvulnerable({this})"
+		/// @CSharpLua.Set = "SetItemInvulnerable({this}, {0})"
 		public extern bool IsInvulnerable { get; set; }
 
-		/// @CSharpLua.Get = "IsItemPowerup({0})"
+		/// @CSharpLua.Get = "IsItemPowerup({this})"
 		public extern bool IsPowerup { get; }
 
-		/// @CSharpLua.Get = "IsItemOwned({0})"
+		/// @CSharpLua.Get = "IsItemOwned({this})"
 		public extern bool IsOwned { get; }
 
-		/// @CSharpLua.Get = "GetItemUserData({0})"
-		/// @CSharpLua.Set = "SetItemUserData({0}, {1})"
+		/// @CSharpLua.Get = "GetItemUserData({this})"
+		/// @CSharpLua.Set = "SetItemUserData({this}, {0})"
 		public extern int UserData { get; set; }
 
-		/// @CSharpLua.Get = "IsItemSellable({0})"
-		/// @CSharpLua.Set = "SetItemBooleanField({0}, ITEM_BF_CAN_BE_SOLD_TO_MERCHANTS, {1})"
+		/// @CSharpLua.Get = "IsItemSellable({this})"
+		/// @CSharpLua.Set = "SetItemBooleanField({this}, ITEM_BF_CAN_BE_SOLD_TO_MERCHANTS, {0})"
 		public extern bool IsSellable { get; set; }
 
-		/// @CSharpLua.Get = "GetItemName({0})"
-		/// @CSharpLua.Set = "BlzSetItemName({0}, {1})"
+		/// @CSharpLua.Get = "GetItemName({this})"
+		/// @CSharpLua.Set = "BlzSetItemName({this}, {0})"
 		public extern string Name { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetItemDescription({0})"
-		/// @CSharpLua.Set = "BlzSetItemDescription({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetItemDescription({this})"
+		/// @CSharpLua.Set = "BlzSetItemDescription({this}, {0})"
 		public extern string Description { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetItemTooltip({0})"
-		/// @CSharpLua.Set = "BlzSetItemTooltip({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetItemTooltip({this})"
+		/// @CSharpLua.Set = "BlzSetItemTooltip({this}, {0})"
 		public extern string Tooltip { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetItemExtendedTooltip({0})"
-		/// @CSharpLua.Set = "BlzSetItemExtendedTooltip({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetItemExtendedTooltip({this})"
+		/// @CSharpLua.Set = "BlzSetItemExtendedTooltip({this}, {0})"
 		public extern string ExtendedDescription { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetItemIconPath({0})"
-		/// @CSharpLua.Set = "BlzSetItemIconPath({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetItemIconPath({this})"
+		/// @CSharpLua.Set = "BlzSetItemIconPath({this}, {0})"
 		public extern string Icon { get; set; }
 
-		/// @CSharpLua.Get = "GetItemLevel({0})"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_LEVEL, {1})"
+		/// @CSharpLua.Get = "GetItemLevel({this})"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_LEVEL, {0})"
 		public extern int Level { get; set; }
 
-		/// @CSharpLua.Get = "GetItemCharges({0})"
-		/// @CSharpLua.Set = "SetItemCharges({0}, {1})"
+		/// @CSharpLua.Get = "GetItemCharges({this})"
+		/// @CSharpLua.Set = "SetItemCharges({this}, {0})"
 		public extern int Charges { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetItemSkin({0})"
-		/// @CSharpLua.Set = "BlzSetItemSkin({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetItemSkin({this})"
+		/// @CSharpLua.Set = "BlzSetItemSkin({this}, {0})"
 		public extern int Skin { get; set; }
 
-		/// @CSharpLua.Template = "SetItemDropID({0}, {1})"
+		/// @CSharpLua.Template = "SetItemDropID({this}, {0})"
 		public extern void SetDropId(int unitId);
-		/// @CSharpLua.Template = "BlzGetItemAbilityByIndex({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetItemAbilityByIndex({this}, {0})"
 		public extern ability GetAbilityByIndex(int index);
-		/// @CSharpLua.Template = "BlzGetItemAbility({0}, {1})"
+		/// @CSharpLua.Template = "BlzGetItemAbility({this}, {0})"
 		public extern ability GetAbility(int abilityId);
-		/// @CSharpLua.Template = "BlzItemAddAbility({0}, {1})"
+		/// @CSharpLua.Template = "BlzItemAddAbility({this}, {0})"
 		public extern bool AddAbility(int abilityId);
-		/// @CSharpLua.Template = "BlzItemRemoveAbility({0}, {1})"
+		/// @CSharpLua.Template = "BlzItemRemoveAbility({this}, {0})"
 		public extern bool RemoveAbility(int abilityId);
-		/// @CSharpLua.Template = "RemoveItem({0})"
+		/// @CSharpLua.Template = "RemoveItem({this})"
 		public extern void Dispose();
 
 		#region Field editing
-		/// @CSharpLua.Get = "GetItemBooleanField({0}, ITEM_BF_PERISHABLE)"
-		/// @CSharpLua.Set = "SetItemBooleanField({0}, ITEM_BF_PERISHABLE, {1})"
+		/// @CSharpLua.Get = "GetItemBooleanField({this}, ITEM_BF_PERISHABLE)"
+		/// @CSharpLua.Set = "SetItemBooleanField({this}, ITEM_BF_PERISHABLE, {0})"
 		public extern bool Perishable { get; set; }
 
-		/// @CSharpLua.Get = "GetItemBooleanField({0}, ITEM_BF_INCLUDE_AS_RANDOM_CHOICE)"
-		/// @CSharpLua.Set = "SetItemBooleanField({0}, ITEM_BF_INCLUDE_AS_RANDOM_CHOICE, {1})"
+		/// @CSharpLua.Get = "GetItemBooleanField({this}, ITEM_BF_INCLUDE_AS_RANDOM_CHOICE)"
+		/// @CSharpLua.Set = "SetItemBooleanField({this}, ITEM_BF_INCLUDE_AS_RANDOM_CHOICE, {0})"
 		public extern bool IncludeAsRandomChoice { get; set; }
 
-		/// @CSharpLua.Get = "GetItemBooleanField({0}, ITEM_BF_USE_AUTOMATICALLY_WHEN_ACQUIRED)"
-		/// @CSharpLua.Set = "SetItemBooleanField({0}, ITEM_BF_USE_AUTOMATICALLY_WHEN_ACQUIRED, {1})"
+		/// @CSharpLua.Get = "GetItemBooleanField({this}, ITEM_BF_USE_AUTOMATICALLY_WHEN_ACQUIRED)"
+		/// @CSharpLua.Set = "SetItemBooleanField({this}, ITEM_BF_USE_AUTOMATICALLY_WHEN_ACQUIRED, {0})"
 		public extern bool UseAutomaticallyWhenAcquired { get; set; }
 
-		/// @CSharpLua.Get = "GetItemBooleanField({0}, ITEM_BF_ACTIVELY_USED)"
-		/// @CSharpLua.Set = "SetItemBooleanField({0}, ITEM_BF_ACTIVELY_USED, {1})"
+		/// @CSharpLua.Get = "GetItemBooleanField({this}, ITEM_BF_ACTIVELY_USED)"
+		/// @CSharpLua.Set = "SetItemBooleanField({this}, ITEM_BF_ACTIVELY_USED, {0})"
 		public extern bool ActivelyUsed { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_COOLDOWN_GROUP)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_COOLDOWN_GROUP, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_COOLDOWN_GROUP)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_COOLDOWN_GROUP, {0})"
 		public extern int CooldownGroup { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_MAX_HIT_POINTS)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_MAX_HIT_POINTS, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_MAX_HIT_POINTS)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_MAX_HIT_POINTS, {0})"
 		public extern int MaxHitPoints { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_PRIORITY)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_PRIORITY, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_PRIORITY)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_PRIORITY, {0})"
 		public extern int Priority { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_ARMOR_TYPE)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_ARMOR_TYPE, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_ARMOR_TYPE)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_ARMOR_TYPE, {0})"
 		public extern int armortype { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_RED)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_RED, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_RED)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_RED, {0})"
 		public extern int TintingColorRed { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_GREEN)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_GREEN, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_GREEN)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_GREEN, {0})"
 		public extern int TintingColorGreen { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_BLUE)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_BLUE, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_BLUE)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_BLUE, {0})"
 		public extern int TintingColorBlue { get; set; }
 
-		/// @CSharpLua.Get = "GetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_ALPHA)"
-		/// @CSharpLua.Set = "SetItemIntegerField({0}, ITEM_IF_TINTING_COLOR_ALPHA, {1})"
+		/// @CSharpLua.Get = "GetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_ALPHA)"
+		/// @CSharpLua.Set = "SetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_ALPHA, {0})"
 		public extern int TintingColorAlpha { get; set; }
 
-		/// @CSharpLua.Get = "GetItemRealField({0}, ITEM_RF_SCALING_VALUE)"
-		/// @CSharpLua.Set = "SetItemRealField({0}, ITEM_RF_SCALING_VALUE, {1})"
+		/// @CSharpLua.Get = "GetItemRealField({this}, ITEM_RF_SCALING_VALUE)"
+		/// @CSharpLua.Set = "SetItemRealField({this}, ITEM_RF_SCALING_VALUE, {0})"
 		public extern float ScalingValue { get; set; }
 
-		/// @CSharpLua.Get = "GetItemStringField({0}, ITEM_SF_MODEL_USED)"
-		/// @CSharpLua.Set = "SetItemStringField({0}, ITEM_SF_MODEL_USED, {1})"
+		/// @CSharpLua.Get = "GetItemStringField({this}, ITEM_SF_MODEL_USED)"
+		/// @CSharpLua.Set = "SetItemStringField({this}, ITEM_SF_MODEL_USED, {0})"
 		public extern string ModelUsed { get; set; }
 		#endregion
 	}

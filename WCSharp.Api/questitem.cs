@@ -10,11 +10,11 @@
 		/// @CSharpLua.Template = "QuestCreateItem({0})"
 		public static extern questitem Create(quest quest);
 
-		/// @CSharpLua.Get = "IsQuestItemCompleted({0})"
-		/// @CSharpLua.Set = "QuestItemSetCompleted({0}, {1})"
+		/// @CSharpLua.Get = "IsQuestItemCompleted({this})"
+		/// @CSharpLua.Set = "QuestItemSetCompleted({this}, {0})"
 		public extern float IsCompleted { get; set; }
 
-		/// @CSharpLua.Template = "QuestItemSetDescription({0}, {1})"
+		/// @CSharpLua.Template = "QuestItemSetDescription({this}, {0})"
 		public extern void SetDescription(string description);
 	}
 }

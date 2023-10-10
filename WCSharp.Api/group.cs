@@ -11,54 +11,54 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateGroup()"
 		public static extern group Create();
 
-		/// @CSharpLua.Get = "FirstOfGroup({1})"
+		/// @CSharpLua.Get = "FirstOfGroup({0})"
 		public extern unit First { get; }
-		/// @CSharpLua.Get = "BlzGroupGetSize({1})"
+		/// @CSharpLua.Get = "BlzGroupGetSize({0})"
 		public extern int Count { get; }
 
-		/// @CSharpLua.Template = "IsUnitInGroup({1}, {0})"
+		/// @CSharpLua.Template = "IsUnitInGroup({0}, {this})"
 		public extern bool Contains(unit unit);
-		/// @CSharpLua.Template = "GroupAddUnit({0}, {1})"
+		/// @CSharpLua.Template = "GroupAddUnit({this}, {0})"
 		public extern bool Add(unit unit);
-		/// @CSharpLua.Template = "BlzGroupAddGroupFast({0}, {1})"
+		/// @CSharpLua.Template = "BlzGroupAddGroupFast({this}, {0})"
 		public extern int Add(group group);
-		/// @CSharpLua.Template = "GroupRemoveUnit({0}, {1})"
+		/// @CSharpLua.Template = "GroupRemoveUnit({this}, {0})"
 		public extern bool Remove(unit unit);
-		/// @CSharpLua.Template = "BlzGroupRemoveGroupFast({0}, {1})"
+		/// @CSharpLua.Template = "BlzGroupRemoveGroupFast({this}, {0})"
 		public extern int Remove(group group);
-		/// @CSharpLua.Template = "GroupClear({0})"
+		/// @CSharpLua.Template = "GroupClear({this})"
 		public extern void Clear();
-		/// @CSharpLua.Template = "BlzGroupUnitAt({0}, {1})"
+		/// @CSharpLua.Template = "BlzGroupUnitAt({this}, {0})"
 		public extern unit UnitAtOrDefault();
 
-		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({0}, {1}, {2})"
+		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({this}, {0}, {1})"
 		public extern void EnumUnitsOfType(string unitType, boolexpr filter = null);
-		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({0}, {1}, {2})"
+		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({this}, {0}, {1})"
 		public extern void EnumUnitsOfPlayer(player player, boolexpr filter = null);
-		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({0}, {1}, {2})"
+		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({this}, {0}, {1})"
 		public extern void EnumUnitsInRect(rect rect, boolexpr filter = null);
-		/// @CSharpLua.Template = "GroupEnumUnitsInRange({0}, {1}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "GroupEnumUnitsInRange({this}, {0}, {1}, {2}, {3})"
 		public extern void EnumUnitsInRange(float x, float y, float radius, boolexpr filter = null);
-		/// @CSharpLua.Template = "GroupEnumUnitsSelected({0}, {1}, {2})"
+		/// @CSharpLua.Template = "GroupEnumUnitsSelected({this}, {0}, {1})"
 		public extern void EnumUnitsSelected(player player, boolexpr filter = null);
 
-		/// @CSharpLua.Template = "GroupImmediateOrder({0}, {1})"
+		/// @CSharpLua.Template = "GroupImmediateOrder({this}, {0})"
 		public extern bool IssueImmediateOrder(string order);
-		/// @CSharpLua.Template = "GroupImmediateOrderById({0}, {1})"
+		/// @CSharpLua.Template = "GroupImmediateOrderById({this}, {0})"
 		public extern bool IssueImmediateOrder(int order);
-		/// @CSharpLua.Template = "GroupPointOrder({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "GroupPointOrder({this}, {0}, {1}, {2})"
 		public extern bool IssuePointOrder(string order, float x, float y);
-		/// @CSharpLua.Template = "GroupPointOrderById({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "GroupPointOrderById({this}, {0}, {1}, {2})"
 		public extern bool IssuePointOrder(int order, float x, float y);
-		/// @CSharpLua.Template = "GroupTargetOrder({0}, {1}, {2})"
+		/// @CSharpLua.Template = "GroupTargetOrder({this}, {0}, {1})"
 		public extern bool IssueTargetOrder(string order, widget target);
-		/// @CSharpLua.Template = "GroupTargetOrderById({0}, {1}, {2})"
+		/// @CSharpLua.Template = "GroupTargetOrderById({this}, {0}, {1})"
 		public extern bool IssueTargetOrder(int order, widget target);
 
-		/// @CSharpLua.Template = "ForGroup({0})"
+		/// @CSharpLua.Template = "ForGroup({this})"
 		public extern void ForEach(Action action);
 
-		/// @CSharpLua.Template = "DestroyGroup({0})"
+		/// @CSharpLua.Template = "DestroyGroup({this})"
 		public extern void Dispose();
 	}
 }

@@ -40,53 +40,53 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetSoundIsLoading({0})"
 		public bool IsLoading { get; }
 
-		/// @CSharpLua.Template = "SetSoundParamsFromLabel({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundParamsFromLabel({this}, {0})"
 		public extern void SetParamsFromLabel(string soundLabel);
-		/// @CSharpLua.Template = "SetSoundDistanceCutoff({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundDistanceCutoff({this}, {0})"
 		public extern void SetDistanceCutoff(float cutoff);
-		/// @CSharpLua.Template = "SetSoundChannel({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundChannel({this}, {0})"
 		public extern void SetChannel(int channel);
-		/// @CSharpLua.Template = "SetSoundVolume({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundVolume({this}, {0})"
 		public extern void SetVolume(int volume);
-		/// @CSharpLua.Template = "SetSoundPitch({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundPitch({this}, {0})"
 		public extern void SetPitch(float pitch);
 
-		/// @CSharpLua.Template = "SetSoundPlayPosition({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundPlayPosition({this}, {0})"
 		public extern void SetPlayPosition(float milliseconds);
 
-		/// @CSharpLua.Template = "SetSoundDistances({0}, {1}, {2})"
+		/// @CSharpLua.Template = "SetSoundDistances({this}, {0}, {1})"
 		public extern void SetDistances(float minDistance, float maxDistance);
-		/// @CSharpLua.Template = "SetSoundConeAngles({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SetSoundConeAngles({this}, {0}, {1}, {2})"
 		public extern void SetConeAngles(float inside, float outside, int outsideVolume);
-		/// @CSharpLua.Template = "SetSoundConeOrientation({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SetSoundConeOrientation({this}, {0}, {1}, {2})"
 		public extern void SetConeOrientation(float x, float y, float z);
-		/// @CSharpLua.Template = "SetSoundPosition({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SetSoundPosition({this}, {0}, {1}, {2})"
 		public extern void SetPosition(float x, float y, float z);
-		/// @CSharpLua.Template = "SetSoundVelocity({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "SetSoundVelocity({this}, {0}, {1}, {2})"
 		public extern void SetVelocity(float x, float y, float z);
-		/// @CSharpLua.Template = "AttachSoundToUnit({0}, {1})"
+		/// @CSharpLua.Template = "AttachSoundToUnit({this}, {0})"
 		public extern void AttachToUnit(unit unit);
 
-		/// @CSharpLua.Template = "StartSound({0})"
+		/// @CSharpLua.Template = "StartSound({this})"
 		public extern void Start();
-		/// @CSharpLua.Template = "StartSoundEx({0}, {1})"
+		/// @CSharpLua.Template = "StartSoundEx({this}, {0})"
 		public extern void Start(bool fadeIn);
-		/// @CSharpLua.Template = "StopSound({0})"
+		/// @CSharpLua.Template = "StopSound({this})"
 		public extern void Stop();
 
-		/// @CSharpLua.Template = "RegisterStackedSound({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "RegisterStackedSound({this}, {0}, {1}, {2})"
 		public extern void RegisterStackedSound(bool byPosition, float rectWidth, float rectHeight);
-		/// @CSharpLua.Template = "UnregisterStackedSound({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "UnregisterStackedSound({this}, {0}, {1}, {2})"
 		public extern void UnregisterStackedSound(bool byPosition, float rectWidth, float rectHeight);
 
-		/// @CSharpLua.Template = "SetSoundFacialAnimationLabel({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundFacialAnimationLabel({this}, {0})"
 		public extern bool SetFacialAnimationLabel(string animationLabel);
-		/// @CSharpLua.Template = "SetSoundFacialAnimationGroupLabel({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundFacialAnimationGroupLabel({this}, {0})"
 		public extern bool SetFacialAnimationGroupLabel(string groupLabel);
-		/// @CSharpLua.Template = "SetSoundFacialAnimationSetFilepath({0}, {1})"
+		/// @CSharpLua.Template = "SetSoundFacialAnimationSetFilepath({this}, {0})"
 		public extern bool SetFacialAnimationSetFilepath(string animationSetFilepath);
 
-		/// @CSharpLua.Template = "KillSoundWhenDone({0})"
+		/// @CSharpLua.Template = "KillSoundWhenDone({this})"
 		public extern void Dispose();
 	}
 }

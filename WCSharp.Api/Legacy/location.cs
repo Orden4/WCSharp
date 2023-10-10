@@ -7,7 +7,7 @@
 		{
 		}
 
-		/// @CSharpLua.Template = "RemoveLocation({0})"
+		/// @CSharpLua.Template = "RemoveLocation({this})"
 		public extern void Dispose();
 	}
 }

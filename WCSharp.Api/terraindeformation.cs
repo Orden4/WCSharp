@@ -24,7 +24,7 @@
 		/// @CSharpLua.Template = "TerrainDeformRandom()"
 		public static extern void StopAll();
 
-		/// @CSharpLua.Template = "TerrainDeformStop({0}, {1})"
+		/// @CSharpLua.Template = "TerrainDeformStop({this}, {0})"
 		public extern void Stop(int duration);
 	}
 }

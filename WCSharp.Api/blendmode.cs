@@ -22,7 +22,7 @@
 		/// @CSharpLua.Get = "BLEND_MODE_MODULATE_2X"
 		public static extern blendmode Modulate2x { get; }
 
-		/// @CSharpLua.Template = "SetCineFilterBlendMode({0})"
+		/// @CSharpLua.Template = "SetCineFilterBlendMode({this})"
 		public extern void Enable();
 
 		/// @CSharpLua.Template = "ConvertBlendMode({0})"

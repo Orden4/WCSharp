@@ -18,10 +18,10 @@
 		/// @CSharpLua.Get = "VersionGet()"
 		public static extern version Current { get; }
 
-		/// @CSharpLua.Get = "VersionCompatible({0})"
+		/// @CSharpLua.Get = "VersionCompatible({this})"
 		public extern bool Compatible { get; }
 
-		/// @CSharpLua.Get = "VersionSupported({0})"
+		/// @CSharpLua.Get = "VersionSupported({this})"
 		public extern bool Supported { get; }
 	}
 }

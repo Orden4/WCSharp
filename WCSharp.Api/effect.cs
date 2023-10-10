@@ -21,58 +21,58 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "AddSpellEffectTarget({2}, {3}, {0}, {1})"
 		public static extern effect Create(widget target, string attachmentPoint, string abilityString, effecttype effectType);
 
-		/// @CSharpLua.Get = "BlzGetSpecialEffectScale({0})"
-		/// @CSharpLua.Set = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Get = "BlzGetSpecialEffectScale({this})"
+		/// @CSharpLua.Set = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern float Scale { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetLocalSpecialEffectX({0})"
+		/// @CSharpLua.Get = "BlzGetLocalSpecialEffectX({this})"
 		public extern float LocalX { get; }
 
-		/// @CSharpLua.Get = "BlzGetLocalSpecialEffectY({0})"
+		/// @CSharpLua.Get = "BlzGetLocalSpecialEffectY({this})"
 		public extern float LocalY { get; }
 
-		/// @CSharpLua.Get = "BlzGetLocalSpecialEffectZ({0})"
+		/// @CSharpLua.Get = "BlzGetLocalSpecialEffectZ({this})"
 		public extern float LocalZ { get; }
 
-		/// @CSharpLua.Template = "BlzSetSpecialEffectColorByPlayer({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectColorByPlayer({this}, {0})"
 		public extern void SetColor(player player);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0}, {1}, {2})"
 		public extern void SetColor(int red, int green, int blue);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetAlpha(int alpha);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0}, {1}, {2})"
 		public extern void SetPosition(float x, float y, float z);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetHeight(float height);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetTimeScale(float timeScale);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetTime(float time);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0}, {1}, {2})"
 		public extern void SetOrientation(float yaw, float pitch, float roll);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetYaw(float yaw);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetPitch(float pitch);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetRoll(float roll);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetX(float x);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetY(float y);
-		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({0}, {1})"
+		/// @CSharpLua.Template = "BlzSetSpecialEffectScale({this}, {0})"
 		public extern void SetZ(float z);
-		/// @CSharpLua.Template = "BlzSpecialEffectClearSubAnimations({0})"
+		/// @CSharpLua.Template = "BlzSpecialEffectClearSubAnimations({this})"
 		public extern void ClearSubAnimations();
-		/// @CSharpLua.Template = "BlzSpecialEffectRemoveSubAnimation({0}, {1})"
+		/// @CSharpLua.Template = "BlzSpecialEffectRemoveSubAnimation({this}, {0})"
 		public extern void RemoveSubAnimation(subanimtype subAnimType);
-		/// @CSharpLua.Template = "BlzSpecialEffectAddSubAnimation({0}, {1})"
+		/// @CSharpLua.Template = "BlzSpecialEffectAddSubAnimation({this}, {0})"
 		public extern void AddSubAnimation(subanimtype subAnimType);
-		/// @CSharpLua.Template = "BlzPlaySpecialEffect({0}, {1})"
+		/// @CSharpLua.Template = "BlzPlaySpecialEffect({this}, {0})"
 		public extern void PlayAnimation(animtype animType);
-		/// @CSharpLua.Template = "BlzPlaySpecialEffectWithTimeScale({0}, {1}, {2})"
+		/// @CSharpLua.Template = "BlzPlaySpecialEffectWithTimeScale({this}, {0}, {1})"
 		public extern void PlayAnimation(animtype animType, float timeScale);
-		/// @CSharpLua.Template = "DestroyEffect({0})"
+		/// @CSharpLua.Template = "DestroyEffect({this})"
 		public extern void Dispose();
 	}
 }

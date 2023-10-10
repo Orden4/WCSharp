@@ -11,24 +11,24 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateTimer()"
 		public static extern timer Create();
 
-		/// @CSharpLua.Get = "TimerGetElapsed({0})"
+		/// @CSharpLua.Get = "TimerGetElapsed({this})"
 		public extern float Elapsed { get; }
-		/// @CSharpLua.Get = "TimerGetRemaining({0})"
+		/// @CSharpLua.Get = "TimerGetRemaining({this})"
 		public extern float Remaining { get; }
-		/// @CSharpLua.Get = "TimerGetTimeout({0})"
+		/// @CSharpLua.Get = "TimerGetTimeout({this})"
 		public extern float Timeout { get; }
 
-		/// @CSharpLua.Template = "TimerStart({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "TimerStart({this}, {0}, {1}, {2})"
 		public extern void Start(float timeout, bool periodic, Action callback);
-		/// @CSharpLua.Template = "ResumeTimer({0})"
+		/// @CSharpLua.Template = "ResumeTimer({this})"
 		public extern void Resume();
-		/// @CSharpLua.Template = "PauseTimer({0})"
+		/// @CSharpLua.Template = "PauseTimer({this})"
 		public extern void Pause();
 
-		/// @CSharpLua.Template = "CreateTimerDialog({0})"
+		/// @CSharpLua.Template = "CreateTimerDialog({this})"
 		public extern void CreateDialog();
 
-		/// @CSharpLua.Template = "DestroyTimer({0})"
+		/// @CSharpLua.Template = "DestroyTimer({this})"
 		public extern void Dispose();
 	}
 }

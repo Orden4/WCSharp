@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "DestroyUnitPool({0})"
+		/// @CSharpLua.Template = "DestroyUnitPool({this})"
 		public extern void Dispose();
 	}
 }
