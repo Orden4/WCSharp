@@ -18,11 +18,11 @@
 
 		/// @CSharpLua.Get = "GetResourceDensity()"
 		/// @CSharpLua.Set = "SetResourceDensity({0})"
-		public static extern gamespeed ResourceDensity { get; set; }
+		public static extern mapdensity ResourceDensity { get; set; }
 
 		/// @CSharpLua.Get = "GetCreatureDensity()"
 		/// @CSharpLua.Set = "SetCreatureDensity({0})"
-		public static extern gamespeed CreatureDensity { get; set; }
+		public static extern mapdensity CreatureDensity { get; set; }
 
 		/// @CSharpLua.Template = "ConvertMapDensity({0})"
 		public static extern mapdensity Convert(int mapDensityId);

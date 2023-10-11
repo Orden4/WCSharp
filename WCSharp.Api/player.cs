@@ -63,6 +63,10 @@
 		/// @CSharpLua.Set = "SetPlayerHandicapDamage({this}, {0})"
 		public extern float HandicapDamage { get; set; }
 
+		/// @CSharpLua.Get = "PlayerGetLeaderboard({this})"
+		/// @CSharpLua.Set = "PlayerSetLeaderboard({this}, {0})"
+		public extern leaderboard Leaderboard { get; set; }
+
 		/// @CSharpLua.Get = "GetPlayerId({this})"
 		public extern int Id { get; }
 		/// @CSharpLua.Get = "GetPlayerRace({this})"
@@ -135,14 +139,14 @@
 		/// @CSharpLua.Template = "SetPlayerTechMaxAllowed({this}, {0}, {1})"
 		public extern void SetTechMaxAllowed(int techId, int maximum);
 
-		/// @CSharpLua.Template = "GetPlayerTechResearched({this}, {0})"
-		public extern int GetTechResearched(int techId, bool specificOnly = true);
-		/// @CSharpLua.Template = "SetPlayerTechResearched({this}, {0})"
-		public extern int SetTechResearched(int techId, int level);
+		/// @CSharpLua.Template = "GetPlayerTechResearched({this}, {0}, {1})"
+		public extern bool GetTechResearched(int techId, bool specificOnly = true);
+		/// @CSharpLua.Template = "SetPlayerTechResearched({this}, {0}, {1})"
+		public extern void SetTechResearched(int techId, int level);
 		/// @CSharpLua.Template = "AddPlayerTechResearched({this}, {0}, {1})"
-		public extern int IncreaseTechResearched(int techId, int levels = 1);
+		public extern void IncreaseTechResearched(int techId, int levels = 1);
 		/// @CSharpLua.Template = "BlzDecPlayerTechResearched({this}, {0}, {1})"
-		public extern int DecreaseTechResearched(int techId, int levels = 1);
+		public extern void DecreaseTechResearched(int techId, int levels = 1);
 
 		/// @CSharpLua.Template = "GetPlayerTechCount({this}, {0}, {1})"
 		public extern int GetTechCount(int techId, bool specificOnly = true);
@@ -154,16 +158,16 @@
 		public extern int GetStructureCount(bool includeIncomplete = false);
 
 		/// @CSharpLua.Template = "IsPlayerRacePrefSet({this}, {0})"
-		public extern void IsRacePreference(racepreference racepreference);
+		public extern bool IsRacePreference(racepreference racepreference);
 		/// @CSharpLua.Template = "IsPlayerAlly({this}, {0})"
 		public extern bool IsAlly(player otherPlayer);
 		/// @CSharpLua.Template = "IsPlayerEnemy({this}, {0})"
 		public extern bool IsEnemy(player otherPlayer);
-		/// @CSharpLua.Template = "IsVisibleToPlayer({this}, {0}, {1})"
+		/// @CSharpLua.Template = "IsVisibleToPlayer({0}, {1}, {this})"
 		public extern bool IsVisible(float x, float y);
-		/// @CSharpLua.Template = "IsFoggedToPlayer({this}, {0}, {1})"
+		/// @CSharpLua.Template = "IsFoggedToPlayer({0}, {1}, {this})"
 		public extern bool IsFogged(float x, float y);
-		/// @CSharpLua.Template = "IsMaskedToPlayer({this}, {0}, {1})"
+		/// @CSharpLua.Template = "IsMaskedToPlayer({0}, {1}, {this})"
 		public extern bool IsMasked(float x, float y);
 
 		/// @CSharpLua.Template = "SetPlayerRaceSelectable({this}, {0})"
@@ -199,9 +203,9 @@
 
 		/// @CSharpLua.Template = "DisplayTextToPlayer({this}, {1}, {2}, {0})"
 		public extern void DisplayTextTo(string message, float x = 0, float y = 0);
-		/// @CSharpLua.Template = "DisplayTextToPlayer({this}, {1}, {2}, {0})"
-		public extern void DisplayTimedTextTo(string message, float duration, float x = 0, float y = 0);
-		/// @CSharpLua.Template = "DisplayTextToPlayer({this}, {1}, {2}, {0})"
-		public extern void DisplayTimedTextFrom(string message, float duration, float x = 0, float y = 0);
+		/// @CSharpLua.Template = "DisplayTimedTextToPlayer({this}, {2}, {3}, {0}, {1})"
+		public extern void DisplayTimedTextTo(float duration, string message, float x = 0, float y = 0);
+		/// @CSharpLua.Template = "DisplayTimedTextFromPlayer({this}, {2}, {3}, {0}, {1})"
+		public extern void DisplayTimedTextFrom(float duration, string message, float x = 0, float y = 0);
 	}
 }

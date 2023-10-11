@@ -78,7 +78,7 @@ namespace WCSharp.Api
 		public extern void SetModel(string modelFile, int cameraIndex);
 		/// @CSharpLua.Template = "BlzFrameSetSpriteAnimate({this}, {0}, {1})"
 		public extern void SetSpriteAnimate(int primaryProp, int flags);
-		/// @CSharpLua.Template = "BlzFrameSetTexture({this}, {0}, {1})"
+		/// @CSharpLua.Template = "BlzFrameSetTexture({this}, {0}, {1}, {2})"
 		public extern void SetTexture(string textureFile, int textureFillSetting, bool blend);
 		/// @CSharpLua.Template = "BlzFrameSetScale({this}, {0})"
 		public extern void SetScale(float scale);

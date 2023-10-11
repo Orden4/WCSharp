@@ -12,19 +12,19 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateDestructable({0}, {1}, {2}, {3}, {4}, {5})"
 		public static extern destructable Create(int typeId, float x, float y, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "CreateDestructableZ({0}, {1}, {2}, {3}, {4}, {5}, {6})"
-		public static extern destructable Create(int typeId, float x, float y, float z, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
+		public static extern destructable CreateZ(int typeId, float x, float y, float z, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "BlzCreateDestructableWithSkin({0}, {1}, {2}, {4}, {5}, {6}, {3})"
-		public static extern destructable Create(int typeId, float x, float y, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
+		public static extern destructable CreateWithSkin(int typeId, float x, float y, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "BlzCreateDestructableZWithSkin({0}, {1}, {2}, {3}, {5}, {6}, {7}, {4})"
-		public static extern destructable Create(int typeId, float x, float y, float z, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
+		public static extern destructable CreateZWithSkin(int typeId, float x, float y, float z, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "CreateDeadDestructable({0}, {1}, {2}, {3}, {4}, {5})"
 		public static extern destructable CreateDead(int typeId, float x, float y, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "CreateDeadDestructableZ({0}, {1}, {2}, {3}, {4}, {5}, {6})"
-		public static extern destructable CreateDead(int typeId, float x, float y, float z, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
+		public static extern destructable CreateDeadZ(int typeId, float x, float y, float z, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "BlzCreateDeadDestructableWithSkin({0}, {1}, {2}, {4}, {5}, {6}, {3})"
-		public static extern destructable CreateDead(int typeId, float x, float y, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
+		public static extern destructable CreateDeadWithSkin(int typeId, float x, float y, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 		/// @CSharpLua.Template = "BlzCreateDeadDestructableZWithSkin({0}, {1}, {2}, {3}, {5}, {6}, {7}, {4})"
-		public static extern destructable CreateDead(int typeId, float x, float y, float z, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
+		public static extern destructable CreateDeadZWithSkin(int typeId, float x, float y, float z, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 
 		/// @CSharpLua.Get = "GetWidgetX({this})"
 		public extern float X { get; }

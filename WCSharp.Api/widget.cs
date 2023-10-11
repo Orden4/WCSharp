@@ -21,6 +21,6 @@
 		public extern effect AddSpellEffect(int abilityId, string attachmentPoint, effecttype type);
 
 		/// @CSharpLua.Template = "AddIndicator({this}, {0}, {1}, {2}, {3})"
-		public extern effect AddIndicator(int red, int green, int blue, int alpha = 255);
+		public extern void AddIndicator(int red, int green, int blue, int alpha = 255);
 	}
 }

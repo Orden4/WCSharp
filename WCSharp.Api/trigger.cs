@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "CreateTrigger({0})"
+		/// @CSharpLua.Template = "CreateTrigger()"
 		public static extern trigger Create();
 
 		/// @CSharpLua.Get = "IsTriggerEnabled({this})"
@@ -22,14 +22,14 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetTriggerExecCount({this})"
 		public extern int ExecCount { get; }
 
-		/// @CSharpLua.Template = "TriggerAddCondition({this}, {1})"
+		/// @CSharpLua.Template = "TriggerAddCondition({this}, {0})"
 		public extern triggercondition AddCondition(boolexpr condition);
 		/// @CSharpLua.Template = "TriggerRemoveCondition({this}, {0})"
 		public extern void RemoveCondition(triggercondition condition);
 		/// @CSharpLua.Template = "TriggerClearConditions({this})"
 		public extern void ClearConditions();
 
-		/// @CSharpLua.Template = "TriggerAddAction({this}, {1})"
+		/// @CSharpLua.Template = "TriggerAddAction({this}, {0})"
 		public extern triggeraction AddAction(Action action);
 		/// @CSharpLua.Template = "TriggerRemoveAction({this}, {0})"
 		public extern void RemoveAction(triggeraction action);
@@ -43,7 +43,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "ResetTrigger({this})"
 		public extern void Reset();
 		/// @CSharpLua.Template = "TriggerEvaluate({this})"
-		public extern void Evaluate();
+		public extern bool Evaluate();
 		/// @CSharpLua.Template = "TriggerExecute({this})"
 		public extern void Execute();
 		/// @CSharpLua.Template = "TriggerExecuteWait({this})"

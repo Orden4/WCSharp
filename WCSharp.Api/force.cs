@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "CreateForce({0})"
+		/// @CSharpLua.Template = "CreateForce()"
 		public static extern force Create();
 
 		/// @CSharpLua.Template = "ForceAddPlayer({this}, {0})"
@@ -16,7 +16,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "ForceRemovePlayer({this}, {0})"
 		public extern void Remove(player player);
 		/// @CSharpLua.Template = "BlzForceHasPlayer({this}, {0})"
-		public extern void Contains(player player);
+		public extern bool Contains(player player);
 		/// @CSharpLua.Template = "ForceClear({this})"
 		public extern void Clear();
 		/// @CSharpLua.Template = "ForceEnumPlayers({this}, {0})"
@@ -25,7 +25,7 @@ namespace WCSharp.Api
 		public extern void EnumAllies(player player, boolexpr filter = null);
 		/// @CSharpLua.Template = "ForceEnumEnemies({this}, {0}, {1})"
 		public extern void EnumEnemies(player player, boolexpr filter = null);
-		/// @CSharpLua.Template = "ForForce({this})"
+		/// @CSharpLua.Template = "ForForce({this}, {0})"
 		public extern void ForEach(Action action);
 		/// @CSharpLua.Template = "DestroyForce({this})"
 		public extern void Dispose();

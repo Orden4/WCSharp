@@ -29,13 +29,13 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "GroupClear({this})"
 		public extern void Clear();
 		/// @CSharpLua.Template = "BlzGroupUnitAt({this}, {0})"
-		public extern unit UnitAtOrDefault();
+		public extern unit UnitAtOrDefault(int index);
 
-		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({this}, {0}, {1})"
+		/// @CSharpLua.Template = "GroupEnumUnitsOfType({this}, {0}, {1})"
 		public extern void EnumUnitsOfType(string unitType, boolexpr filter = null);
 		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({this}, {0}, {1})"
 		public extern void EnumUnitsOfPlayer(player player, boolexpr filter = null);
-		/// @CSharpLua.Template = "GroupEnumUnitsOfPlayer({this}, {0}, {1})"
+		/// @CSharpLua.Template = "GroupEnumUnitsInRect({this}, {0}, {1})"
 		public extern void EnumUnitsInRect(rect rect, boolexpr filter = null);
 		/// @CSharpLua.Template = "GroupEnumUnitsInRange({this}, {0}, {1}, {2}, {3})"
 		public extern void EnumUnitsInRange(float x, float y, float radius, boolexpr filter = null);
@@ -55,7 +55,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "GroupTargetOrderById({this}, {0}, {1})"
 		public extern bool IssueTargetOrder(int order, widget target);
 
-		/// @CSharpLua.Template = "ForGroup({this})"
+		/// @CSharpLua.Template = "ForGroup({this}, {0})"
 		public extern void ForEach(Action action);
 
 		/// @CSharpLua.Template = "DestroyGroup({this})"

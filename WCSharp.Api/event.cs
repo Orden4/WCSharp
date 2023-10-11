@@ -183,8 +183,6 @@
 		public static extern int TournamentFinishNowRule { get; }
 		/// @CSharpLua.Get = "GetTournamentFinishSoonTimeRemaining()"
 		public static extern float TournamentFinishSoonTimeRemaining { get; }
-		/// @CSharpLua.Get = "GetTournamentScore()"
-		public static extern int TournamentScore { get; }
 		/// @CSharpLua.Get = "GetTriggeringTrackable()"
 		public static extern trackable Trackable { get; }
 		/// @CSharpLua.Get = "GetTrainedUnit()"
@@ -205,5 +203,8 @@
 		public static extern widget Widget { get; }
 		/// @CSharpLua.Get = "GetWinningPlayer()"
 		public static extern player WinningPlayer { get; }
+
+		/// @CSharpLua.Get = "GetTournamentScore()"
+		public static extern int GetTournamentScore(player player);
 	}
 }

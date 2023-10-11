@@ -23,8 +23,8 @@ namespace WCSharp.Api
 		public extern void SetRender(bool render);
 		/// @CSharpLua.Template = "SetImageRenderAlways({this}, {0})"
 		public extern void SetRenderAlways(bool renderAlways);
-		/// @CSharpLua.Template = "SetImageAboveWater({this}, {0})"
-		public extern void SetAboveWater(bool aboveWater);
+		/// @CSharpLua.Template = "SetImageAboveWater({this}, {0}, {1})"
+		public extern void SetAboveWater(bool aboveWater, bool useWaterAlpha);
 		/// @CSharpLua.Template = "SetImageType({this}, {0})"
 		public extern void SetType(int imageType);
 

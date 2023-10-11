@@ -8,12 +8,12 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "DialogCreate({0})"
-		public static extern void Create();
+		/// @CSharpLua.Template = "DialogCreate()"
+		public static extern dialog Create();
 
 		/// @CSharpLua.Template = "DialogClear({this})"
 		public extern void Clear();
-		/// @CSharpLua.Template = "DialogSetMessage({this})"
+		/// @CSharpLua.Template = "DialogSetMessage({this}, {0})"
 		public extern void SetMessage(string message);
 		/// @CSharpLua.Template = "DialogAddButton({this}, {0}, {1})"
 		public extern button AddButton(string buttonText, int hotkey);

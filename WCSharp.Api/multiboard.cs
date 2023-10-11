@@ -37,16 +37,13 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "MultiboardGetItem({this}, {0}, {1})"
 		public extern multiboarditem GetItem(int row, int column);
 
-		/// @CSharpLua.Template = "MultiboardSetItem({this}, {0}, {1})"
-		public extern multiboarditem SetItem(int row, int column);
-
 		/// @CSharpLua.Template = "MultiboardSetItemsStyle({this}, {0}, {1})"
 		public extern void SetChildVisibility(bool showValue, bool showIcon);
 
 		/// @CSharpLua.Template = "MultiboardSetItemsValue({this}, {0})"
 		public extern void SetChildText(string value);
 
-		/// @CSharpLua.Template = "MultiboardSetItemsValueColor({this}, {0}, {1}, {2})"
+		/// @CSharpLua.Template = "MultiboardSetItemsValueColor({this}, {0}, {1}, {2}, {3})"
 		public extern void SetChildColor(int red, int green, int blue, int alpha = 255);
 
 		/// @CSharpLua.Template = "MultiboardSetItemsWidth({this}, {0})"

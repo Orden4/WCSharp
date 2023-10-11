@@ -12,7 +12,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "Filter({0})"
 		public static extern filterfunc Create(Action action);
 
-		/// @CSharpLua.Template = "DestroyCondition({this})"
+		/// @CSharpLua.Template = "DestroyFilter({this})"
 		public extern override void Dispose();
 	}
 }

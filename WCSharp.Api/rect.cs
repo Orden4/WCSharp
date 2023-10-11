@@ -8,7 +8,7 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "rect({0}, {1}, {2}, {3})"
+		/// @CSharpLua.Template = "Rect({0}, {1}, {2}, {3})"
 		public static extern rect Create(float minX, float minY, float maxX, float maxY);
 
 		/// @CSharpLua.Template = "GetWorldBounds()"
@@ -56,7 +56,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateFogModifierRect({0}, {1}, {this}, {2}, {3})"
 		public extern fogmodifier AddFogModifier(player player, fogstate fogstate, bool useSharedVision, bool afterUnits);
 
-		/// @CSharpLua.Template = "SetBlightRect({this}, {0})"
+		/// @CSharpLua.Template = "SetBlightRect({0}, {this}, {1})"
 		public extern void SetBlight(player player, bool addBlight);
 
 		/// @CSharpLua.Template = "SetFogStateRect({0}, {1}, {this}, {2})"

@@ -13,32 +13,32 @@ namespace WCSharp.Api
 		public static extern sound CreateFromFile(string fileName, bool looping, bool is3D, bool stopWhenOutOfRange, int fadeInRate, int fadeOutRate, string eaxSetting);
 		/// @CSharpLua.Template = "CreateSoundFilenameWithLabel({0}, {1}, {2}, {3}, {4}, {5}, {6})"
 		public static extern sound CreateFromSlk(string fileName, bool looping, bool is3D, bool stopWhenOutOfRange, int fadeInRate, int fadeOutRate, string slkEntryName);
-		/// @CSharpLua.Template = "CreateSoundFilenameWithLabel({0}, {1}, {2}, {3}, {4}, {5}, {6})"
+		/// @CSharpLua.Template = "CreateSoundFromLabel({0}, {1}, {2}, {3}, {4}, {5})"
 		public static extern sound CreateFromLabel(string soundLabel, bool looping, bool is3D, bool stopWhenOutOfRange, int fadeInRate, int fadeOutRate);
 		/// @CSharpLua.Template = "CreateMIDISound({0}, {1}, {2})"
 		public static extern sound CreateFromMidi(string soundLabel, int fadeInRate, int fadeOutRate);
 
 		/// @CSharpLua.Template = "GetSoundFileDuration({0})"
-		public static extern float GetDuration(string fileName);
+		public static extern int GetDuration(string fileName);
 
-		/// @CSharpLua.Get = "GetSoundDuration({0})"
-		/// @CSharpLua.Set = "SetSoundDuration({0}, {1})"
-		public float Duration { get; set; }
+		/// @CSharpLua.Get = "GetSoundDuration({this})"
+		/// @CSharpLua.Set = "SetSoundDuration({this}, {0})"
+		public extern int Duration { get; set; }
 
-		/// @CSharpLua.Get = "GetDialogueSpeakerNameKey({0})"
-		/// @CSharpLua.Set = "SetDialogueSpeakerNameKey({0}, {1})"
-		public string DialogueSpeakerName { get; set; }
+		/// @CSharpLua.Get = "GetDialogueSpeakerNameKey({this})"
+		/// @CSharpLua.Set = "SetDialogueSpeakerNameKey({this}, {0})"
+		public extern string DialogueSpeakerName { get; set; }
 
-		/// @CSharpLua.Get = "GetDialogueTextKey({0})"
-		/// @CSharpLua.Set = "SetDialogueTextKey({0}, {1})"
-		public string DialogueText { get; set; }
+		/// @CSharpLua.Get = "GetDialogueTextKey({this})"
+		/// @CSharpLua.Set = "SetDialogueTextKey({this}, {0})"
+		public extern string DialogueText { get; set; }
 
-		/// @CSharpLua.Get = "GetSoundIsPlaying({0})"
-		/// @CSharpLua.Set = "if {1} then StartSound({0}) else StopSound({0}) end"
-		public bool IsPlaying { get; set; }
+		/// @CSharpLua.Get = "GetSoundIsPlaying({this})"
+		/// @CSharpLua.Set = "if {0} then StartSound({this}) else StopSound({this}) end"
+		public extern bool IsPlaying { get; set; }
 
-		/// @CSharpLua.Get = "GetSoundIsLoading({0})"
-		public bool IsLoading { get; }
+		/// @CSharpLua.Get = "GetSoundIsLoading({this})"
+		public extern bool IsLoading { get; }
 
 		/// @CSharpLua.Template = "SetSoundParamsFromLabel({this}, {0})"
 		public extern void SetParamsFromLabel(string soundLabel);
@@ -52,7 +52,7 @@ namespace WCSharp.Api
 		public extern void SetPitch(float pitch);
 
 		/// @CSharpLua.Template = "SetSoundPlayPosition({this}, {0})"
-		public extern void SetPlayPosition(float milliseconds);
+		public extern void SetPlayPosition(int milliseconds);
 
 		/// @CSharpLua.Template = "SetSoundDistances({this}, {0}, {1})"
 		public extern void SetDistances(float minDistance, float maxDistance);
@@ -71,8 +71,8 @@ namespace WCSharp.Api
 		public extern void Start();
 		/// @CSharpLua.Template = "StartSoundEx({this}, {0})"
 		public extern void Start(bool fadeIn);
-		/// @CSharpLua.Template = "StopSound({this})"
-		public extern void Stop();
+		/// @CSharpLua.Template = "StopSound({this}, {0}, {1})"
+		public extern void Stop(bool killWhenDone, bool fadeOut);
 
 		/// @CSharpLua.Template = "RegisterStackedSound({this}, {0}, {1}, {2})"
 		public extern void RegisterStackedSound(bool byPosition, float rectWidth, float rectHeight);

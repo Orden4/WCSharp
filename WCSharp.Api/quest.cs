@@ -13,23 +13,23 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "IsQuestRequired({this})"
 		/// @CSharpLua.Set = "QuestSetRequired({this}, {0})"
-		public extern float IsRequired { get; set; }
+		public extern bool IsRequired { get; set; }
 
 		/// @CSharpLua.Get = "IsQuestCompleted({this})"
 		/// @CSharpLua.Set = "QuestSetCompleted({this}, {0})"
-		public extern float IsCompleted { get; set; }
+		public extern bool IsCompleted { get; set; }
 
 		/// @CSharpLua.Get = "IsQuestDiscovered({this})"
 		/// @CSharpLua.Set = "QuestSetDiscovered({this}, {0})"
-		public extern float IsDiscovered { get; set; }
+		public extern bool IsDiscovered { get; set; }
 
 		/// @CSharpLua.Get = "IsQuestFailed({this})"
 		/// @CSharpLua.Set = "QuestSetFailed({this}, {0})"
-		public extern float IsFailed { get; set; }
+		public extern bool IsFailed { get; set; }
 
 		/// @CSharpLua.Get = "IsQuestEnabled({this})"
 		/// @CSharpLua.Set = "QuestSetEnabled({this}, {0})"
-		public extern float IsEnabled { get; set; }
+		public extern bool IsEnabled { get; set; }
 
 		/// @CSharpLua.Template = "QuestSetTitle({this}, {0})"
 		public extern void SetTitle(string title);

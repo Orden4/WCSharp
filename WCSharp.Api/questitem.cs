@@ -12,7 +12,7 @@
 
 		/// @CSharpLua.Get = "IsQuestItemCompleted({this})"
 		/// @CSharpLua.Set = "QuestItemSetCompleted({this}, {0})"
-		public extern float IsCompleted { get; set; }
+		public extern bool IsCompleted { get; set; }
 
 		/// @CSharpLua.Template = "QuestItemSetDescription({this}, {0})"
 		public extern void SetDescription(string description);

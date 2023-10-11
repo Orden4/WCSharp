@@ -18,10 +18,10 @@
 		public static extern terraindeformation Wave(float x, float y, float targetX, float targetY, float distance, float speed, float radius, float depth, int trailTime,
 			int count);
 
-		/// @CSharpLua.Template = "TerrainDeformWave({0}, {1}, {2}, {3}, {4}, {5}, {6})"
+		/// @CSharpLua.Template = "TerrainDeformRandom({0}, {1}, {2}, {3}, {4}, {5}, {6})"
 		public static extern terraindeformation Random(float x, float y, float radius, float minDelta, float maxDelta, int duration, int updateInterval);
 
-		/// @CSharpLua.Template = "TerrainDeformRandom()"
+		/// @CSharpLua.Template = "TerrainDeformStopAll()"
 		public static extern void StopAll();
 
 		/// @CSharpLua.Template = "TerrainDeformStop({this}, {0})"

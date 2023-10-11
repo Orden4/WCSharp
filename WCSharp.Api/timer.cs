@@ -26,7 +26,7 @@ namespace WCSharp.Api
 		public extern void Pause();
 
 		/// @CSharpLua.Template = "CreateTimerDialog({this})"
-		public extern void CreateDialog();
+		public extern timerdialog CreateDialog();
 
 		/// @CSharpLua.Template = "DestroyTimer({this})"
 		public extern void Dispose();

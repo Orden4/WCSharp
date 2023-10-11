@@ -21,19 +21,19 @@
 		/// @CSharpLua.Template = "GetStoredInteger({this}, {0}, {1})"
 		public extern int GetInt(string missionKey, string key);
 
-		/// @CSharpLua.Template = "StoreFloat({this}, {0}, {1}, {2})"
+		/// @CSharpLua.Template = "StoreReal({this}, {0}, {1}, {2})"
 		public extern void AddFloat(string missionKey, string key, float value);
-		/// @CSharpLua.Template = "SyncStoredFloat({this}, {0}, {1})"
+		/// @CSharpLua.Template = "SyncStoredReal({this}, {0}, {1})"
 		public extern void SyncFloat(string missionKey, string key);
-		/// @CSharpLua.Template = "FlushStoredFloat({this}, {0}, {1})"
+		/// @CSharpLua.Template = "FlushStoredReal({this}, {0}, {1})"
 		public extern void FlushFloat(string missionKey, string key);
-		/// @CSharpLua.Template = "HaveStoredFloat({this}, {0}, {1})"
+		/// @CSharpLua.Template = "HaveStoredReal({this}, {0}, {1})"
 		public extern bool ContainsFloat(string missionKey, string key);
-		/// @CSharpLua.Template = "GetStoredFloat({this}, {0}, {1})"
+		/// @CSharpLua.Template = "GetStoredReal({this}, {0}, {1})"
 		public extern float GetFloat(string missionKey, string key);
 
 		/// @CSharpLua.Template = "StoreBoolean({this}, {0}, {1}, {2})"
-		public extern bool AddBool(string missionKey, string key, bool value);
+		public extern void AddBool(string missionKey, string key, bool value);
 		/// @CSharpLua.Template = "SyncStoredBoolean({this}, {0}, {1})"
 		public extern void SyncBool(string missionKey, string key);
 		/// @CSharpLua.Template = "FlushStoredBoolean({this}, {0}, {1})"
@@ -62,13 +62,13 @@
 		public extern void FlushUnit(string missionKey, string key);
 		/// @CSharpLua.Template = "HaveStoredUnit({this}, {0}, {1})"
 		public extern bool ContainsUnit(string missionKey, string key);
-		/// @CSharpLua.Template = "RestoreUnit({this}, {0}, {1}, {2}, {3}, {4})"
+		/// @CSharpLua.Template = "RestoreUnit({this}, {0}, {1}, {2}, {3}, {4}, {5})"
 		public extern unit GetUnit(string missionKey, string key, player player, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 
 		/// @CSharpLua.Template = "FlushGameCache({this})"
-		public extern bool Flush();
+		public extern void Flush();
 		/// @CSharpLua.Template = "FlushStoredMission({this}, {0})"
-		public extern bool FlushMission();
+		public extern void FlushMission(string missionKey);
 		/// @CSharpLua.Template = "SaveGameCache({this})"
 		public extern bool Save();
 	}

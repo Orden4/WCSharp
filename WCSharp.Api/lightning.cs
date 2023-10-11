@@ -30,14 +30,14 @@ namespace WCSharp.Api
 		public extern float Alpha { get; set; }
 
 		/// @CSharpLua.Template = "MoveLightning({this}, {4}, {0}, {1}, {2}, {3})"
-		public extern void Move(float x1, float y1, float x2, float y2, bool visible = true);
+		public extern bool Move(float x1, float y1, float x2, float y2, bool visible = true);
 		/// @CSharpLua.Template = "MoveLightningEx({this}, {6}, {0}, {1}, {2}, {3}, {4}, {5})"
-		public extern void Move(float x1, float y1, float z1, float x2, float y2, float z2, bool visible = true);
+		public extern bool Move(float x1, float y1, float z1, float x2, float y2, float z2, bool visible = true);
 
 		/// @CSharpLua.Template = "SetLightningColor({this}, {0}, {1}, {2}, {3})"
-		public extern void SetColor(float red, float green, float blue, float alpha = 1.0f);
+		public extern bool SetColor(float red, float green, float blue, float alpha = 1.0f);
 
 		/// @CSharpLua.Template = "DestroyLightning({this})"
-		public extern void Dispose();
+		public extern bool Dispose();
 	}
 }

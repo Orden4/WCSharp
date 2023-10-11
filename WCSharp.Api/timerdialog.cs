@@ -8,7 +8,7 @@
 		}
 
 		/// @CSharpLua.Template = "CreateTimerDialog({0})"
-		public static extern void Create(timer timer);
+		public static extern timerdialog Create(timer timer);
 
 		/// @CSharpLua.Get = "IsTimerDialogDisplayed({this})"
 		/// @CSharpLua.Set = "TimerDialogDisplay({this}, {0})"

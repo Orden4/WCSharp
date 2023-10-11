@@ -11,8 +11,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateDefeatCondition()"
 		public static extern defeatcondition Create();
 
-		/// @CSharpLua.Template = "DefeatConditionSetDescription({this})"
-		public extern string SetDescription(string description);
+		/// @CSharpLua.Template = "DefeatConditionSetDescription({this}, {0})"
+		public extern void SetDescription(string description);
 
 		/// @CSharpLua.Template = "DestroyDefeatCondition({this})"
 		public extern void Dispose();

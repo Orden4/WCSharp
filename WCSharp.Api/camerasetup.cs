@@ -7,19 +7,20 @@
 		{
 		}
 
+		/// @CSharpLua.Template = "CreateCameraSetup()"
 		public static extern camerasetup Create();
 
-		/// @CSharpLua.Get = "CameraSetupGetDestPositionX({0})"
-		/// @CSharpLua.Set = "CameraSetupSetDestPosition({0}, {1}, CameraSetupGetDestPositionY({0}), 0)"
-		public float X { get; set; }
+		/// @CSharpLua.Get = "CameraSetupGetDestPositionX({this})"
+		/// @CSharpLua.Set = "CameraSetupSetDestPosition({this}, {0}, CameraSetupGetDestPositionY({this}), 0)"
+		public extern float X { get; set; }
 
-		/// @CSharpLua.Get = "CameraSetupGetDestPositionY({0})"
-		/// @CSharpLua.Set = "CameraSetupSetDestPosition({0}, CameraSetupGetDestPositionX({0}), {1}, 0)"
-		public float Y { get; set; }
+		/// @CSharpLua.Get = "CameraSetupGetDestPositionY({this})"
+		/// @CSharpLua.Set = "CameraSetupSetDestPosition({this}, CameraSetupGetDestPositionX({this}), {0}, 0)"
+		public extern float Y { get; set; }
 
-		/// @CSharpLua.Get = "BlzCameraSetupGetLabel({0})"
-		/// @CSharpLua.Set = "BlzCameraSetupSetLabel({0}, {1})"
-		public string Label { get; set; }
+		/// @CSharpLua.Get = "BlzCameraSetupGetLabel({this})"
+		/// @CSharpLua.Set = "BlzCameraSetupSetLabel({this}, {0})"
+		public extern string Label { get; set; }
 
 		/// @CSharpLua.Template = "CameraSetupSetDestPosition({this}, {0}, {1}, {2})"
 		public extern void SetPosition(float x, float y, float duration = 0);

@@ -15,8 +15,8 @@ namespace WCSharp.Api
 		public extern void SetText(string text, float height);
 		/// @CSharpLua.Template = "SetTextTagPos({this}, {0}, {1}, {2})"
 		public extern void SetPosition(float x, float y, float heightOffset);
-		/// @CSharpLua.Template = "SetTextTagPosUnit({this}, {1}, {2})"
-		public extern void SetPositionUnit(unit unit, float heightOffset);
+		/// @CSharpLua.Template = "SetTextTagPosUnit({this}, {0}, {1})"
+		public extern void SetPosition(unit unit, float heightOffset);
 		/// @CSharpLua.Template = "SetTextTagColor({this}, {0}, {1}, {2}, {3})"
 		public extern void SetColor(int red, int green, int blue, int alpha = 255);
 		/// @CSharpLua.Template = "SetTextTagVelocity({this}, {0}, {1})"
