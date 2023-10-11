@@ -15,7 +15,7 @@ namespace WCSharp.Api
 		public extern void Add(player player);
 		/// @CSharpLua.Template = "ForceRemovePlayer({this}, {0})"
 		public extern void Remove(player player);
-		/// @CSharpLua.Template = "BlzForceHasPlayer({this}, {0})"
+		/// @CSharpLua.Template = "IsPlayerInForce({0}, {this})"
 		public extern bool Contains(player player);
 		/// @CSharpLua.Template = "ForceClear({this})"
 		public extern void Clear();

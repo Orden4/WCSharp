@@ -93,6 +93,8 @@ namespace WCSharp.Api
 		public extern @event RegisterUnitEvent(unit unit, unitevent unitEvent);
 		/// @CSharpLua.Template = "TriggerRegisterFilterUnitEvent({this}, {0}, {1}, {2})"
 		public extern @event RegisterUnitEvent(unit unit, unitevent unitEvent, boolexpr filter);
+		/// @CSharpLua.Template = "TriggerRegisterUnitInRange({this}, {0}, {1}, {2})"
+		public extern @event RegisterUnitInRange(unit unit, float range, boolexpr filter = null);
 		/// @CSharpLua.Template = "BlzTriggerRegisterFrameEvent({this}, {0}, {1})"
 		public extern @event RegisterFrameEvent(framehandle frame, frameeventtype eventType);
 		/// @CSharpLua.Template = "BlzTriggerRegisterPlayerSyncEvent({this}, {0}, {1}, {2})"

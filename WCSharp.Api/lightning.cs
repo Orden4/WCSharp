@@ -38,6 +38,6 @@ namespace WCSharp.Api
 		public extern bool SetColor(float red, float green, float blue, float alpha = 1.0f);
 
 		/// @CSharpLua.Template = "DestroyLightning({this})"
-		public extern bool Dispose();
+		public extern void Dispose();
 	}
 }

@@ -50,10 +50,6 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "SetDestructableOccluderHeight({this}, {0})"
 		public extern float OccluderHeight { get; }
 
-		/// @CSharpLua.Get = "BlzGetDestructableSkin({this})"
-		/// @CSharpLua.Set = "BlzSetDestructableSkin({this}, {0})"
-		public extern int Skin { get; set; }
-
 		/// @CSharpLua.Template = "DestructableRestoreLife({this}, {0}, {1})"
 		public extern void RestoreLife(float life, bool birth);
 		/// @CSharpLua.Template = "QueueDestructableAnimation({this}, {0})"

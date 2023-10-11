@@ -148,6 +148,8 @@
 		/// @CSharpLua.Template = "BlzDecPlayerTechResearched({this}, {0}, {1})"
 		public extern void DecreaseTechResearched(int techId, int levels = 1);
 
+		/// @CSharpLua.Template = "GetPlayerScore({this}, {0})"
+		public extern int GetScore(playerscore playerScore);
 		/// @CSharpLua.Template = "GetPlayerTechCount({this}, {0}, {1})"
 		public extern int GetTechCount(int techId, bool specificOnly = true);
 		/// @CSharpLua.Template = "GetPlayerUnitCount({this}, {0})"

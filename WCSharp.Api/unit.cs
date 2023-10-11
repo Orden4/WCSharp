@@ -14,6 +14,8 @@ namespace WCSharp.Api
 		public static extern unit Create(player player, string unitType, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 		/// @CSharpLua.Template = "CreateCorpse({0}, {1}, {2}, {3}, {4})"
 		public static extern unit CreateCorpse(player player, int unitType, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
+		/// @CSharpLua.Template = "BlzCreateUnitWithSkin({0}, {1}, {3}, {4}, {5}, {2})"
+		public static extern unit CreateWithSkin(player player, int unitType, int skinId, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 
 		/// @CSharpLua.Template = "GetFoodMade({0})"
 		public static extern int FoodUsedBy(int unitType);
@@ -114,7 +116,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "WaygateGetDestinationX({this})"
 		/// @CSharpLua.Set = "WaygateSetDestination({this}, {0}, WaygateGetDestinationY({this}))"
 		public extern float WaygateDestinationX { get; set; }
-		/// @CSharpLua.Get = "WaygateGetDestinationX({this})"
+		/// @CSharpLua.Get = "WaygateGetDestinationY({this})"
 		/// @CSharpLua.Set = "WaygateSetDestination({this}, WaygateGetDestinationX({this}), {0})"
 		public extern float WaygateDestinationY { get; set; }
 		/// @CSharpLua.Get = "WaygateIsActive({this})"
@@ -176,6 +178,12 @@ namespace WCSharp.Api
 		public extern float CollisionSize { get; }
 		/// @CSharpLua.Get = "BlzIsUnitSelectable({this})"
 		public extern bool Selectable { get; }
+		/// @CSharpLua.Get = "GetUnitTypeId({this})"
+		public extern int UnitType { get; }
+		/// @CSharpLua.Get = "GetUnitRace({this})"
+		public extern race Race { get; }
+		/// @CSharpLua.Get = "BlzGetUnitOrderCount({this})"
+		public extern int OrderCount { get; }
 
 		/// @CSharpLua.Template = "SetUnitColor({this}, {0})"
 		public extern void SetColor(playercolor color);
@@ -184,7 +192,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "UnitSetConstructionProgress({this}, {0})"
 		public extern void SetConstructionProgress(int percentage);
 		/// @CSharpLua.Template = "SetUnitCreepGuard({this}, {0})"
-		public extern void SetCreepGuard(bool value)
+		public extern void SetCreepGuard(bool value);
 		/// @CSharpLua.Template = "SetUnitFacing({this}, {0})"
 		public extern void SetFacing(float facingAngle);
 		/// @CSharpLua.Template = "SetUnitFacingTimed({this}, {0}, {1})"
@@ -201,6 +209,10 @@ namespace WCSharp.Api
 		public extern void SetItemTypeSlots(int slots);
 		/// @CSharpLua.Template = "SetUnitOwner({this}, {0}, {1})"
 		public extern void SetOwner(player player, bool changeColor = true);
+		/// @CSharpLua.Template = "SetUnitPathing({this}, {0})"
+		public extern void SetPathing(bool pathing);
+		/// @CSharpLua.Template = "BlzPauseUnitEx({this}, {0})"
+		public extern void SetPausedEx(bool paused);
 		/// @CSharpLua.Template = "SetUnitPosition({this}, {0}, {1})"
 		public extern void SetPosition(float x, float y);
 		/// @CSharpLua.Template = "SetUnitRescuable({this}, {0}, {1})"
@@ -221,6 +233,8 @@ namespace WCSharp.Api
 		public extern void SetUsesAltIcon(bool usesAltIcon);
 		/// @CSharpLua.Template = "SetUnitTypeSlots({this}, {0})"
 		public extern void SetUnitTypeSlots(int slots);
+		/// @CSharpLua.Template = "SetUnitUseFood({this}, {0})"
+		public extern void SetUseFood(bool useFood);
 		/// @CSharpLua.Template = "SetUnitVertexColor({this}, {0}, {1}, {2}, {3})"
 		public extern void SetVertexColor(int red, int green, int blue, int alpha = 255);
 		/// @CSharpLua.Template = "WaygateSetDestination({this}, {0}, {1})"
@@ -329,6 +343,8 @@ namespace WCSharp.Api
 		public extern float GetAbilityCooldownRemaining(int abilityId);
 		/// @CSharpLua.Template = "BlzStartUnitAbilityCooldown({this}, {0}, {1})"
 		public extern void SetAbilityCooldownRemaining(int abilityId, float cooldown);
+		/// @CSharpLua.Template = "BlzEndUnitAbilityCooldown({this}, {0})"
+		public extern void EndAbilityCooldown(int abilityId);
 		/// @CSharpLua.Template = "BlzGetUnitAbilityManaCost({this}, {0}, {1})"
 		public extern int GetAbilityManaCost(int abilityId, int level);
 		/// @CSharpLua.Template = "BlzSetUnitAbilityManaCost({this}, {0}, {1}, {2})"
@@ -382,6 +398,25 @@ namespace WCSharp.Api
 		public extern bool IssueNeutralTargetOrder(player player, string unitId, widget target);
 		/// @CSharpLua.Template = "IssueNeutralTargetOrderById({0}, {this}, {1}, {2})"
 		public extern bool IssueNeutralTargetOrder(player player, int unitId, widget target);
+
+		/// @CSharpLua.Template = "BlzQueueImmediateOrderById({this}, {0})"
+		public extern bool QueueImmediateOrder(int order);
+		/// @CSharpLua.Template = "BlzQueuePointOrderById({this}, {0}, {1}, {2})"
+		public extern bool QueuePointOrder(int order, float x, float y);
+		/// @CSharpLua.Template = "BlzQueueTargetOrderById({this}, {0}, {1})"
+		public extern bool QueueTargetOrder(int order, widget target);
+		/// @CSharpLua.Template = "BlzQueueInstantPointOrderById({this}, {0}, {1}, {2}, {3})"
+		public extern bool QueueInstantPointOrder(int order, float x, float y, widget instantTarget);
+		/// @CSharpLua.Template = "BlzQueueInstantTargetOrderById({this}, {0}, {1}, {2})"
+		public extern bool QueueInstantTargetOrder(int order, widget target, widget instantTarget);
+		/// @CSharpLua.Template = "BlzQueueBuildOrderById({this}, {0}, {1}, {2})"
+		public extern bool QueueBuildOrder(int order, float x, float y);
+		/// @CSharpLua.Template = "BlzQueueNeutralImmediateOrderById({0}, {this}, {1})"
+		public extern bool QueueNeutralImmediateOrder(player player, int unitId);
+		/// @CSharpLua.Template = "BlzQueueNeutralPointOrderById({0}, {this}, {1}, {2}, {3})"
+		public extern bool QueueNeutralPointOrder(player player, int unitId, float x, float y);
+		/// @CSharpLua.Template = "BlzQueueNeutralTargetOrderById({0}, {this}, {1}, {2})"
+		public extern bool QueueNeutralTargetOrder(player player, int unitId, widget target);
 
 		/// @CSharpLua.Template = "AddItemToStock({this}, {0}, {1}, {2})"
 		public extern void AddItemToStock(int itemId, int stock, int stockMax);
