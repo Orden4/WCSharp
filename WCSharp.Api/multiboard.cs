@@ -11,7 +11,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateMultiboard()"
 		public static extern multiboard Create();
 
-		/// @CSharpLua.Template = "MultiboardSuppressDisplay(~{0})"
+		/// @CSharpLua.Template = "MultiboardSuppressDisplay(not({0}))"
 		public static extern void SetVisibility(bool visible);
 
 		/// @CSharpLua.Get = "IsMultiboardDisplayed({this})"

@@ -82,7 +82,7 @@ namespace WCSharp.Api
 		public extern int SkillPoints { get; set; }
 		/// @CSharpLua.Get = "IsSuspendedXP({this})"
 		/// @CSharpLua.Set = "SuspendHeroXP({this}, {0})"
-		public extern bool CanGainXp { get; set; }
+		public extern bool CanGainXP { get; set; }
 		/// @CSharpLua.Get = "BlzIsUnitInvulnerable({this})"
 		/// @CSharpLua.Set = "SetUnitInvulnerable({this}, {0})"
 		public extern bool IsInvulnerable { get; set; }
@@ -362,61 +362,66 @@ namespace WCSharp.Api
 		public extern int CountBuffs(bool positive, bool negative, bool magic, bool physical, bool timedLife, bool aura, bool autoDispel);
 
 		/// @CSharpLua.Template = "IssueImmediateOrder({this}, {0})"
-		public extern bool IssueImmediateOrder(string order);
+		public extern bool IssueOrder(string order);
 		/// @CSharpLua.Template = "IssueImmediateOrderById({this}, {0})"
-		public extern bool IssueImmediateOrder(int order);
+		public extern bool IssueOrder(int order);
 		/// @CSharpLua.Template = "IssuePointOrder({this}, {0}, {1}, {2})"
-		public extern bool IssuePointOrder(string order, float x, float y);
+		public extern bool IssueOrder(string order, float x, float y);
 		/// @CSharpLua.Template = "IssuePointOrderById({this}, {0}, {1}, {2})"
-		public extern bool IssuePointOrder(int order, float x, float y);
+		public extern bool IssueOrder(int order, float x, float y);
 		/// @CSharpLua.Template = "IssueTargetOrder({this}, {0}, {1})"
-		public extern bool IssueTargetOrder(string order, widget target);
+		public extern bool IssueOrder(string order, widget target);
 		/// @CSharpLua.Template = "IssueTargetOrderById({this}, {0}, {1})"
-		public extern bool IssueTargetOrder(int order, widget target);
+		public extern bool IssueOrder(int order, widget target);
+
 		/// @CSharpLua.Template = "IssueInstantPointOrder({this}, {0}, {1}, {2}, {3})"
-		public extern bool IssueInstantPointOrder(string order, float x, float y, widget instantTarget);
+		public extern bool IssueInstantOrder(string order, float x, float y, widget instantTarget);
 		/// @CSharpLua.Template = "IssueInstantPointOrderById({this}, {0}, {1}, {2}, {3})"
-		public extern bool IssueInstantPointOrder(int order, float x, float y, widget instantTarget);
+		public extern bool IssueInstantOrder(int order, float x, float y, widget instantTarget);
 		/// @CSharpLua.Template = "IssueInstantTargetOrder({this}, {0}, {1}, {2})"
-		public extern bool IssueInstantTargetOrder(string order, widget target, widget instantTarget);
+		public extern bool IssueInstantOrder(string order, widget target, widget instantTarget);
 		/// @CSharpLua.Template = "IssueInstantTargetOrderById({this}, {0}, {1}, {2})"
-		public extern bool IssueInstantTargetOrder(int order, widget target, widget instantTarget);
+		public extern bool IssueInstantOrder(int order, widget target, widget instantTarget);
+
 		/// @CSharpLua.Template = "IssueBuildOrder({this}, {0}, {1}, {2})"
 		public extern bool IssueBuildOrder(string unitId, float x, float y);
 		/// @CSharpLua.Template = "IssueBuildOrderById({this}, {0}, {1}, {2})"
 		public extern bool IssueBuildOrder(int unitId, float x, float y);
 
 		/// @CSharpLua.Template = "IssueNeutralImmediateOrder({0}, {this}, {1})"
-		public extern bool IssueNeutralImmediateOrder(player player, string unitId);
+		public extern bool IssueNeutralOrder(player player, string unitId);
 		/// @CSharpLua.Template = "IssueNeutralImmediateOrderById({0}, {this}, {1})"
-		public extern bool IssueNeutralImmediateOrder(player player, int unitId);
+		public extern bool IssueNeutralOrder(player player, int unitId);
 		/// @CSharpLua.Template = "IssueNeutralPointOrder({0}, {this}, {1}, {2}, {3})"
-		public extern bool IssueNeutralPointOrder(player player, string unitId, float x, float y);
+		public extern bool IssueNeutralOrder(player player, string unitId, float x, float y);
 		/// @CSharpLua.Template = "IssueNeutralPointOrderById({0}, {this}, {1}, {2}, {3})"
-		public extern bool IssueNeutralPointOrder(player player, int unitId, float x, float y);
+		public extern bool IssueNeutralOrder(player player, int unitId, float x, float y);
 		/// @CSharpLua.Template = "IssueNeutralTargetOrder({0}, {this}, {1}, {2})"
-		public extern bool IssueNeutralTargetOrder(player player, string unitId, widget target);
+		public extern bool IssueNeutralOrder(player player, string unitId, widget target);
 		/// @CSharpLua.Template = "IssueNeutralTargetOrderById({0}, {this}, {1}, {2})"
-		public extern bool IssueNeutralTargetOrder(player player, int unitId, widget target);
+		public extern bool IssueNeutralOrder(player player, int unitId, widget target);
 
 		/// @CSharpLua.Template = "BlzQueueImmediateOrderById({this}, {0})"
-		public extern bool QueueImmediateOrder(int order);
+		public extern bool QueueOrder(int order);
 		/// @CSharpLua.Template = "BlzQueuePointOrderById({this}, {0}, {1}, {2})"
-		public extern bool QueuePointOrder(int order, float x, float y);
+		public extern bool QueueOrder(int order, float x, float y);
 		/// @CSharpLua.Template = "BlzQueueTargetOrderById({this}, {0}, {1})"
-		public extern bool QueueTargetOrder(int order, widget target);
+		public extern bool QueueOrder(int order, widget target);
+
 		/// @CSharpLua.Template = "BlzQueueInstantPointOrderById({this}, {0}, {1}, {2}, {3})"
-		public extern bool QueueInstantPointOrder(int order, float x, float y, widget instantTarget);
+		public extern bool QueueInstantOrder(int order, float x, float y, widget instantTarget);
 		/// @CSharpLua.Template = "BlzQueueInstantTargetOrderById({this}, {0}, {1}, {2})"
-		public extern bool QueueInstantTargetOrder(int order, widget target, widget instantTarget);
+		public extern bool QueueInstantOrder(int order, widget target, widget instantTarget);
+
 		/// @CSharpLua.Template = "BlzQueueBuildOrderById({this}, {0}, {1}, {2})"
 		public extern bool QueueBuildOrder(int order, float x, float y);
 		/// @CSharpLua.Template = "BlzQueueNeutralImmediateOrderById({0}, {this}, {1})"
-		public extern bool QueueNeutralImmediateOrder(player player, int unitId);
+
+		public extern bool QueueNeutralOrder(player player, int unitId);
 		/// @CSharpLua.Template = "BlzQueueNeutralPointOrderById({0}, {this}, {1}, {2}, {3})"
-		public extern bool QueueNeutralPointOrder(player player, int unitId, float x, float y);
+		public extern bool QueueNeutralOrder(player player, int unitId, float x, float y);
 		/// @CSharpLua.Template = "BlzQueueNeutralTargetOrderById({0}, {this}, {1}, {2})"
-		public extern bool QueueNeutralTargetOrder(player player, int unitId, widget target);
+		public extern bool QueueNeutralOrder(player player, int unitId, widget target);
 
 		/// @CSharpLua.Template = "AddItemToStock({this}, {0}, {1}, {2})"
 		public extern void AddItemToStock(int itemId, int stock, int stockMax);

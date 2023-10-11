@@ -43,17 +43,17 @@ namespace WCSharp.Api
 		public extern void EnumUnitsSelected(player player, boolexpr filter = null);
 
 		/// @CSharpLua.Template = "GroupImmediateOrder({this}, {0})"
-		public extern bool IssueImmediateOrder(string order);
+		public extern bool IssueOrder(string order);
 		/// @CSharpLua.Template = "GroupImmediateOrderById({this}, {0})"
-		public extern bool IssueImmediateOrder(int order);
+		public extern bool IssueOrder(int order);
 		/// @CSharpLua.Template = "GroupPointOrder({this}, {0}, {1}, {2})"
-		public extern bool IssuePointOrder(string order, float x, float y);
+		public extern bool IssueOrder(string order, float x, float y);
 		/// @CSharpLua.Template = "GroupPointOrderById({this}, {0}, {1}, {2})"
-		public extern bool IssuePointOrder(int order, float x, float y);
+		public extern bool IssueOrder(int order, float x, float y);
 		/// @CSharpLua.Template = "GroupTargetOrder({this}, {0}, {1})"
-		public extern bool IssueTargetOrder(string order, widget target);
+		public extern bool IssueOrder(string order, widget target);
 		/// @CSharpLua.Template = "GroupTargetOrderById({this}, {0}, {1})"
-		public extern bool IssueTargetOrder(int order, widget target);
+		public extern bool IssueOrder(int order, widget target);
 
 		/// @CSharpLua.Template = "ForGroup({this}, {0})"
 		public extern void ForEach(Action action);

@@ -55,7 +55,7 @@
 		public extern float Handicap { get; set; }
 		/// @CSharpLua.Get = "GetPlayerHandicapXP({this})"
 		/// @CSharpLua.Set = "SetPlayerHandicapXP({this}, {0})"
-		public extern float HandicapXp { get; set; }
+		public extern float HandicapXP { get; set; }
 		/// @CSharpLua.Get = "GetPlayerHandicapReviveTime({this})"
 		/// @CSharpLua.Set = "SetPlayerHandicapReviveTime({this}, {0})"
 		public extern float HandicapReviveTime { get; set; }
@@ -180,17 +180,17 @@
 		public extern void SetAbilityAvailable(int abilityId, bool available);
 
 		/// @CSharpLua.Template = "IssueNeutralImmediateOrder({this}, {1}, {0})"
-		public extern bool IssueNeutralImmediateOrder(string order, unit neutralStructure);
+		public extern bool IssueNeutralOrder(string order, unit neutralStructure);
 		/// @CSharpLua.Template = "IssueNeutralImmediateOrderById({this}, {1}, {0})"
-		public extern bool IssueNeutralImmediateOrder(int order, unit neutralStructure);
+		public extern bool IssueNeutralOrder(int order, unit neutralStructure);
 		/// @CSharpLua.Template = "IssueNeutralPointOrder({this}, {1}, {0}, {2}, {3})"
-		public extern bool IssueNeutralPointOrder(string order, unit neutralStructure, float x, float y);
+		public extern bool IssueNeutralOrder(string order, unit neutralStructure, float x, float y);
 		/// @CSharpLua.Template = "IssueNeutralPointOrderById({this}, {1}, {0}, {2}, {3})"
-		public extern bool IssueNeutralPointOrder(int order, unit neutralStructure, float x, float y);
+		public extern bool IssueNeutralOrder(int order, unit neutralStructure, float x, float y);
 		/// @CSharpLua.Template = "IssueNeutralTargetOrder({this}, {1}, {0}, {2})"
-		public extern bool IssueNeutralTargetOrder(string order, unit neutralStructure, widget target);
+		public extern bool IssueNeutralOrder(string order, unit neutralStructure, widget target);
 		/// @CSharpLua.Template = "IssueNeutralTargetOrderById({this}, {1}, {0}, {2})"
-		public extern bool IssueNeutralTargetOrder(int order, unit neutralStructure, widget target);
+		public extern bool IssueNeutralOrder(int order, unit neutralStructure, widget target);
 
 		/// @CSharpLua.Template = "ForcePlayerStartLocation({this}, {0})"
 		public extern void ForceStartLocation(int startLocation);
