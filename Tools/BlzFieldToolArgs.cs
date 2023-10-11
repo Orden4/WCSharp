@@ -9,7 +9,8 @@ namespace Tools
 			Ability,
 			Unit,
 			UnitWeapon,
-			Item
+			Item,
+			Camera
 		}
 
 		public ArgType Type { get; }
@@ -77,6 +78,8 @@ namespace Tools
 		public static BlzFieldToolArgs ItemRealField { get; } = new BlzFieldToolArgs(ArgType.Item, "itemrealfield");
 		public static BlzFieldToolArgs ItemStringField { get; } = new BlzFieldToolArgs(ArgType.Item, "itemstringfield");
 
+		public static BlzFieldToolArgs CameraField { get; } = new BlzFieldToolArgs(ArgType.Camera, "camerafield");
+
 		public BlzFieldToolArgs(ArgType type, string value)
 		{
 			switch (type)
@@ -99,12 +102,25 @@ namespace Tools
 					ClassType = "item";
 					Identifier = "ITEM";
 					break;
+				case ArgType.Camera:
+					ClassType = "camerafield";
+					Identifier = "CAMERA";
+					ObjectType = "float";
+					break;
 			}
 
 			Type = type;
 			Field = value.ToLower();
-			Get = $"Get{value}";
-			Set = $"Set{value}";
+			if (type == ArgType.Camera)
+			{
+				Get = $"Get{value}";
+				Set = $"Set{value}";
+			}
+			else
+			{
+				Get = $"BlzGet{value}";
+				Set = $"BlzSet{value}";
+			}
 
 			if (value.Contains("boolean", StringComparison.InvariantCultureIgnoreCase))
 			{

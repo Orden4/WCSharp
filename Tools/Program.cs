@@ -1,4 +1,5 @@
 using System;
+using Tools.ApiChecking;
 
 namespace Tools
 {
@@ -6,16 +7,25 @@ namespace Tools
 	{
 		private static void Main(string[] args)
 		{
-			var command = Console.ReadLine();
-			Action action = command.ToLowerInvariant() switch
+			var action = default(Action);
+
+			if (action == null)
 			{
-				"ability-api" => RunAbilityApi,
-				"unit-api" => RunUnitApi,
-				"item-api" => RunItemApi,
-				"playerunitevents" => GeneratePlayerUnitEvents,
-				_ => throw new NotImplementedException(),
-			};
+				var command = Console.ReadLine();
+				action = command.ToLowerInvariant() switch
+				{
+					"ability-api" => RunAbilityApi,
+					"unit-api" => RunUnitApi,
+					"item-api" => RunItemApi,
+					"camera-api" => RunCameraApi,
+					"playerunitevents" => GeneratePlayerUnitEvents,
+					"api-check" => ApiCheck,
+					_ => throw new NotImplementedException(),
+				};
+			}
+
 			action?.Invoke();
+			Console.ReadLine();
 		}
 
 		private static void RunAbilityApi()
@@ -46,9 +56,23 @@ namespace Tools
 			);
 		}
 
+		private static void RunCameraApi()
+		{
+			BlzFieldTool.Run(
+				BlzFieldToolArgs.CameraField
+			);
+		}
+
 		private static void GeneratePlayerUnitEvents()
 		{
 			PlayerUnitEventGenerator.Run(@"Data\PlayerUnitEvents.json", "PlayerUnitEvents.txt");
+		}
+
+		private static void ApiCheck()
+		{
+			var jassTemplates = JassParser.ParseJassTemplates("data/common.j");
+			var apiChecker = new ApiChecker("../../../../WCSharp.Api", jassTemplates);
+			apiChecker.Run();
 		}
 	}
 }

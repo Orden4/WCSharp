@@ -7,15 +7,15 @@ using War3Net.IO.Slk;
 
 namespace Tools
 {
-	internal class BlzFieldTool
+	internal partial class BlzFieldTool
 	{
 		private readonly BlzFieldToolArgs args;
 		private readonly Regex nameRegex;
-		private static readonly Regex suffixRegex = new(@".*\('(.*)'\)$");
-		private static readonly Regex prefixRegex = new(@"");
+		private static readonly Regex suffixRegex = SuffixRegex();
+		private static readonly Regex prefixRegex = PrefixRegex();
 
-		private static readonly Regex codeRegex = new(@"^(\s*)\[(.{4})\](\s*)$");
-		private static readonly Regex codeNameRegex = new(@"^(\s*)Name(\s*)=(\s*)(.*?)(\s*)$");
+		private static readonly Regex codeRegex = CodeRegex();
+		private static readonly Regex codeNameRegex = CodeNameRegex();
 		private readonly Dictionary<string, string> codeToLocalizedName = new()
 		{
 			{ "Ansp", "Spy" }
@@ -150,7 +150,7 @@ namespace Tools
 				foreach (var row in table)
 				{
 					var rowId = row[0] as string;
-					if (string.Equals(code, rowId) && !string.Equals(code, row[1]))
+					if (string.Equals(code, rowId) && !Equals(code, row[1]))
 					{
 						this.codeToLocalizedName[code] = name = GetLocalizedName(row[1] as string);
 					}
@@ -273,5 +273,14 @@ namespace Tools
 			name = ConvertCamelCase(name);
 			return char.ToUpper(name[0]) + name.Substring(1);
 		}
+
+		[GeneratedRegex(@".*\('(.*)'\)$")]
+		private static partial Regex SuffixRegex();
+		[GeneratedRegex("")]
+		private static partial Regex PrefixRegex();
+		[GeneratedRegex(@"^(\s*)\[(.{4})\](\s*)$")]
+		private static partial Regex CodeRegex();
+		[GeneratedRegex(@"^(\s*)Name(\s*)=(\s*)(.*?)(\s*)$")]
+		private static partial Regex CodeNameRegex();
 	}
 }

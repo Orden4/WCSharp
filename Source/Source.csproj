@@ -11,6 +11,7 @@
 		<PackageReference Include="War3Api.Common" Version="1.33.0" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
 	  <ProjectReference Include="..\WCSharp.Buffs\WCSharp.Buffs.csproj" />
 	  <ProjectReference Include="..\WCSharp.DateTime\WCSharp.DateTime.csproj" />
 	  <ProjectReference Include="..\WCSharp.Dummies\WCSharp.Dummies.csproj" />
