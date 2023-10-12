@@ -3,7 +3,7 @@
 
 ## Util.PI Field
 
-A shortcut for [War3Api.Blizzard.bj_PI](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Blizzard.bj_PI 'War3Api.Blizzard.bj_PI').
+A shortcut for [WCSharp.Api.Blizzard.bj_PI](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.Blizzard.bj_PI 'WCSharp.Api.Blizzard.bj_PI').
 
 ```csharp
 public const float PI = 3.141593;

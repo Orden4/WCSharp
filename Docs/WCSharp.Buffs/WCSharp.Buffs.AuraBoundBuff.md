@@ -16,7 +16,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [AuraBoundBuff(unit, unit)](WCSharp.Buffs.AuraBoundBuff.AuraBoundBuff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.AuraBoundBuff.AuraBoundBuff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [AuraBoundBuff(unit, unit)](WCSharp.Buffs.AuraBoundBuff.AuraBoundBuff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.AuraBoundBuff.AuraBoundBuff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Methods | |
 | :--- | :--- |

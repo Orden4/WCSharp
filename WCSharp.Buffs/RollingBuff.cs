@@ -2,7 +2,8 @@
 using System.Linq;
 using WCSharp.Events;
 using WCSharp.Shared.Extensions;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
 {

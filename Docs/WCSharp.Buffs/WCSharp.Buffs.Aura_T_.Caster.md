@@ -6,10 +6,10 @@
 The caster.
 
 ```csharp
-public War3Api.Common.unit Caster { get; set; }
+public WCSharp.Api.unit Caster { get; set; }
 ```
 
 Implements [Caster](WCSharp.Buffs.IAura.Caster.md 'WCSharp.Buffs.IAura.Caster')
 
 #### Property Value
-[War3Api.Common.unit](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.unit 'War3Api.Common.unit')
+[WCSharp.Api.unit](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.unit 'WCSharp.Api.unit')

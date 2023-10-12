@@ -25,7 +25,7 @@ Implements [IAura](WCSharp.Buffs.IAura.md 'WCSharp.Buffs.IAura'), [IPeriodicDisp
 
 | Constructors | |
 | :--- | :--- |
-| [Aura(unit)](WCSharp.Buffs.Aura_T_.Aura(War3Api.Common.unit).md 'WCSharp.Buffs.Aura<T>.Aura(War3Api.Common.unit)') | Creates a new aura centered around the given caster. |
+| [Aura(unit)](WCSharp.Buffs.Aura_T_.Aura(WCSharp.Api.unit).md 'WCSharp.Buffs.Aura<T>.Aura(WCSharp.Api.unit)') | Creates a new aura centered around the given caster. |
 
 | Properties | |
 | :--- | :--- |

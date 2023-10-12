@@ -16,8 +16,8 @@ Implements [IPeriodicAction](../WCSharp.Events/WCSharp.Events.IPeriodicAction.md
 
 | Constructors | |
 | :--- | :--- |
-| [Knockback(unit, float, float, float)](WCSharp.Knockbacks.Knockback.Knockback(War3Api.Common.unit,float,float,float).md 'WCSharp.Knockbacks.Knockback.Knockback(War3Api.Common.unit, float, float, float)') | Knocks the target the given distance towards the given angle (in degrees) over the given duration. |
-| [Knockback(unit, float, float, float, float)](WCSharp.Knockbacks.Knockback.Knockback(War3Api.Common.unit,float,float,float,float).md 'WCSharp.Knockbacks.Knockback.Knockback(War3Api.Common.unit, float, float, float, float)') | Knocks the target the given distance towards the given location over the given duration. |
+| [Knockback(unit, float, float, float)](WCSharp.Knockbacks.Knockback.Knockback(WCSharp.Api.unit,float,float,float).md 'WCSharp.Knockbacks.Knockback.Knockback(WCSharp.Api.unit, float, float, float)') | Knocks the target the given distance towards the given angle (in degrees) over the given duration. |
+| [Knockback(unit, float, float, float, float)](WCSharp.Knockbacks.Knockback.Knockback(WCSharp.Api.unit,float,float,float,float).md 'WCSharp.Knockbacks.Knockback.Knockback(WCSharp.Api.unit, float, float, float, float)') | Knocks the target the given distance towards the given location over the given duration. |
 
 | Fields | |
 | :--- | :--- |

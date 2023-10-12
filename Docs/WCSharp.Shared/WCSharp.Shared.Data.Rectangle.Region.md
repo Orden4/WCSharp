@@ -6,8 +6,8 @@
 The Warcraft III region. Generated on demand.
 
 ```csharp
-public War3Api.Common.region Region { get; }
+public WCSharp.Api.region Region { get; }
 ```
 
 #### Property Value
-[War3Api.Common.region](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.region 'War3Api.Common.region')
+[WCSharp.Api.region](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.region 'WCSharp.Api.region')

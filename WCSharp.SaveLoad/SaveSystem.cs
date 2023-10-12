@@ -4,7 +4,8 @@ using System.Text;
 using WCSharp.Json;
 using WCSharp.Shared;
 using WCSharp.Sync;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace WCSharp.SaveLoad
 {

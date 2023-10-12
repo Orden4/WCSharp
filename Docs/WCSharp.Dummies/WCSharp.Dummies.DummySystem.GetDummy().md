@@ -6,8 +6,8 @@
 Requests an available dummy.
 
 ```csharp
-public static War3Api.Common.unit GetDummy();
+public static WCSharp.Api.unit GetDummy();
 ```
 
 #### Returns
-[War3Api.Common.unit](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.unit 'War3Api.Common.unit')
+[WCSharp.Api.unit](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.unit 'WCSharp.Api.unit')

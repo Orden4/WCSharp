@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace WCSharp.Shared
 {
@@ -29,7 +30,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public const float RAD2DEG = 180.0f / PI;
 		/// <summary>
-		/// A shortcut for <see cref="War3Api.Blizzard.bj_PI"/>.
+		/// A shortcut for <see cref="Blizzard.bj_PI"/>.
 		/// </summary>
 		public const float PI = 3.14159274f;
 

@@ -18,7 +18,7 @@ Derived
 
 | Constructors | |
 | :--- | :--- |
-| [BoundBuff(unit, unit)](WCSharp.Buffs.BoundBuff.BoundBuff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.BoundBuff.BoundBuff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [BoundBuff(unit, unit)](WCSharp.Buffs.BoundBuff.BoundBuff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.BoundBuff.BoundBuff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Properties | |
 | :--- | :--- |
@@ -31,7 +31,7 @@ Derived
 | [Action()](WCSharp.Buffs.BoundBuff.Action().md 'WCSharp.Buffs.BoundBuff.Action()') | Called by the system. Do not call yourself. |
 | [Apply()](WCSharp.Buffs.BoundBuff.Apply().md 'WCSharp.Buffs.BoundBuff.Apply()') | Called by the system. Do not call yourself. |
 | [Bind(int, int, int)](WCSharp.Buffs.BoundBuff.Bind(int,int,int).md 'WCSharp.Buffs.BoundBuff.Bind(int, int, int)') | Will add the given aura to the unit if necessary and set its level accordingly. The aura will automatically be hidden from the command UI<br/>and removed when the buff is removed. |
-| [Bind(int, int, int, int, player)](WCSharp.Buffs.BoundBuff.Bind(int,int,int,int,War3Api.Common.player).md 'WCSharp.Buffs.BoundBuff.Bind(int, int, int, int, War3Api.Common.player)') | Will use the [DummySystem](../WCSharp.Dummies/WCSharp.Dummies.DummySystem.md 'WCSharp.Dummies.DummySystem') to cast the given buffing ability on the target and then track it to synchronise removal. |
+| [Bind(int, int, int, int, player)](WCSharp.Buffs.BoundBuff.Bind(int,int,int,int,WCSharp.Api.player).md 'WCSharp.Buffs.BoundBuff.Bind(int, int, int, int, WCSharp.Api.player)') | Will use the [DummySystem](../WCSharp.Dummies/WCSharp.Dummies.DummySystem.md 'WCSharp.Dummies.DummySystem') to cast the given buffing ability on the target and then track it to synchronise removal. |
 | [Dispose()](WCSharp.Buffs.BoundBuff.Dispose().md 'WCSharp.Buffs.BoundBuff.Dispose()') | Automatically called after [Active](WCSharp.Buffs.Buff.Active.md 'WCSharp.Buffs.Buff.Active') is set to false.<br/><br/><br/>Automatically called by the system. Do not call yourself. |
 | [OnStack(Buff)](WCSharp.Buffs.BoundBuff.OnStack(WCSharp.Buffs.Buff).md 'WCSharp.Buffs.BoundBuff.OnStack(WCSharp.Buffs.Buff)') | Executes whenever this buff receives a new stack via [Add(Buff, StackBehaviour)](WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff,WCSharp.Buffs.StackBehaviour).md 'WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff, WCSharp.Buffs.StackBehaviour)').<br/><br/><br/>By default, BoundBuff will return [Consume](WCSharp.Buffs.StackResult.md#WCSharp.Buffs.StackResult.Consume 'WCSharp.Buffs.StackResult.Consume'). |
 | [OnTick()](WCSharp.Buffs.BoundBuff.OnTick().md 'WCSharp.Buffs.BoundBuff.OnTick()') | Executes every [Interval](WCSharp.Buffs.BoundBuff.Interval.md 'WCSharp.Buffs.BoundBuff.Interval'). |

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using WCSharp.Shared;
 using WCSharp.Sync;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace WCSharp.DateTime
 {

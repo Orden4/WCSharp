@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using WCSharp.Json;
 using WCSharp.Shared;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace WCSharp.Sync
 {

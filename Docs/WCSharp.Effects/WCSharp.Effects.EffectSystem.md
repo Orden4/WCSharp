@@ -15,4 +15,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Add(effect, float)](WCSharp.Effects.EffectSystem.Add(War3Api.Common.effect,float).md 'WCSharp.Effects.EffectSystem.Add(War3Api.Common.effect, float)') | Adds an effect for removal after the given duration. |
+| [Add(effect, float)](WCSharp.Effects.EffectSystem.Add(WCSharp.Api.effect,float).md 'WCSharp.Effects.EffectSystem.Add(WCSharp.Api.effect, float)') | Adds an effect for removal after the given duration. |

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.SaveLoad;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace Source
 {

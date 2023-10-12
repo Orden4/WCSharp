@@ -6,8 +6,8 @@
 The attack type to use when dealing damage via the built-in [DamagePerInterval](WCSharp.Buffs.AutoBuff.DamagePerInterval.md 'WCSharp.Buffs.AutoBuff.DamagePerInterval') property.
 
 ```csharp
-public War3Api.Common.attacktype AttackType { get; set; }
+public WCSharp.Api.attacktype AttackType { get; set; }
 ```
 
 #### Property Value
-[War3Api.Common.attacktype](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.attacktype 'War3Api.Common.attacktype')
+[WCSharp.Api.attacktype](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.attacktype 'WCSharp.Api.attacktype')

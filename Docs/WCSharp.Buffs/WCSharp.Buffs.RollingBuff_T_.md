@@ -21,7 +21,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [RollingBuff(unit, unit)](WCSharp.Buffs.RollingBuff_T_.RollingBuff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.RollingBuff<T>.RollingBuff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [RollingBuff(unit, unit)](WCSharp.Buffs.RollingBuff_T_.RollingBuff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.RollingBuff<T>.RollingBuff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Properties | |
 | :--- | :--- |

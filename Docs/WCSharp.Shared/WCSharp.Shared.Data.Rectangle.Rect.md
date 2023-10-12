@@ -6,8 +6,8 @@
 The Warcraft III rect. Generated on demand.
 
 ```csharp
-public War3Api.Common.rect Rect { get; }
+public WCSharp.Api.rect Rect { get; }
 ```
 
 #### Property Value
-[War3Api.Common.rect](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.rect 'War3Api.Common.rect')
+[WCSharp.Api.rect](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.rect 'WCSharp.Api.rect')

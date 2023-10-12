@@ -3,7 +3,7 @@
 
 ## Util.DEG2RAD Field
 
-A shortcut for [War3Api.Common.Deg2Rad(System.Single)](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.Deg2Rad#War3Api_Common_Deg2Rad_System_Single_ 'War3Api.Common.Deg2Rad(System.Single)').
+A shortcut for [WCSharp.Api.Common.Deg2Rad(System.Single)](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.Common.Deg2Rad#WCSharp_Api_Common_Deg2Rad_System_Single_ 'WCSharp.Api.Common.Deg2Rad(System.Single)').
 
 ```csharp
 public const float DEG2RAD = 0.01745329;

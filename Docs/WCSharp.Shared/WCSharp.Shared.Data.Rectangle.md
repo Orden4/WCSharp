@@ -19,7 +19,7 @@ Implements [System.IDisposable](https://docs.microsoft.com/en-us/dotnet/api/Syst
 | :--- | :--- |
 | [Rectangle(float, float, float, float)](WCSharp.Shared.Data.Rectangle.Rectangle(float,float,float,float).md 'WCSharp.Shared.Data.Rectangle.Rectangle(float, float, float, float)') | Creates a new rectangle with the given set of coordinates. |
 | [Rectangle(IEnumerable&lt;Point&gt;)](WCSharp.Shared.Data.Rectangle.Rectangle(System.Collections.Generic.IEnumerable_WCSharp.Shared.Data.Point_).md 'WCSharp.Shared.Data.Rectangle.Rectangle(System.Collections.Generic.IEnumerable<WCSharp.Shared.Data.Point>)') | Creates a Rectangle that encompasses all of the given points within its surface area. |
-| [Rectangle(rect)](WCSharp.Shared.Data.Rectangle.Rectangle(War3Api.Common.rect).md 'WCSharp.Shared.Data.Rectangle.Rectangle(War3Api.Common.rect)') | Creates a new rectangle using the given Warcraft III rect as a base. |
+| [Rectangle(rect)](WCSharp.Shared.Data.Rectangle.Rectangle(WCSharp.Api.rect).md 'WCSharp.Shared.Data.Rectangle.Rectangle(WCSharp.Api.rect)') | Creates a new rectangle using the given Warcraft III rect as a base. |
 
 | Properties | |
 | :--- | :--- |

@@ -1,7 +1,8 @@
 ﻿using System;
 using WCSharp.Events;
 using WCSharp.Sync;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace Source
 {

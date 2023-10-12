@@ -1,3 +1,5 @@
+robocopy "WCSharp.CSharpLua.CoreSystem" "NuGet/WCSharp.CSharpLua.CoreSystem" *.lua /s /mir /xd "bin" "obj"
+robocopy "WCSharp.Api" "NuGet/WCSharp.Api" *.cs /s /mir /xd "bin" "obj"
 robocopy "WCSharp.Buffs" "NuGet/WCSharp.Buffs" *.cs /s /mir /xd "bin" "obj"
 robocopy "WCSharp.ConstantGenerator" "NuGet/WCSharp.ConstantGenerator" *.cs /s /mir /xd "bin" "obj"
 robocopy "WCSharp.ConstantGenerator" "NuGet/WCSharp.ConstantGenerator" *.csv /s /mir /xd "bin" "obj"

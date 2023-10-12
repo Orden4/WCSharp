@@ -1,5 +1,6 @@
 ﻿using System;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 using static WCSharp.W3MMD.W3Mmd;
 
 namespace WCSharp.W3MMD

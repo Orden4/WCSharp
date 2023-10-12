@@ -14,7 +14,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [TickingBuff(unit, unit)](WCSharp.Buffs.TickingBuff.TickingBuff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.TickingBuff.TickingBuff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [TickingBuff(unit, unit)](WCSharp.Buffs.TickingBuff.TickingBuff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.TickingBuff.TickingBuff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Properties | |
 | :--- | :--- |

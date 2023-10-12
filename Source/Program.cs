@@ -1,11 +1,10 @@
 ﻿using System;
-using Source.Buffs;
+using System.Collections.Generic;
 using Source.Missiles;
 using WCSharp.Buffs;
 using WCSharp.SaveLoad;
-using WCSharp.Shared.Data;
-using WCSharp.Shared.Extensions;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace Source
 {
@@ -67,53 +66,69 @@ namespace Source
 				////TriggerAddCondition(trigger, Filter(DealDamage));
 				//TriggerAddAction(trigger, Action);
 
-				//var list = new List<int>
-				//{
-				//	5
-				//};
-				//var a = Os.Clock();
-				//for (var i = 0; i < 10000000; i++)
-				//{
-				//	var b = list[0];
-				//	var c = list[0];
-				//}
-				//Console.WriteLine(Os.Clock() - a);
-				//a = Os.Clock();
-				//for (var i = 0; i < 10000000; i++)
-				//{
-				//	var x = list[0];
-				//	var b = x;
-				//	var c = x;
-				//}
-				//Console.WriteLine(Os.Clock() - a);
-				//a = Os.Clock();
-				//for (var i = 0; i < 10000000; i++)
-				//{
-				//}
-				//Console.WriteLine(Os.Clock() - a);
 
-				var group = CreateGroup();
-				GroupEnumUnitsInRange(group, 0, 0, 10000, null);
-				foreach (var a in group.ToList())
+				var force = CreateForce();
+				var players = new List<player>();
+				for (var i = 0; i < 10; i++)
 				{
-					if (GetUnitTypeId(a) == FourCC("hctw") || GetUnitTypeId(a) == FourCC("hbar"))
-					{
-						var x = GetUnitX(a);
-						var y = GetUnitY(a);
-						Console.WriteLine($"{GetUnitName(a)}: ({x}, {y})");
-					}
+					players.Add(Player(i));
+					ForceAddPlayer(force, Player(i));
 				}
 
-				var g = CreateGroup();
-				GroupEnumUnitsInRect(g, Rectangle.WorldBounds.Rect, null);
-				foreach (var unit in g.ToList())
+				var p1 = Player(0);
+				var a = Os.Clock();
+				for (var i = 0; i < 10000000; i++)
 				{
-					if (GetUnitTypeId(unit) == FourCC("hfoo"))
+					if (BlzForceHasPlayer(force, p1))
 					{
-						var aura = new AuraTest(unit);
-						AuraSystem.Add(aura);
+
 					}
 				}
+				Console.WriteLine(Os.Clock() - a);
+				a = Os.Clock();
+				for (var i = 0; i < 10000000; i++)
+				{
+					if (IsPlayerInForce(p1, force))
+					{
+
+					}
+				}
+				Console.WriteLine(Os.Clock() - a);
+				a = Os.Clock();
+				for (var i = 0; i < 10000000; i++)
+				{
+				}
+				Console.WriteLine(Os.Clock() - a);
+
+				//var group = CreateGroup();
+				//GroupEnumUnitsInRange(group, 0, 0, 10000, null);
+				//foreach (var a in group.ToList())
+				//{
+				//	if (GetUnitTypeId(a) == FourCC("hctw") || GetUnitTypeId(a) == FourCC("hbar"))
+				//	{
+				//		var x = GetUnitX(a);
+				//		var y = GetUnitY(a);
+				//		Console.WriteLine($"{GetUnitName(a)}: ({x}, {y})");
+				//	}
+				//}
+
+				//var g = CreateGroup();
+				//GroupEnumUnitsInRect(g, Rectangle.WorldBounds.Rect, null);
+				//foreach (var unit in g.ToList())
+				//{
+				//	if (GetUnitTypeId(unit) == FourCC("hfoo"))
+				//	{
+				//		var aura = new AuraTest(unit);
+				//		AuraSystem.Add(aura);
+				//	}
+				//}
+
+				var x = default(WCSharp.Api.boolexpr);
+				var y = default(WCSharp.Api.conditionfunc);
+				var z = default(WCSharp.Api.filterfunc);
+				x.Dispose();
+				y.Dispose();
+				z.Dispose();
 
 				SaveManager.Initialize();
 
@@ -128,6 +143,11 @@ namespace Source
 			{
 				DisplayTextToPlayer(GetLocalPlayer(), 0, 0, ex.Message);
 			}
+		}
+
+		private static (object a, object b, object c) SomeMethod()
+		{
+			throw new NotImplementedException();
 		}
 
 		private class Test : Saveable { }

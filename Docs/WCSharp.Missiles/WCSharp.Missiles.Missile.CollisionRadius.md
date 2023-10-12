@@ -3,7 +3,7 @@
 
 ## Missile.CollisionRadius Property
 
-The collision radius of the missile which is used to trigger [OnCollision(unit)](WCSharp.Missiles.Missile.OnCollision(War3Api.Common.unit).md 'WCSharp.Missiles.Missile.OnCollision(War3Api.Common.unit)').  
+The collision radius of the missile which is used to trigger [OnCollision(unit)](WCSharp.Missiles.Missile.OnCollision(WCSharp.Api.unit).md 'WCSharp.Missiles.Missile.OnCollision(WCSharp.Api.unit)').  
   
 Leave at default (0) to disable. Will ignore values below 0.
 

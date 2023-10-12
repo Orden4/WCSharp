@@ -7,13 +7,23 @@
 		{
 		}
 
+		/// @CSharpLua.Get = "BlzGetEventAttackType()"
+		/// @CSharpLua.Set = "BlzSetEventAttackType({0})"
+		public static extern attacktype AttackType { get; set; }
+		/// @CSharpLua.Get = "GetEventDamage()"
+		/// @CSharpLua.Set = "BlzSetEventDamage({0})"
+		public static extern float Damage { get; set; }
+		/// @CSharpLua.Get = "BlzGetEventDamageType()"
+		/// @CSharpLua.Set = "BlzSetEventDamageType({0})"
+		public static extern damagetype DamageType { get; set; }
+		/// @CSharpLua.Get = "BlzGetEventWeaponType()"
+		/// @CSharpLua.Set = "BlzSetEventWeaponType({0})"
+		public static extern weapontype WeaponType { get; set; }
+
 		/// @CSharpLua.Get = "BlzGetAbsorbingItem()"
 		public static extern item AbsorbingItem { get; }
 		/// @CSharpLua.Get = "GetAttacker()"
 		public static extern unit Attacker { get; }
-		/// @CSharpLua.Get = "BlzGetEventAttackType()"
-		/// @CSharpLua.Set = "BlzSetEventAttackType({0})"
-		public static extern attacktype AttackType { get; set; }
 		/// @CSharpLua.Get = "GetBuyingUnit()"
 		public static extern unit BuyingUnit { get; }
 		/// @CSharpLua.Get = "GetCancelledStructure()"
@@ -30,16 +40,10 @@
 		public static extern unit ConstructedStructure { get; }
 		/// @CSharpLua.Get = "GetConstructingStructure()"
 		public static extern unit ConstructingStructure { get; }
-		/// @CSharpLua.Get = "GetEventDamage()"
-		/// @CSharpLua.Set = "BlzSetEventDamage({0})"
-		public static extern float Damage { get; set; }
 		/// @CSharpLua.Get = "GetEventDamageSource()"
 		public static extern unit DamageSource { get; }
 		/// @CSharpLua.Get = "BlzGetEventDamageTarget()"
 		public static extern unit DamageTarget { get; }
-		/// @CSharpLua.Get = "BlzGetEventDamageType()"
-		/// @CSharpLua.Set = "BlzSetEventDamageType({0})"
-		public static extern damagetype DamageType { get; set; }
 		/// @CSharpLua.Get = "GetDecayingUnit()"
 		public static extern unit DecayingUnit { get; }
 		/// @CSharpLua.Get = "GetTriggerDestructable()"
@@ -200,9 +204,6 @@
 		public static extern unit Unit { get; }
 		/// @CSharpLua.Get = "GetEventUnitState()"
 		public static extern unitstate UnitState { get; }
-		/// @CSharpLua.Get = "BlzGetEventWeaponType()"
-		/// @CSharpLua.Set = "BlzSetEventWeaponType({0})"
-		public static extern weapontype WeaponType { get; set; }
 		/// @CSharpLua.Get = "GetTriggerWidget()"
 		public static extern widget Widget { get; }
 		/// @CSharpLua.Get = "GetWinningPlayer()"

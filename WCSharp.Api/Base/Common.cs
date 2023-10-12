@@ -2,7 +2,7 @@
 {
 #pragma warning disable IDE1006 // Naming Styles
 	/// @CSharpLua.Ignore
-	public static class Common
+	public static partial class Common
 	{
 		/// @CSharpLua.Template = "ConvertRace({0})"
 		public static extern race ConvertRace(int i);

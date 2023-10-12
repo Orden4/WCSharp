@@ -13,7 +13,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [PassiveBuff(unit, unit)](WCSharp.Buffs.PassiveBuff.PassiveBuff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.PassiveBuff.PassiveBuff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [PassiveBuff(unit, unit)](WCSharp.Buffs.PassiveBuff.PassiveBuff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.PassiveBuff.PassiveBuff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Methods | |
 | :--- | :--- |

@@ -15,7 +15,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [AutoBuff(unit, unit)](WCSharp.Buffs.AutoBuff.AutoBuff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.AutoBuff.AutoBuff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [AutoBuff(unit, unit)](WCSharp.Buffs.AutoBuff.AutoBuff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.AutoBuff.AutoBuff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Properties | |
 | :--- | :--- |

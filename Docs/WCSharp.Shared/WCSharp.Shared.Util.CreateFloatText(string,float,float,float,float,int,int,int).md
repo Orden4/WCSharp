@@ -10,7 +10,7 @@ Size is expected to be GUI-like values (it gets multiplied by [TEXT_SIZE_MULTIPL
 By default, the text will start to fade after 2 seconds, and be fully removed after 4 seconds.
 
 ```csharp
-public static War3Api.Common.texttag CreateFloatText(string text, float size, float x, float y, float height, int red, int green, int blue);
+public static WCSharp.Api.texttag CreateFloatText(string text, float size, float x, float y, float height, int red, int green, int blue);
 ```
 #### Parameters
 
@@ -63,4 +63,4 @@ The green value of the text. Should be in the range of 0 (none) to 255 (pure gre
 The blue value of the text. Should be in the range of 0 (none) to 255 (pure blue).
 
 #### Returns
-[War3Api.Common.texttag](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.texttag 'War3Api.Common.texttag')
+[WCSharp.Api.texttag](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.texttag 'WCSharp.Api.texttag')

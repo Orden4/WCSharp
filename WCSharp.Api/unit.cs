@@ -184,6 +184,10 @@ namespace WCSharp.Api
 		public extern race Race { get; }
 		/// @CSharpLua.Get = "BlzGetUnitOrderCount({this})"
 		public extern int OrderCount { get; }
+		/// @CSharpLua.Get = "UnitAlive({this})"
+		public extern bool Alive { get; }
+		/// @CSharpLua.Get = "UnitInvis({this})"
+		public extern bool IsInvisible { get; }
 
 		/// @CSharpLua.Template = "SetUnitColor({this}, {0})"
 		public extern void SetColor(playercolor color);

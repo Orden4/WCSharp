@@ -1,6 +1,7 @@
 ﻿using WCSharp.Buffs;
 using static Constants;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace Source.Buffs
 {

@@ -22,7 +22,7 @@ Derived
 
 | Constructors | |
 | :--- | :--- |
-| [Buff(unit, unit)](WCSharp.Buffs.Buff.Buff(War3Api.Common.unit,War3Api.Common.unit).md 'WCSharp.Buffs.Buff.Buff(War3Api.Common.unit, War3Api.Common.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
+| [Buff(unit, unit)](WCSharp.Buffs.Buff.Buff(WCSharp.Api.unit,WCSharp.Api.unit).md 'WCSharp.Buffs.Buff.Buff(WCSharp.Api.unit, WCSharp.Api.unit)') | Will set Caster, CastingPlayer, Target and TargetPlayer accordingly. |
 
 | Properties | |
 | :--- | :--- |
@@ -47,7 +47,7 @@ Derived
 | [Dispose()](WCSharp.Buffs.Buff.Dispose().md 'WCSharp.Buffs.Buff.Dispose()') | Automatically called after [Active](WCSharp.Buffs.Buff.Active.md 'WCSharp.Buffs.Buff.Active') is set to false.<br/><br/><br/>Automatically called by the system. Do not call yourself. |
 | [OnApply()](WCSharp.Buffs.Buff.OnApply().md 'WCSharp.Buffs.Buff.OnApply()') | Executes immediately upon application of the buff. |
 | [OnDeath(bool)](WCSharp.Buffs.Buff.OnDeath(bool).md 'WCSharp.Buffs.Buff.OnDeath(bool)') | Executes immediately after [Target](WCSharp.Buffs.Buff.Target.md 'WCSharp.Buffs.Buff.Target') dies.<br/><br/><br/>Note: [killingBlow](WCSharp.Buffs.Buff.OnDeath(bool).md#WCSharp.Buffs.Buff.OnDeath(bool).killingBlow 'WCSharp.Buffs.Buff.OnDeath(bool).killingBlow') will be true if the unit dies while the buffs actions are being evaluated.<br/>            It may not be directly responsible for the death due to asynchronous events. |
-| [OnDispel(unit, int)](WCSharp.Buffs.Buff.OnDispel(War3Api.Common.unit,int).md 'WCSharp.Buffs.Buff.OnDispel(War3Api.Common.unit, int)') | Executes when an attempt is made to dispel the target. Return the number of dispel charges consmed.<br/><br/><br/>If after this method is called the Stacks is at 0, the buff is automatically disposed. |
+| [OnDispel(unit, int)](WCSharp.Buffs.Buff.OnDispel(WCSharp.Api.unit,int).md 'WCSharp.Buffs.Buff.OnDispel(WCSharp.Api.unit, int)') | Executes when an attempt is made to dispel the target. Return the number of dispel charges consmed.<br/><br/><br/>If after this method is called the Stacks is at 0, the buff is automatically disposed. |
 | [OnDispose()](WCSharp.Buffs.Buff.OnDispose().md 'WCSharp.Buffs.Buff.OnDispose()') | Executes when the buff is removed for any reason whatsoever. |
 | [OnExpire()](WCSharp.Buffs.Buff.OnExpire().md 'WCSharp.Buffs.Buff.OnExpire()') | Executes when the buff expires by reaching the end of its duration. Does not trigger when the buff is removed via a dispel or target dies. |
 | [OnStack(Buff)](WCSharp.Buffs.Buff.OnStack(WCSharp.Buffs.Buff).md 'WCSharp.Buffs.Buff.OnStack(WCSharp.Buffs.Buff)') | Executes whenever this buff receives a new stack via [Add(Buff, StackBehaviour)](WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff,WCSharp.Buffs.StackBehaviour).md 'WCSharp.Buffs.BuffSystem.Add(WCSharp.Buffs.Buff, WCSharp.Buffs.StackBehaviour)').<br/><br/><br/>By default, the stacks of [newStack](WCSharp.Buffs.Buff.OnStack(WCSharp.Buffs.Buff).md#WCSharp.Buffs.Buff.OnStack(WCSharp.Buffs.Buff).newStack 'WCSharp.Buffs.Buff.OnStack(WCSharp.Buffs.Buff).newStack') are added to this buff and [Stack](WCSharp.Buffs.StackResult.md#WCSharp.Buffs.StackResult.Stack 'WCSharp.Buffs.StackResult.Stack') is returned. |

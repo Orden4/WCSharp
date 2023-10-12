@@ -10,7 +10,7 @@ Size is expected to be GUI-like values (it gets multiplied by [TEXT_SIZE_MULTIPL
 By default, the text will start to fade after 2 seconds, and be fully removed after 4 seconds.
 
 ```csharp
-public static War3Api.Common.texttag CreateDamageText(float damage, bool isHeal, bool isCritical, float size, float x, float y, float height);
+public static WCSharp.Api.texttag CreateDamageText(float damage, bool isHeal, bool isCritical, float size, float x, float y, float height);
 ```
 #### Parameters
 
@@ -57,4 +57,4 @@ The y position that the text should be created at.
 The height that the text should be created at, relative to the target (x, y) position.
 
 #### Returns
-[War3Api.Common.texttag](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.texttag 'War3Api.Common.texttag')
+[WCSharp.Api.texttag](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.texttag 'WCSharp.Api.texttag')

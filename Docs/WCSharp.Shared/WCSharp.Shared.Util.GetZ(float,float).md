@@ -5,7 +5,7 @@
 
 Retrieves the LocationZ at the given (X, Y) coordinates.  
   
-Re-uses an internal location to provide a faster and easier solution to [War3Api.Common.GetLocationZ(War3Api.Common.location)](https://docs.microsoft.com/en-us/dotnet/api/War3Api.Common.GetLocationZ#War3Api_Common_GetLocationZ_War3Api_Common_location_ 'War3Api.Common.GetLocationZ(War3Api.Common.location)').
+Re-uses an internal location to provide a faster and easier solution to [WCSharp.Api.Common.GetLocationZ(WCSharp.Api.location)](https://docs.microsoft.com/en-us/dotnet/api/WCSharp.Api.Common.GetLocationZ#WCSharp_Api_Common_GetLocationZ_WCSharp_Api_location_ 'WCSharp.Api.Common.GetLocationZ(WCSharp.Api.location)').
 
 ```csharp
 public static float GetZ(float x, float y);

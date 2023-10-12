@@ -12,6 +12,8 @@ namespace NuGetPusher
 	{
 		private static List<string> Projects { get; } = new List<string>
 		{
+			"Api",
+			"CSharpLua.CoreSystem",
 			"ConstantGenerator",
 			"Shared",
 			"W3MMD",

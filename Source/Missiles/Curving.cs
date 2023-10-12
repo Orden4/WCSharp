@@ -1,7 +1,8 @@
 ﻿using WCSharp.Events;
 using WCSharp.Missiles;
 using WCSharp.Shared;
-using static War3Api.Common;
+using WCSharp.Api;
+using static WCSharp.Api.Common;
 
 namespace Source.Missiles
 {

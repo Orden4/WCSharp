@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Defines all built-in ItemEvents supported by <see cref="PlayerUnitEvents"/>.
 	/// <para>All of these events fire based on an item filter.</para>
-	/// <para>Custom events can also be specified via <see cref="PlayerUnitEvents.AddCustomEvent(string, System.Func{int}, War3Api.Common.playerunitevent)"/>.</para>
+	/// <para>Custom events can also be specified via <see cref="PlayerUnitEvents.AddCustomEvent(string, System.Func{int}, WCSharp.Api.playerunitevent)"/>.</para>
 	/// </summary>
 	public enum ItemEvent
 	{

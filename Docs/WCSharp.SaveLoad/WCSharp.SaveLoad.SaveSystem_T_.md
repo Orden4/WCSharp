@@ -29,7 +29,7 @@ Implements [System.IDisposable](https://docs.microsoft.com/en-us/dotnet/api/Syst
 | Methods | |
 | :--- | :--- |
 | [Dispose()](WCSharp.SaveLoad.SaveSystem_T_.Dispose().md 'WCSharp.SaveLoad.SaveSystem<T>.Dispose()') | Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. |
-| [Load(player, int)](WCSharp.SaveLoad.SaveSystem_T_.Load(War3Api.Common.player,int).md 'WCSharp.SaveLoad.SaveSystem<T>.Load(War3Api.Common.player, int)') | Loads a save for the given player on the given save slot.<br/><br/><br/>If no save exists on the given slot, or if loading failed for any reason, a new, empty save will be returned.<br/><br/>Use [OnSaveLoaded](WCSharp.SaveLoad.SaveSystem_T_.OnSaveLoaded.md 'WCSharp.SaveLoad.SaveSystem<T>.OnSaveLoaded') to receive the save. |
+| [Load(player, int)](WCSharp.SaveLoad.SaveSystem_T_.Load(WCSharp.Api.player,int).md 'WCSharp.SaveLoad.SaveSystem<T>.Load(WCSharp.Api.player, int)') | Loads a save for the given player on the given save slot.<br/><br/><br/>If no save exists on the given slot, or if loading failed for any reason, a new, empty save will be returned.<br/><br/>Use [OnSaveLoaded](WCSharp.SaveLoad.SaveSystem_T_.OnSaveLoaded.md 'WCSharp.SaveLoad.SaveSystem<T>.OnSaveLoaded') to receive the save. |
 | [Save(T)](WCSharp.SaveLoad.SaveSystem_T_.Save(T).md 'WCSharp.SaveLoad.SaveSystem<T>.Save(T)') | Writes the given saveable to file for the player who owns the save. |
 
 | Events | |
