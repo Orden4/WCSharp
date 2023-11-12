@@ -1,8 +1,8 @@
 ﻿using System;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Missiles
@@ -71,7 +71,10 @@ namespace WCSharp.Missiles
 			set
 			{
 				this.speed = value;
-				this.orbitalVelocity = 2 * value / this.range;
+				if (this.range != 0)
+				{
+					this.orbitalVelocity = 2 * value / this.range;
+				}
 			}
 		}
 		/// <summary>
@@ -85,7 +88,10 @@ namespace WCSharp.Missiles
 			set
 			{
 				this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
-				this.orbitalVelocity = PeriodicEvents.SYSTEM_INTERVAL * 2 * value / this.range;
+				if (this.range != 0)
+				{
+					this.orbitalVelocity = PeriodicEvents.SYSTEM_INTERVAL * 2 * value / this.range;
+				}
 			}
 		}
 		private float range;
@@ -101,7 +107,7 @@ namespace WCSharp.Missiles
 			{
 				if (this.speed != 0 && value != 0)
 				{
-					this.orbitalVelocity = PeriodicEvents.SYSTEM_INTERVAL * 2 * this.speed / value;
+					this.orbitalVelocity = 2 * this.speed / value;
 				}
 
 				this.range = value;
@@ -117,7 +123,7 @@ namespace WCSharp.Missiles
 			get => this.orbitalVelocity;
 			set
 			{
-				SpeedPerTick = 0;
+				this.speed = 0;
 				this.orbitalVelocity = value;
 			}
 		}
@@ -131,7 +137,7 @@ namespace WCSharp.Missiles
 			get => this.orbitalVelocity == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / this.orbitalVelocity;
 			set
 			{
-				SpeedPerTick = 0;
+				this.speed = 0;
 				this.orbitalVelocity = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
 			}
 		}

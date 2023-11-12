@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared.Extensions;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -142,6 +142,12 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public void Action()
 		{
+			if (!UnitAlive(Caster))
+			{
+				Active = false;
+				return;
+			}
+
 			if (SearchIntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				SearchIntervalLeft = SearchInterval;

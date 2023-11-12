@@ -44,6 +44,8 @@ namespace WCSharp.Api
 		public extern void SetPosition(float x, float y, float z);
 		/// @CSharpLua.Template = "BlzSetSpecialEffectHeight({this}, {0})"
 		public extern void SetHeight(float height);
+		/// @CSharpLua.Template = "BlzSetSpecialEffectMatrixScale({this}, {0}, {1}, {2})"
+		public extern void SetMatrixScale(float x, float y, float z = 1.0f);
 		/// @CSharpLua.Template = "BlzSetSpecialEffectTimeScale({this}, {0})"
 		public extern void SetTimeScale(float timeScale);
 		/// @CSharpLua.Template = "BlzSetSpecialEffectTime({this}, {0})"
@@ -62,6 +64,7 @@ namespace WCSharp.Api
 		public extern void SetY(float y);
 		/// @CSharpLua.Template = "BlzSetSpecialEffectZ({this}, {0})"
 		public extern void SetZ(float z);
+
 		/// @CSharpLua.Template = "BlzSpecialEffectClearSubAnimations({this})"
 		public extern void ClearSubAnimations();
 		/// @CSharpLua.Template = "BlzSpecialEffectRemoveSubAnimation({this}, {0})"

@@ -15,7 +15,7 @@ namespace WCSharp.Api
 		public static extern minimapicon Create(float x, float y, int red, int green, int blue, string pingPath, fogstate fogVisibility);
 
 		/// @CSharpLua.Template = "SetMinimapIconVisible({this}, {0})"
-		public extern void SetVisible(bool visibile);
+		public extern void SetVisible(bool visible);
 
 		/// @CSharpLua.Template = "SetMinimapIconOrphanDestroy({this}, {0})"
 		public extern void SetOrphanDestroy(bool doDestroy);

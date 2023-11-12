@@ -21,7 +21,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzFrameIsVisible({this})"
 		/// @CSharpLua.Set = "BlzFrameSetVisible({this}, {0})"
-		public extern bool Visibile { get; set; }
+		public extern bool Visible { get; set; }
 
 		/// @CSharpLua.Get = "BlzFrameGetText({this})"
 		/// @CSharpLua.Set = "BlzFrameSetText({this}, {0})"

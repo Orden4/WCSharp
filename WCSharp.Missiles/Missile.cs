@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Extensions;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Missiles

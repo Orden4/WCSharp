@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using WCSharp.Events.EventHandlers.PlayerUnitEventHandlers;
 using WCSharp.Api;
+using WCSharp.Events.EventHandlers.PlayerUnitEventHandlers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events
@@ -638,10 +638,7 @@ namespace WCSharp.Events
 		{
 			if (customPlayerUnitEventHandlers.TryGetValue(@event, out var customHandler))
 			{
-				if (customHandler == null)
-				{
-					customHandler = CreateCustomHandler(@event);
-				}
+				customHandler ??= CreateCustomHandler(@event);
 
 				return customHandler;
 			}

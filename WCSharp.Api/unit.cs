@@ -134,6 +134,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "UnitCanSleepPerm({this})"
 		/// @CSharpLua.Set = "UnitAddSleepPerm({this}, {0})"
 		public extern bool CanSleepPerm { get; set; }
+		/// @CSharpLua.Get = "BlzGetHeroStat({this}, BlzGetHeroPrimaryStat({this}))"
+		/// @CSharpLua.Set = "BlzSetHeroPrimaryStat({this}, {0})"
+		public extern int PrimaryAttribute { get; set; }
 
 		/// @CSharpLua.Get = "GetUnitRallyPoint({this})"
 		public extern location RallyPoint { get; }
@@ -188,6 +191,13 @@ namespace WCSharp.Api
 		public extern bool Alive { get; }
 		/// @CSharpLua.Get = "UnitInvis({this})"
 		public extern bool IsInvisible { get; }
+		/// @CSharpLua.Get = "BlzGetHeroPrimaryStat({this})"
+		public extern int PrimaryAttributeType { get; }
+
+		/// @CSharpLua.Template = "BlzGetHeroStat({this}, {0})"
+		public extern int GetAttribute(int heroAttributeId);
+		/// @CSharpLua.Template = "BlzSetHeroStatEx({this}, {0}, {1})"
+		public extern void SetAttribute(int heroAttributeId, int value);
 
 		/// @CSharpLua.Template = "SetUnitColor({this}, {0})"
 		public extern void SetColor(playercolor color);
@@ -296,23 +306,6 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "UnitItemInSlot({this}, {0})"
 		public extern item ItemAtOrDefault(int itemSlot);
 
-		/// @CSharpLua.Template = "BlzGetUnitBaseDamage({this}, {0})"
-		public extern int GetBaseDamage(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitBaseDamage({this}, {0}, {1})"
-		public extern void SetBaseDamage(int baseDamage, int weaponIndex);
-		/// @CSharpLua.Template = "BlzGetUnitDiceNumber({this}, {0})"
-		public extern int GetDiceNumber(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitDiceNumber({this}, {0}, {1})"
-		public extern void SetDiceNumber(int diceNumber, int weaponIndex);
-		/// @CSharpLua.Template = "BlzGetUnitDiceSides({this}, {0})"
-		public extern int GetDiceSides(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitDiceSides({this}, {0}, {1})"
-		public extern void SetDiceSides(int diceSides, int weaponIndex);
-		/// @CSharpLua.Template = "BlzGetUnitAttackCooldown({this}, {0})"
-		public extern float GetAttackCooldown(int weaponIndex);
-		/// @CSharpLua.Template = "BlzSetUnitAttackCooldown({this}, {0}, {1})"
-		public extern void SetAttackCooldown(float attackCooldown, int weaponIndex);
-
 		/// @CSharpLua.Template = "UnitModifySkillPoints({this}, {0})"
 		public extern bool AddSkillPoints(int skillPoints);
 		/// @CSharpLua.Template = "UnitStripHeroLevel({this}, {0})"
@@ -327,6 +320,10 @@ namespace WCSharp.Api
 		public extern bool AddAbility(int abilityId);
 		/// @CSharpLua.Template = "UnitRemoveAbility({this}, {0})"
 		public extern bool RemoveAbility(int abilityId);
+		/// @CSharpLua.Template = "BlzGetUnitAbility({this}, {0})"
+		public extern ability GetAbility(int abilityId);
+		/// @CSharpLua.Template = "BlzGetUnitAbilityByIndex({this}, {0})"
+		public extern ability GetAbilityByIndex(int index);
 		/// @CSharpLua.Template = "GetUnitAbilityLevel({this}, {0})"
 		public extern int GetAbilityLevel(int abilityId);
 		/// @CSharpLua.Template = "SetUnitAbilityLevel({this}, {0}, {1})"
@@ -355,6 +352,8 @@ namespace WCSharp.Api
 		public extern void SetAbilityManaCost(int abilityId, int level, int manaCost);
 		/// @CSharpLua.Template = "UnitMakeAbilityPermanent({this}, {1}, {0})"
 		public extern bool SetAbilityPermanent(int abilityId, bool permanent);
+		/// @CSharpLua.Template = "BlzDeleteHeroAbility({this}, {0})"
+		public extern bool DeleteHeroAbility(int abilityId);
 
 		/// @CSharpLua.Template = "UnitRemoveBuffs({this}, {0}, {1})"
 		public extern void RemoveBuffs(bool positive, bool negative);
@@ -545,7 +544,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_DEFENSE_TYPE, {0})"
 		public extern int DefenseType { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_ARMOR_TYPE)"
+		/// @CSharpLua.Get = "BlzGetUnitArmorType({this})"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_ARMOR_TYPE, {0})"
 		public extern int ArmorType { get; set; }
 
@@ -609,8 +608,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_TINTING_COLOR_ALPHA, {0})"
 		public extern int TintingColorAlpha { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_MOVE_TYPE)"
-		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_MOVE_TYPE, {0})"
+		/// @CSharpLua.Get = "BlzGetUnitMovementType({this})"
+		/// @CSharpLua.Set = "BlzSetUnitMovementType({this}, {0})"
 		public extern int MoveType { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_TARGETED_AS)"
@@ -629,9 +628,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_PLACEMENT_PREVENTED_BY, {0})"
 		public extern int PlacementPreventedBy { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_PRIMARY_ATTRIBUTE)"
-		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_PRIMARY_ATTRIBUTE, {0})"
-		public extern int PrimaryAttribute { get; set; }
+		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_MANA_REGENERATION)"
+		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_MANA_REGENERATION, {0})"
+		public extern float ManaRegeneration { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_STRENGTH_PER_LEVEL)"
 		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_STRENGTH_PER_LEVEL, {0})"
@@ -743,9 +742,25 @@ namespace WCSharp.Api
 		#endregion
 
 		#region Weapon 1 field editing
+		/// @CSharpLua.Get = "BlzGetUnitBaseDamage({this}, 0)"
+		/// @CSharpLua.Set = "BlzSetUnitBaseDamage({this}, {0}, 0)"
+		public extern int AttackBaseDamage1 { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitDiceNumber({this}, 0)"
+		/// @CSharpLua.Set = "BlzSetUnitDiceNumber({this}, {0}, 0)"
+		public extern int AttackDiceNumber1 { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitDiceSides({this}, 0)"
+		/// @CSharpLua.Set = "BlzSetUnitDiceSides({this}, {0}, 0)"
+		public extern int AttackDiceSides1 { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitAttackCooldown({this}, 0)"
+		/// @CSharpLua.Set = "BlzSetUnitAttackCooldown({this}, {0}, 0)"
+		public extern float AttackCooldown1 { get; set; }
+
 		/// @CSharpLua.Get = "BlzGetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 0, {0})"
-		public extern bool AttacksEnabled1 { get; set; }
+		public extern bool AttackEnabled1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0)"
 		public extern int AttackMaximumNumberOfTargets1 { get; }
@@ -817,9 +832,25 @@ namespace WCSharp.Api
 		#endregion
 
 		#region Weapon 2 field editing
+		/// @CSharpLua.Get = "BlzGetUnitBaseDamage({this}, 1)"
+		/// @CSharpLua.Set = "BlzSetUnitBaseDamage({this}, {0}, 1)"
+		public extern int AttackBaseDamage2 { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitDiceNumber({this}, 1)"
+		/// @CSharpLua.Set = "BlzSetUnitDiceNumber({this}, {0}, 1)"
+		public extern int AttackDiceNumber2 { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitDiceSides({this}, 1)"
+		/// @CSharpLua.Set = "BlzSetUnitDiceSides({this}, {0}, 1)"
+		public extern int AttackDiceSides2 { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitAttackCooldown({this}, 1)"
+		/// @CSharpLua.Set = "BlzSetUnitAttackCooldown({this}, {0}, 1)"
+		public extern float AttackCooldown2 { get; set; }
+
 		/// @CSharpLua.Get = "BlzGetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponBooleanField({this}, UNIT_WEAPON_BF_ATTACKS_ENABLED, 1, {0})"
-		public extern bool AttacksEnabled2 { get; set; }
+		public extern bool AttackEnabled2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 1)"
 		public extern int AttackMaximumNumberOfTargets2 { get; }
