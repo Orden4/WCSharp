@@ -4,7 +4,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 {
 	internal interface IPlayerUnitEventHandler
 	{
-		void Register(Action action, Func<int> filterFunc, int filterId);
-		void Unregister(Action action, Func<int> filterFunc, int filterId);
+		void Register<T>(Action action, int filterId, Func<T> filterFunc, T filterValue);
+		void Unregister<T>(Action action, int filterId, Func<T> filterFunc, T filterValue);
 	}
 }

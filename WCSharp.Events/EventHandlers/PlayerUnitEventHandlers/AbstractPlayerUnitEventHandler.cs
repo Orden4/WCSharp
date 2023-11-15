@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Api;
+using WCSharp.Shared;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
@@ -39,12 +40,12 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			DisableTrigger(this.trigger);
 		}
 
-		public void Register(Action action, Func<int> filterFunc, int filterId)
+		public void Register<T>(Action action, int filterId, Func<T> filterFunc, T filterValue)
 		{
 			var searchIndex = -1;
 			for (var i = 0; i < this.eventSets.Count; i++)
 			{
-				if (this.eventSets[i].FilterFunc == filterFunc)
+				if (this.eventSets[i].FilterId == filterId)
 				{
 					searchIndex = i;
 					break;
@@ -54,7 +55,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			IEventSet eventSet;
 			if (searchIndex == -1)
 			{
-				eventSet = filterFunc == null ? new EventSet() : new EventSetWithFilter(filterFunc);
+				eventSet = filterFunc == null ? new EventSet() : new EventSetWithFilter<T>(filterId, filterFunc);
 				this.eventSets.Add(eventSet);
 
 				if (this.eventSets.Count == 1)
@@ -67,15 +68,15 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				eventSet = this.eventSets[searchIndex];
 			}
 
-			eventSet.Add(action, filterId);
+			eventSet.Add(action, new TypeWrapper<T>(filterValue));
 		}
 
-		public void Unregister(Action action, Func<int> filterFunc, int filterId)
+		public void Unregister<T>(Action action, int filterId, Func<T> filterFunc, T filterValue)
 		{
 			var searchIndex = -1;
 			for (var i = 0; i < this.eventSets.Count; i++)
 			{
-				if (this.eventSets[i].FilterFunc == filterFunc)
+				if (this.eventSets[i].FilterId == filterId)
 				{
 					searchIndex = i;
 					break;
@@ -86,7 +87,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				return;
 
 			var eventSet = this.eventSets[searchIndex];
-			if (eventSet.Remove(action, filterId) && eventSet.Count == 0)
+			if (eventSet.Remove(action, new TypeWrapper<T>(filterValue)) && eventSet.Count == 0)
 			{
 				if (searchIndex < this.size)
 				{

@@ -1,54 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
+using WCSharp.Shared;
 
 namespace WCSharp.Events.EventHandlers
 {
-	internal class EventSetWithFilter : IEventSet
+	internal class EventSetWithFilter<T> : IEventSet
 	{
-		public Func<int> FilterFunc { get; init; }
+		public int FilterId { get; }
 		public int Count => this.actionsByFilterId.Count;
 
-		private readonly Dictionary<int, Action> actionsByFilterId;
-		private readonly Dictionary<int, EventSet> eventSetsByFilterId;
+		private readonly Func<T> filterFunc;
+		private readonly Dictionary<T, Action> actionsByFilterId;
+		private readonly Dictionary<T, EventSet> eventSetsByFilterId;
 
-		public EventSetWithFilter(Func<int> filterFunc)
+		public EventSetWithFilter(int filterId, Func<T> filterFunc)
 		{
-			FilterFunc = filterFunc ?? throw new ArgumentNullException(nameof(filterFunc));
-			this.actionsByFilterId = new Dictionary<int, Action>();
-			this.eventSetsByFilterId = new Dictionary<int, EventSet>();
+			FilterId = filterId;
+			this.filterFunc = filterFunc ?? throw new ArgumentNullException(nameof(filterFunc));
+			this.actionsByFilterId = new();
+			this.eventSetsByFilterId = new();
 		}
 
-		public void Add(Action action, int filterId)
+		public void Add(Action action, object filterObj)
 		{
-			if (this.eventSetsByFilterId.TryGetValue(filterId, out var eventSet))
+			if (filterObj is not TypeWrapper<T> filterWrapper)
+				throw new ArgumentException($"Unable to cast event filter to required type {typeof(T)}", nameof(filterObj));
+			var filterValue = filterWrapper.Value;
+
+			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
 			{
-				eventSet.Add(action, filterId);
+				eventSet.Add(action, filterValue);
 			}
-			else if (this.actionsByFilterId.TryGetValue(filterId, out var existingAction))
+			else if (this.actionsByFilterId.TryGetValue(filterValue, out var existingAction))
 			{
-				this.actionsByFilterId.Remove(filterId);
+				this.actionsByFilterId.Remove(filterValue);
 				eventSet = new EventSet();
-				eventSet.Add(existingAction, filterId);
-				eventSet.Add(action, filterId);
-				this.actionsByFilterId.Add(filterId, eventSet.Run);
-				this.eventSetsByFilterId.Add(filterId, eventSet);
+				eventSet.Add(existingAction, filterValue);
+				eventSet.Add(action, filterValue);
+				this.actionsByFilterId.Add(filterValue, eventSet.Run);
+				this.eventSetsByFilterId.Add(filterValue, eventSet);
 			}
 			else
 			{
-				this.actionsByFilterId.Add(filterId, action);
+				this.actionsByFilterId.Add(filterValue, action);
 			}
 		}
 
-		public bool Remove(Action action, int filterId)
+		public bool Remove(Action action, object filterObj)
 		{
-			if (this.eventSetsByFilterId.TryGetValue(filterId, out var eventSet))
+			if (filterObj is not TypeWrapper<T> filterWrapper)
+				throw new ArgumentException($"Unable to cast event filter to required type {typeof(T)}", nameof(filterObj));
+			var filterValue = filterWrapper.Value;
+
+			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
 			{
-				if (eventSet.Remove(action, filterId))
+				if (eventSet.Remove(action, filterValue))
 				{
 					if (eventSet.Count == 0)
 					{
-						this.actionsByFilterId.Remove(filterId);
-						this.eventSetsByFilterId.Remove(filterId);
+						this.actionsByFilterId.Remove(filterValue);
+						this.eventSetsByFilterId.Remove(filterValue);
 					}
 
 					return true;
@@ -58,13 +69,13 @@ namespace WCSharp.Events.EventHandlers
 			}
 			else
 			{
-				return this.actionsByFilterId.Remove(filterId);
+				return this.actionsByFilterId.Remove(filterValue);
 			}
 		}
 
 		public void Run()
 		{
-			if (this.actionsByFilterId.TryGetValue(FilterFunc(), out var action))
+			if (this.actionsByFilterId.TryGetValue(this.filterFunc(), out var action))
 			{
 				action.Invoke();
 			}

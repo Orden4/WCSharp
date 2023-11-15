@@ -5,7 +5,7 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Events.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.0-rc1</Version>
+    <Version>3.0.0-rc3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
@@ -19,7 +19,7 @@ The Events package provides various systems for organising events with a focus o
 
   <ItemGroup>
     <PackageReference Include="WCSharp.Api" Version="0.0.1" />
-    <PackageReference Include="WCSharp.Shared" Version="3.0.0-rc1" />
+    <PackageReference Include="WCSharp.Shared" Version="3.0.0-rc2" />
   </ItemGroup>
 
   <ItemGroup>

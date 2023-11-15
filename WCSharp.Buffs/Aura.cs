@@ -154,8 +154,7 @@ namespace WCSharp.Buffs
 				GroupEnumUnitsInRange(group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
 				foreach (var unit in group.ToList())
 				{
-					var handleId = GetHandleId(unit);
-					var existingBuff = this.activeBuffs.FirstOrDefault(x => x.HandleId == handleId);
+					var existingBuff = this.activeBuffs.FirstOrDefault(x => x.Unit == unit);
 					if (existingBuff != null)
 					{
 						existingBuff.Duration = Duration;
@@ -165,7 +164,7 @@ namespace WCSharp.Buffs
 					{
 						var aura = (T)BuffSystem.Add(CreateAuraBuff(unit), StackBehaviour);
 						aura.Duration = Duration;
-						this.activeBuffs.Add(new AuraBuffDuration<T>(handleId, aura, Duration));
+						this.activeBuffs.Add(new AuraBuffDuration<T>(unit, aura, Duration));
 					}
 				}
 			}

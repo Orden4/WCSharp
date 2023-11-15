@@ -5,7 +5,7 @@ namespace WCSharp.Events.EventHandlers
 {
 	internal class EventSet : IEventSet
 	{
-		public Func<int> FilterFunc { get; init; }
+		public int FilterId => -1;
 		public int Count => this.size;
 
 		protected readonly List<Action> actions;
@@ -17,12 +17,12 @@ namespace WCSharp.Events.EventHandlers
 			this.actions = new List<Action>();
 		}
 
-		public void Add(Action action, int filterId)
+		public void Add(Action action, object filterObj)
 		{
 			this.actions.Add(action);
 		}
 
-		public bool Remove(Action action, int filterId)
+		public bool Remove(Action action, object filterObj)
 		{
 			var indexToRemove = this.actions.IndexOf(action);
 			if (indexToRemove == -1)

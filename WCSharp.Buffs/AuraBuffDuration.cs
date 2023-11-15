@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Buffs
+﻿using WCSharp.Api;
+
+namespace WCSharp.Buffs
 {
 	/// <summary>
 	/// Helper class to track the duration of a buff specific to an aura applying it. Used to handle the case of multiple auras applying the same buff to a single unit.
@@ -10,7 +12,7 @@
 		/// <summary>
 		/// The handle id of the unit affected by the aura.
 		/// </summary>
-		public int HandleId { get; }
+		public unit Unit { get; }
 		/// <summary>
 		/// The actual buff being applied.
 		/// </summary>
@@ -21,9 +23,9 @@
 		/// </summary>
 		public float Duration { get; internal set; }
 
-		public AuraBuffDuration(int handleId, T buff, float duration)
+		public AuraBuffDuration(unit unit, T buff, float duration)
 		{
-			HandleId = handleId;
+			Unit = unit;
 			Buff = buff;
 			Duration = duration;
 		}
