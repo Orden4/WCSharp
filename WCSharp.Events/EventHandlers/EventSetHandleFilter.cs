@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using WCSharp.Api;
 using WCSharp.Shared;
 
 namespace WCSharp.Events.EventHandlers
 {
-	internal class EventSetWithFilter<T> : IEventSet
+	internal class EventSetHandleFilter : IEventSet
 	{
 		public int FilterId { get; }
 		public int Count => this.actionsByFilterId.Count;
 
-		private readonly Func<T> filterFunc;
-		private readonly Dictionary<T, Action> actionsByFilterId;
-		private readonly Dictionary<T, EventSet> eventSetsByFilterId;
+		private readonly Func<handle> filterFunc;
+		private readonly Dictionary<handle, Action> actionsByFilterId;
+		private readonly Dictionary<handle, EventSet> eventSetsByFilterId;
 
-		public EventSetWithFilter(int filterId, Func<T> filterFunc)
+		public EventSetHandleFilter(int filterId, Func<handle> filterFunc)
 		{
 			FilterId = filterId;
 			this.filterFunc = filterFunc ?? throw new ArgumentNullException(nameof(filterFunc));
@@ -23,8 +24,8 @@ namespace WCSharp.Events.EventHandlers
 
 		public void Add(Action action, object filterObj)
 		{
-			if (filterObj is not TypeWrapper<T> filterWrapper)
-				throw new ArgumentException($"Unable to cast event filter to required type {typeof(T)}", nameof(filterObj));
+			if (filterObj is not TypeWrapper<handle> filterWrapper)
+				throw new ArgumentException($"Unable to cast event filter to required type {typeof(handle)}", nameof(filterObj));
 			var filterValue = filterWrapper.Value;
 
 			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
@@ -48,8 +49,8 @@ namespace WCSharp.Events.EventHandlers
 
 		public bool Remove(Action action, object filterObj)
 		{
-			if (filterObj is not TypeWrapper<T> filterWrapper)
-				throw new ArgumentException($"Unable to cast event filter to required type {typeof(T)}", nameof(filterObj));
+			if (filterObj is not TypeWrapper<handle> filterWrapper)
+				throw new ArgumentException($"Unable to cast event filter to required type {typeof(handle)}", nameof(filterObj));
 			var filterValue = filterWrapper.Value;
 
 			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
@@ -75,7 +76,8 @@ namespace WCSharp.Events.EventHandlers
 
 		public void Run()
 		{
-			if (this.actionsByFilterId.TryGetValue(this.filterFunc(), out var action))
+			var filterValue = this.filterFunc();
+			if (filterValue != null && this.actionsByFilterId.TryGetValue(filterValue, out var action))
 			{
 				action.Invoke();
 			}

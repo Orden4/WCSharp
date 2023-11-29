@@ -37,20 +37,20 @@ namespace WCSharp.Missiles
 		/// <inheritdoc/>
 		public sealed override float CasterZ
 		{
-			get => Mode == FlightMode.FollowTerrain ? InternalCasterZ + Util.GetZ(CasterX, CasterY) : InternalCasterZ;
-			set => InternalCasterZ = Mode == FlightMode.FollowTerrain ? value - Util.GetZ(CasterX, CasterY) : value;
+			get => this.mode == FlightMode.FollowTerrain ? InternalCasterZ + Util.GetZ(CasterX, CasterY) : InternalCasterZ;
+			set => InternalCasterZ = this.mode == FlightMode.FollowTerrain ? value - Util.GetZ(CasterX, CasterY) : value;
 		}
 		/// <inheritdoc/>
 		public sealed override float TargetZ
 		{
-			get => Mode == FlightMode.FollowTerrain ? InternalTargetZ + Util.GetZ(TargetX, TargetY) : InternalTargetZ;
-			set => InternalTargetZ = Mode == FlightMode.FollowTerrain ? value - Util.GetZ(TargetX, TargetY) : value;
+			get => this.mode == FlightMode.FollowTerrain ? InternalTargetZ + Util.GetZ(TargetX, TargetY) : InternalTargetZ;
+			set => InternalTargetZ = this.mode == FlightMode.FollowTerrain ? value - Util.GetZ(TargetX, TargetY) : value;
 		}
 		/// <inheritdoc/>
 		public sealed override float MissileZ
 		{
-			get => Mode == FlightMode.FollowTerrain ? InternalMissileZ + Util.GetZ(MissileX, MissileY) : InternalMissileZ;
-			set => InternalMissileZ = Mode == FlightMode.FollowTerrain ? value - Util.GetZ(MissileX, MissileY) : value;
+			get => this.mode == FlightMode.FollowTerrain ? InternalMissileZ + Util.GetZ(MissileX, MissileY) : InternalMissileZ;
+			set => InternalMissileZ = this.mode == FlightMode.FollowTerrain ? value - Util.GetZ(MissileX, MissileY) : value;
 		}
 		private float speed;
 		/// <inheritdoc/>

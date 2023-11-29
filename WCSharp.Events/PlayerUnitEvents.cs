@@ -160,20 +160,17 @@ namespace WCSharp.Events
 			}
 		}
 
-		private static void Register(int @event, Action action, int? filterId = null)
+		private static void Register(int @event, Action action)
 		{
-			Func<int> filterFunc = default;
-			if (filterId.HasValue)
-			{
-				filterFunc = filterFuncIdsByEvent[@event];
-			}
-			else
-			{
-				filterId = 0; // Need to be assigned here because CSharpLua can't handle the decompiled filterId ?? 0 statement
-			}
-
 			var handler = GetOrCreateHandler(@event);
-			handler?.Register(action, @event, filterFunc, filterId.Value);
+			handler?.Register(action, @event);
+		}
+
+		private static void Register(int @event, Action action, int filterId)
+		{
+			var filterFunc = filterFuncIdsByEvent[@event];
+			var handler = GetOrCreateHandler(@event);
+			handler?.Register(action, @event, filterFunc, filterId);
 		}
 
 		private static void Register(int @event, Action action, handle handle)
@@ -314,20 +311,17 @@ namespace WCSharp.Events
 			}
 		}
 
-		private static void Unregister(int @event, Action action, int? filterId = null)
+		private static void Unregister(int @event, Action action)
 		{
-			Func<int> filterFunc = default;
-			if (filterId.HasValue)
-			{
-				filterFunc = filterFuncIdsByEvent[@event];
-			}
-			else
-			{
-				filterId = 0; // Need to be assigned here because CSharpLua can't handle the decompiled filterId ?? 0 statement
-			}
-
 			var handler = GetOrCreateHandler(@event);
-			handler?.Unregister(action, @event, filterFunc, filterId.Value);
+			handler?.Unregister(action, @event);
+		}
+
+		private static void Unregister(int @event, Action action, int filterId)
+		{
+			var filterFunc = filterFuncIdsByEvent[@event];
+			var handler = GetOrCreateHandler(@event);
+			handler?.Unregister(action, @event, filterFunc, filterId);
 		}
 
 		private static void Unregister(int @event, Action action, handle handle)

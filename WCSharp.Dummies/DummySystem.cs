@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using WCSharp.Events;
 using WCSharp.Api;
+using WCSharp.Events;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Dummies
@@ -35,26 +35,26 @@ namespace WCSharp.Dummies
 
 		private static bool Countdown()
 		{
-			var i = 0;
-			var size = dummiesBeingRecycled.Count;
-			while (i < size)
+			var endIndex = dummiesBeingRecycled.Count - 1;
+			for (var i = endIndex; i >= 0; i--)
 			{
 				var dummy = dummiesBeingRecycled[i];
 				if (dummy.TicksLeft <= 0)
 				{
+					SetUnitX(dummy.Dummy, 0);
+					SetUnitY(dummy.Dummy, 0);
 					dummiesReady.Add(dummy.Dummy);
-					size--;
-					dummiesBeingRecycled[i] = dummiesBeingRecycled[size];
-					dummiesBeingRecycled.RemoveAt(size);
+					dummiesBeingRecycled[i] = dummiesBeingRecycled[endIndex];
+					dummiesBeingRecycled.RemoveAt(endIndex);
+					endIndex--;
 				}
 				else
 				{
-					i++;
 					dummy.TicksLeft--;
 				}
 			}
 
-			return size > 0;
+			return endIndex >= 0;
 		}
 
 		/// <summary>
