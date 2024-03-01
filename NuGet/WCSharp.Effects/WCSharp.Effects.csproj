@@ -5,7 +5,7 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Effects.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.0-rc1</Version>
+    <Version>3.0.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
@@ -18,8 +18,8 @@ This package simply allows you to destroy Warcraft III special effects on a dela
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WCSharp.Api" Version="0.0.1" />
-    <PackageReference Include="WCSharp.Events" Version="3.0.0-rc1" />
+    <PackageReference Include="WCSharp.Api" Version="3.0.0" />
+    <PackageReference Include="WCSharp.Events" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

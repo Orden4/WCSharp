@@ -1,7 +1,8 @@
 ﻿using System;
-using WCSharp.Events;
-using WCSharp.Sync;
 using WCSharp.Api;
+using WCSharp.Events;
+using WCSharp.Shared;
+using WCSharp.Sync;
 using static WCSharp.Api.Common;
 
 namespace Source
@@ -34,7 +35,19 @@ namespace Source
 				PeriodicEvents.EnableDebug();
 				PlayerUnitEvents.EnableDebug();
 				SyncSystem.EnableDebug();
+				Delay.EnableDebug();
 #endif
+
+				// Both styles compile to the same output
+				// WCSharp style, left footman
+				var u = unit.Create(player.Create(0), FourCC("hfoo"), -200, 0);
+				u.MaxMana = 250;
+				u.MaxLife += 700;
+
+				// War3Api style, right footman
+				u = CreateUnit(Player(0), FourCC("hfoo"), 200, 0, 270);
+				BlzSetUnitMaxMana(u, 250);
+				BlzSetUnitMaxHP(u, BlzGetUnitMaxHP(u) + 700);
 
 				Console.WriteLine("Hello, Azeroth.");
 			}

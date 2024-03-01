@@ -1,4 +1,6 @@
 ﻿using System;
+using WCSharp.Api.Enums;
+
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
@@ -775,7 +777,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 0, {0})"
-		public extern int AttackTargetsAllowed1 { get; set; }
+		public extern TargetsAllowed AttackTargetsAllowed1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 0, {0})"
@@ -822,8 +824,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 0, {0})"
 		public extern float AttackAreaOfEffectSmallDamage1 { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1)"
-		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1, {0} - GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1))"
+		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0)"
+		/// @CSharpLua.Set = "call BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1, {0} - BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0) + BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1))"
 		public extern float AttackRange1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 0)"
@@ -865,7 +867,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 1, {0})"
-		public extern int AttackTargetsAllowed2 { get; set; }
+		public extern TargetsAllowed AttackTargetsAllowed2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 1, {0})"
@@ -912,9 +914,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 1, {0})"
 		public extern float AttackAreaOfEffectSmallDamage2 { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 2)"
-		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 2, {0} - GetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 2))"
-		public extern float AttackRange2 { get; set; }
+		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0)"
+		public extern float AttackRange2 { get; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 1, {0})"

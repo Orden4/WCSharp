@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using WCSharp.Shared;
 
 namespace WCSharp.Events.EventHandlers
 {
@@ -47,9 +46,8 @@ namespace WCSharp.Events.EventHandlers
 
 		public bool Remove(Action action, object filterObj)
 		{
-			if (filterObj is not TypeWrapper<int> filterWrapper)
+			if (filterObj is not int filterValue)
 				throw new ArgumentException($"Unable to cast event filter to required type {typeof(int)}", nameof(filterObj));
-			var filterValue = filterWrapper.Value;
 
 			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
 			{

@@ -77,7 +77,10 @@ namespace WCSharp.Events.EventHandlers
 		public void Run()
 		{
 			var filterValue = this.filterFunc();
-			if (filterValue != null && this.actionsByFilterId.TryGetValue(filterValue, out var action))
+			if (filterValue == null)
+				return;
+
+			if (this.actionsByFilterId.TryGetValue(filterValue, out var action))
 			{
 				action.Invoke();
 			}

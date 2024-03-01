@@ -16,3 +16,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 | Methods | |
 | :--- | :--- |
 | [Add(Action)](WCSharp.Shared.Delay.Add(System.Action).md 'WCSharp.Shared.Delay.Add(System.Action)') | <br/><br/>Will execute the given action after a 0 second delay, which translates to a single frame.<br/><br/>This can be used to circumvent various issues, such as unit AI locking up if you give them a new order at the same time as they start an attack. |
+| [EnableDebug()](WCSharp.Shared.Delay.EnableDebug().md 'WCSharp.Shared.Delay.EnableDebug()') | Call this method to automatically wrap your actions in a try/catch, so that exceptions that lead back to [Delay](WCSharp.Shared.Delay.md 'WCSharp.Shared.Delay') will automatically output information.<br/><br/><br/>It is recommended to use compilation time conditions to not call this on release mode. |

@@ -62,6 +62,8 @@
 		/// @CSharpLua.Get = "GetPlayerHandicapDamage({this})"
 		/// @CSharpLua.Set = "SetPlayerHandicapDamage({this}, {0})"
 		public extern float HandicapDamage { get; set; }
+		/// @CSharpLua.Get = "({this} == GetLocalPlayer())"
+		public extern bool IsLocal { get; }
 
 		/// @CSharpLua.Get = "PlayerGetLeaderboard({this})"
 		/// @CSharpLua.Set = "PlayerSetLeaderboard({this}, {0})"
