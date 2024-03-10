@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared.Extensions;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -65,6 +65,7 @@ namespace WCSharp.Buffs
 				}
 			}
 
+			Disposed = false;
 			IsMainStack = true;
 			this.buffs.Add((T)this);
 			OnApply();
@@ -103,8 +104,8 @@ namespace WCSharp.Buffs
 
 			if (this.buffs.Count == 0)
 			{
-				OnExpire();
 				Active = false;
+				OnExpire();
 			}
 			else
 			{

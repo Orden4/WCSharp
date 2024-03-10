@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Api;
 using WCSharp.Dummies;
 using WCSharp.Events;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -71,8 +71,8 @@ namespace WCSharp.Buffs
 				var buff = buffs[index];
 				if (buff.Active && buff.Target == unit)
 				{
-					buff.OnDeath(true);
 					buff.Active = false;
+					buff.OnDeath(true);
 				}
 			}
 
@@ -83,8 +83,8 @@ namespace WCSharp.Buffs
 					var buff = buffsOnUnit[i];
 					if (buff.Active)
 					{
-						buff.OnDeath(false);
 						buff.Active = false;
+						buff.OnDeath(false);
 					}
 				}
 			}

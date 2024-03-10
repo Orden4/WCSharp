@@ -5,7 +5,7 @@ namespace WCSharp.Events.EventHandlers
 {
 	internal class EventSet : IEventSet
 	{
-		public int FilterId => -1;
+		public int FilterId => int.MinValue;
 		public int Count => this.actions.Count;
 
 		protected readonly List<Action> actions;

@@ -1,6 +1,6 @@
-﻿using WCSharp.Events;
+﻿using WCSharp.Api;
+using WCSharp.Events;
 using WCSharp.Shared.Extensions;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -50,6 +50,7 @@ namespace WCSharp.Buffs
 				}
 			}
 
+			Disposed = false;
 			IntervalLeft = Interval;
 			OnApply();
 		}
@@ -84,8 +85,8 @@ namespace WCSharp.Buffs
 
 			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
-				OnExpire();
 				Active = false;
+				OnExpire();
 			}
 			else
 			{

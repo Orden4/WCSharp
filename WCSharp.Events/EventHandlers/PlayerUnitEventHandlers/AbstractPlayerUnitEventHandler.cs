@@ -54,9 +54,9 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			return false;
 		}
 
-		public void Register(Action action, int filterId)
+		public void Register(Action action)
 		{
-			if (!TryGetEventSet(filterId, out var eventSet))
+			if (!TryGetEventSet(int.MinValue, out var eventSet))
 			{
 				eventSet = AddEventSet(new EventSet());
 			}
@@ -84,9 +84,9 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			eventSet.Add(action, new TypeWrapper<handle>(filterValue));
 		}
 
-		public void Unregister(Action action, int filterId)
+		public void Unregister(Action action)
 		{
-			if (!TryGetEventSet(filterId, out var eventSet))
+			if (!TryGetEventSet(int.MinValue, out var eventSet))
 				return;
 
 			if (eventSet.Remove(action, null) && eventSet.Count == 0)

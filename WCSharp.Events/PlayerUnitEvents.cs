@@ -163,7 +163,7 @@ namespace WCSharp.Events
 		private static void Register(int @event, Action action)
 		{
 			var handler = GetOrCreateHandler(@event);
-			handler?.Register(action, @event);
+			handler?.Register(action);
 		}
 
 		private static void Register(int @event, Action action, int filterId)
@@ -314,7 +314,7 @@ namespace WCSharp.Events
 		private static void Unregister(int @event, Action action)
 		{
 			var handler = GetOrCreateHandler(@event);
-			handler?.Unregister(action, @event);
+			handler?.Unregister(action);
 		}
 
 		private static void Unregister(int @event, Action action, int filterId)
