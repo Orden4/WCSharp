@@ -29,7 +29,7 @@ Implements [IAura](WCSharp.Buffs.IAura.md 'WCSharp.Buffs.IAura'), [IPeriodicDisp
 
 | Properties | |
 | :--- | :--- |
-| [Active](WCSharp.Buffs.Aura_T_.Active.md 'WCSharp.Buffs.Aura<T>.Active') | Indicates the active state of this IPeriodicAction. Set this to false to disable and dispose this instance. |
+| [Active](WCSharp.Buffs.Aura_T_.Active.md 'WCSharp.Buffs.Aura<T>.Active') | Indicates the active state of this [IPeriodicDisposableAction](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp.Events.IPeriodicDisposableAction'). Set this to false to disable and dispose this instance. |
 | [Caster](WCSharp.Buffs.Aura_T_.Caster.md 'WCSharp.Buffs.Aura<T>.Caster') | The caster. |
 | [CastingPlayer](WCSharp.Buffs.Aura_T_.CastingPlayer.md 'WCSharp.Buffs.Aura<T>.CastingPlayer') | The owner of the caster. Automatically set on application.<br/><br/><br/>Does NOT update automatically! If this is desired, you can use [RegisterForOwnershipChanges()](WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges().md 'WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges()'). |
 | [Duration](WCSharp.Buffs.Aura_T_.Duration.md 'WCSharp.Buffs.Aura<T>.Duration') | The duration in seconds of buffs applied by this aura. Defaults to 3.1.<br/><br/><br/>Unless you're making a pulsing aura, you will want the [Duration](WCSharp.Buffs.Aura_T_.Duration.md 'WCSharp.Buffs.Aura<T>.Duration') to be greater than the [SearchInterval](WCSharp.Buffs.Aura_T_.SearchInterval.md 'WCSharp.Buffs.Aura<T>.SearchInterval'). |
@@ -46,5 +46,5 @@ Implements [IAura](WCSharp.Buffs.IAura.md 'WCSharp.Buffs.IAura'), [IPeriodicDisp
 | :--- | :--- |
 | [Action()](WCSharp.Buffs.Aura_T_.Action().md 'WCSharp.Buffs.Aura<T>.Action()') | The action that will be invoked every period by [PeriodicDisposableTrigger&lt;T&gt;](../WCSharp.Events/WCSharp.Events.PeriodicDisposableTrigger_T_.md 'WCSharp.Events.PeriodicDisposableTrigger`1'). |
 | [Apply()](WCSharp.Buffs.Aura_T_.Apply().md 'WCSharp.Buffs.Aura<T>.Apply()') | Called by the system. Do not call yourself. |
-| [Dispose()](WCSharp.Buffs.Aura_T_.Dispose().md 'WCSharp.Buffs.Aura<T>.Dispose()') | Automatically called after [Active](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp.Events.IPeriodicDisposableAction.Active') is set to false. |
+| [Dispose()](WCSharp.Buffs.Aura_T_.Dispose().md 'WCSharp.Buffs.Aura<T>.Dispose()') | Automatically called after [Active](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp.Events.IPeriodicDisposableAction.Active') is set to false.<br/><br/><br/>Note: If set to active from outside of the [Action()](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Action().md 'WCSharp.Events.IPeriodicDisposableAction.Action') class, this will only be called on the next interval. |
 | [GetActiveBuffs()](WCSharp.Buffs.Aura_T_.GetActiveBuffs().md 'WCSharp.Buffs.Aura<T>.GetActiveBuffs()') | Returns all generic buffs currently active for this aura. |

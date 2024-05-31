@@ -11,9 +11,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateGroup()"
 		public static extern group Create();
 
-		/// @CSharpLua.Get = "FirstOfGroup({0})"
+		/// @CSharpLua.Get = "FirstOfGroup({this})"
 		public extern unit First { get; }
-		/// @CSharpLua.Get = "BlzGroupGetSize({0})"
+		/// @CSharpLua.Get = "BlzGroupGetSize({this})"
 		public extern int Count { get; }
 
 		/// @CSharpLua.Template = "IsUnitInGroup({0}, {this})"

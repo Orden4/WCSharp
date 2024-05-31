@@ -3,7 +3,7 @@
 
 ## Lightning.Active Property
 
-Indicates the active state of this IPeriodicAction. Set this to false to disable and dispose this instance.
+Indicates the active state of this [IPeriodicDisposableAction](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp.Events.IPeriodicDisposableAction'). Set this to false to disable and dispose this instance.
 
 ```csharp
 public bool Active { get; set; }

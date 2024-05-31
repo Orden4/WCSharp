@@ -3,6 +3,8 @@
 
 ## PeriodicDisposableTrigger(float) Constructor
 
+Creates a new periodic trigger which will trigger all supplied actions every given [period](WCSharp.Events.PeriodicDisposableTrigger_T_.PeriodicDisposableTrigger(float).md#WCSharp.Events.PeriodicDisposableTrigger_T_.PeriodicDisposableTrigger(float).period 'WCSharp.Events.PeriodicDisposableTrigger<T>.PeriodicDisposableTrigger(float).period').
+
 ```csharp
 public PeriodicDisposableTrigger(float period);
 ```

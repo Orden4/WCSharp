@@ -1,19 +1,16 @@
 #### [WCSharp.SaveLoad](README.md 'README')
 ### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[SaveSystemOptions](WCSharp.SaveLoad.SaveSystemOptions.md 'WCSharp.SaveLoad.SaveSystemOptions')
 
-## SaveSystemOptions.BindSavesToPlayerName Property
+## SaveSystemOptions.AttemptToLoadNewerVersions Property
 
-Whether saves are bound to the name of the player. If true, saves will have the player name contained in the filename,  
-and upon loading this will be matched with the current player's name.  
+Whether it should attempt to load newer save versions that the map is not familiar with.  
   
-Attempting to load a save tied to a different username will result in a new save file being created instead.  
-  
-This should never be changed after release of a map, as changing it will invalidate all existing save files.  
+It is likely that, if it does load, all is well. However, depending on changes made, it may still load but do so incorrectly. Use at your own risk.  
   
 Defaults to [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool').
 
 ```csharp
-public bool BindSavesToPlayerName { get; set; }
+public bool AttemptToLoadNewerVersions { get; set; }
 ```
 
 #### Property Value

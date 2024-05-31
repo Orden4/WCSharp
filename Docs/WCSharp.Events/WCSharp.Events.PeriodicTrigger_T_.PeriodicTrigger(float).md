@@ -3,6 +3,8 @@
 
 ## PeriodicTrigger(float) Constructor
 
+Creates a new periodic trigger which will trigger all supplied actions every given [period](WCSharp.Events.PeriodicTrigger_T_.PeriodicTrigger(float).md#WCSharp.Events.PeriodicTrigger_T_.PeriodicTrigger(float).period 'WCSharp.Events.PeriodicTrigger<T>.PeriodicTrigger(float).period').
+
 ```csharp
 public PeriodicTrigger(float period);
 ```

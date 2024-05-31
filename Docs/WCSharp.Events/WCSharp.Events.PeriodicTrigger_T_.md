@@ -20,7 +20,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Constructors | |
 | :--- | :--- |
-| [PeriodicTrigger(float)](WCSharp.Events.PeriodicTrigger_T_.PeriodicTrigger(float).md 'WCSharp.Events.PeriodicTrigger<T>.PeriodicTrigger(float)') | |
+| [PeriodicTrigger(float)](WCSharp.Events.PeriodicTrigger_T_.PeriodicTrigger(float).md 'WCSharp.Events.PeriodicTrigger<T>.PeriodicTrigger(float)') | Creates a new periodic trigger which will trigger all supplied actions every given [period](WCSharp.Events.PeriodicTrigger_T_.PeriodicTrigger(float).md#WCSharp.Events.PeriodicTrigger_T_.PeriodicTrigger(float).period 'WCSharp.Events.PeriodicTrigger<T>.PeriodicTrigger(float).period'). |
 
 | Properties | |
 | :--- | :--- |
@@ -28,4 +28,4 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 
 | Methods | |
 | :--- | :--- |
-| [Add(T)](WCSharp.Events.PeriodicTrigger_T_.Add(T).md 'WCSharp.Events.PeriodicTrigger<T>.Add(T)') | Adds the given periodicTrigger to automatic management. |
+| [Add(T)](WCSharp.Events.PeriodicTrigger_T_.Add(T).md 'WCSharp.Events.PeriodicTrigger<T>.Add(T)') | Adds the given [periodicTrigger](WCSharp.Events.PeriodicTrigger_T_.Add(T).md#WCSharp.Events.PeriodicTrigger_T_.Add(T).periodicTrigger 'WCSharp.Events.PeriodicTrigger<T>.Add(T).periodicTrigger') to automatic management. |

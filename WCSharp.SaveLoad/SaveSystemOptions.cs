@@ -37,8 +37,16 @@ namespace WCSharp.SaveLoad
 		/// and upon loading this will be matched with the current player's name.
 		/// <para>Attempting to load a save tied to a different username will result in a new save file being created instead.</para>
 		/// <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
+		/// <para>Defaults to <see langword="false"/>.</para>
 		/// </summary>
 		public bool BindSavesToPlayerName { get; set; }
+
+		/// <summary>
+		/// Whether it should attempt to load newer save versions that the map is not familiar with.
+		/// <para>It is likely that, if it does load, all is well. However, depending on changes made, it may still load but do so incorrectly. Use at your own risk.</para>
+		/// <para>Defaults to <see langword="false"/>.</para>
+		/// </summary>
+		public bool AttemptToLoadNewerVersions { get; set; }
 
 		/// <summary>
 		/// Optional. The given string will be added to the filename of any save stored.

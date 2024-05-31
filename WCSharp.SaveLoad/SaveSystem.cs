@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WCSharp.Api;
 using WCSharp.Json;
 using WCSharp.Shared;
 using WCSharp.Sync;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.SaveLoad
@@ -102,8 +102,14 @@ namespace WCSharp.SaveLoad
 	public class SaveSystem<T> : IDisposable
 		where T : Saveable
 	{
+		/// <summary>
+		/// Current state: Fully backwards compatible starting from v2.0 (incompatible with v1.x since it uses only basic reflection, due to lacking metadata).
+		/// Version 1 - Uses multiple tooltips, stores save data as an object, updating the properties on the object could cause the hash to fail.
+		/// Version 2a - Uses multiple tooltips, stores the save data as a singular string to avoid the pitfall of version 1.
+		/// Version 2b - Same as 2a, but uses a single tooltip via overloading the Preload(End) functions. Did not actually increment the version value since not doing so allowed for forward compatability with 0 risk.
+		/// </summary>
 		internal const int CURRENT_VERSION = 2;
-		private const int PACKET_SIZE = 185;
+		private const int PACKET_SIZE = 239;
 
 		private readonly int id;
 		private readonly string saveFolder;
@@ -111,6 +117,7 @@ namespace WCSharp.SaveLoad
 		private readonly int hash1;
 		private readonly int hash2;
 		private readonly bool bindSavesToPlayerName;
+		private readonly bool attemptToLoadNewerVersions;
 		private readonly string suffix;
 		private readonly Base64 base64;
 
@@ -142,6 +149,7 @@ namespace WCSharp.SaveLoad
 			this.hash2 = options.Hash2;
 			this.salt = options.Salt;
 			this.bindSavesToPlayerName = options.BindSavesToPlayerName;
+			this.attemptToLoadNewerVersions = options.AttemptToLoadNewerVersions;
 			this.suffix = options.Suffix ?? "";
 			this.base64 = options.Base64Provider ?? new Base64();
 
@@ -204,22 +212,15 @@ namespace WCSharp.SaveLoad
 			var contents = this.base64.Encode(JsonConvert.Serialize(save));
 
 			var filename = GetFileName(saveable.player, saveable.saveSlot);
-			if (contents.Length > PACKET_SIZE * SaveSystem.AbilityIds.Count)
-			{
-				Console.WriteLine("ERROR: Maximum save file size has been reached. Unable to save file. Please contact the mapmaker to increase storage space.");
-				return;
-			}
-
 			PreloadGenClear();
 			PreloadGenStart();
+			Preload("\" )\n//!beginusercode\nlocal l=0;local o={};Preload=function(s)l=l+1;o[l]=s;end;PreloadEnd=function()BlzSetAbilityTooltip(1097690227,table.concat(o),0)end\n//!endusercode\n//");
 			for (var i = 0; i * PACKET_SIZE < contents.Length; i++)
 			{
-				var nextAbilityId = SaveSystem.AbilityIds[i];
 				var startIndex = i * PACKET_SIZE;
 				var endIndex = Math.Min(contents.Length - startIndex, PACKET_SIZE);
-				Preload($"\" )\ncall BlzSetAbilityTooltip({nextAbilityId}, \"{contents.Substring(startIndex, endIndex)}\", 0)//");
+				Preload(contents.Substring(startIndex, endIndex));
 			}
-			Preload($"\" )\nendfunction\nfunction a takes nothing returns nothing\n //");
 			PreloadGenEnd(filename);
 		}
 
@@ -249,10 +250,6 @@ namespace WCSharp.SaveLoad
 				var packet = BlzGetAbilityTooltip(abilityId, 0);
 				if (packet == originalTooltip)
 				{
-					if (i * 3 / 4 > SaveSystem.AbilityIds.Count)
-					{
-						Console.WriteLine("WARNING: 75% or more of the save file storage space is in use. Please contact the mapmaker to increase storage space.");
-					}
 					break;
 				}
 				else
@@ -288,8 +285,13 @@ namespace WCSharp.SaveLoad
 						}
 					}
 				}
-				else if (save.Version == 2)
+				else if (save.Version == 2 || this.attemptToLoadNewerVersions)
 				{
+					if (save.Version != 2)
+					{
+						Console.WriteLine("WARNING: Save found was of a more recent version than this map supports. Attempting to load anyway.");
+					}
+
 					// Version 2 stores the save data as a string so that we don't have to re-serialize it in order to verify the hash, as re-serializing it may change the save.
 					if (!string.IsNullOrEmpty(save.SaveString))
 					{
@@ -302,6 +304,10 @@ namespace WCSharp.SaveLoad
 							message.LoadResult = LoadResult.FailedDeserialize;
 						}
 					}
+				}
+				else
+				{
+					Console.WriteLine("ERROR: Save found was of a more recent version than this map supports.");
 				}
 			}
 

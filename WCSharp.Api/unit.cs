@@ -273,7 +273,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "IsUnitSelected({this}, {0})"
 		public extern bool IsSelectedTo(player player);
 		/// @CSharpLua.Template = "IsUnitType({this}, {0})"
-		public extern bool IsUnitType(unittype player);
+		public extern bool IsUnitType(unittype unitType);
 		/// @CSharpLua.Template = "IsUnitInTransport({this}, {0})"
 		public extern bool IsInTransport(unit tranportUnit);
 		/// @CSharpLua.Template = "IsUnitInRange({this}, {0}, {1})"

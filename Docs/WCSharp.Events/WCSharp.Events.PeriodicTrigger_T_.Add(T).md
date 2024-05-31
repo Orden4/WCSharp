@@ -3,7 +3,7 @@
 
 ## PeriodicTrigger<T>.Add(T) Method
 
-Adds the given periodicTrigger to automatic management.
+Adds the given [periodicTrigger](WCSharp.Events.PeriodicTrigger_T_.Add(T).md#WCSharp.Events.PeriodicTrigger_T_.Add(T).periodicTrigger 'WCSharp.Events.PeriodicTrigger<T>.Add(T).periodicTrigger') to automatic management.
 
 ```csharp
 public void Add(T periodicTrigger);

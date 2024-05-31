@@ -11,7 +11,7 @@ public interface IPeriodicAction
 
 | Properties | |
 | :--- | :--- |
-| [Active](WCSharp.Events.IPeriodicAction.Active.md 'WCSharp.Events.IPeriodicAction.Active') | Indicates the active state of this IPeriodicAction. Set this to false to disable and remove this instance. |
+| [Active](WCSharp.Events.IPeriodicAction.Active.md 'WCSharp.Events.IPeriodicAction.Active') | Indicates the active state of this [IPeriodicAction](WCSharp.Events.IPeriodicAction.md 'WCSharp.Events.IPeriodicAction'). Set this to false to disable and remove this instance. |
 
 | Methods | |
 | :--- | :--- |

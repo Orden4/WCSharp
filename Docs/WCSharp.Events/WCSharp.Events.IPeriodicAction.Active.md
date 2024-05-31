@@ -3,7 +3,7 @@
 
 ## IPeriodicAction.Active Property
 
-Indicates the active state of this IPeriodicAction. Set this to false to disable and remove this instance.
+Indicates the active state of this [IPeriodicAction](WCSharp.Events.IPeriodicAction.md 'WCSharp.Events.IPeriodicAction'). Set this to false to disable and remove this instance.
 
 ```csharp
 bool Active { get; set; }

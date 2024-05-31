@@ -307,7 +307,7 @@ namespace WCSharp.Shared
 		public static texttag CreateDamageText(float damage, bool isHeal, bool isCritical, float size, float x, float y, float height)
 		{
 			var textTag = CreateTextTag();
-			var str = $"{(int)damage}";
+			var str = $"{MathRound(damage)}";
 			if (isHeal)
 			{
 				SetTextTagColor(textTag, 0, 255, 0, 255);

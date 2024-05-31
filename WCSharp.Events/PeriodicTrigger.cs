@@ -7,7 +7,6 @@ namespace WCSharp.Events
 	/// Helpful class that can be used to batch together multiple periodic events of the same type. Will automatically remove inactive triggers, and
 	/// subscribe/unsubscribe from <see cref="PeriodicEvents"/> based on whether any triggers are active.
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
 	public class PeriodicTrigger<T>
 		where T : IPeriodicAction
 	{
@@ -20,6 +19,9 @@ namespace WCSharp.Events
 		/// </summary>
 		public IEnumerable<T> Actions => this.actions.Where(x => x.Active);
 
+		/// <summary>
+		/// Creates a new periodic trigger which will trigger all supplied actions every given <paramref name="period"/>.
+		/// </summary>
 		/// <param name="period">How frequently this trigger should fire.</param>
 		public PeriodicTrigger(float period)
 		{
@@ -28,7 +30,7 @@ namespace WCSharp.Events
 		}
 
 		/// <summary>
-		/// Adds the given periodicTrigger to automatic management.
+		/// Adds the given <paramref name="periodicTrigger"/> to automatic management.
 		/// </summary>
 		public void Add(T periodicTrigger)
 		{
@@ -53,6 +55,10 @@ namespace WCSharp.Events
 				if (action.Active)
 				{
 					action.Action();
+				}
+
+				if (action.Active)
+				{
 					i++;
 				}
 				else

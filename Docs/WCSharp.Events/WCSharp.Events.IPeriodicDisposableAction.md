@@ -11,9 +11,9 @@ public interface IPeriodicDisposableAction
 
 | Properties | |
 | :--- | :--- |
-| [Active](WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp.Events.IPeriodicDisposableAction.Active') | Indicates the active state of this IPeriodicAction. Set this to false to disable and dispose this instance. |
+| [Active](WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp.Events.IPeriodicDisposableAction.Active') | Indicates the active state of this [IPeriodicDisposableAction](WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp.Events.IPeriodicDisposableAction'). Set this to false to disable and dispose this instance. |
 
 | Methods | |
 | :--- | :--- |
 | [Action()](WCSharp.Events.IPeriodicDisposableAction.Action().md 'WCSharp.Events.IPeriodicDisposableAction.Action()') | The action that will be invoked every period by [PeriodicDisposableTrigger&lt;T&gt;](WCSharp.Events.PeriodicDisposableTrigger_T_.md 'WCSharp.Events.PeriodicDisposableTrigger<T>'). |
-| [Dispose()](WCSharp.Events.IPeriodicDisposableAction.Dispose().md 'WCSharp.Events.IPeriodicDisposableAction.Dispose()') | Automatically called after [Active](WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp.Events.IPeriodicDisposableAction.Active') is set to false. |
+| [Dispose()](WCSharp.Events.IPeriodicDisposableAction.Dispose().md 'WCSharp.Events.IPeriodicDisposableAction.Dispose()') | Automatically called after [Active](WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp.Events.IPeriodicDisposableAction.Active') is set to false.<br/><br/><br/>Note: If set to active from outside of the [Action()](WCSharp.Events.IPeriodicDisposableAction.Action().md 'WCSharp.Events.IPeriodicDisposableAction.Action()') class, this will only be called on the next interval. |

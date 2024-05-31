@@ -6,7 +6,7 @@
 	public interface IPeriodicDisposableAction
 	{
 		/// <summary>
-		/// Indicates the active state of this IPeriodicAction. Set this to false to disable and dispose this instance.
+		/// Indicates the active state of this <see cref="IPeriodicDisposableAction"/>. Set this to false to disable and dispose this instance.
 		/// </summary>
 		bool Active { get; set; }
 		/// <summary>
@@ -15,6 +15,7 @@
 		void Action();
 		/// <summary>
 		/// Automatically called after <see cref="Active"/> is set to false.
+		/// <para>Note: If set to active from outside of the <see cref="Action"/> class, this will only be called on the next interval.</para>
 		/// </summary>
 		void Dispose();
 	}

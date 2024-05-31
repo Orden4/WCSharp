@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using WCSharp.Json;
 using WCSharp.Shared;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Sync
@@ -224,7 +223,8 @@ namespace WCSharp.Sync
 			{
 				if (syncHandlers[i].InternalAction.Equals(handler))
 				{
-					syncHandlers.RemoveAt(i--);
+					syncHandlers.RemoveAt(i);
+					return;
 				}
 			}
 		}

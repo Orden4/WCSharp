@@ -6,7 +6,7 @@
 	public interface IPeriodicAction
 	{
 		/// <summary>
-		/// Indicates the active state of this IPeriodicAction. Set this to false to disable and remove this instance.
+		/// Indicates the active state of this <see cref="IPeriodicAction"/>. Set this to false to disable and remove this instance.
 		/// </summary>
 		bool Active { get; set; }
 		/// <summary>
