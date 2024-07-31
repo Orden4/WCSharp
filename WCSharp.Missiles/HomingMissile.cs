@@ -195,7 +195,7 @@ namespace WCSharp.Missiles
 				YawRad = Util.AngleBetweenPointsRad(CasterX, CasterY, TargetX, TargetY);
 			}
 
-			if (!string.IsNullOrEmpty(this.effectString))
+			if (this.effectString != null)
 			{
 				Effect = AddSpecialEffect(this.effectString, MissileX, MissileY);
 				BlzSetSpecialEffectZ(Effect, MissileZ);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using WCSharp.Events;
 using WCSharp.Api;
+using WCSharp.Events;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -57,7 +57,8 @@ namespace WCSharp.Buffs
 
 		private protected string effectString;
 		/// <summary>
-		/// The path of the effect to use. Leave empty for no effect.
+		/// The path of the effect to use.
+		/// <para>If null, no effect will be created.</para>
 		/// <para>If changed while the buff is already active, will destroy and recreate the effect.</para>
 		/// </summary>
 		public string EffectString
@@ -74,7 +75,7 @@ namespace WCSharp.Buffs
 						{
 							DestroyEffect(Effect);
 						}
-						if (!string.IsNullOrEmpty(value))
+						if (value != null)
 						{
 							Effect = AddSpecialEffectTarget(value, Target, this.effectAttachmentPoint);
 							if (this.effectScale != 1)

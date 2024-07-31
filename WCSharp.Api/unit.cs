@@ -825,7 +825,7 @@ namespace WCSharp.Api
 		public extern float AttackAreaOfEffectSmallDamage1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0)"
-		/// @CSharpLua.Set = "call BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1, {0} - BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0) + BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1))"
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1, {0} - BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0) + BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1))"
 		public extern float AttackRange1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 0)"

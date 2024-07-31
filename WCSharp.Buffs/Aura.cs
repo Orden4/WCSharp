@@ -55,7 +55,18 @@ namespace WCSharp.Buffs
 						{
 							DestroyEffect(Effect);
 						}
-						Effect = string.IsNullOrEmpty(value) ? null : AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
+						if (value != null)
+						{
+							Effect = AddSpecialEffectTarget(value, Caster, this.effectAttachmentPoint);
+							if (this.effectScale != 1)
+							{
+								BlzSetSpecialEffectScale(Effect, this.effectScale);
+							}
+						}
+						else
+						{
+							Effect = null;
+						}
 					}
 				}
 			}
@@ -132,7 +143,7 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public void Apply()
 		{
-			if (!string.IsNullOrEmpty(this.effectString))
+			if (this.effectString != null)
 			{
 				Effect = AddSpecialEffectTarget(this.effectString, Caster, this.effectAttachmentPoint);
 				BlzSetSpecialEffectScale(Effect, this.effectScale);

@@ -1,7 +1,16 @@
-﻿namespace WCSharp.Api.Enums
+﻿using System;
+
+namespace WCSharp.Api.Enums
 {
+	[Flags]
 	public enum TargetsAllowed
 	{
+		/// <summary>
+		/// This flag prohibits attacking, regardless of any other flags being set.
+		/// <para>A unit will have the attack ability and display attack info, but cannot target anything.</para>
+		/// <para>If only <see cref="None"/> is set, the UI will not display attack info, but will still show the attack ability.</para>
+		/// </summary>
+		None = 1 << 0,
 		Ground = 1 << 1,
 		Air = 1 << 2,
 		Structure = 1 << 3,
@@ -27,7 +36,13 @@
 		Dead = 1 << 25,
 		Organic = 1 << 26,
 		Mechanical = 1 << 27,
+		/// <summary>
+		/// Also known as "Non-Sapper".
+		/// </summary>
 		NonSuicidal = 1 << 28,
+		/// <summary>
+		/// Also known as "Sapper".
+		/// </summary>
 		Suicidal = 1 << 29,
 		NonAncient = 1 << 30,
 		Ancient = 1 << 31,

@@ -236,7 +236,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		private protected string effectString;
 		/// <summary>
-		/// The effect string of the missile. If empty/null, the missile will be invisible.
+		/// The effect string of the missile.
+		/// <para>If null, no effect will be created.</para>
 		/// <para>If changed mid-flight, automatically modifies the missile.</para>
 		/// </summary>
 		public string EffectString
@@ -253,7 +254,7 @@ namespace WCSharp.Missiles
 							DestroyEffect(Effect);
 						}
 
-						if (!string.IsNullOrEmpty(value))
+						if (value != null)
 						{
 							Effect = AddSpecialEffect(value, MissileX, MissileY);
 							BlzSetSpecialEffectZ(Effect, MissileZ);

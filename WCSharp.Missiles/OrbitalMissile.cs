@@ -229,7 +229,7 @@ namespace WCSharp.Missiles
 			SetFlightMode(this.mode);
 			AdjustMissileZ();
 
-			if (!string.IsNullOrEmpty(this.effectString))
+			if (this.effectString != null)
 			{
 				Effect = AddSpecialEffect(this.effectString, MissileX, MissileY);
 				BlzSetSpecialEffectZ(Effect, InternalMissileZ);

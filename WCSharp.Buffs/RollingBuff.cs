@@ -56,7 +56,7 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Apply()
 		{
-			if (!string.IsNullOrEmpty(this.effectString))
+			if (this.effectString != null)
 			{
 				Effect = AddSpecialEffectTarget(this.effectString, Target, this.effectAttachmentPoint);
 				if (this.effectScale != 1)
