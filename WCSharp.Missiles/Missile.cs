@@ -426,7 +426,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// Runs the Collision related code. Do not call if <see cref="CollisionRadius"/> is 0.
 		/// </summary>
-		protected void RunCollisions()
+		protected virtual void RunCollisions()
 		{
 			GroupEnumUnitsInRange(group, MissileX, MissileY, this.collisionRadius, null);
 			foreach (var unit in group.ToList())

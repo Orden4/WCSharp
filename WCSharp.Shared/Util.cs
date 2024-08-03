@@ -53,9 +53,9 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(float x1, float y1, float x2, float y2)
 		{
-			var diffx = x1 - x2;
-			var diffy = y1 - y2;
-			return SquareRoot((diffx * diffx) + (diffy * diffy));
+			var dx = x1 - x2;
+			var dy = y1 - y2;
+			return SquareRoot((dx * dx) + (dy * dy));
 		}
 
 		/// <summary>
@@ -63,8 +63,8 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(unit source, float x2, float y2)
 		{
-			var dx = GetUnitX(source) - x2;
-			var dy = GetUnitY(source) - y2;
+			var dx = source.X - x2;
+			var dy = source.Y - y2;
 			return SquareRoot((dx * dx) + (dy * dy));
 		}
 
@@ -73,8 +73,8 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(float x1, float y1, unit target)
 		{
-			var dx = x1 - GetUnitX(target);
-			var dy = y1 - GetUnitY(target);
+			var dx = x1 - target.X;
+			var dy = y1 - target.Y;
 			return SquareRoot((dx * dx) + (dy * dy));
 		}
 
@@ -83,9 +83,53 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float DistanceBetweenPoints(unit source, unit target)
 		{
-			var dx = GetUnitX(source) - GetUnitX(target);
-			var dy = GetUnitY(source) - GetUnitY(target);
+			var dx = source.X - target.X;
+			var dy = source.Y - target.Y;
 			return SquareRoot((dx * dx) + (dy * dy));
+		}
+
+		/// <summary>
+		/// Determines whether the distance from (<paramref name="x1"/>, <paramref name="y1"/>) to (<paramref name="x2"/>, <paramref name="y2"/>) is less than <paramref name="range"/>.
+		/// <para>Performance is a little better than DistanceBetweenPoints if you don't care about the exact distance.</para>
+		/// </summary>
+		public static bool IsInRange(float x1, float y1, float x2, float y2, float range)
+		{
+			var dx = x1 - x2;
+			var dy = y1 - y2;
+			return (dx * dx) + (dy * dy) <= range * range;
+		}
+
+		/// <summary>
+		/// Determines whether the distance from <paramref name="source"/> unit to (<paramref name="x2"/>, <paramref name="y2"/>) is less than <paramref name="range"/>.
+		/// <para>Performance is a little better than DistanceBetweenPoints if you don't care about the exact distance.</para>
+		/// </summary>
+		public static bool IsInRange(unit source, float x2, float y2, float range)
+		{
+			var dx = source.X - x2;
+			var dy = source.Y - y2;
+			return (dx * dx) + (dy * dy) <= range * range;
+		}
+
+		/// <summary>
+		/// Determines whether the distance from (<paramref name="x1"/>, <paramref name="y1"/>) to <paramref name="target"/> unit is less than <paramref name="range"/>.
+		/// <para>Performance is a little better than DistanceBetweenPoints if you don't care about the exact distance.</para>
+		/// </summary>
+		public static bool IsInRange(float x1, float y1, unit target, float range)
+		{
+			var dx = x1 - target.X;
+			var dy = y1 - target.Y;
+			return (dx * dx) + (dy * dy) <= range * range;
+		}
+
+		/// <summary>
+		/// Determines whether the distance from <paramref name="source"/> unit to <paramref name="target"/> unit is less than <paramref name="range"/>.
+		/// <para>Performance is a little better than DistanceBetweenPoints if you don't care about the exact distance.</para>
+		/// </summary>
+		public static bool IsInRange(unit source, unit target, float range)
+		{
+			var dx = source.X - target.X;
+			var dy = source.Y - target.Y;
+			return (dx * dx) + (dy * dy) <= range * range;
 		}
 
 		/// <summary>
@@ -99,7 +143,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPoints(unit source, float x2, float y2)
 		{
-			return 180 + (RAD2DEG * Atan2(GetUnitY(source) - y2, GetUnitX(source) - x2));
+			return 180 + (RAD2DEG * Atan2(source.Y - y2, source.X - x2));
 		}
 
 		/// <summary>
@@ -107,7 +151,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPoints(float x1, float y1, unit target)
 		{
-			return 180 + (RAD2DEG * Atan2(y1 - GetUnitY(target), x1 - GetUnitX(target)));
+			return 180 + (RAD2DEG * Atan2(y1 - target.Y, x1 - target.X));
 		}
 
 		/// <summary>
@@ -115,7 +159,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPoints(unit source, unit target)
 		{
-			return 180 + (RAD2DEG * Atan2(GetUnitY(source) - GetUnitY(target), GetUnitX(source) - GetUnitX(target)));
+			return 180 + (RAD2DEG * Atan2(source.Y - target.Y, source.X - target.X));
 		}
 
 		/// <summary>
@@ -129,7 +173,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPointsRad(unit source, float x2, float y2)
 		{
-			return PI + Atan2(GetUnitY(source) - y2, GetUnitX(source) - x2);
+			return PI + Atan2(source.Y - y2, source.X - x2);
 		}
 
 		/// <summary>
@@ -137,7 +181,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPointsRad(float x1, float y1, unit target)
 		{
-			return PI + Atan2(y1 - GetUnitY(target), x1 - GetUnitX(target));
+			return PI + Atan2(y1 - target.Y, x1 - target.X);
 		}
 
 		/// <summary>
@@ -145,7 +189,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static float AngleBetweenPointsRad(unit source, unit target)
 		{
-			return PI + Atan2(GetUnitY(source) - GetUnitY(target), GetUnitX(source) - GetUnitX(target));
+			return PI + Atan2(source.Y - target.Y, source.X - target.X);
 		}
 
 		/// <summary>
@@ -373,6 +417,20 @@ namespace WCSharp.Shared
 			MoveLocation(location, x, y);
 			return GetLocationZ(location);
 		}
+
+		/// <summary>
+		/// Returns a random angle in the range [0, 360].
+		/// <para>This gets inlined, so there is no redundant call.</para>
+		/// </summary>
+		/// @CSharpLua.Template = "GetRandomReal(0, 360)"
+		public static extern float GetRandomAngle();
+
+		/// <summary>
+		/// Returns a random angle in radians in the range [0, 2pi].
+		/// <para>This gets inlined, so there is no redundant call.</para>
+		/// </summary>
+		/// @CSharpLua.Template = "GetRandomReal(0, 6.28318530718)"
+		public static extern float GetRandomAngleRad();
 #pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	}
 }
