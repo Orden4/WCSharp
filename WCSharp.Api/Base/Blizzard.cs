@@ -1,4 +1,5 @@
-﻿using static WCSharp.Api.Common;
+﻿using System;
+using static WCSharp.Api.Common;
 
 namespace WCSharp.Api
 {
@@ -1215,6 +1216,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "SubStringBJ({0}, {1}, {2})"
 		public static extern string SubStringBJ(string source, int start, int end);
 		/// @CSharpLua.Template = "GetHandleIdBJ({0})"
+		[Obsolete("HandleId does not serve a purpose in lua/C#. It is prone to desyncs. Use the object itself as a key instead.")]
 		public static extern int GetHandleIdBJ(object h);
 		/// @CSharpLua.Template = "StringHashBJ({0})"
 		public static extern int StringHashBJ(string s);

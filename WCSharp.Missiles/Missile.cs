@@ -126,7 +126,7 @@ namespace WCSharp.Missiles
 		/// <para>Null if <see cref="CollisionRadius"/> has never been set to a value greater than 0.</para>
 		/// <para>Removing a unit from this means <see cref="OnCollision(unit)"/> will trigger for that unit once more.</para>
 		/// </summary>
-		public HashSet<unit> TargetsHit { get; private set; }
+		public HashSet<unit> TargetsHit { get; set; }
 		private protected float collisionRadius;
 		/// <summary>
 		/// The collision radius of the missile which is used to trigger <see cref="OnCollision(unit)"/>.
@@ -425,12 +425,15 @@ namespace WCSharp.Missiles
 
 		/// <summary>
 		/// Runs the Collision related code. Do not call if <see cref="CollisionRadius"/> is 0.
+		/// <para>Can be overridden in case you want to provide your own unit search code (e.g. using spatial hashing).</para>
 		/// </summary>
 		protected virtual void RunCollisions()
 		{
 			GroupEnumUnitsInRange(group, MissileX, MissileY, this.collisionRadius, null);
-			foreach (var unit in group.ToList())
+			var list = group.ToList();
+			for (var i = 0; i < list.Count; i++)
 			{
+				var unit = list[i];
 				if (TargetsHit.Add(unit))
 				{
 					OnCollision(unit);

@@ -9,11 +9,11 @@ namespace WCSharp.Api
 		{
 		}
 
-		/// @CSharpLua.Template = "GetLocationX({this})"
+		/// @CSharpLua.Get = "GetLocationX({this})"
 		public extern float X { get; }
-		/// @CSharpLua.Template = "GetLocationY({this})"
+		/// @CSharpLua.Get = "GetLocationY({this})"
 		public extern float Y { get; }
-		/// @CSharpLua.Template = "GetLocationZ({this})"
+		/// @CSharpLua.Get = "GetLocationZ({this})"
 		public extern float LocalZ { get; }
 
 		/// @CSharpLua.Template = "RemoveLocation({this})"

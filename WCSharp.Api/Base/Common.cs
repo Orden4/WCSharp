@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using System;
+
+namespace WCSharp.Api
 {
 #pragma warning disable IDE1006 // Naming Styles
 	/// @CSharpLua.Ignore
@@ -3609,6 +3611,7 @@
 		/// @CSharpLua.Template = "S2R({0})"
 		public static extern float S2R(string s);
 		/// @CSharpLua.Template = "GetHandleId({0})"
+		[Obsolete("HandleId does not serve a purpose in lua/C#. It is prone to desyncs. Use the object itself as a key instead.")]
 		public static extern int GetHandleId(handle h);
 		/// @CSharpLua.Template = "SubString({0}, {1}, {2})"
 		public static extern string SubString(string source, int start, int end);
@@ -3731,7 +3734,7 @@
 		/// @CSharpLua.Template = "DestroyTimer({0})"
 		public static extern void DestroyTimer(timer whichTimer);
 		/// @CSharpLua.Template = "TimerStart({0}, {1}, {2}, {3})"
-		public static extern void TimerStart(timer whichTimer, float timeout, bool periodic, System.Action handlerFunc);
+		public static extern void TimerStart(timer whichTimer, float timeout, bool periodic, Action handlerFunc);
 		/// @CSharpLua.Template = "TimerGetElapsed({0})"
 		public static extern float TimerGetElapsed(timer whichTimer);
 		/// @CSharpLua.Template = "TimerGetRemaining({0})"
@@ -3799,7 +3802,7 @@
 		/// @CSharpLua.Template = "GroupTargetOrderById({0}, {1}, {2})"
 		public static extern bool GroupTargetOrderById(group whichGroup, int order, widget targetWidget);
 		/// @CSharpLua.Template = "ForGroup({0}, {1})"
-		public static extern void ForGroup(group whichGroup, System.Action callback);
+		public static extern void ForGroup(group whichGroup, Action callback);
 		/// @CSharpLua.Template = "FirstOfGroup({0})"
 		public static extern unit FirstOfGroup(group whichGroup);
 		/// @CSharpLua.Template = "CreateForce()"
@@ -3823,7 +3826,7 @@
 		/// @CSharpLua.Template = "ForceEnumEnemies({0}, {1}, {2})"
 		public static extern void ForceEnumEnemies(force whichForce, player whichPlayer, boolexpr filter);
 		/// @CSharpLua.Template = "ForForce({0}, {1})"
-		public static extern void ForForce(force whichForce, System.Action callback);
+		public static extern void ForForce(force whichForce, Action callback);
 		/// @CSharpLua.Template = "Rect({0}, {1}, {2}, {3})"
 		public static extern rect Rect(float minx, float miny, float maxx, float maxy);
 		/// @CSharpLua.Template = "RectFromLoc({0}, {1})"
@@ -3937,11 +3940,11 @@
 		/// @CSharpLua.Template = "Not({0})"
 		public static extern boolexpr Not(boolexpr operand);
 		/// @CSharpLua.Template = "Condition({0})"
-		public static extern conditionfunc Condition(System.Func<bool> func);
+		public static extern conditionfunc Condition(Func<bool> func);
 		/// @CSharpLua.Template = "DestroyCondition({0})"
 		public static extern void DestroyCondition(conditionfunc c);
 		/// @CSharpLua.Template = "Filter({0})"
-		public static extern filterfunc Filter(System.Func<bool> func);
+		public static extern filterfunc Filter(Func<bool> func);
 		/// @CSharpLua.Template = "DestroyFilter({0})"
 		public static extern void DestroyFilter(filterfunc f);
 		/// @CSharpLua.Template = "DestroyBoolExpr({0})"
@@ -4153,7 +4156,7 @@
 		/// @CSharpLua.Template = "TriggerClearConditions({0})"
 		public static extern void TriggerClearConditions(trigger whichTrigger);
 		/// @CSharpLua.Template = "TriggerAddAction({0}, {1})"
-		public static extern triggeraction TriggerAddAction(trigger whichTrigger, System.Action actionFunc);
+		public static extern triggeraction TriggerAddAction(trigger whichTrigger, Action actionFunc);
 		/// @CSharpLua.Template = "TriggerRemoveAction({0}, {1})"
 		public static extern void TriggerRemoveAction(trigger whichTrigger, triggeraction whichAction);
 		/// @CSharpLua.Template = "TriggerClearActions({0})"
@@ -4199,7 +4202,7 @@
 		/// @CSharpLua.Template = "IsDestructableInvulnerable({0})"
 		public static extern bool IsDestructableInvulnerable(destructable d);
 		/// @CSharpLua.Template = "EnumDestructablesInRect({0}, {1}, {2})"
-		public static extern void EnumDestructablesInRect(rect r, boolexpr filter, System.Action actionFunc);
+		public static extern void EnumDestructablesInRect(rect r, boolexpr filter, Action actionFunc);
 		/// @CSharpLua.Template = "GetDestructableTypeId({0})"
 		public static extern int GetDestructableTypeId(destructable d);
 		/// @CSharpLua.Template = "GetDestructableX({0})"
@@ -4277,7 +4280,7 @@
 		/// @CSharpLua.Template = "IsItemIdPawnable({0})"
 		public static extern bool IsItemIdPawnable(int itemId);
 		/// @CSharpLua.Template = "EnumItemsInRect({0}, {1}, {2})"
-		public static extern void EnumItemsInRect(rect r, boolexpr filter, System.Action actionFunc);
+		public static extern void EnumItemsInRect(rect r, boolexpr filter, Action actionFunc);
 		/// @CSharpLua.Template = "GetItemLevel({0})"
 		public static extern int GetItemLevel(item whichItem);
 		/// @CSharpLua.Template = "GetItemType({0})"

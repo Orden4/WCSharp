@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace WCSharp.Api
 {
@@ -10,6 +11,7 @@ namespace WCSharp.Api
 		}
 
 		/// @CSharpLua.Get = "GetHandleId({this})"
+		[Obsolete("HandleId does not serve a purpose in lua/C#. It is prone to desyncs. Use the object itself as a key instead.")]
 		public extern int HandleId { get; }
 
 		[EditorBrowsable(EditorBrowsableState.Never)]

@@ -1,8 +1,8 @@
 ﻿using System;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Missiles
@@ -335,8 +335,7 @@ namespace WCSharp.Missiles
 			OriginY += deltaY;
 
 			var oldOriginZ = OriginZ;
-			OriginZ = InternalCasterZ
-					+ (distanceTravelled / totalDistance * (InternalTargetZ - InternalCasterZ));
+			OriginZ = InternalCasterZ + (distanceTravelled / totalDistance * (InternalTargetZ - InternalCasterZ));
 			var pitch = Atan2(oldOriginZ - OriginZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
 
 			var oldX = MissileX;

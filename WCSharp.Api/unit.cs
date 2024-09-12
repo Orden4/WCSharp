@@ -19,11 +19,23 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzCreateUnitWithSkin({0}, {1}, {3}, {4}, {5}, {2})"
 		public static extern unit CreateWithSkin(player player, int unitType, int skinId, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 
-		/// @CSharpLua.Template = "GetFoodMade({0})"
-		public static extern int FoodUsedBy(int unitType);
 		/// @CSharpLua.Template = "GetFoodUsed({0})"
+		public static extern int FoodUsedBy(int unitType);
+		/// @CSharpLua.Template = "GetFoodMade({0})"
 		public static extern int FoodMadeBy(int unitType);
+		/// @CSharpLua.Template = "GetUnitGoldCost({0})"
+		public static extern int GoldCostOf(int unitType);
+		/// @CSharpLua.Template = "GetUnitGoldCost({0})"
+		public static extern int WoodCostOf(int unitType);
+		/// @CSharpLua.Template = "GetUnitBuildTime({0})"
+		public static extern int BuildTimeOf(int unitType);
 
+		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
+		public static extern int GoldCost { get; }
+		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
+		public static extern int WoodCost { get; }
+		/// @CSharpLua.Get = "GetUnitBuildTime(GetUnitTypeId({this}))"
+		public static extern int BuildTime { get; }
 
 		/// @CSharpLua.Get = "GetUnitX({this})"
 		/// @CSharpLua.Set = "SetUnitX({this}, {0})"
@@ -165,6 +177,8 @@ namespace WCSharp.Api
 		public extern int PointValue { get; }
 		/// @CSharpLua.Get = "GetUnitCurrentOrder({this})"
 		public extern int CurrentOrder { get; }
+		/// @CSharpLua.Get = "BlzGetUnitOrderCount({this})"
+		public extern int OrderCount { get; }
 		/// @CSharpLua.Get = "GetUnitLevel({this})"
 		public extern int Level { get; }
 		/// @CSharpLua.Get = "GetUnitFoodUsed({this})"
@@ -187,8 +201,6 @@ namespace WCSharp.Api
 		public extern int UnitType { get; }
 		/// @CSharpLua.Get = "GetUnitRace({this})"
 		public extern race Race { get; }
-		/// @CSharpLua.Get = "BlzGetUnitOrderCount({this})"
-		public extern int OrderCount { get; }
 		/// @CSharpLua.Get = "UnitAlive({this})"
 		public extern bool Alive { get; }
 		/// @CSharpLua.Get = "UnitInvis({this})"
@@ -427,6 +439,11 @@ namespace WCSharp.Api
 		public extern bool QueueNeutralOrder(player player, int unitId, float x, float y);
 		/// @CSharpLua.Template = "BlzQueueNeutralTargetOrderById({0}, {this}, {1}, {2})"
 		public extern bool QueueNeutralOrder(player player, int unitId, widget target);
+
+		/// @CSharpLua.Template = "BlzUnitClearOrders({this}, {0})"
+		public extern void ClearOrders(bool onlyQueued = false);
+		/// @CSharpLua.Template = "BlzUnitForceStopOrder({this}, {0})"
+		public extern void ForceStopOrder(bool clearQueue = true);
 
 		/// @CSharpLua.Template = "AddItemToStock({this}, {0}, {1}, {2})"
 		public extern void AddItemToStock(int itemId, int stock, int stockMax);

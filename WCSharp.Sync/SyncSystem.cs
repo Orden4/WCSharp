@@ -235,8 +235,9 @@ namespace WCSharp.Sync
 		/// </summary>
 		public static void EnableDebug()
 		{
-			foreach (var syncTrigger in syncTriggers)
+			for (var i = 0; i < syncTriggers.Count; i++)
 			{
+				var syncTrigger = syncTriggers[i];
 				DestroyCondition(syncTrigger.Condition);
 				DisableTrigger(syncTrigger.Trigger);
 				DestroyTrigger(syncTrigger.Trigger);

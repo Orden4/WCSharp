@@ -10,7 +10,7 @@ namespace WCSharp.Api
 		}
 
 		/// @CSharpLua.Template = "Condition({0})"
-		public static extern conditionfunc Create(Action action);
+		public static extern conditionfunc Create(Func<bool> action);
 
 		/// @CSharpLua.Template = "DestroyCondition({this})"
 		public extern override void Dispose();

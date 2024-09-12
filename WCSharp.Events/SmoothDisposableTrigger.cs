@@ -98,7 +98,6 @@ namespace WCSharp.Events
 						this.actions.RemoveAt(i);
 					}
 				}
-
 			}
 
 			if (size == 0)

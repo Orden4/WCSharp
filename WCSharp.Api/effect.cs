@@ -46,6 +46,8 @@ namespace WCSharp.Api
 		public extern void SetHeight(float height);
 		/// @CSharpLua.Template = "BlzSetSpecialEffectMatrixScale({this}, {0}, {1}, {2})"
 		public extern void SetMatrixScale(float x, float y, float z = 1.0f);
+		/// @CSharpLua.Template = "BlzResetSpecialEffectMatrix({this})"
+		public extern void ClearMatrixScale();
 		/// @CSharpLua.Template = "BlzSetSpecialEffectTimeScale({this}, {0})"
 		public extern void SetTimeScale(float timeScale);
 		/// @CSharpLua.Template = "BlzSetSpecialEffectTime({this}, {0})"

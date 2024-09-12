@@ -180,8 +180,10 @@ namespace WCSharp.Buffs
 			}
 
 			var owner = GetOwningPlayer(unit);
-			foreach (var buff in GetBuffsOnUnit(unit))
+			var list = GetBuffsOnUnit(unit);
+			for (var i = 0; i < list.Count; i++)
 			{
+				var buff = list[i];
 				buff.TargetPlayer = owner;
 			}
 		}
@@ -207,8 +209,10 @@ namespace WCSharp.Buffs
 		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount)
 		{
 			var dispels = new List<Dispel>();
-			foreach (var buff in GetBuffsOnUnit(target))
+			var list = GetBuffsOnUnit(target);
+			for (var i = 0; i < list.Count; i++)
 			{
+				var buff = list[i];
 				if (buff.IsBeneficial == isBeneficial)
 				{
 					var stacks = buff.Stacks;
@@ -241,8 +245,10 @@ namespace WCSharp.Buffs
 		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, string dispelType)
 		{
 			var dispels = new List<Dispel>();
-			foreach (var buff in GetBuffsOnUnit(target))
+			var list = GetBuffsOnUnit(target);
+			for (var i = 0; i < list.Count; i++)
 			{
+				var buff = list[i];
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Contains(dispelType))
 				{
 					var stacks = buff.Stacks;
@@ -275,8 +281,10 @@ namespace WCSharp.Buffs
 		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, params string[] dispelTypes)
 		{
 			var dispels = new List<Dispel>();
-			foreach (var buff in GetBuffsOnUnit(target))
+			var list = GetBuffsOnUnit(target);
+			for (var i = 0; i < list.Count; i++)
 			{
+				var buff = list[i];
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)))
 				{
 					var stacks = buff.Stacks;
@@ -310,8 +318,10 @@ namespace WCSharp.Buffs
 		public static List<Dispel> Dispel(unit target, unit dispeller, bool isBeneficial, int dispelAmount, List<string> dispelTypes, List<string> exclusions)
 		{
 			var dispels = new List<Dispel>();
-			foreach (var buff in GetBuffsOnUnit(target))
+			var list = GetBuffsOnUnit(target);
+			for (var i = 0; i < list.Count; i++)
 			{
+				var buff = list[i];
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)) && !buff.BuffTypes.Any(x => exclusions.Contains(x)))
 				{
 					var stacks = buff.Stacks;
