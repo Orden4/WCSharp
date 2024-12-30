@@ -46,6 +46,9 @@ namespace WCSharp.Sync
 			RegisterForPrefix(HandleSyncPacket, SYNC_PACKET_PREFIX)
 		};
 
+		private static int _size;
+		private static int _index;
+
 		private static SyncTrigger RegisterForPrefix(Func<bool> action, string prefix)
 		{
 			var trigger = CreateTrigger();
@@ -104,9 +107,11 @@ namespace WCSharp.Sync
 
 			object concreteData = null;
 
-			for (var i = 0; i < syncHandlers.Count; i++)
+			_size = syncHandlers.Count;
+			_index = 0;
+			while (_index < _size)
 			{
-				var handler = syncHandlers[i];
+				var handler = syncHandlers[_index];
 				if (handler.Type.FullName == message.SyncHeader.TypeName)
 				{
 					if (concreteData == null)
@@ -116,6 +121,8 @@ namespace WCSharp.Sync
 					}
 					handler.Action.Invoke(concreteData);
 				}
+
+				_index++;
 			}
 		}
 
@@ -224,6 +231,17 @@ namespace WCSharp.Sync
 				if (syncHandlers[i].InternalAction.Equals(handler))
 				{
 					syncHandlers.RemoveAt(i);
+
+					// Ensure FinalizeMessage doesn't go out of bounds
+					if (i < _size)
+					{
+						_size--;
+						if (i <= _index)
+						{
+							_index--;
+						}
+					}
+
 					return;
 				}
 			}

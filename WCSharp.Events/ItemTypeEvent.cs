@@ -14,26 +14,26 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DROP_ITEM
 		/// </summary>
-		IsDropped = 302,
+		IsDropped,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_PAWN_ITEM
 		/// </summary>
-		IsPawned = 303,
+		IsPawned,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_PICKUP_ITEM
 		/// </summary>
-		IsPickedUp = 304,
+		IsPickedUp,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL_ITEM
 		/// </summary>
-		IsSold = 305,
+		IsSold,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_STACK_ITEM
 		/// </summary>
-		IsStacked = 306,
+		IsStacked,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_USE_ITEM
 		/// </summary>
-		IsUsed = 307,
+		IsUsed,
 	}
 }

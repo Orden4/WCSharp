@@ -14,22 +14,22 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_HERO_REVIVE_CANCEL
 		/// </summary>
-		CancelsRevive = 2,
+		CancelsRevive,
 		/// <summary>
 		/// Based on EVENT_PLAYER_HERO_REVIVE_FINISH
 		/// </summary>
-		FinishesRevive = 3,
+		FinishesRevive,
 		/// <summary>
 		/// Based on EVENT_PLAYER_HERO_SKILL
 		/// </summary>
-		LearnsSpell = 4,
+		LearnsSpell,
 		/// <summary>
 		/// Based on EVENT_PLAYER_HERO_LEVEL
 		/// </summary>
-		Levels = 5,
+		Levels,
 		/// <summary>
 		/// Based on EVENT_PLAYER_HERO_REVIVE_START
 		/// </summary>
-		StartsRevive = 6,
+		StartsRevive,
 	}
 }

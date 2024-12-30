@@ -14,10 +14,10 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_FINISH
 		/// </summary>
-		IsFinished = 502,
+		IsFinished,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_START
 		/// </summary>
-		IsStarted = 503,
+		IsStarted,
 	}
 }

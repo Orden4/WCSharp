@@ -14,14 +14,14 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
 		/// </summary>
-		GainsOwnership = 402,
+		GainsOwnership,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
 		/// </summary>
-		LosesOwnership = 403,
+		LosesOwnership,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELECTED
 		/// </summary>
-		SelectsUnit = 404,
+		SelectsUnit,
 	}
 }

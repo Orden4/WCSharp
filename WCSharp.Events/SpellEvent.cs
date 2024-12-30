@@ -14,22 +14,22 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CHANNEL
 		/// </summary>
-		Channel = 602,
+		Channel,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_EFFECT
 		/// </summary>
-		Effect = 603,
+		Effect,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_ENDCAST
 		/// </summary>
-		EndCast = 604,
+		EndCast,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_FINISH
 		/// </summary>
-		Finish = 605,
+		Finish,
 		/// <summary>
 		/// Based on EVENT_PLAYER_HERO_SKILL
 		/// </summary>
-		Learned = 606,
+		Learned,
 	}
 }

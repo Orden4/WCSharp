@@ -14,214 +14,214 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
-		BuysUnit = 702,
+		BuysUnit,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL
 		/// </summary>
-		CancelsBeingConstructed = 703,
+		CancelsBeingConstructed,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL
 		/// </summary>
-		CancelsConstruction = 704,
+		CancelsConstruction,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_CANCEL
 		/// </summary>
-		CancelsResearch = 705,
+		CancelsResearch,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_CANCEL
 		/// </summary>
-		CancelsTraining = 706,
+		CancelsTraining,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_UPGRADE_CANCEL
 		/// </summary>
-		CancelsUpgrade = 707,
+		CancelsUpgrade,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
 		/// </summary>
-		ChangesOwner = 708,
+		ChangesOwner,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DAMAGING
 		/// </summary>
-		Damaging = 709,
+		Damaging,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DECAY
 		/// </summary>
-		Decays = 710,
+		Decays,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DEATH
 		/// </summary>
-		Dies = 711,
+		Dies,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DROP_ITEM
 		/// </summary>
-		DropsItem = 712,
+		DropsItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_FINISH
 		/// </summary>
-		FinishesBeingConstructed = 713,
+		FinishesBeingConstructed,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_FINISH
 		/// </summary>
-		FinishesConstruction = 714,
+		FinishesConstruction,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_FINISH
 		/// </summary>
-		FinishesResearch = 715,
+		FinishesResearch,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_FINISH
 		/// </summary>
-		FinishesTraining = 716,
+		FinishesTraining,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_UPGRADE_FINISH
 		/// </summary>
-		FinishesUpgrade = 717,
+		FinishesUpgrade,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ATTACKED
 		/// </summary>
-		IsAttacked = 718,
+		IsAttacked,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DAMAGED
 		/// </summary>
-		IsDamaged = 719,
+		IsDamaged,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DESELECTED
 		/// </summary>
-		IsDeselected = 720,
+		IsDeselected,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DETECTED
 		/// </summary>
-		IsDetected = 721,
+		IsDetected,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_HIDDEN
 		/// </summary>
-		IsHidden = 722,
+		IsHidden,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_LOADED
 		/// </summary>
-		IsLoaded = 723,
+		IsLoaded,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESCUED
 		/// </summary>
-		IsRescued = 724,
+		IsRescued,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELECTED
 		/// </summary>
-		IsSelected = 725,
+		IsSelected,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
-		IsSold = 726,
+		IsSold,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DEATH
 		/// </summary>
-		Kills = 727,
+		Kills,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_LOADED
 		/// </summary>
-		Loads = 728,
+		Loads,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_PAWN_ITEM
 		/// </summary>
-		PawnsItem = 729,
+		PawnsItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_PICKUP_ITEM
 		/// </summary>
-		PicksUpItem = 730,
+		PicksUpItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_ORDER
 		/// </summary>
-		ReceivesOrder = 731,
+		ReceivesOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER
 		/// </summary>
-		ReceivesPointOrder = 732,
+		ReceivesPointOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER
 		/// </summary>
-		ReceivesTargetOrder = 733,
+		ReceivesTargetOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_UNIT_ORDER
 		/// </summary>
-		ReceivesUnitTypeOrder = 734,
+		ReceivesUnitTypeOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESCUED
 		/// </summary>
-		Rescues = 735,
+		Rescues,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL_ITEM
 		/// </summary>
-		SellsItem = 736,
+		SellsItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
-		SellsUnit = 737,
+		SellsUnit,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CAST
 		/// </summary>
-		SpellCast = 738,
+		SpellCast,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CAST
 		/// </summary>
-		SpellCastOn = 739,
+		SpellCastOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CHANNEL
 		/// </summary>
-		SpellChannel = 740,
+		SpellChannel,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CHANNEL
 		/// </summary>
-		SpellChannelOn = 741,
+		SpellChannelOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_EFFECT
 		/// </summary>
-		SpellEffect = 742,
+		SpellEffect,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_EFFECT
 		/// </summary>
-		SpellEffectOn = 743,
+		SpellEffectOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_ENDCAST
 		/// </summary>
-		SpellEndCast = 744,
+		SpellEndCast,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_ENDCAST
 		/// </summary>
-		SpellEndCastOn = 745,
+		SpellEndCastOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_FINISH
 		/// </summary>
-		SpellFinish = 746,
+		SpellFinish,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_FINISH
 		/// </summary>
-		SpellFinishOn = 747,
+		SpellFinishOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_STACK_ITEM
 		/// </summary>
-		StacksItem = 748,
+		StacksItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_START
 		/// </summary>
-		StartsConstruction = 749,
+		StartsConstruction,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_START
 		/// </summary>
-		StartsResearch = 750,
+		StartsResearch,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_START
 		/// </summary>
-		StartsTraining = 751,
+		StartsTraining,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_UPGRADE_START
 		/// </summary>
-		StartsUpgrade = 752,
+		StartsUpgrade,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SUMMON
 		/// </summary>
-		Summons = 753,
+		Summons,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_USE_ITEM
 		/// </summary>
-		UsesItem = 754,
+		UsesItem,
 	}
 }

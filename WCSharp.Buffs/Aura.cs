@@ -163,8 +163,10 @@ namespace WCSharp.Buffs
 			{
 				SearchIntervalLeft = SearchInterval;
 				GroupEnumUnitsInRange(group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
-				foreach (var unit in group.ToList())
+				var units = group.ToList();
+				for (var i = 0; i < units.Count; i++)
 				{
+					var unit = units[i];
 					var existingBuff = this.activeBuffs.FirstOrDefault(x => x.Unit == unit);
 					if (existingBuff != null)
 					{

@@ -14,238 +14,254 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
-		BuysUnit = 802,
+		BuysUnit,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL
 		/// </summary>
-		CancelsBeingConstructed = 803,
+		CancelsBeingConstructed,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_CANCEL
 		/// </summary>
-		CancelsBeingTrained = 804,
+		CancelsBeingTrained,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_CANCEL
 		/// </summary>
-		CancelsConstruction = 805,
+		CancelsConstruction,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_CANCEL
 		/// </summary>
-		CancelsResearch = 806,
+		CancelsResearch,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_CANCEL
 		/// </summary>
-		CancelsTraining = 807,
+		CancelsTraining,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_UPGRADE_CANCEL
 		/// </summary>
-		CancelsUpgrade = 808,
+		CancelsUpgrade,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
 		/// </summary>
-		ChangesOwner = 809,
+		ChangesOwner,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DAMAGING
+		/// <para>Filters on the unit dealing damage.</para>
+		/// <para>Runs after damage reductions.</para>
 		/// </summary>
-		Damaging = 810,
+		Damaging,
+		/// <summary>
+		/// Based on EVENT_PLAYER_UNIT_DAMAGING
+		/// <para>Filters on the unit taking damage.</para>
+		/// <para>Runs after damage reductions.</para>
+		/// </summary>
+		DamagingTaken,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DECAY
 		/// </summary>
-		Decays = 811,
+		Decays,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DEATH
 		/// </summary>
-		Dies = 812,
+		Dies,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DROP_ITEM
 		/// </summary>
-		DropsItem = 813,
+		DropsItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_FINISH
 		/// </summary>
-		FinishesBeingConstructed = 814,
+		FinishesBeingConstructed,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_FINISH
 		/// </summary>
-		FinishesBeingTrained = 815,
+		FinishesBeingTrained,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_FINISH
 		/// </summary>
-		FinishesConstruction = 816,
+		FinishesConstruction,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_FINISH
 		/// </summary>
-		FinishesResearch = 817,
+		FinishesResearch,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_FINISH
 		/// </summary>
-		FinishesTraining = 818,
+		FinishesTraining,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_UPGRADE_FINISH
 		/// </summary>
-		FinishesUpgrade = 819,
+		FinishesUpgrade,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ATTACKED
 		/// </summary>
-		IsAttacked = 820,
+		IsAttacked,
 		/// <summary>
 		/// Based on TriggerRegisterEnterRegion using GetWorldBounds
 		/// </summary>
-		IsCreated = 821,
+		IsCreated,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DAMAGED
+		/// <para>Filters on the unit taking damage.</para>
+		/// <para>Runs before damage reductions.</para>
 		/// </summary>
-		IsDamaged = 822,
+		IsDamaged,
+		/// <summary>
+		/// Based on EVENT_PLAYER_UNIT_DAMAGED
+		/// <para>Filters on the unit dealing damage.</para>
+		/// <para>Runs before damage reductions.</para>
+		/// </summary>
+		IsDamagedDealt,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DESELECTED
 		/// </summary>
-		IsDeselected = 823,
+		IsDeselected,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DETECTED
 		/// </summary>
-		IsDetected = 824,
+		IsDetected,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_HIDDEN
 		/// </summary>
-		IsHidden = 825,
+		IsHidden,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_LOADED
 		/// </summary>
-		IsLoaded = 826,
+		IsLoaded,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESCUED
 		/// </summary>
-		IsRescued = 827,
+		IsRescued,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELECTED
 		/// </summary>
-		IsSelected = 828,
+		IsSelected,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
-		IsSold = 829,
+		IsSold,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SUMMON
 		/// </summary>
-		IsSummoned = 830,
+		IsSummoned,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DEATH
 		/// </summary>
-		Kills = 831,
+		Kills,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_LOADED
 		/// </summary>
-		Loads = 832,
+		Loads,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_PAWN_ITEM
 		/// </summary>
-		PawnsItem = 833,
+		PawnsItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_PICKUP_ITEM
 		/// </summary>
-		PicksUpItem = 834,
+		PicksUpItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_ORDER
 		/// </summary>
-		ReceivesOrder = 835,
+		ReceivesOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER
 		/// </summary>
-		ReceivesPointOrder = 836,
+		ReceivesPointOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER
 		/// </summary>
-		ReceivesTargetOrder = 837,
+		ReceivesTargetOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ISSUED_UNIT_ORDER
 		/// </summary>
-		ReceivesUnitTypeOrder = 838,
+		ReceivesUnitTypeOrder,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESCUED
 		/// </summary>
-		Rescues = 839,
+		Rescues,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL_ITEM
 		/// </summary>
-		SellsItem = 840,
+		SellsItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
-		SellsUnit = 841,
+		SellsUnit,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CAST
 		/// </summary>
-		SpellCast = 842,
+		SpellCast,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CAST
 		/// </summary>
-		SpellCastOn = 843,
+		SpellCastOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CHANNEL
 		/// </summary>
-		SpellChannel = 844,
+		SpellChannel,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CHANNEL
 		/// </summary>
-		SpellChannelOn = 845,
+		SpellChannelOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_EFFECT
 		/// </summary>
-		SpellEffect = 846,
+		SpellEffect,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_EFFECT
 		/// </summary>
-		SpellEffectOn = 847,
+		SpellEffectOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_ENDCAST
 		/// </summary>
-		SpellEndCast = 848,
+		SpellEndCast,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_ENDCAST
 		/// </summary>
-		SpellEndCastOn = 849,
+		SpellEndCastOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_FINISH
 		/// </summary>
-		SpellFinish = 850,
+		SpellFinish,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_FINISH
 		/// </summary>
-		SpellFinishOn = 851,
+		SpellFinishOn,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_STACK_ITEM
 		/// </summary>
-		StacksItem = 852,
+		StacksItem,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_START
 		/// </summary>
-		StartsBeingConstructed = 853,
+		StartsBeingConstructed,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_START
 		/// </summary>
-		StartsBeingTrained = 854,
+		StartsBeingTrained,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_CONSTRUCT_START
 		/// </summary>
-		StartsConstruction = 855,
+		StartsConstruction,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_START
 		/// </summary>
-		StartsResearch = 856,
+		StartsResearch,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_TRAIN_START
 		/// </summary>
-		StartsTraining = 857,
+		StartsTraining,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_UPGRADE_START
 		/// </summary>
-		StartsUpgrade = 858,
+		StartsUpgrade,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SUMMON
 		/// </summary>
-		Summons = 859,
+		Summons,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_USE_ITEM
 		/// </summary>
-		UsesItem = 860,
+		UsesItem,
 	}
 }
