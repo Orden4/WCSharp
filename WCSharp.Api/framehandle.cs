@@ -51,10 +51,12 @@ namespace WCSharp.Api
 		public extern string Name { get; }
 
 		/// @CSharpLua.Get = "BlzFrameGetHeight({this})"
-		public extern float Height { get; }
+		/// @CSharpLua.Set = "BlzFrameSetSize({this}, BlzFrameGetWidth({this}), {0})"
+		public extern float Height { get; set; }
 
 		/// @CSharpLua.Get = "BlzFrameGetWidth({this})"
-		public extern float Width { get; }
+		/// @CSharpLua.Set = "BlzFrameSetSize({this}, {0}, BlzFrameGetHeight({this}))"
+		public extern float Width { get; set; }
 
 		/// @CSharpLua.Get = "BlzFrameGetChildrenCount({this})"
 		public extern int ChildrenCount { get; }

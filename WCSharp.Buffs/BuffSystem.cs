@@ -66,6 +66,8 @@ namespace WCSharp.Buffs
 		private static void OnDeath()
 		{
 			var unit = GetTriggerUnit();
+			var buffsOnUnit = GetBuffsOnUnit(unit);
+
 			if (index < size)
 			{
 				var buff = buffs[index];
@@ -76,16 +78,13 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			if (buffsByUnit.TryGetValue(unit, out var buffsOnUnit))
+			for (var i = 0; i < buffsOnUnit.Count; i++)
 			{
-				for (var i = 0; i < buffsOnUnit.Count; i++)
+				var buff = buffsOnUnit[i];
+				if (buff.Active)
 				{
-					var buff = buffsOnUnit[i];
-					if (buff.Active)
-					{
-						buff.Active = false;
-						buff.OnDeath(false);
-					}
+					buff.Active = false;
+					buff.OnDeath(false);
 				}
 			}
 		}

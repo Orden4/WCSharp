@@ -29,6 +29,8 @@ namespace WCSharp.Api
 		public static extern int WoodCostOf(int unitType);
 		/// @CSharpLua.Template = "GetUnitBuildTime({0})"
 		public static extern int BuildTimeOf(int unitType);
+		/// @CSharpLua.Template = "GetUnitPointValueByType({0})"
+		public static extern int PointValueOf(int unitType);
 
 		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
 		public static extern int GoldCost { get; }
@@ -58,21 +60,6 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetUnitFacing({this})"
 		/// @CSharpLua.Set = "BlzSetUnitFacingEx({this}, {0})"
 		public extern float Facing { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultMoveSpeed({this})"
-		/// @CSharpLua.Set = "SetUnitMoveSpeed({this}, {0})"
-		public extern float BaseMovementSpeed { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultTurnSpeed({this})"
-		/// @CSharpLua.Set = "SetUnitTurnSpeed({this}, {0})"
-		public extern float DefaultTurnSpeed { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultPropWindow({this})"
-		/// @CSharpLua.Set = "SetUnitPropWindow({this}, {0})"
-		public extern float DefaultPropWindow { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultAcquireRange({this})"
-		/// @CSharpLua.Set = "SetUnitAcquireRange({this}, {0})"
-		public extern float DefaultAcquireRange { get; set; }
-		/// @CSharpLua.Get = "GetUnitDefaultFlyHeight({this})"
-		/// @CSharpLua.Set = "SetUnitFlyHeight({this}, {0}, 0)"
-		public extern float DefaultFlyHeight { get; set; }
 		/// @CSharpLua.Get = "GetHeroStr({this}, false)"
 		/// @CSharpLua.Set = "SetHeroStr({this}, {0}, false)"
 		public extern int BaseStrength { get; set; }
@@ -151,28 +138,45 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "BlzGetHeroStat({this}, BlzGetHeroPrimaryStat({this}))"
 		/// @CSharpLua.Set = "BlzSetHeroPrimaryStat({this}, {0})"
 		public extern int PrimaryAttribute { get; set; }
+		/// @CSharpLua.Get = "GetUnitTurnSpeed({this})"
+		/// @CSharpLua.Set = "SetUnitTurnSpeed({this}, {0})"
+		public extern float TurnSpeed { get; }
+		/// @CSharpLua.Get = "GetUnitPropWindow({this})"
+		/// @CSharpLua.Set = "SetUnitPropWindow({this}, {0})"
+		public extern float PropWindow { get; set; }
+		/// @CSharpLua.Get = "GetUnitAcquireRange({this})"
+		/// @CSharpLua.Get = "SetUnitAcquireRange({this}, {0})"
+		public extern float AcquireRange { get; set; }
+		/// @CSharpLua.Get = "SetUnitFlyHeight({this}, {0}, 0)"
+		public extern float FlyHeight { get; set; }
+		/// @CSharpLua.Get = "GetUnitMoveSpeed({this})"
+		/// @CSharpLua.Set = "SetUnitMoveSpeed({this}, {0})"
+		public extern float MovementSpeed { get; set; }
 
 		/// @CSharpLua.Get = "GetUnitRallyPoint({this})"
-		public extern location RallyPoint { get; }
+		/// @CSharpLua.Set = "IssuePointOrderByIdLoc({this}, 851980, {0})"
+		public extern location RallyPoint { get; set; }
 		/// @CSharpLua.Get = "GetUnitRallyUnit({this})"
-		public extern unit RallyUnit { get; }
+		/// @CSharpLua.Set = "IssueTargetOrderById({this}, 851980, {0})"
+		public extern unit RallyUnit { get; set; }
 		/// @CSharpLua.Get = "GetUnitRallyDestructable({this})"
-		public extern destructable RallyDestructable { get; }
+		/// @CSharpLua.Set = "IssueTargetOrderById({this}, 851980, {0})"
+		public extern destructable RallyDestructable { get; set; }
 
+		/// @CSharpLua.Get = "GetUnitDefaultTurnSpeed({this})"
+		public extern float DefaultTurnSpeed { get; }
+		/// @CSharpLua.Get = "GetUnitDefaultPropWindow({this})"
+		public extern float DefaultPropWindow { get; }
+		/// @CSharpLua.Get = "GetUnitDefaultAcquireRange({this})"
+		public extern float DefaultAcquireRange { get; }
+		/// @CSharpLua.Get = "GetUnitDefaultFlyHeight({this})"
+		public extern float DefaultFlyHeight { get; }
+		/// @CSharpLua.Get = "GetUnitDefaultMoveSpeed({this})"
+		public extern float DefaultMovementSpeed { get; }
 		/// @CSharpLua.Get = "BlzGetUnitZ({this})"
 		public extern float Z { get; }
 		/// @CSharpLua.Get = "BlzGetLocalUnitZ({this})"
 		public extern float LocalZ { get; }
-		/// @CSharpLua.Get = "GetUnitMoveSpeed({this})"
-		public extern float MovementSpeed { get; }
-		/// @CSharpLua.Get = "GetUnitTurnSpeed({this})"
-		public extern float TurnSpeed { get; }
-		/// @CSharpLua.Get = "GetUnitPropWindow({this})"
-		public extern float PropWindow { get; }
-		/// @CSharpLua.Get = "GetUnitAcquireRange({this})"
-		public extern float AcquireRange { get; }
-		/// @CSharpLua.Get = "GetUnitFlyHeight({this})"
-		public extern float FlyHeight { get; }
 		/// @CSharpLua.Get = "GetUnitPointValue({this})"
 		public extern int PointValue { get; }
 		/// @CSharpLua.Get = "GetUnitCurrentOrder({this})"
@@ -334,6 +338,8 @@ namespace WCSharp.Api
 		public extern bool AddAbility(int abilityId);
 		/// @CSharpLua.Template = "UnitRemoveAbility({this}, {0})"
 		public extern bool RemoveAbility(int abilityId);
+		/// @CSharpLua.Template = "(GetUnitAbilityLevel({this}, {0}) <= 0)"
+		public extern bool HasAbility(int abilityId);
 		/// @CSharpLua.Template = "BlzGetUnitAbility({this}, {0})"
 		public extern ability GetAbility(int abilityId);
 		/// @CSharpLua.Template = "BlzGetUnitAbilityByIndex({this}, {0})"

@@ -63,6 +63,8 @@ namespace WCSharp.Api
 		public extern @event RegisterButtonEvent(button button);
 		/// @CSharpLua.Template = "TriggerRegisterGameEvent({this}, {0})"
 		public extern @event RegisterGameEvent(gameevent gameEvent);
+		/// @CSharpLua.Template = "TriggerRegisterGameStateEvent({0}, {1}, {2}, {3})"
+		public extern @event RegisterGameStateEvent(gamestate gameState, limitop opCode, float limitValue);
 		/// @CSharpLua.Template = "TriggerRegisterEnterRegion({this}, {0}, {1})"
 		public extern @event RegisterEnterRegion(region region, boolexpr filter = null);
 		/// @CSharpLua.Template = "TriggerRegisterLeaveRegion({this}, {0}, {1})"
