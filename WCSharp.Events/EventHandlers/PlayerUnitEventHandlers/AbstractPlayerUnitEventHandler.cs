@@ -42,15 +42,17 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 
 		protected bool Run()
 		{
-			this.index = 0;
 			this.size = this.eventSets.Count;
 
 			while (this.index < this.size)
 			{
-				this.eventSets[this.index].Run();
+				// Purposely written stupidly to avoid decompilation into a for loop
+				var eventSet = this.eventSets[this.index];
 				this.index++;
+				eventSet.Run();
 			}
 
+			this.index = 0;
 			return false;
 		}
 
@@ -153,7 +155,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 
 			if (searchIndex < this.size)
 			{
-				if (searchIndex <= this.index)
+				if (searchIndex < this.index)
 				{
 					this.eventSets.RemoveAt(searchIndex);
 					this.index--;

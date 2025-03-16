@@ -76,8 +76,9 @@ namespace WCSharp.Events
 			var i = 0;
 			while (i < size)
 			{
+				// Purposely written stupidly to avoid decompilation into a for loop
 				var timerEvent = timerEvents[i];
-				i++; // Purposely written stupidly to make sure this doesn't get decompiled into a for loop
+				i++;
 				timerEvent.IntervalLeft -= SYSTEM_INTERVAL;
 				while (timerEvent.IntervalLeft <= 0)
 				{

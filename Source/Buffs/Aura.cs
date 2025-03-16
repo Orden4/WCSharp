@@ -1,7 +1,7 @@
 ﻿using System;
+using WCSharp.Api;
 using WCSharp.Buffs;
 using static Constants;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace Source.Buffs

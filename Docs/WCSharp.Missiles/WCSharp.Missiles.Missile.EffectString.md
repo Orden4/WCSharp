@@ -3,7 +3,9 @@
 
 ## Missile.EffectString Property
 
-The effect string of the missile. If empty/null, the missile will be invisible.  
+The effect string of the missile.  
+  
+If null, no effect will be created.  
   
 If changed mid-flight, automatically modifies the missile.
 

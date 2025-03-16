@@ -3,7 +3,9 @@
 
 ## Buff.EffectString Property
 
-The path of the effect to use. Leave empty for no effect.  
+The path of the effect to use.  
+  
+If null, no effect will be created.  
   
 If changed while the buff is already active, will destroy and recreate the effect.
 

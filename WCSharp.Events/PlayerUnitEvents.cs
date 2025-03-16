@@ -335,9 +335,7 @@ namespace WCSharp.Events
 		{
 			if (customPlayerUnitEventHandlers.TryGetValue(@event, out var customHandler))
 			{
-				customHandler ??= CreateCustomHandler(@event);
-
-				return customHandler;
+				return customHandler ?? CreateCustomHandler(@event);
 			}
 			else if (playerUnitEventNativesById.TryGetValue(@event, out var playerUnitEventNative))
 			{

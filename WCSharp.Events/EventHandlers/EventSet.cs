@@ -8,9 +8,9 @@ namespace WCSharp.Events.EventHandlers
 		public int FilterId => int.MinValue;
 		public int Count => this.actions.Count;
 
-		protected readonly List<Action> actions;
-		protected int index;
-		protected int size;
+		private readonly List<Action> actions;
+		private int index;
+		private int size;
 
 		public EventSet()
 		{
@@ -30,7 +30,7 @@ namespace WCSharp.Events.EventHandlers
 
 			if (indexToRemove < this.size)
 			{
-				if (indexToRemove <= this.index)
+				if (indexToRemove < this.index)
 				{
 					this.actions.RemoveAt(indexToRemove);
 					this.index--;
@@ -57,14 +57,17 @@ namespace WCSharp.Events.EventHandlers
 
 		public void Run()
 		{
-			this.index = 0;
 			this.size = this.actions.Count;
 
 			while (this.index < this.size)
 			{
-				this.actions[this.index].Invoke();
+				// Purposely written stupidly to avoid decompilation into a for loop
+				var action = this.actions[this.index];
 				this.index++;
+				action.Invoke();
 			}
+
+			this.index = 0;
 		}
 	}
 }

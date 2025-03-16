@@ -34,7 +34,7 @@ Derived
 | [Effect](WCSharp.Buffs.Buff.Effect.md 'WCSharp.Buffs.Buff.Effect') | The effect being used by the missile. Creation of the effect should be done by setting [EffectString](WCSharp.Buffs.Buff.EffectString.md 'WCSharp.Buffs.Buff.EffectString'), not by setting this property. |
 | [EffectAttachmentPoint](WCSharp.Buffs.Buff.EffectAttachmentPoint.md 'WCSharp.Buffs.Buff.EffectAttachmentPoint') | The attachment point for the effect.<br/><br/><br/>If changed while the buff is already active, will destroy and recreate the effect at the desired attachment point.<br/><br/>Defaults to origin. |
 | [EffectScale](WCSharp.Buffs.Buff.EffectScale.md 'WCSharp.Buffs.Buff.EffectScale') | The effect scale of the missile.<br/><br/><br/>If modified mid-flight, automatically modifies the missile. |
-| [EffectString](WCSharp.Buffs.Buff.EffectString.md 'WCSharp.Buffs.Buff.EffectString') | The path of the effect to use. Leave empty for no effect.<br/><br/><br/>If changed while the buff is already active, will destroy and recreate the effect. |
+| [EffectString](WCSharp.Buffs.Buff.EffectString.md 'WCSharp.Buffs.Buff.EffectString') | The path of the effect to use.<br/><br/><br/>If null, no effect will be created.<br/><br/>If changed while the buff is already active, will destroy and recreate the effect. |
 | [IsBeneficial](WCSharp.Buffs.Buff.IsBeneficial.md 'WCSharp.Buffs.Buff.IsBeneficial') | Whether this buff is beneficial or detrimental to the target. |
 | [Stacks](WCSharp.Buffs.Buff.Stacks.md 'WCSharp.Buffs.Buff.Stacks') | The number of stacks of this buff currently active on the target.<br/><br/><br/>Defaults to 1. |
 | [Target](WCSharp.Buffs.Buff.Target.md 'WCSharp.Buffs.Buff.Target') | The target to which this buff is attached. |

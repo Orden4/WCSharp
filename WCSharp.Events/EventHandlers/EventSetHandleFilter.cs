@@ -24,8 +24,8 @@ namespace WCSharp.Events.EventHandlers
 
 		public void Add(Action action, object filterObj)
 		{
-			if (filterObj is not TypeWrapper<handle> filterWrapper)
-				throw new ArgumentException($"Unable to cast event filter to required type {typeof(handle)}", nameof(filterObj));
+			var filterWrapper = filterObj as TypeWrapper<handle>
+				?? throw new ArgumentException($"Unable to cast event filter to required type {typeof(handle)}", nameof(filterObj));
 			var filterValue = filterWrapper.Value;
 
 			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
@@ -49,8 +49,8 @@ namespace WCSharp.Events.EventHandlers
 
 		public bool Remove(Action action, object filterObj)
 		{
-			if (filterObj is not TypeWrapper<handle> filterWrapper)
-				throw new ArgumentException($"Unable to cast event filter to required type {typeof(handle)}", nameof(filterObj));
+			var filterWrapper = filterObj as TypeWrapper<handle>
+				?? throw new ArgumentException($"Unable to cast event filter to required type {typeof(handle)}", nameof(filterObj));
 			var filterValue = filterWrapper.Value;
 
 			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
