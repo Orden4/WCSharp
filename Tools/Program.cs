@@ -20,6 +20,7 @@ namespace Tools
 					"camera-api" => RunCameraApi,
 					"playerunitevents" => GeneratePlayerUnitEvents,
 					"api-check" => ApiCheck,
+					"name-dump" => DumpNames,
 					_ => throw new NotImplementedException(),
 				};
 			}
@@ -74,5 +75,11 @@ namespace Tools
 			var apiChecker = new ApiChecker("../../../../WCSharp.Api", jassTemplates);
 			apiChecker.Run();
 		}
+
+		private static void DumpNames()
+		{
+			NameDump.Run(["data/common.j", "data/blizzard.j", "data/common.ai"]);
+		}
+
 	}
 }

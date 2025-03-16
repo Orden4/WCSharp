@@ -140,7 +140,7 @@ namespace WCSharp.Api
 		public extern int PrimaryAttribute { get; set; }
 		/// @CSharpLua.Get = "GetUnitTurnSpeed({this})"
 		/// @CSharpLua.Set = "SetUnitTurnSpeed({this}, {0})"
-		public extern float TurnSpeed { get; }
+		public extern float TurnSpeed { get; set; }
 		/// @CSharpLua.Get = "GetUnitPropWindow({this})"
 		/// @CSharpLua.Set = "SetUnitPropWindow({this}, {0})"
 		public extern float PropWindow { get; set; }
