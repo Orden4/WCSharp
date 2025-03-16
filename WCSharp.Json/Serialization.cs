@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace WCSharp.Json
 {
@@ -17,20 +18,27 @@ namespace WCSharp.Json
 				var property = properties[i];
 				var propertyType = property.PropertyType;
 				var value = property.GetValue(input);
+				var name = property.Name;
+				var jsonAttribute = property.GetCustomAttribute<JsonPropertyAttribute>();
+				if (jsonAttribute != null && !string.IsNullOrEmpty(jsonAttribute.Name))
+				{
+					name = jsonAttribute.Name;
+				}
+
 				if (!propertyType.IsClass)
 				{
-					dict.Add(property.Name, value);
+					dict.Add(name, value);
 				}
 				else if (propertyType == typeof(string))
 				{
 					if (value != null)
 					{
-						dict.Add(property.Name, value);
+						dict.Add(name, value);
 					}
 				}
 				else if (value != null)
 				{
-					dict.Add(property.Name, SerializeClass(value, propertyType));
+					dict.Add(name, SerializeClass(value, propertyType));
 				}
 			}
 

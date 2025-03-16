@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using WCSharp.Shared;
 
 namespace WCSharp.Json
@@ -33,7 +34,7 @@ namespace WCSharp.Json
 			for (var i = 0; i < properties.Length; i++)
 			{
 				var property = properties[i];
-				if (table.TryGetValue(property.Name, out var value))
+				if (!TryGetTableValue(table, property, out var value))
 				{
 					var deserializedValue = DeserializeLuaValue(value, property.PropertyType);
 					if (deserializedValue != null)
@@ -44,6 +45,18 @@ namespace WCSharp.Json
 			}
 
 			return instance;
+		}
+
+		private static bool TryGetTableValue(LuaTable table, PropertyInfo property, out object value)
+		{
+			var jsonAttribute = property.GetCustomAttribute<JsonPropertyAttribute>();
+			if (jsonAttribute != null && !string.IsNullOrEmpty(jsonAttribute.Name))
+			{
+				if (table.TryGetValue(jsonAttribute.Name, out value))
+					return true;
+			}
+
+			return table.TryGetValue(property.Name, out value);
 		}
 
 		private static object DeserializeClass(object value, Type type)
