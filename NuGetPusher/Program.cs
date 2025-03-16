@@ -19,15 +19,15 @@ namespace NuGetPusher
 			"W3MMD",
 			"Json",
 			"Events",
+			"Sync",
 			"Dummies",
 			"Effects",
-			"Sync",
-			"SaveLoad",
-			"Buffs",
-			"DateTime",
 			"Knockbacks",
 			"Lightnings",
 			"Missiles",
+			"Buffs",
+			"DateTime",
+			"SaveLoad",
 		};
 
 		public static string ApiKey { get; set; }
