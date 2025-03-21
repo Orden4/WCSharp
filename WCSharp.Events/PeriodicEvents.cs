@@ -85,8 +85,8 @@ namespace WCSharp.Events
 					timerEvent.IntervalLeft += timerEvent.Interval;
 					if (!timerEvent.Method.Invoke())
 					{
-						size--;
 						i--;
+						size--;
 						timerEvents[i] = timerEvents[size];
 						timerEvents.RemoveAt(size);
 						break;

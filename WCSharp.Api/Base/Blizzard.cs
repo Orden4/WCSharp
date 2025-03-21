@@ -1625,7 +1625,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "ChooseRandomCreepBJ({0})"
 		public static extern int ChooseRandomCreepBJ(int level);
 		/// @CSharpLua.Template = "EnumItemsInRectBJ({0}, {1})"
-		public static extern void EnumItemsInRectBJ(rect r, System.Action actionFunc);
+		public static extern void EnumItemsInRectBJ(rect r, Action actionFunc);
 		/// @CSharpLua.Template = "RandomItemInRectBJEnum()"
 		public static extern void RandomItemInRectBJEnum();
 		/// @CSharpLua.Template = "RandomItemInRectBJ({0}, {1})"
@@ -1863,7 +1863,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "GetDestructableLoc({0})"
 		public static extern location GetDestructableLoc(destructable whichDestructable);
 		/// @CSharpLua.Template = "EnumDestructablesInRectAll({0}, {1})"
-		public static extern void EnumDestructablesInRectAll(rect r, System.Action actionFunc);
+		public static extern void EnumDestructablesInRectAll(rect r, Action actionFunc);
 		/// @CSharpLua.Template = "EnumDestructablesInCircleBJFilter()"
 		public static extern bool EnumDestructablesInCircleBJFilter();
 		/// @CSharpLua.Template = "IsDestructableDeadBJ({0})"
@@ -1877,7 +1877,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "RandomDestructableInRectSimpleBJ({0})"
 		public static extern destructable RandomDestructableInRectSimpleBJ(rect r);
 		/// @CSharpLua.Template = "EnumDestructablesInCircleBJ({0}, {1}, {2})"
-		public static extern void EnumDestructablesInCircleBJ(float radius, location loc, System.Action actionFunc);
+		public static extern void EnumDestructablesInCircleBJ(float radius, location loc, Action actionFunc);
 		/// @CSharpLua.Template = "SetDestructableLifePercentBJ({0}, {1})"
 		public static extern void SetDestructableLifePercentBJ(destructable d, float percent);
 		/// @CSharpLua.Template = "SetDestructableMaxLifeBJ({0}, {1})"
@@ -1919,7 +1919,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "ForceUICancelBJ({0})"
 		public static extern void ForceUICancelBJ(player whichPlayer);
 		/// @CSharpLua.Template = "ForGroupBJ({0}, {1})"
-		public static extern void ForGroupBJ(group whichGroup, System.Action callback);
+		public static extern void ForGroupBJ(group whichGroup, Action callback);
 		/// @CSharpLua.Template = "GroupAddUnitSimple({0}, {1})"
 		public static extern void GroupAddUnitSimple(unit whichUnit, group whichGroup);
 		/// @CSharpLua.Template = "GroupRemoveUnitSimple({0}, {1})"
@@ -1945,7 +1945,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "ForcePickRandomPlayer({0})"
 		public static extern player ForcePickRandomPlayer(force whichForce);
 		/// @CSharpLua.Template = "EnumUnitsSelected({0}, {1}, {2})"
-		public static extern void EnumUnitsSelected(player whichPlayer, boolexpr enumFilter, System.Action enumAction);
+		public static extern void EnumUnitsSelected(player whichPlayer, boolexpr enumFilter, Action enumAction);
 		/// @CSharpLua.Template = "GetUnitsInRectMatching({0}, {1})"
 		public static extern group GetUnitsInRectMatching(rect r, boolexpr filter);
 		/// @CSharpLua.Template = "GetUnitsInRectAll({0})"

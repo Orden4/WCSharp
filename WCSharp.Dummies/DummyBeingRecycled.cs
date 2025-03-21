@@ -1,5 +1,4 @@
 ﻿using WCSharp.Api;
-using static WCSharp.Api.Common;
 
 namespace WCSharp.Dummies
 {

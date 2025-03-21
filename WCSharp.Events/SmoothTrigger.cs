@@ -87,9 +87,10 @@ namespace WCSharp.Events
 					if (!action.Active)
 					{
 						i--;
+
 						size--;
 						this.actions[i] = this.actions[size];
-						this.actions.RemoveAt(i);
+						this.actions.RemoveAt(size);
 					}
 				}
 			}

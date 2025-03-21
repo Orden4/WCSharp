@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using WCSharp.Api;
 using WCSharp.Shared;
+using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
@@ -10,8 +11,11 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 	{
 		protected readonly List<IEventSet> eventSets;
 		protected readonly trigger trigger;
-		protected int index;
-		protected int size;
+		protected bool active;
+
+		private static readonly EventAddRemoveResolver<IEventSet> resolver = new();
+		public static int Depth { get; private set; }
+		public static bool RequireUpdate { get; set; }
 
 		public AbstractPlayerUnitEventHandler()
 		{
@@ -42,17 +46,31 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 
 		protected bool Run()
 		{
-			this.size = this.eventSets.Count;
-
-			while (this.index < this.size)
+			try
 			{
-				// Purposely written stupidly to avoid decompilation into a for loop
-				var eventSet = this.eventSets[this.index];
-				this.index++;
-				eventSet.Run();
+				Depth++;
+				for (var i = 0; i < this.eventSets.Count; i++)
+				{
+					this.eventSets[i].Run();
+				}
+			}
+			finally
+			{
+				Depth--;
+				if (RequireUpdate && Depth == 0)
+				{
+					RequireUpdate = false;
+					Console.WriteLine($"Running resolves");
+					var s1 = resolver.Resolve();
+					var s2 = EventSet.Resolver.Resolve();
+					if (s1 || s2)
+					{
+						Console.WriteLine("Cleaning...");
+						PlayerUnitEvents.Clean();
+					}
+				}
 			}
 
-			this.index = 0;
 			return false;
 		}
 
@@ -130,55 +148,66 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 
 		private IEventSet AddEventSet(IEventSet eventSet)
 		{
-			this.eventSets.Add(eventSet);
-			if (this.eventSets.Count == 1)
+			if (!this.active)
 			{
+				this.active = true;
 				EnableTrigger(this.trigger);
+			}
+
+			if (Depth == 0)
+			{
+				this.eventSets.Add(eventSet);
+			}
+			else
+			{
+				RequireUpdate = true;
+				resolver.Add(this.eventSets, eventSet);
 			}
 			return eventSet;
 		}
 
 		private void RemoveEvent(IEventSet eventSet)
 		{
-			var searchIndex = -1;
-			for (var i = 0; i < this.eventSets.Count; i++)
+			if (Depth == 0)
 			{
-				if (this.eventSets[i] == eventSet)
-				{
-					searchIndex = i;
-					break;
-				}
-			}
+				var index = this.eventSets.IndexOf(eventSet);
+				if (index == -1)
+					throw new Exception("Attempting to remove an event that does not exist.");
 
-			if (searchIndex == -1)
-				throw new Exception("Attempting to remove an event that does not exist.");
+				var size = this.eventSets.Count;
+				this.eventSets[index] = this.eventSets[size - 1];
+				this.eventSets.Nil(size);
 
-			if (searchIndex < this.size)
-			{
-				if (searchIndex < this.index)
+				if (size == 1)
 				{
-					this.eventSets.RemoveAt(searchIndex);
-					this.index--;
-					this.size--;
-				}
-				else
-				{
-					this.size--;
-					var removeIndex = this.eventSets.Count - 1;
-					this.eventSets[searchIndex] = this.eventSets[this.size];
-					this.eventSets[this.size] = this.eventSets[removeIndex];
-					this.eventSets.RemoveAt(removeIndex);
+					this.active = false;
+					DisableTrigger(this.trigger);
 				}
 			}
 			else
 			{
-				var removeIndex = this.eventSets.Count - 1;
-				this.eventSets[searchIndex] = this.eventSets[removeIndex];
-				this.eventSets.RemoveAt(removeIndex);
+				RequireUpdate = true;
+				resolver.Add(this.eventSets, eventSet);
+			}
+		}
+
+		public void Clean()
+		{
+			var size = this.eventSets.Count;
+			for (var i = 0; i < this.eventSets.Count; i++)
+			{
+				var eventSet = this.eventSets[i];
+				if (eventSet.Count == 0)
+				{
+					this.eventSets[i] = this.eventSets[size - 1];
+					this.eventSets.Nil(size);
+					size--;
+				}
 			}
 
-			if (this.eventSets.Count == 0)
+			if (size == 0 && this.active)
 			{
+				this.active = false;
 				DisableTrigger(this.trigger);
 			}
 		}

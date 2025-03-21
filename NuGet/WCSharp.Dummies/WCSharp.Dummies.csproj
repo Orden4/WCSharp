@@ -5,7 +5,7 @@
     <LangVersion>9.0</LangVersion>
     <DocumentationFile>WCSharp.Dummies.xml</DocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.1.0</Version>
+    <Version>3.1.4</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
@@ -19,7 +19,8 @@ This package allows for the fetching and recycling of dummy units in Warcraft II
 
   <ItemGroup>
     <PackageReference Include="WCSharp.Api" Version="3.1.0" />
-    <PackageReference Include="WCSharp.Events" Version="3.1.0" />
+    <PackageReference Include="WCSharp.Events" Version="3.1.4" />
+    <PackageReference Include="WCSharp.Shared" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>

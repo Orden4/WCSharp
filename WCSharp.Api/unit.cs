@@ -13,7 +13,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "CreateUnit({0}, {1}, {2}, {3}, {4})"
 		public static extern unit Create(player player, int unitType, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 		/// @CSharpLua.Template = "CreateUnitByName({0}, {1}, {2}, {3}, {4})"
-		public static extern unit Create(player player, string unitType, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
+		public static extern unit Create(player player, string unitName, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 		/// @CSharpLua.Template = "CreateCorpse({0}, {1}, {2}, {3}, {4})"
 		public static extern unit CreateCorpse(player player, int unitType, float x, float y, float facing = Blizzard.bj_UNIT_FACING);
 		/// @CSharpLua.Template = "BlzCreateUnitWithSkin({0}, {1}, {3}, {4}, {5}, {2})"

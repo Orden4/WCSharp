@@ -12,6 +12,7 @@ namespace WCSharp.Events
 	public static partial class PlayerUnitEvents
 	{
 		private static readonly Dictionary<string, int> customEventIdsByIdentifier = new();
+		private static readonly List<IPlayerUnitEventHandler> eventHandlers = new();
 		private static readonly Dictionary<playerunitevent, IPlayerUnitEventHandler> playerUnitEventHandlers = new();
 		private static readonly Dictionary<int, IPlayerUnitEventHandler> customPlayerUnitEventHandlers = new()
 		{
@@ -343,6 +344,7 @@ namespace WCSharp.Events
 				{
 					handler = new PlayerUnitEventHandler(playerUnitEventNative);
 					playerUnitEventHandlers.Add(playerUnitEventNative, handler);
+					eventHandlers.Add(handler);
 				}
 
 				return handler;
@@ -372,7 +374,16 @@ namespace WCSharp.Events
 			};
 
 			customPlayerUnitEventHandlers[@event] = customHandler;
+			eventHandlers.Add(customHandler);
 			return customHandler;
+		}
+
+		internal static void Clean()
+		{
+			foreach (var eventHandler in eventHandlers)
+			{
+				eventHandler.Clean();
+			}
 		}
 
 		/// <summary>

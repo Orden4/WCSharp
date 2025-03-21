@@ -31,5 +31,58 @@ namespace WCSharp.Shared.Extensions
 				}
 			}
 		}
+
+#pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
+		/// <summary>
+		/// Abuses how lists work in lua in order to cheaply remove the final element.
+		/// <para>If you already know the size of the list, use <see cref="Nil{T}(List{T}, int)"/> instead.</para>
+		/// </summary>
+		/// <param name="list">The list to modify.</param>
+		/// @CSharpLua.Template = "{0}[#{0}] = nil"
+		public static extern void Nil<T>(this List<T> list);
+		/// <summary>
+		/// Abuses how lists work in lua in order to cheaply remove the final element.
+		/// <para>WARNING! If <paramref name="count"/> is NOT equal to <see cref="List{T}.Count"/>, you WILL cause major bugs!</para>
+		/// </summary>
+		/// <param name="list">The list to modify.</param>
+		/// <param name="count">This MUST be equal to <see cref="List{T}.Count"/>, else you WILL cause major bugs!</param>
+		/// @CSharpLua.Template = "{0}[{1}] = nil"
+		public static extern void Nil<T>(this List<T> list, int count);
+#pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
+
+		/// <summary>
+		/// Abuses how lists work in lua in order to cheaply remove the final elements.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list">The list to modify.</param>
+		/// <param name="amount">The number of elements to remove.</param>
+		public static void ClearLast<T>(this List<T> list, int amount)
+		{
+			var count = list.Count;
+			var end = count - amount;
+			while (end < count)
+			{
+				list.Nil(count);
+				count--;
+			}
+		}
+
+		/// <summary>
+		/// Abuses how lists work in lua in order to cheaply remove the final elements.
+		/// <para>WARNING! If <paramref name="count"/> is NOT equal to <see cref="List{T}.Count"/>, you WILL cause major bugs!</para>
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list">The list to modify.</param>
+		/// <param name="amount">The number of elements to remove.</param>
+		/// <param name="count">This MUST be equal to <see cref="List{T}.Count"/>, else you WILL cause major bugs!</param>
+		public static void ClearLast<T>(this List<T> list, int amount, int count)
+		{
+			var end = count - amount;
+			while (end < count)
+			{
+				list.Nil(count);
+				count--;
+			}
+		}
 	}
 }

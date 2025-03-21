@@ -4,6 +4,7 @@ using System.Linq;
 using WCSharp.Api;
 using WCSharp.Dummies;
 using WCSharp.Events;
+using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs

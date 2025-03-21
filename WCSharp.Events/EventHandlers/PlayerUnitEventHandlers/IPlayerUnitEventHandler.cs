@@ -11,5 +11,6 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 		void Unregister(Action action);
 		void Unregister(Action action, int filterId, Func<int> filterFunc, int filterValue);
 		void Unregister(Action action, int filterId, Func<handle> filterFunc, handle filterValue);
+		void Clean();
 	}
 }

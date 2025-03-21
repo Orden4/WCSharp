@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Defines all built-in PlayerEvents supported by <see cref="PlayerUnitEvents"/>.
 	/// <para>All of these events fire based on a player id.</para>
-	/// <para>Custom events can also be specified via <see cref="PlayerUnitEvents.AddCustomEvent(string, System.Func{int}, WCSharp.Api.playerunitevent)"/>.</para>
+	/// <para>Custom events can also be specified via <see cref="PlayerUnitEvents.AddCustomEvent(string, System.Func{int}, Api.playerunitevent)"/>.</para>
 	/// </summary>
 	public enum PlayerEvent
 	{

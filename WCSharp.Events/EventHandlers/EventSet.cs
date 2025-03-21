@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using WCSharp.Events.EventHandlers.PlayerUnitEventHandlers;
+using WCSharp.Shared.Extensions;
 
 namespace WCSharp.Events.EventHandlers
 {
 	internal class EventSet : IEventSet
 	{
+		public static EventAddRemoveResolver<Action> Resolver { get; } = new();
+
 		public int FilterId => int.MinValue;
 		public int Count => this.actions.Count;
 
 		private readonly List<Action> actions;
-		private int index;
-		private int size;
 
 		public EventSet()
 		{
@@ -19,55 +21,44 @@ namespace WCSharp.Events.EventHandlers
 
 		public void Add(Action action, object filterObj)
 		{
-			this.actions.Add(action);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				this.actions.Add(action);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequireUpdate = true;
+				Resolver.Add(this.actions, action);
+			}
 		}
 
 		public bool Remove(Action action, object filterObj)
 		{
-			var indexToRemove = this.actions.IndexOf(action);
-			if (indexToRemove == -1)
-				return false;
-
-			if (indexToRemove < this.size)
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
-				if (indexToRemove < this.index)
-				{
-					this.actions.RemoveAt(indexToRemove);
-					this.index--;
-					this.size--;
-				}
-				else
-				{
-					var actualSize = this.actions.Count;
-					this.actions[indexToRemove] = this.actions[this.size - 1];
-					this.actions[this.size - 1] = this.actions[actualSize - 1];
-					this.actions.RemoveAt(indexToRemove);
-					this.size--;
-				}
+				var index = this.actions.IndexOf(action);
+				if (index == -1)
+					return false;
+
+				var count = this.actions.Count;
+				this.actions[index] = this.actions[count - 1];
+				this.actions.Nil(count);
+				return count == 1;
 			}
 			else
 			{
-				var actualSize = this.actions.Count;
-				this.actions[indexToRemove] = this.actions[actualSize - 1];
-				this.actions.RemoveAt(actualSize - 1);
+				AbstractPlayerUnitEventHandler.RequireUpdate = true;
+				Resolver.Remove(this.actions, action);
+				return false;
 			}
-
-			return true;
 		}
 
 		public void Run()
 		{
-			this.size = this.actions.Count;
-
-			while (this.index < this.size)
+			for (var i = 0; i < this.actions.Count; i++)
 			{
-				// Purposely written stupidly to avoid decompilation into a for loop
-				var action = this.actions[this.index];
-				this.index++;
-				action.Invoke();
+				this.actions[i].Invoke();
 			}
-
-			this.index = 0;
 		}
 	}
 }

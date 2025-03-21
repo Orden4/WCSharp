@@ -61,9 +61,8 @@ namespace WCSharp.Events.EventHandlers
 					{
 						this.actionsByFilterId.Remove(filterValue);
 						this.eventSetsByFilterId.Remove(filterValue);
+						return true;
 					}
-
-					return true;
 				}
 
 				return false;
