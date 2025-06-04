@@ -1,4 +1,5 @@
 ﻿using System;
+using WCSharp.Api.Enums;
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
@@ -102,6 +103,6 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzTriggerRegisterPlayerSyncEvent({this}, {0}, {1}, {2})"
 		public extern @event RegisterPlayerSyncEvent(player player, string prefix, bool fromServer);
 		/// @CSharpLua.Template = "BlzTriggerRegisterPlayerKeyEvent({this}, {0}, {1}, {2}, {3})"
-		public extern @event RegisterPlayerKeyEvent(player player, oskeytype osKeyType, int metaKey, bool keyDown);
+		public extern @event RegisterPlayerKeyEvent(player player, oskeytype osKeyType, MetaKey metaKey, bool keyDown);
 	}
 }

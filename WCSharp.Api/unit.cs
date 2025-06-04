@@ -31,6 +31,10 @@ namespace WCSharp.Api
 		public static extern int BuildTimeOf(int unitType);
 		/// @CSharpLua.Template = "GetUnitPointValueByType({0})"
 		public static extern int PointValueOf(int unitType);
+		/// @CSharpLua.Template = "IsHeroUnitId({0})"
+		public static extern bool IsHero(int unitType);
+		/// @CSharpLua.Template = "IsUnitIdType({0}, {1})"
+		public static extern bool IsUnitType(int unitTypeId, unittype unitType);
 
 		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
 		public static extern int GoldCost { get; }
@@ -338,7 +342,7 @@ namespace WCSharp.Api
 		public extern bool AddAbility(int abilityId);
 		/// @CSharpLua.Template = "UnitRemoveAbility({this}, {0})"
 		public extern bool RemoveAbility(int abilityId);
-		/// @CSharpLua.Template = "(GetUnitAbilityLevel({this}, {0}) <= 0)"
+		/// @CSharpLua.Template = "(GetUnitAbilityLevel({this}, {0}) > 0)"
 		public extern bool HasAbility(int abilityId);
 		/// @CSharpLua.Template = "BlzGetUnitAbility({this}, {0})"
 		public extern ability GetAbility(int abilityId);
@@ -937,7 +941,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_AREA_OF_EFFECT_SMALL_DAMAGE, 1, {0})"
 		public extern float AttackAreaOfEffectSmallDamage2 { get; set; }
 
-		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 0)"
+		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_RANGE, 1)"
 		public extern float AttackRange2 { get; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponStringField({this}, UNIT_WEAPON_SF_ATTACK_PROJECTILE_ART, 1)"

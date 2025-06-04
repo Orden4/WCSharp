@@ -1,4 +1,5 @@
 ﻿using System;
+using WCSharp.Api.Enums;
 
 namespace WCSharp.Api
 {
@@ -6254,7 +6255,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzGetTriggerSyncData()"
 		public static extern string BlzGetTriggerSyncData();
 		/// @CSharpLua.Template = "BlzTriggerRegisterPlayerKeyEvent({0}, {1}, {2}, {3}, {4})"
-		public static extern @event BlzTriggerRegisterPlayerKeyEvent(trigger whichTrigger, player whichPlayer, oskeytype key, int metaKey, bool keyDown);
+		public static extern @event BlzTriggerRegisterPlayerKeyEvent(trigger whichTrigger, player whichPlayer, oskeytype key, MetaKey metaKey, bool keyDown);
 		/// @CSharpLua.Template = "BlzGetTriggerPlayerKey()"
 		public static extern oskeytype BlzGetTriggerPlayerKey();
 		/// @CSharpLua.Template = "BlzGetTriggerPlayerMetaKey()"

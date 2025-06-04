@@ -66,7 +66,21 @@ Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
 
 `Damaging` 709
 
-Based on EVENT_PLAYER_UNIT_DAMAGING
+Based on EVENT_PLAYER_UNIT_DAMAGING  
+  
+Filters on the unit dealing damage.  
+  
+Runs before damage reductions.
+
+<a name='WCSharp.Events.UnitEvent.DamagingTaken'></a>
+
+`DamagingTaken` 755
+
+Based on EVENT_PLAYER_UNIT_DAMAGING  
+  
+Filters on the unit taking damage.  
+  
+Runs before damage reductions.
 
 <a name='WCSharp.Events.UnitEvent.Decays'></a>
 
@@ -126,7 +140,21 @@ Based on EVENT_PLAYER_UNIT_ATTACKED
 
 `IsDamaged` 719
 
-Based on EVENT_PLAYER_UNIT_DAMAGED
+Based on EVENT_PLAYER_UNIT_DAMAGED  
+  
+Filters on the unit taking damage.  
+  
+Runs after damage reductions.
+
+<a name='WCSharp.Events.UnitEvent.IsDamagedDealt'></a>
+
+`IsDamagedDealt` 756
+
+Based on EVENT_PLAYER_UNIT_DAMAGED  
+  
+Filters on the unit dealing damage.  
+  
+Runs after damage reductions.
 
 <a name='WCSharp.Events.UnitEvent.IsDeselected'></a>
 

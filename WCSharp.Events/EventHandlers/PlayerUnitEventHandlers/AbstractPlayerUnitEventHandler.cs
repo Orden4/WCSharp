@@ -13,9 +13,8 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 		protected readonly trigger trigger;
 		protected bool active;
 
-		private static readonly EventAddRemoveResolver<IEventSet> resolver = new();
 		public static int Depth { get; private set; }
-		public static bool RequireUpdate { get; set; }
+		public static bool RequiresUpdate { get; set; }
 
 		public AbstractPlayerUnitEventHandler()
 		{
@@ -57,17 +56,9 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			finally
 			{
 				Depth--;
-				if (RequireUpdate && Depth == 0)
+				if (Depth == 0 && RequiresUpdate)
 				{
-					RequireUpdate = false;
-					Console.WriteLine($"Running resolves");
-					var s1 = resolver.Resolve();
-					var s2 = EventSet.Resolver.Resolve();
-					if (s1 || s2)
-					{
-						Console.WriteLine("Cleaning...");
-						PlayerUnitEvents.Clean();
-					}
+					PlayerUnitEvents.ResolvePendingUpdates();
 				}
 			}
 
@@ -154,58 +145,21 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				EnableTrigger(this.trigger);
 			}
 
-			if (Depth == 0)
-			{
-				this.eventSets.Add(eventSet);
-			}
-			else
-			{
-				RequireUpdate = true;
-				resolver.Add(this.eventSets, eventSet);
-			}
+			this.eventSets.Add(eventSet);
 			return eventSet;
 		}
 
 		private void RemoveEvent(IEventSet eventSet)
 		{
-			if (Depth == 0)
-			{
-				var index = this.eventSets.IndexOf(eventSet);
-				if (index == -1)
-					throw new Exception("Attempting to remove an event that does not exist.");
+			var index = this.eventSets.IndexOf(eventSet);
+			if (index == -1)
+				throw new Exception("Attempting to remove an event that does not exist.");
 
-				var size = this.eventSets.Count;
-				this.eventSets[index] = this.eventSets[size - 1];
-				this.eventSets.Nil(size);
-
-				if (size == 1)
-				{
-					this.active = false;
-					DisableTrigger(this.trigger);
-				}
-			}
-			else
-			{
-				RequireUpdate = true;
-				resolver.Add(this.eventSets, eventSet);
-			}
-		}
-
-		public void Clean()
-		{
 			var size = this.eventSets.Count;
-			for (var i = 0; i < this.eventSets.Count; i++)
-			{
-				var eventSet = this.eventSets[i];
-				if (eventSet.Count == 0)
-				{
-					this.eventSets[i] = this.eventSets[size - 1];
-					this.eventSets.Nil(size);
-					size--;
-				}
-			}
+			this.eventSets[index] = this.eventSets[size - 1];
+			this.eventSets.Nil(size);
 
-			if (size == 0 && this.active)
+			if (size == 1)
 			{
 				this.active = false;
 				DisableTrigger(this.trigger);

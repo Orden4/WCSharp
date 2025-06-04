@@ -241,6 +241,41 @@ namespace WCSharp.DateTime
 		}
 
 		/// <summary>
+		/// Creates a new <see cref="WcTimeSpan"/> with the exact number of seconds.
+		/// </summary>
+		public static WcTimeSpan FromSeconds(int seconds)
+		{
+			return new WcTimeSpan(seconds);
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="WcTimeSpan"/> with the number of minutes.
+		/// <para>The number of seconds is floored.</para>
+		/// </summary>
+		public static WcTimeSpan FromMinutes(float minutes)
+		{
+			return new WcTimeSpan((int)(minutes * 60));
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="WcTimeSpan"/> with the number of hours.
+		/// <para>The number of seconds is floored.</para>
+		/// </summary>
+		public static WcTimeSpan FromHours(float hours)
+		{
+			return new WcTimeSpan((int)(hours * 3600));
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="WcTimeSpan"/> with the number of days.
+		/// <para>The number of seconds is floored.</para>
+		/// </summary>
+		public static WcTimeSpan FromDays(float days)
+		{
+			return new WcTimeSpan((int)(days * 86400));
+		}
+
+		/// <summary>
 		/// Outputs this <see cref="WcTimeSpan"/> in the standard format of "d:hh:mm:ss" or "hh:mm:ss" if less than 1 day.
 		/// </summary>
 		/// <returns></returns>

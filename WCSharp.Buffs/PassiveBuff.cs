@@ -33,14 +33,11 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			if (Duration <= PeriodicEvents.SYSTEM_INTERVAL)
+			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+			if (Duration <= 0)
 			{
 				Active = false;
 				OnExpire();
-			}
-			else
-			{
-				Duration -= PeriodicEvents.SYSTEM_INTERVAL;
 			}
 		}
 

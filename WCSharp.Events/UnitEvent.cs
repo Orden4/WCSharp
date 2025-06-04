@@ -41,6 +41,8 @@
 		ChangesOwner,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DAMAGING
+		/// <para>Filters on the unit dealing damage.</para>
+		/// <para>Runs before damage reductions.</para>
 		/// </summary>
 		Damaging,
 		/// <summary>
@@ -81,6 +83,8 @@
 		IsAttacked,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_DAMAGED
+		/// <para>Filters on the unit taking damage.</para>
+		/// <para>Runs after damage reductions.</para>
 		/// </summary>
 		IsDamaged,
 		/// <summary>
@@ -223,5 +227,17 @@
 		/// Based on EVENT_PLAYER_UNIT_USE_ITEM
 		/// </summary>
 		UsesItem,
+		/// <summary>
+		/// Based on EVENT_PLAYER_UNIT_DAMAGING
+		/// <para>Filters on the unit taking damage.</para>
+		/// <para>Runs before damage reductions.</para>
+		/// </summary>
+		DamagingTaken,
+		/// <summary>
+		/// Based on EVENT_PLAYER_UNIT_DAMAGED
+		/// <para>Filters on the unit dealing damage.</para>
+		/// <para>Runs after damage reductions.</para>
+		/// </summary>
+		IsDamagedDealt,
 	}
 }

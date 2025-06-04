@@ -87,7 +87,8 @@ namespace WCSharp.Buffs
 
 			this.buffs.IterateWithRemoval(x =>
 			{
-				if (x.Duration <= PeriodicEvents.SYSTEM_INTERVAL)
+				x.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+				if (x.Duration <= 0)
 				{
 					Stacks -= x.Stacks;
 					OnExpireStack(x);
@@ -97,7 +98,6 @@ namespace WCSharp.Buffs
 				}
 				else
 				{
-					x.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
 					return true;
 				}
 			});
