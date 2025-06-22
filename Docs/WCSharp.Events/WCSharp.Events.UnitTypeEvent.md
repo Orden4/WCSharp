@@ -76,7 +76,7 @@ Based on EVENT_PLAYER_UNIT_DAMAGING
   
 Filters on the unit dealing damage.  
   
-Runs after damage reductions.
+Runs before damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.DamagingTaken'></a>
 
@@ -86,7 +86,7 @@ Based on EVENT_PLAYER_UNIT_DAMAGING
   
 Filters on the unit taking damage.  
   
-Runs after damage reductions.
+Runs before damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.Decays'></a>
 
@@ -162,7 +162,7 @@ Based on EVENT_PLAYER_UNIT_DAMAGED
   
 Filters on the unit taking damage.  
   
-Runs before damage reductions.
+Runs after damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.IsDamagedDealt'></a>
 
@@ -172,7 +172,7 @@ Based on EVENT_PLAYER_UNIT_DAMAGED
   
 Filters on the unit dealing damage.  
   
-Runs before damage reductions.
+Runs after damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.IsDeselected'></a>
 

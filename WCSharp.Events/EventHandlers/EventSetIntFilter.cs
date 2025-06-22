@@ -51,7 +51,7 @@ namespace WCSharp.Events.EventHandlers
 
 			if (this.eventSetsByFilterId.TryGetValue(filterValue, out var eventSet))
 			{
-				if (eventSet.Remove(action, filterValue))
+				if (eventSet.Remove(action, null))
 				{
 					if (eventSet.Count == 0)
 					{

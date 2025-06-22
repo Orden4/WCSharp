@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class @event : agent
@@ -121,7 +123,7 @@
 		/// @CSharpLua.Get = "BlzGetTriggerPlayerKey()"
 		public static extern oskeytype PlayerKey { get; }
 		/// @CSharpLua.Get = "BlzGetTriggerPlayerMetaKey()"
-		public static extern int PlayerMetaKey { get; }
+		public static extern MetaKey PlayerMetaKey { get; }
 		/// @CSharpLua.Get = "BlzGetTriggerPlayerMouseButton()"
 		public static extern mousebuttontype PlayerMouseButton { get; }
 		/// @CSharpLua.Get = "BlzGetTriggerPlayerMousePosition()"

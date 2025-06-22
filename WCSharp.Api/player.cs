@@ -142,7 +142,9 @@
 		public extern void SetTechMaxAllowed(int techId, int maximum);
 
 		/// @CSharpLua.Template = "GetPlayerTechResearched({this}, {0}, {1})"
-		public extern bool GetTechResearched(int techId, bool specificOnly = true);
+		public extern bool IsTechResearched(int techId, bool specificOnly = true);
+		/// @CSharpLua.Template = "GetPlayerTechCount({this}, {0}, {1})"
+		public extern int GetTechResearched(int techId, bool specificOnly = true);
 		/// @CSharpLua.Template = "SetPlayerTechResearched({this}, {0}, {1})"
 		public extern void SetTechResearched(int techId, int level);
 		/// @CSharpLua.Template = "AddPlayerTechResearched({this}, {0}, {1})"
@@ -152,8 +154,6 @@
 
 		/// @CSharpLua.Template = "GetPlayerScore({this}, {0})"
 		public extern int GetScore(playerscore playerScore);
-		/// @CSharpLua.Template = "GetPlayerTechCount({this}, {0}, {1})"
-		public extern int GetTechCount(int techId, bool specificOnly = true);
 		/// @CSharpLua.Template = "GetPlayerUnitCount({this}, {0})"
 		public extern int GetUnitCount(bool includeIncomplete = false);
 		/// @CSharpLua.Template = "GetPlayerTypedUnitCount({this}, {0}, {1}, {2})"

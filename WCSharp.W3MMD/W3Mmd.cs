@@ -11,7 +11,7 @@ namespace WCSharp.W3MMD
 	public static class W3Mmd
 	{
 		private static readonly gamecache cache = Init();
-		private static int messageId = 0;
+		private static int messageId;
 
 		private static gamecache Init()
 		{

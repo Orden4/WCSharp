@@ -93,7 +93,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The initial angle in degrees. If left at null, will default to the angle towards the target.
 		/// </summary>
-		public float? InitialAngle { get; set; } = null;
+		public float? InitialAngle { get; set; }
 
 		private FlightMode mode;
 		/// <summary>

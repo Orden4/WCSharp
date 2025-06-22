@@ -11,6 +11,7 @@ namespace WCSharp.Events
 	/// </summary>
 	public static partial class PlayerUnitEvents
 	{
+		private static readonly List<Action> pendingUpdates = new();
 		private static readonly Dictionary<string, int> customEventIdsByIdentifier = new();
 		private static readonly List<IPlayerUnitEventHandler> eventHandlers = new();
 		private static readonly Dictionary<playerunitevent, IPlayerUnitEventHandler> playerUnitEventHandlers = new();
@@ -163,22 +164,46 @@ namespace WCSharp.Events
 
 		private static void Register(int @event, Action action)
 		{
-			var handler = GetOrCreateHandler(@event);
-			handler?.Register(action);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				var handler = GetOrCreateHandler(@event);
+				handler?.Register(action);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
+				pendingUpdates.Add(() => Register(@event, action));
+			}
 		}
 
 		private static void Register(int @event, Action action, int filterId)
 		{
-			var filterFunc = filterFuncIdsByEvent[@event];
-			var handler = GetOrCreateHandler(@event);
-			handler?.Register(action, @event, filterFunc, filterId);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				var filterFunc = filterFuncIdsByEvent[@event];
+				var handler = GetOrCreateHandler(@event);
+				handler?.Register(action, @event, filterFunc, filterId);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
+				pendingUpdates.Add(() => Register(@event, action, filterId));
+			}
 		}
 
 		private static void Register(int @event, Action action, handle handle)
 		{
-			var filterFunc = filterFuncHandlesByEvent[@event];
-			var handler = GetOrCreateHandler(@event);
-			handler?.Register(action, @event, filterFunc, handle);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				var filterFunc = filterFuncHandlesByEvent[@event];
+				var handler = GetOrCreateHandler(@event);
+				handler?.Register(action, @event, filterFunc, handle);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
+				pendingUpdates.Add(() => Register(@event, action, handle));
+			}
 		}
 
 		/// <summary>
@@ -314,22 +339,46 @@ namespace WCSharp.Events
 
 		private static void Unregister(int @event, Action action)
 		{
-			var handler = GetOrCreateHandler(@event);
-			handler?.Unregister(action);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				var handler = GetOrCreateHandler(@event);
+				handler?.Unregister(action);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
+				pendingUpdates.Add(() => Unregister(@event, action));
+			}
 		}
 
 		private static void Unregister(int @event, Action action, int filterId)
 		{
-			var filterFunc = filterFuncIdsByEvent[@event];
-			var handler = GetOrCreateHandler(@event);
-			handler?.Unregister(action, @event, filterFunc, filterId);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				var filterFunc = filterFuncIdsByEvent[@event];
+				var handler = GetOrCreateHandler(@event);
+				handler?.Unregister(action, @event, filterFunc, filterId);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
+				pendingUpdates.Add(() => Unregister(@event, action, filterId));
+			}
 		}
 
 		private static void Unregister(int @event, Action action, handle handle)
 		{
-			var filterFunc = filterFuncHandlesByEvent[@event];
-			var handler = GetOrCreateHandler(@event);
-			handler?.Unregister(action, @event, filterFunc, handle);
+			if (AbstractPlayerUnitEventHandler.Depth == 0)
+			{
+				var filterFunc = filterFuncHandlesByEvent[@event];
+				var handler = GetOrCreateHandler(@event);
+				handler?.Unregister(action, @event, filterFunc, handle);
+			}
+			else
+			{
+				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
+				pendingUpdates.Add(() => Unregister(@event, action, handle));
+			}
 		}
 
 		private static IPlayerUnitEventHandler GetOrCreateHandler(int @event)
@@ -378,14 +427,6 @@ namespace WCSharp.Events
 			return customHandler;
 		}
 
-		internal static void Clean()
-		{
-			foreach (var eventHandler in eventHandlers)
-			{
-				eventHandler.Clean();
-			}
-		}
-
 		/// <summary>
 		/// Call this method to automatically wrap your actions in a try/catch, so that exceptions that lead back to <see cref="PeriodicEvents"/> will automatically output
 		/// information.
@@ -394,6 +435,15 @@ namespace WCSharp.Events
 		public static void EnableDebug()
 		{
 			Debug = true;
+		}
+
+		internal static void ResolvePendingUpdates()
+		{
+			foreach (var update in pendingUpdates)
+			{
+				update.Invoke();
+			}
+			pendingUpdates.Clear();
 		}
 	}
 }
