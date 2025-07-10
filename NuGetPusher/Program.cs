@@ -5,13 +5,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WCSharp.JassDoc;
+using WCSharp.JassDoc.RoslynParsing;
 
 namespace NuGetPusher
 {
 	internal class Program
 	{
-		private static List<string> Projects { get; } = new List<string>
-		{
+		private static List<string> Projects { get; } =
+		[
 			"Api",
 			"CSharpLua.CoreSystem",
 			"ConstantGenerator",
@@ -28,7 +30,7 @@ namespace NuGetPusher
 			"Buffs",
 			"DateTime",
 			"SaveLoad",
-		};
+		];
 
 		public static string ApiKey { get; set; }
 		public static string Source { get; set; }
@@ -40,10 +42,16 @@ namespace NuGetPusher
 			await CopyFiles();
 			Environment.CurrentDirectory = new DirectoryInfo(Environment.CurrentDirectory).GetDirectories().FirstOrDefault(x => x.Name == "NuGet").FullName;
 
+			var jassApi = await JassApiCollection.CreateAsync();
+			var roslynProject = await RoslynParser.GetApiEntities(@"WCSharp.Api\WCSharp.Api.csproj", jassApi);
+			await ApiDocumentationGenerator.Run(roslynProject, dry: false);
+
 			ApiKey = ConfigurationManager.AppSettings["api-key"];
 			Source = ConfigurationManager.AppSettings["source"];
+
 			Console.WriteLine("Press enter to start.");
 			Console.ReadLine();
+
 			var runner = new Runner();
 			foreach (var project in Projects)
 			{

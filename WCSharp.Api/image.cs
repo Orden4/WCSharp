@@ -1,4 +1,5 @@
 ﻿using System;
+using WCSharp.Api.Enums;
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
@@ -26,7 +27,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "SetImageAboveWater({this}, {0}, {1})"
 		public extern void SetAboveWater(bool aboveWater, bool useWaterAlpha);
 		/// @CSharpLua.Template = "SetImageType({this}, {0})"
-		public extern void SetType(int imageType);
+		public extern void SetType(ImageType imageType);
 
 		/// @CSharpLua.Template = "DestroyImage({this})"
 		public extern void Dispose();

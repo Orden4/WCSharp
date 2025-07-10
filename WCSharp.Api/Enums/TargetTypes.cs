@@ -3,7 +3,7 @@
 namespace WCSharp.Api.Enums
 {
 	[Flags]
-	public enum TargetsAllowed
+	public enum TargetTypes
 	{
 		/// <summary>
 		/// This flag prohibits attacking, regardless of any other flags being set.

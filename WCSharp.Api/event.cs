@@ -211,7 +211,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetWinningPlayer()"
 		public static extern player WinningPlayer { get; }
 
-		/// @CSharpLua.Get = "GetTournamentScore()"
+		/// @CSharpLua.Template = "GetTournamentScore({0})"
 		public static extern int GetTournamentScore(player player);
 	}
 }

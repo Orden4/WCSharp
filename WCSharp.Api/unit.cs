@@ -163,10 +163,24 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetUnitRallyUnit({this})"
 		/// @CSharpLua.Set = "IssueTargetOrderById({this}, 851980, {0})"
 		public extern unit RallyUnit { get; set; }
+		///<summary>
+		///<para><b>GET</b></para>
+		///<para>Translates to: <c>GetUnitRallyDestructable({instance})</c></para>
+		///<para><b>Patch:</b> 1.13</para>
+		///<para><c>_________________________</c></para>
+		///<para><b>SET</b></para>
+		///<para>Translates to: <c>IssueTargetOrderById({instance}, 851980, RallyDestructable)</c></para>
+		///<para><b>Patch:</b> 1.00</para>
+		///</summary>
 		/// @CSharpLua.Get = "GetUnitRallyDestructable({this})"
 		/// @CSharpLua.Set = "IssueTargetOrderById({this}, 851980, {0})"
 		public extern destructable RallyDestructable { get; set; }
 
+		///<summary>
+		///<para><b>GET</b></para>
+		///<para>Translates to: <c>GetUnitDefaultTurnSpeed({instance})</c></para>
+		///<para><b>Patch:</b> 1.00</para>
+		///</summary>
 		/// @CSharpLua.Get = "GetUnitDefaultTurnSpeed({this})"
 		public extern float DefaultTurnSpeed { get; }
 		/// @CSharpLua.Get = "GetUnitDefaultPropWindow({this})"
@@ -214,12 +228,12 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "UnitInvis({this})"
 		public extern bool IsInvisible { get; }
 		/// @CSharpLua.Get = "BlzGetHeroPrimaryStat({this})"
-		public extern int PrimaryAttributeType { get; }
+		public extern HeroAttribute PrimaryAttributeType { get; }
 
 		/// @CSharpLua.Template = "BlzGetHeroStat({this}, {0})"
-		public extern int GetAttribute(int heroAttributeId);
+		public extern int GetAttribute(HeroAttribute heroAttribute);
 		/// @CSharpLua.Template = "BlzSetHeroStatEx({this}, {0}, {1})"
-		public extern void SetAttribute(int heroAttributeId, int value);
+		public extern void SetAttribute(HeroAttribute heroAttribute, int value);
 
 		/// @CSharpLua.Template = "SetUnitColor({this}, {0})"
 		public extern void SetColor(playercolor color);
@@ -571,11 +585,11 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_DEFENSE_TYPE)"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_DEFENSE_TYPE, {0})"
-		public extern int DefenseType { get; set; }
+		public extern DefenseType DefenseType { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitArmorType({this})"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_ARMOR_TYPE, {0})"
-		public extern int ArmorType { get; set; }
+		public extern ArmorType ArmorType { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_LOOPING_FADE_IN_RATE)"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_LOOPING_FADE_IN_RATE, {0})"
@@ -639,23 +653,23 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzGetUnitMovementType({this})"
 		/// @CSharpLua.Set = "BlzSetUnitMovementType({this}, {0})"
-		public extern int MoveType { get; set; }
+		public extern MoveTypes MoveType { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_TARGETED_AS)"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_TARGETED_AS, {0})"
-		public extern int TargetedAs { get; set; }
+		public extern TargetTypes TargetedAs { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_UNIT_CLASSIFICATION)"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_UNIT_CLASSIFICATION, {0})"
-		public extern int UnitClassification { get; set; }
+		public extern UnitClassifications UnitClassification { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_HIT_POINTS_REGENERATION_TYPE)"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_HIT_POINTS_REGENERATION_TYPE, {0})"
-		public extern int HitPointsRegenerationType { get; set; }
+		public extern RegenerationType HitPointsRegenerationType { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitIntegerField({this}, UNIT_IF_PLACEMENT_PREVENTED_BY)"
 		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_PLACEMENT_PREVENTED_BY, {0})"
-		public extern int PlacementPreventedBy { get; set; }
+		public extern PathingTypes PlacementRequires { get; set; } // sets/gets placement requires in spite of the field name
 
 		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_MANA_REGENERATION)"
 		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_MANA_REGENERATION, {0})"
@@ -675,7 +689,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_HIT_POINTS_REGENERATION_RATE)"
 		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_HIT_POINTS_REGENERATION_RATE, {0})"
-		public extern float HitPointsRegenerationRate { get; set; }
+		public extern float HitPointsRegeneration { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_DEATH_TIME)"
 		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_DEATH_TIME, {0})"
@@ -792,19 +806,20 @@ namespace WCSharp.Api
 		public extern bool AttackEnabled1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0)"
-		public extern int AttackMaximumNumberOfTargets1 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponBooleanField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0, {0})"
+		public extern int AttackMaximumNumberOfTargets1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0, {0})"
-		public extern int AttackAttackType1 { get; set; }
+		public extern AttackType AttackAttackType1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 0, {0})"
-		public extern int AttackWeaponSound1 { get; set; }
+		public extern WeaponType AttackWeaponSound1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 0, {0})"
-		public extern TargetsAllowed AttackTargetsAllowed1 { get; set; }
+		public extern TargetTypes AttackTargetsAllowed1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 0, {0})"
@@ -815,7 +830,8 @@ namespace WCSharp.Api
 		public extern float AttackDamagePoint1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 0)"
-		public extern float AttackDamageLossFactor1 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 0, {0})"
+		public extern float AttackDamageLossFactor1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 0, {0})"
@@ -826,10 +842,12 @@ namespace WCSharp.Api
 		public extern float AttackDamageFactorSmall1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 0)"
-		public extern float AttackDamageSpillDistance1 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 0, {0})"
+		public extern float AttackDamageSpillDistance1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 0)"
-		public extern float AttackDamageSpillRadius1 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 0, {0})"
+		public extern float AttackDamageSpillRadius1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 0)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 0, {0})"
@@ -882,19 +900,20 @@ namespace WCSharp.Api
 		public extern bool AttackEnabled2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 1)"
-		public extern int AttackMaximumNumberOfTargets2 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 1, {0})"
+		public extern int AttackMaximumNumberOfTargets2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 1, {0})"
-		public extern int AttackAttackType2 { get; set; }
+		public extern AttackType AttackAttackType2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_WEAPON_SOUND, 1, {0})"
-		public extern int AttackWeaponSound2 { get; set; }
+		public extern WeaponType AttackWeaponSound2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_TARGETS_ALLOWED, 1, {0})"
-		public extern TargetsAllowed AttackTargetsAllowed2 { get; set; }
+		public extern TargetTypes AttackTargetsAllowed2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_BACKSWING_POINT, 1, {0})"
@@ -905,7 +924,8 @@ namespace WCSharp.Api
 		public extern float AttackDamagePoint2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 1)"
-		public extern float AttackDamageLossFactor2 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_LOSS_FACTOR, 1, {0})"
+		public extern float AttackDamageLossFactor2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_FACTOR_MEDIUM, 1, {0})"
@@ -916,10 +936,12 @@ namespace WCSharp.Api
 		public extern float AttackDamageFactorSmall2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 1)"
-		public extern float AttackDamageSpillDistance2 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_DISTANCE, 1, {0})"
+		public extern float AttackDamageSpillDistance2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 1)"
-		public extern float AttackDamageSpillRadius2 { get; }
+		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_DAMAGE_SPILL_RADIUS, 1, {0})"
+		public extern float AttackDamageSpillRadius2 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 1)"
 		/// @CSharpLua.Set = "BlzSetUnitWeaponRealField({this}, UNIT_WEAPON_RF_ATTACK_PROJECTILE_SPEED, 1, {0})"

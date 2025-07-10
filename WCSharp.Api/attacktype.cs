@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class attacktype : handle
@@ -24,5 +26,7 @@
 
 		/// @CSharpLua.Template = "ConvertAttackType({0})"
 		public static extern attacktype Convert(int attackTypeId);
+		/// @CSharpLua.Template = "ConvertAttackType({0})"
+		public static extern attacktype Convert(AttackType attackType);
 	}
 }

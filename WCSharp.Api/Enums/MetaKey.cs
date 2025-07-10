@@ -9,12 +9,12 @@ namespace WCSharp.Api.Enums
 	public enum MetaKey
 	{
 		None = 0,
-		Shift = 1,
-		Control = 2,
-		Alt = 4,
+		Shift = 1 << 0,
+		Control = 1 << 1,
+		Alt = 1 << 2,
 		/// <summary>
-		/// Windows key.
+		/// Windows/Super key.
 		/// </summary>
-		META = 8,
+		META = 1 << 3,
 	}
 }

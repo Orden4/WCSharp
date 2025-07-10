@@ -5795,7 +5795,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "SetTerrainPathable({0}, {1}, {2}, {3})"
 		public static extern void SetTerrainPathable(float x, float y, pathingtype t, bool flag);
 		/// @CSharpLua.Template = "CreateImage({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})"
-		public static extern image CreateImage(string file, float sizeX, float sizeY, float sizeZ, float posX, float posY, float posZ, float originX, float originY, float originZ, int imageType);
+		public static extern image CreateImage(string file, float sizeX, float sizeY, float sizeZ, float posX, float posY, float posZ, float originX, float originY, float originZ, ImageType imageType);
 		/// @CSharpLua.Template = "DestroyImage({0})"
 		public static extern void DestroyImage(image whichImage);
 		/// @CSharpLua.Template = "ShowImage({0}, {1})"
@@ -5813,7 +5813,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "SetImageAboveWater({0}, {1}, {2})"
 		public static extern void SetImageAboveWater(image whichImage, bool flag, bool useWaterAlpha);
 		/// @CSharpLua.Template = "SetImageType({0}, {1})"
-		public static extern void SetImageType(image whichImage, int imageType);
+		public static extern void SetImageType(image whichImage, ImageType imageType);
 		/// @CSharpLua.Template = "CreateUbersplat({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})"
 		public static extern ubersplat CreateUbersplat(float x, float y, string name, int red, int green, int blue, int alpha, bool forcePaused, bool noBirthTime);
 		/// @CSharpLua.Template = "DestroyUbersplat({0})"
@@ -6291,7 +6291,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzGetAbilityId({0})"
 		public static extern int BlzGetAbilityId(ability whichAbility);
 		/// @CSharpLua.Template = "BlzDisplayChatMessage({0}, {1}, {2})"
-		public static extern void BlzDisplayChatMessage(player whichPlayer, int recipient, string message);
+		public static extern void BlzDisplayChatMessage(player whichPlayer, ChatRecipient recipient, string message);
 		/// @CSharpLua.Template = "BlzPauseUnitEx({0}, {1})"
 		public static extern void BlzPauseUnitEx(unit whichUnit, bool flag);
 		/// @CSharpLua.Template = "BlzSetUnitFacingEx({0}, {1})"

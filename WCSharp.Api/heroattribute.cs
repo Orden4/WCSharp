@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class heroattribute : handle
@@ -16,5 +18,7 @@
 
 		/// @CSharpLua.Template = "ConvertHeroAttribute({0})"
 		public static extern heroattribute Convert(int heroAttributeId);
+		/// @CSharpLua.Template = "ConvertHeroAttribute({0})"
+		public static extern heroattribute Convert(HeroAttribute heroAttribute);
 	}
 }

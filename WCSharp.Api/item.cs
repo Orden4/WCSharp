@@ -1,4 +1,5 @@
 ﻿using System;
+using WCSharp.Api.Enums;
 namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
@@ -152,7 +153,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "BlzGetItemIntegerField({this}, ITEM_IF_ARMOR_TYPE)"
 		/// @CSharpLua.Set = "BlzSetItemIntegerField({this}, ITEM_IF_ARMOR_TYPE, {0})"
-		public extern int armortype { get; set; }
+		public extern ArmorType armortype { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_RED)"
 		/// @CSharpLua.Set = "BlzSetItemIntegerField({this}, ITEM_IF_TINTING_COLOR_RED, {0})"

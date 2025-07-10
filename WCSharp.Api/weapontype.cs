@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class weapontype : handle
@@ -58,5 +60,7 @@
 
 		/// @CSharpLua.Template = "ConvertWeaponType({0})"
 		public static extern weapontype Convert(int weaponTypeId);
+		/// @CSharpLua.Template = "ConvertWeaponType({0})"
+		public static extern weapontype Convert(WeaponType weaponType);
 	}
 }

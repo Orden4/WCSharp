@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class armortype : handle
@@ -22,5 +24,7 @@
 
 		/// @CSharpLua.Template = "ConvertArmorType({0})"
 		public static extern armortype Convert(int armorTypeId);
+		/// @CSharpLua.Template = "ConvertArmorType({0})"
+		public static extern armortype Convert(ArmorType armorType);
 	}
 }

@@ -21,7 +21,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			this.eventSets = new List<IEventSet>();
 			this.trigger = CreateTrigger();
 
-			Func<bool> run = Run;
+			Func<bool> run = PlayerUnitEvents.Unsafe ? RunUnsafe : Run;
 			if (PlayerUnitEvents.Debug)
 			{
 				run = () =>
@@ -60,6 +60,23 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				{
 					PlayerUnitEvents.ResolvePendingUpdates();
 				}
+			}
+
+			return false;
+		}
+
+		protected bool RunUnsafe()
+		{
+			Depth++;
+			for (var i = 0; i < this.eventSets.Count; i++)
+			{
+				this.eventSets[i].Run();
+			}
+
+			Depth--;
+			if (Depth == 0 && RequiresUpdate)
+			{
+				PlayerUnitEvents.ResolvePendingUpdates();
 			}
 
 			return false;

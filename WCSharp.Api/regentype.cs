@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class regentype : handle
@@ -20,5 +22,7 @@
 
 		/// @CSharpLua.Template = "ConvertRegenType({0})"
 		public static extern regentype Convert(int regenTypeId);
+		/// @CSharpLua.Template = "ConvertRegenType({0})"
+		public static extern regentype Convert(RegenerationType regenerationType);
 	}
 }

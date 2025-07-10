@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class movetype : handle
@@ -26,5 +28,7 @@
 
 		/// @CSharpLua.Template = "ConvertMoveType({0})"
 		public static extern movetype Convert(int moveTypeId);
+		/// @CSharpLua.Template = "ConvertMoveType({0})"
+		public static extern movetype Convert(MoveTypes moveTypes);
 	}
 }

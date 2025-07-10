@@ -1,4 +1,5 @@
 ﻿using System;
+using WCSharp.Api.Enums;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Api
@@ -18,9 +19,9 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "bj_UNIT_FACING"
 		public const float bj_UNIT_FACING = 270.0f;
 		/// @CSharpLua.Template = "bj_RADTODEG"
-		public static readonly float bj_RADTODEG = 180.0f / bj_PI;
+		public const float bj_RADTODEG = 180.0f / bj_PI;
 		/// @CSharpLua.Template = "bj_DEGTORAD"
-		public static readonly float bj_DEGTORAD = bj_PI / 180.0f;
+		public const float bj_DEGTORAD = bj_PI / 180.0f;
 		/// @CSharpLua.Template = "bj_TEXT_DELAY_QUEST"
 		public const float bj_TEXT_DELAY_QUEST = 20.00f;
 		/// @CSharpLua.Template = "bj_TEXT_DELAY_QUESTUPDATE"
@@ -1371,7 +1372,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "AddUnitAnimationPropertiesBJ({0}, {1}, {2})"
 		public static extern void AddUnitAnimationPropertiesBJ(bool add, string animProperties, unit whichUnit);
 		/// @CSharpLua.Template = "CreateImageBJ({0}, {1}, {2}, {3}, {4})"
-		public static extern image CreateImageBJ(string file, float size, location where, float zOffset, int imageType);
+		public static extern image CreateImageBJ(string file, float size, location where, float zOffset, ImageType imageType);
 		/// @CSharpLua.Template = "ShowImageBJ({0}, {1})"
 		public static extern void ShowImageBJ(bool flag, image whichImage);
 		/// @CSharpLua.Template = "SetImagePositionBJ({0}, {1}, {2})"

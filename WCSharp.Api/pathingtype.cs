@@ -1,4 +1,6 @@
-﻿namespace WCSharp.Api
+﻿using WCSharp.Api.Enums;
+
+namespace WCSharp.Api
 {
 	/// @CSharpLua.Ignore
 	public class pathingtype : handle
@@ -26,6 +28,8 @@
 
 		/// @CSharpLua.Template = "ConvertPathingType({0})"
 		public static extern pathingtype Convert(int pathingTypeId);
+		/// @CSharpLua.Template = "ConvertPathingType({0})"
+		public static extern pathingtype Convert(PathingTypes pathingTypes);
 
 		/// @CSharpLua.Template = "IsTerrainPathable({0}, {1}, {this})"
 		public extern bool GetPathable(float x, float y);

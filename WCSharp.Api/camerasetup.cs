@@ -41,49 +41,71 @@
 		public extern void ApplyForceDurationSmooth(bool doPan, float forcedDuration, float easeInDuration, float easeOutDuration, float smoothFactor);
 
 		#region Field editing
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_TARGET_DISTANCE)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_TARGET_DISTANCE, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_TARGET_DISTANCE)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_TARGET_DISTANCE, {0}, 0)"
 		public extern float TargetDistance { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_TARGET_DISTANCE, {0}, {1})"
+		public extern void SetTargetDistance(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_FARZ)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_FARZ, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_FARZ)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_FARZ, {0}, 0)"
 		public extern float FarZ { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_FARZ, {0}, {1})"
+		public extern void SetFarZ(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_ANGLE_OF_ATTACK)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_ANGLE_OF_ATTACK, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_ANGLE_OF_ATTACK)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_ANGLE_OF_ATTACK, {0}, 0)"
 		public extern float AngleOfAttack { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_ANGLE_OF_ATTACK, {0}, {1})"
+		public extern void SetAngleOfAttack(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_FIELD_OF_VIEW)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_FIELD_OF_VIEW, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_FIELD_OF_VIEW)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_FIELD_OF_VIEW, {0}, 0)"
 		public extern float FieldOfView { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_FIELD_OF_VIEW, {0}, {1})"
+		public extern void SetFieldOfView(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_ROLL)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_ROLL, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_ROLL)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_ROLL, {0}, 0)"
 		public extern float Roll { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_ROLL, {0}, {1})"
+		public extern void SetRoll(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_ROTATION)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_ROTATION, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_ROTATION)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_ROTATION, {0}, 0)"
 		public extern float Rotation { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_ROTATION, {0}, {1})"
+		public extern void SetRotation(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_ZOFFSET)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_ZOFFSET, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_ZOFFSET)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_ZOFFSET, {0}, 0)"
 		public extern float ZOffset { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_ZOFFSET, {0}, {1})"
+		public extern void SetZOffet(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_NEARZ)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_NEARZ, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_NEARZ)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_NEARZ, {0}, 0)"
 		public extern float NearZ { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_NEARZ, {0}, {1})"
+		public extern void SetNearZ(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_LOCAL_PITCH)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_LOCAL_PITCH, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_LOCAL_PITCH)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_LOCAL_PITCH, {0}, 0)"
 		public extern float LocalPitch { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_LOCAL_PITCH, {0}, {1})"
+		public extern void SetLocalPitch(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_LOCAL_YAW)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_LOCAL_YAW, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_LOCAL_YAW)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_LOCAL_YAW, {0}, 0)"
 		public extern float LocalYaw { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_LOCAL_YAW, {0}, {1})"
+		public extern void SetLocalYaw(float value, float duration = 0);
 
-		/// @CSharpLua.Get = "GetCameraField({0}, CAMERA_FIELD_LOCAL_ROLL)"
-		/// @CSharpLua.Set = "SetCameraField({0}, CAMERA_FIELD_LOCAL_ROLL, {1})"
+		/// @CSharpLua.Get = "CameraSetupGetField({this}, CAMERA_FIELD_LOCAL_ROLL)"
+		/// @CSharpLua.Set = "CameraSetupSetField({this}, CAMERA_FIELD_LOCAL_ROLL, {0}, 0)"
 		public extern float LocalRoll { get; set; }
+		/// @CSharpLua.Template = "CameraSetupSetField({this}, CAMERA_FIELD_LOCAL_ROLL, {0}, {1})"
+		public extern void SetLocalRoll(float value, float duration = 0);
 		#endregion
 	}
 }
