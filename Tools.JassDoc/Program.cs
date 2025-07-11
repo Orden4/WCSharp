@@ -16,7 +16,7 @@ namespace Tools.JassDoc
 			}
 			Environment.CurrentDirectory = dirInfo.FullName;
 			var jassApi = await JassApiCollection.CreateAsync();
-			var roslynProject = await RoslynParser.GetApiEntities(@"WCSharp.Api\WCSharp.Api.csproj", jassApi);
+			var roslynProject = await RoslynParser.GetApiEntities(Path.Combine("WCSharp.Api", "WCSharp.Api.csproj"), jassApi);
 			await ApiDocumentationGenerator.Run(roslynProject);
 			await Task.Delay(Timeout.Infinite);
 		}

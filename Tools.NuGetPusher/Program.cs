@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -42,7 +43,7 @@ namespace NuGetPusher
 			foreach (var project in appSettings.JassDocProjects)
 			{
 				Log.Information("Adding JassDoc documentation to {Project}.", project);
-				var roslynProject = await RoslynParser.GetApiEntities($@"{project}\{project}.csproj", jassApi);
+				var roslynProject = await RoslynParser.GetApiEntities(Path.Combine(project, $"{project}.csproj"), jassApi);
 				await ApiDocumentationGenerator.Run(roslynProject, dry: false);
 			}
 		}
