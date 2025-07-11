@@ -28,6 +28,10 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Create DefaultDocumentation directory
+        run: |
+          mkdir DefaultDocumentation
+
       - name: Restore dependencies
         run: dotnet restore
 
