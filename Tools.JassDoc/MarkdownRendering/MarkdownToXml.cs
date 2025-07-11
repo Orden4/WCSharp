@@ -131,10 +131,6 @@ namespace Tools.JassDoc.MarkdownRendering
 
 		public string ToXmlDocumentation(ApiType type)
 		{
-			if (type.Symbol.Name == "gamespeed")
-			{
-
-			}
 			var doc = new XDocument();
 			var summary = new XElement("summary");
 
@@ -367,12 +363,8 @@ namespace Tools.JassDoc.MarkdownRendering
 			element.Add(emphasis);
 		}
 
-		private string EscapeEvent(string s)
+		private static string EscapeEvent(string s)
 		{
-			if (s.Contains("event"))
-			{
-
-			}
 			// Very lazy solution but going out of my way to get a list of all conflicting keywords is way more of a hassle
 			if (s == "event")
 			{

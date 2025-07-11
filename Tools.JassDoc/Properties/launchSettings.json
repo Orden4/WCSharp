@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Tools.JassDoc": {
+      "commandName": "Project",
+      "commandLineArgs": "../../../../WCSharp.Api/WCSharp.Api.csproj"
+    }
+  }
+}
