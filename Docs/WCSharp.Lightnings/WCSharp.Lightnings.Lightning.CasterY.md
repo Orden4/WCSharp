@@ -1,13 +1,13 @@
-#### [WCSharp.Lightnings](README.md 'README')
-### [WCSharp.Lightnings](WCSharp.Lightnings.md 'WCSharp.Lightnings').[Lightning](WCSharp.Lightnings.Lightning.md 'WCSharp.Lightnings.Lightning')
+#### [WCSharp\.Lightnings](README.md 'README')
+### [WCSharp\.Lightnings](WCSharp.Lightnings.md 'WCSharp\.Lightnings').[Lightning](WCSharp.Lightnings.Lightning.md 'WCSharp\.Lightnings\.Lightning')
 
-## Lightning.CasterY Property
+## Lightning\.CasterY Property
 
-The Y coordinate from which this lightning was fired. While [Caster](WCSharp.Lightnings.Lightning.Caster.md 'WCSharp.Lightnings.Lightning.Caster') is alive, this will automatically be updated.
+The Y coordinate from which this lightning was fired\. While [Caster](WCSharp.Lightnings.Lightning.Caster.md 'WCSharp\.Lightnings\.Lightning\.Caster') is alive, this will automatically be updated\.
 
 ```csharp
 public float CasterY { get; set; }
 ```
 
 #### Property Value
-[System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')
+[System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')

@@ -1,13 +1,13 @@
-#### [WCSharp.Events](README.md 'README')
-### [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events')
+#### [WCSharp\.Events](README.md 'README')
+### [WCSharp\.Events](WCSharp.Events.md 'WCSharp\.Events')
 
 ## PlayerEvent Enum
 
-Defines all built-in PlayerEvents supported by [PlayerUnitEvents](WCSharp.Events.PlayerUnitEvents.md 'WCSharp.Events.PlayerUnitEvents').  
-  
-All of these events fire based on a player id.  
-  
-Custom events can also be specified via [AddCustomEvent(string, Func&lt;int&gt;, playerunitevent)](WCSharp.Events.PlayerUnitEvents.AddCustomEvent(string,System.Func_int_,WCSharp.Api.playerunitevent).md 'WCSharp.Events.PlayerUnitEvents.AddCustomEvent(string, System.Func<int>, WCSharp.Api.playerunitevent)').
+Defines all built\-in PlayerEvents supported by [PlayerUnitEvents](WCSharp.Events.PlayerUnitEvents.md 'WCSharp\.Events\.PlayerUnitEvents')\.
+
+All of these events fire based on a player id.
+
+Custom events can also be specified via [AddCustomEvent\(string, Func&lt;int&gt;, playerunitevent\)](WCSharp.Events.PlayerUnitEvents.AddCustomEvent(string,System.Func_int_,WCSharp.Api.playerunitevent).md 'WCSharp\.Events\.PlayerUnitEvents\.AddCustomEvent\(string, System\.Func\<int\>, WCSharp\.Api\.playerunitevent\)').
 
 ```csharp
 public enum PlayerEvent
@@ -18,22 +18,22 @@ public enum PlayerEvent
 
 `DeselectsUnit` 401
 
-Based on EVENT_PLAYER_UNIT_DESELECTED
+Based on EVENT\_PLAYER\_UNIT\_DESELECTED
 
 <a name='WCSharp.Events.PlayerEvent.GainsOwnership'></a>
 
 `GainsOwnership` 402
 
-Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
+Based on EVENT\_PLAYER\_UNIT\_CHANGE\_OWNER
 
 <a name='WCSharp.Events.PlayerEvent.LosesOwnership'></a>
 
 `LosesOwnership` 403
 
-Based on EVENT_PLAYER_UNIT_CHANGE_OWNER
+Based on EVENT\_PLAYER\_UNIT\_CHANGE\_OWNER
 
 <a name='WCSharp.Events.PlayerEvent.SelectsUnit'></a>
 
 `SelectsUnit` 404
 
-Based on EVENT_PLAYER_UNIT_SELECTED
+Based on EVENT\_PLAYER\_UNIT\_SELECTED

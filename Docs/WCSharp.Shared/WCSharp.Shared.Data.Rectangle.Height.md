@@ -1,13 +1,13 @@
-#### [WCSharp.Shared](README.md 'README')
-### [WCSharp.Shared.Data](WCSharp.Shared.Data.md 'WCSharp.Shared.Data').[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp.Shared.Data.Rectangle')
+#### [WCSharp\.Shared](README.md 'README')
+### [WCSharp\.Shared\.Data](WCSharp.Shared.Data.md 'WCSharp\.Shared\.Data').[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp\.Shared\.Data\.Rectangle')
 
-## Rectangle.Height Property
+## Rectangle\.Height Property
 
-The distance between the top-most and bottom-most coordinates.
+The distance between the top\-most and bottom\-most coordinates\.
 
 ```csharp
 public float Height { get; }
 ```
 
 #### Property Value
-[System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')
+[System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')

@@ -1,13 +1,13 @@
-#### [WCSharp.W3MMD](README.md 'README')
-### [WCSharp.W3MMD](WCSharp.W3MMD.md 'WCSharp.W3MMD').[IW3MmdVar](WCSharp.W3MMD.IW3MmdVar.md 'WCSharp.W3MMD.IW3MmdVar')
+#### [WCSharp\.W3MMD](README.md 'README')
+### [WCSharp\.W3MMD](WCSharp.W3MMD.md 'WCSharp\.W3MMD').[IW3MmdVar](WCSharp.W3MMD.IW3MmdVar.md 'WCSharp\.W3MMD\.IW3MmdVar')
 
-## IW3MmdVar.Name Property
+## IW3MmdVar\.Name Property
 
-The name of the W3MMD variable.
+The name of the W3MMD variable\.
 
 ```csharp
 string Name { get; }
 ```
 
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

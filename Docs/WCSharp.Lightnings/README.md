@@ -1,7 +1,7 @@
-#### [WCSharp.Lightnings](README.md 'README')
+#### [WCSharp\.Lightnings](README.md 'README')
 
-## WCSharp.Lightnings Assembly
+## WCSharp\.Lightnings Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Lightnings](WCSharp.Lightnings.md 'WCSharp.Lightnings') | |
+| [WCSharp\.Lightnings](WCSharp.Lightnings.md 'WCSharp\.Lightnings') | |

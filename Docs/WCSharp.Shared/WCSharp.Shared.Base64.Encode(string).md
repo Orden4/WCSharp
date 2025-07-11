@@ -1,9 +1,9 @@
-#### [WCSharp.Shared](README.md 'README')
-### [WCSharp.Shared](WCSharp.Shared.md 'WCSharp.Shared').[Base64](WCSharp.Shared.Base64.md 'WCSharp.Shared.Base64')
+#### [WCSharp\.Shared](README.md 'README')
+### [WCSharp\.Shared](WCSharp.Shared.md 'WCSharp\.Shared').[Base64](WCSharp.Shared.Base64.md 'WCSharp\.Shared\.Base64')
 
-## Base64.Encode(string) Method
+## Base64\.Encode\(string\) Method
 
-Converts the given string into a Base64 string.
+Converts the given string into a Base64 string\.
 
 ```csharp
 public string Encode(string data);
@@ -12,7 +12,7 @@ public string Encode(string data);
 
 <a name='WCSharp.Shared.Base64.Encode(string).data'></a>
 
-`data` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`data` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

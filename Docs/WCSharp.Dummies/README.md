@@ -1,7 +1,7 @@
-#### [WCSharp.Dummies](README.md 'README')
+#### [WCSharp\.Dummies](README.md 'README')
 
-## WCSharp.Dummies Assembly
+## WCSharp\.Dummies Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Dummies](WCSharp.Dummies.md 'WCSharp.Dummies') | |
+| [WCSharp\.Dummies](WCSharp.Dummies.md 'WCSharp\.Dummies') | |

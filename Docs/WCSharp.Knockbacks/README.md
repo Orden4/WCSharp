@@ -1,7 +1,7 @@
-#### [WCSharp.Knockbacks](README.md 'README')
+#### [WCSharp\.Knockbacks](README.md 'README')
 
-## WCSharp.Knockbacks Assembly
+## WCSharp\.Knockbacks Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Knockbacks](WCSharp.Knockbacks.md 'WCSharp.Knockbacks') | |
+| [WCSharp\.Knockbacks](WCSharp.Knockbacks.md 'WCSharp\.Knockbacks') | |

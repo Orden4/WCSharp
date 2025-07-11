@@ -1,10 +1,10 @@
-#### [WCSharp.Shared](README.md 'README')
-### [WCSharp.Shared.Data](WCSharp.Shared.Data.md 'WCSharp.Shared.Data').[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp.Shared.Data.Rectangle')
+#### [WCSharp\.Shared](README.md 'README')
+### [WCSharp\.Shared\.Data](WCSharp.Shared.Data.md 'WCSharp\.Shared\.Data').[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp\.Shared\.Data\.Rectangle')
 
-## Rectangle.Inflate(Rectangle, float, float) Method
+## Rectangle\.Inflate\(Rectangle, float, float\) Method
 
-Returns a new Rectangle that is inflated by the given width and height in all directions.  
-  
+Returns a new Rectangle that is inflated by the given width and height in all directions\.
+
 The increase on each side is half the width/height.
 
 ```csharp
@@ -14,15 +14,15 @@ public static WCSharp.Shared.Data.Rectangle Inflate(WCSharp.Shared.Data.Rectangl
 
 <a name='WCSharp.Shared.Data.Rectangle.Inflate(WCSharp.Shared.Data.Rectangle,float,float).rect'></a>
 
-`rect` [Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp.Shared.Data.Rectangle')
+`rect` [Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp\.Shared\.Data\.Rectangle')
 
 <a name='WCSharp.Shared.Data.Rectangle.Inflate(WCSharp.Shared.Data.Rectangle,float,float).width'></a>
 
-`width` [System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')
+`width` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
 <a name='WCSharp.Shared.Data.Rectangle.Inflate(WCSharp.Shared.Data.Rectangle,float,float).height'></a>
 
-`height` [System.Single](https://docs.microsoft.com/en-us/dotnet/api/System.Single 'System.Single')
+`height` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
 #### Returns
-[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp.Shared.Data.Rectangle')
+[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp\.Shared\.Data\.Rectangle')

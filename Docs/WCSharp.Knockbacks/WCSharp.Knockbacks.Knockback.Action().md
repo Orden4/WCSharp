@@ -1,12 +1,12 @@
-#### [WCSharp.Knockbacks](README.md 'README')
-### [WCSharp.Knockbacks](WCSharp.Knockbacks.md 'WCSharp.Knockbacks').[Knockback](WCSharp.Knockbacks.Knockback.md 'WCSharp.Knockbacks.Knockback')
+#### [WCSharp\.Knockbacks](README.md 'README')
+### [WCSharp\.Knockbacks](WCSharp.Knockbacks.md 'WCSharp\.Knockbacks').[Knockback](WCSharp.Knockbacks.Knockback.md 'WCSharp\.Knockbacks\.Knockback')
 
-## Knockback.Action() Method
+## Knockback\.Action\(\) Method
 
-Called by the system. Do not call yourself.
+Called by the system\. Do not call yourself\.
 
 ```csharp
 public void Action();
 ```
 
-Implements [Action()](../WCSharp.Events/WCSharp.Events.IPeriodicAction.Action().md 'WCSharp.Events.IPeriodicAction.Action')
+Implements [Action\(\)](../WCSharp.Events/WCSharp.Events.IPeriodicAction.Action().md 'WCSharp\.Events\.IPeriodicAction\.Action')

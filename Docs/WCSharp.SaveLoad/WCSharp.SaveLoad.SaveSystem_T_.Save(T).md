@@ -1,9 +1,9 @@
-#### [WCSharp.SaveLoad](README.md 'README')
-### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[SaveSystem&lt;T&gt;](WCSharp.SaveLoad.SaveSystem_T_.md 'WCSharp.SaveLoad.SaveSystem<T>')
+#### [WCSharp\.SaveLoad](README.md 'README')
+### [WCSharp\.SaveLoad](WCSharp.SaveLoad.md 'WCSharp\.SaveLoad').[SaveSystem&lt;T&gt;](WCSharp.SaveLoad.SaveSystem_T_.md 'WCSharp\.SaveLoad\.SaveSystem\<T\>')
 
-## SaveSystem<T>.Save(T) Method
+## SaveSystem\<T\>\.Save\(T\) Method
 
-Writes the given saveable to file for the player who owns the save.
+Writes the given saveable to file for the player who owns the save\.
 
 ```csharp
 public void Save(T saveable);
@@ -12,6 +12,6 @@ public void Save(T saveable);
 
 <a name='WCSharp.SaveLoad.SaveSystem_T_.Save(T).saveable'></a>
 
-`saveable` [T](WCSharp.SaveLoad.SaveSystem_T_.md#WCSharp.SaveLoad.SaveSystem_T_.T 'WCSharp.SaveLoad.SaveSystem<T>.T')
+`saveable` [T](WCSharp.SaveLoad.SaveSystem_T_.md#WCSharp.SaveLoad.SaveSystem_T_.T 'WCSharp\.SaveLoad\.SaveSystem\<T\>\.T')
 
-The saveable to save.
+The saveable to save\.

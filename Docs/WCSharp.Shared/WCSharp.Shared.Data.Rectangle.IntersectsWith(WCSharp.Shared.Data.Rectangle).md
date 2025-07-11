@@ -1,9 +1,9 @@
-#### [WCSharp.Shared](README.md 'README')
-### [WCSharp.Shared.Data](WCSharp.Shared.Data.md 'WCSharp.Shared.Data').[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp.Shared.Data.Rectangle')
+#### [WCSharp\.Shared](README.md 'README')
+### [WCSharp\.Shared\.Data](WCSharp.Shared.Data.md 'WCSharp\.Shared\.Data').[Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp\.Shared\.Data\.Rectangle')
 
-## Rectangle.IntersectsWith(Rectangle) Method
+## Rectangle\.IntersectsWith\(Rectangle\) Method
 
-Returns whether this Rectangle has any point where it touches or overlaps with the given Rectangle.
+Returns whether this Rectangle has any point where it touches or overlaps with the given Rectangle\.
 
 ```csharp
 public bool IntersectsWith(WCSharp.Shared.Data.Rectangle rect);
@@ -12,7 +12,7 @@ public bool IntersectsWith(WCSharp.Shared.Data.Rectangle rect);
 
 <a name='WCSharp.Shared.Data.Rectangle.IntersectsWith(WCSharp.Shared.Data.Rectangle).rect'></a>
 
-`rect` [Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp.Shared.Data.Rectangle')
+`rect` [Rectangle](WCSharp.Shared.Data.Rectangle.md 'WCSharp\.Shared\.Data\.Rectangle')
 
 #### Returns
-[System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean 'System.Boolean')
+[System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')

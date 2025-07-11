@@ -1,7 +1,7 @@
-#### [WCSharp.Buffs](README.md 'README')
+#### [WCSharp\.Buffs](README.md 'README')
 
-## WCSharp.Buffs Assembly
+## WCSharp\.Buffs Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Buffs](WCSharp.Buffs.md 'WCSharp.Buffs') | |
+| [WCSharp\.Buffs](WCSharp.Buffs.md 'WCSharp\.Buffs') | |

@@ -1,7 +1,7 @@
-#### [WCSharp.Effects](README.md 'README')
+#### [WCSharp\.Effects](README.md 'README')
 
-## WCSharp.Effects Assembly
+## WCSharp\.Effects Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Effects](WCSharp.Effects.md 'WCSharp.Effects') | |
+| [WCSharp\.Effects](WCSharp.Effects.md 'WCSharp\.Effects') | |

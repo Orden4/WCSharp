@@ -1,9 +1,9 @@
-#### [WCSharp.Missiles](README.md 'README')
-### [WCSharp.Missiles](WCSharp.Missiles.md 'WCSharp.Missiles').[HomingMissile](WCSharp.Missiles.HomingMissile.md 'WCSharp.Missiles.HomingMissile')
+#### [WCSharp\.Missiles](README.md 'README')
+### [WCSharp\.Missiles](WCSharp.Missiles.md 'WCSharp\.Missiles').[HomingMissile](WCSharp.Missiles.HomingMissile.md 'WCSharp\.Missiles\.HomingMissile')
 
-## HomingMissile.FlightMode Enum
+## HomingMissile\.FlightMode Enum
 
-The flight modes of this missile type.
+The flight modes of this missile type\.
 
 ```csharp
 public enum HomingMissile.FlightMode
@@ -14,18 +14,18 @@ public enum HomingMissile.FlightMode
 
 `Default` 0
 
-Default value prior to the missile being launched.  
-  
-Will automatically change to [FollowTerrain](WCSharp.Missiles.HomingMissile.FlightMode.md#WCSharp.Missiles.HomingMissile.FlightMode.FollowTerrain 'WCSharp.Missiles.HomingMissile.FlightMode.FollowTerrain').
+Default value prior to the missile being launched\.
 
-<a name='WCSharp.Missiles.HomingMissile.FlightMode.Direct'></a>
-
-`Direct` 2
-
-The missile will ignore the height of the terrain.
+Will automatically change to [FollowTerrain](WCSharp.Missiles.HomingMissile.FlightMode.md#WCSharp.Missiles.HomingMissile.FlightMode.FollowTerrain 'WCSharp\.Missiles\.HomingMissile\.FlightMode\.FollowTerrain').
 
 <a name='WCSharp.Missiles.HomingMissile.FlightMode.FollowTerrain'></a>
 
 `FollowTerrain` 1
 
-The missile will follow the height of the terrain.
+The missile will follow the height of the terrain\.
+
+<a name='WCSharp.Missiles.HomingMissile.FlightMode.Direct'></a>
+
+`Direct` 2
+
+The missile will ignore the height of the terrain\.

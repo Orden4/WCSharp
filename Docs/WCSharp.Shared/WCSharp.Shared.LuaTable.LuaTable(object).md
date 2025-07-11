@@ -1,9 +1,9 @@
-#### [WCSharp.Shared](README.md 'README')
-### [WCSharp.Shared](WCSharp.Shared.md 'WCSharp.Shared').[LuaTable](WCSharp.Shared.LuaTable.md 'WCSharp.Shared.LuaTable')
+#### [WCSharp\.Shared](README.md 'README')
+### [WCSharp\.Shared](WCSharp.Shared.md 'WCSharp\.Shared').[LuaTable](WCSharp.Shared.LuaTable.md 'WCSharp\.Shared\.LuaTable')
 
-## LuaTable(object) Constructor
+## LuaTable\(object\) Constructor
 
-Initialises a new [LuaTable](WCSharp.Shared.LuaTable.md 'WCSharp.Shared.LuaTable') and adds all pairs located on the table into the dictionary.
+Initialises a new [LuaTable](WCSharp.Shared.LuaTable.md 'WCSharp\.Shared\.LuaTable') and adds all pairs located on the table into the dictionary\.
 
 ```csharp
 public LuaTable(object table);
@@ -12,4 +12,4 @@ public LuaTable(object table);
 
 <a name='WCSharp.Shared.LuaTable.LuaTable(object).table'></a>
 
-`table` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')
+`table` [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object')

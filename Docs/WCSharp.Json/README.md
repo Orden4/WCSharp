@@ -1,7 +1,7 @@
-#### [WCSharp.Json](README.md 'README')
+#### [WCSharp\.Json](README.md 'README')
 
-## WCSharp.Json Assembly
+## WCSharp\.Json Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Json](WCSharp.Json.md 'WCSharp.Json') | |
+| [WCSharp\.Json](WCSharp.Json.md 'WCSharp\.Json') | |

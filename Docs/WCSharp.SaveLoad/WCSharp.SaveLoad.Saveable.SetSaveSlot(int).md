@@ -1,9 +1,9 @@
-#### [WCSharp.SaveLoad](README.md 'README')
-### [WCSharp.SaveLoad](WCSharp.SaveLoad.md 'WCSharp.SaveLoad').[Saveable](WCSharp.SaveLoad.Saveable.md 'WCSharp.SaveLoad.Saveable')
+#### [WCSharp\.SaveLoad](README.md 'README')
+### [WCSharp\.SaveLoad](WCSharp.SaveLoad.md 'WCSharp\.SaveLoad').[Saveable](WCSharp.SaveLoad.Saveable.md 'WCSharp\.SaveLoad\.Saveable')
 
-## Saveable.SetSaveSlot(int) Method
+## Saveable\.SetSaveSlot\(int\) Method
 
-Sets the save slot that this save is bound to.
+Sets the save slot that this save is bound to\.
 
 ```csharp
 public void SetSaveSlot(int saveSlot);
@@ -12,4 +12,4 @@ public void SetSaveSlot(int saveSlot);
 
 <a name='WCSharp.SaveLoad.Saveable.SetSaveSlot(int).saveSlot'></a>
 
-`saveSlot` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')
+`saveSlot` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')

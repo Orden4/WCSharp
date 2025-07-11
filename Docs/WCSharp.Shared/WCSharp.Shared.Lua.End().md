@@ -1,7 +1,7 @@
-#### [WCSharp.Shared](README.md 'README')
-### [WCSharp.Shared](WCSharp.Shared.md 'WCSharp.Shared').[Lua](WCSharp.Shared.Lua.md 'WCSharp.Shared.Lua')
+#### [WCSharp\.Shared](README.md 'README')
+### [WCSharp\.Shared](WCSharp.Shared.md 'WCSharp\.Shared').[Lua](WCSharp.Shared.Lua.md 'WCSharp\.Shared\.Lua')
 
-## Lua.End() Method
+## Lua\.End\(\) Method
 
 Converts into raw lua in the form of "end"
 

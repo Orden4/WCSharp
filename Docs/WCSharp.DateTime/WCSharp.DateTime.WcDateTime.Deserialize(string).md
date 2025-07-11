@@ -1,9 +1,9 @@
-#### [WCSharp.DateTime](README.md 'README')
-### [WCSharp.DateTime](WCSharp.DateTime.md 'WCSharp.DateTime').[WcDateTime](WCSharp.DateTime.WcDateTime.md 'WCSharp.DateTime.WcDateTime')
+#### [WCSharp\.DateTime](README.md 'README')
+### [WCSharp\.DateTime](WCSharp.DateTime.md 'WCSharp\.DateTime').[WcDateTime](WCSharp.DateTime.WcDateTime.md 'WCSharp\.DateTime\.WcDateTime')
 
-## WcDateTime.Deserialize(string) Method
+## WcDateTime\.Deserialize\(string\) Method
 
-Attempts to parse the given string as the number of seconds since January 1st, 1970.
+Attempts to parse the given string as the number of seconds since January 1st, 1970\.
 
 ```csharp
 public static WCSharp.DateTime.WcDateTime Deserialize(string @string);
@@ -12,8 +12,8 @@ public static WCSharp.DateTime.WcDateTime Deserialize(string @string);
 
 <a name='WCSharp.DateTime.WcDateTime.Deserialize(string).string'></a>
 
-`string` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+`string` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
-[WcDateTime](WCSharp.DateTime.WcDateTime.md 'WCSharp.DateTime.WcDateTime')  
-Null if [string](WCSharp.DateTime.WcDateTime.Deserialize(string).md#WCSharp.DateTime.WcDateTime.Deserialize(string).string 'WCSharp.DateTime.WcDateTime.Deserialize(string).string') is not a valid integer.
+[WcDateTime](WCSharp.DateTime.WcDateTime.md 'WCSharp\.DateTime\.WcDateTime')  
+Null if [string](WCSharp.DateTime.WcDateTime.Deserialize(string).md#WCSharp.DateTime.WcDateTime.Deserialize(string).string 'WCSharp\.DateTime\.WcDateTime\.Deserialize\(string\)\.string') is not a valid integer\.

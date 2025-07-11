@@ -1,7 +1,7 @@
-#### [WCSharp.Sync](README.md 'README')
+#### [WCSharp\.Sync](README.md 'README')
 
-## WCSharp.Sync Assembly
+## WCSharp\.Sync Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Sync](WCSharp.Sync.md 'WCSharp.Sync') | |
+| [WCSharp\.Sync](WCSharp.Sync.md 'WCSharp\.Sync') | |

@@ -1,7 +1,7 @@
-#### [WCSharp.Events](README.md 'README')
+#### [WCSharp\.Events](README.md 'README')
 
-## WCSharp.Events Assembly
+## WCSharp\.Events Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Events](WCSharp.Events.md 'WCSharp.Events') | |
+| [WCSharp\.Events](WCSharp.Events.md 'WCSharp\.Events') | |

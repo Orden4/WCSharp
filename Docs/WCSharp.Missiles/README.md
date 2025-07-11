@@ -1,7 +1,7 @@
-#### [WCSharp.Missiles](README.md 'README')
+#### [WCSharp\.Missiles](README.md 'README')
 
-## WCSharp.Missiles Assembly
+## WCSharp\.Missiles Assembly
 
 | Namespaces | |
 | :--- | :--- |
-| [WCSharp.Missiles](WCSharp.Missiles.md 'WCSharp.Missiles') | |
+| [WCSharp\.Missiles](WCSharp.Missiles.md 'WCSharp\.Missiles') | |
