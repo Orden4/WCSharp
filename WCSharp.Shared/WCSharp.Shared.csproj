@@ -20,7 +20,7 @@ This package contains a set of classes, methods and extensions used by almost al
 	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
     <PackageReference Include="DefaultDocumentation" Version="1.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

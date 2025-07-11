@@ -20,7 +20,7 @@ This package simply allows you to destroy Warcraft III special effects on a dela
 	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
     <PackageReference Include="DefaultDocumentation" Version="1.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

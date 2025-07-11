@@ -20,7 +20,7 @@ The Events package provides various systems for organising events with a focus o
 	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
     <PackageReference Include="DefaultDocumentation" Version="1.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
