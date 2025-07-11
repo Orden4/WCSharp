@@ -20,7 +20,7 @@ This package allows for the creation and management of lightning effects in Warc
 	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+  <ItemGroup>
     <PackageReference Include="DefaultDocumentation" Version="1.2.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
