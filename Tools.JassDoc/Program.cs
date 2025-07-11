@@ -10,6 +10,7 @@ namespace Tools.JassDoc
 			if (args.Length == 0)
 				return;
 
+			Console.WriteLine("Retrieving JassDoc API.");
 			var jassApi = await JassApiCollection.CreateAsync();
 			foreach (var csproj in args)
 			{

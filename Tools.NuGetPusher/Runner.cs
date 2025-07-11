@@ -63,7 +63,7 @@ namespace NuGetPusher
 						skipDuplicate: true,
 						allowSnupkg: false,
 						allowInsecureConnections: false,
-						log: null
+						log: NullLogger.Instance
 					);
 					return;
 				}
