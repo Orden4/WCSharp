@@ -189,14 +189,10 @@ namespace Tools.JassDoc.RoslynParsing
 				{
 					if (symbol is IMethodSymbol methodSymbol)
 					{
-						var jassParameterIndex = intValue;
-						if (!methodSymbol.IsStatic)
-							jassParameterIndex++;
-
 						parameters.Add(new ApiParameterSymbol
 						{
 							Parameter = methodSymbol.Parameters.First(x => x.Ordinal == intValue),
-							JassParameter = jassMethod.Parameters[jassParameterIndex],
+							JassParameter = jassMethod.Parameters[i],
 						});
 						continue;
 					}
