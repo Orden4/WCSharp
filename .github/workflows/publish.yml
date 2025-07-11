@@ -32,6 +32,9 @@ jobs:
         run: |
           mkdir DefaultDocumentation
 
+      - name: Add JassDoc documentation
+        run: dotnet run --project ./Tools.JassDoc/Tools.JassDoc.csproj -- WCSharp.Api/WCSharp.Api.csproj
+
       - name: Restore dependencies
         run: dotnet restore
 

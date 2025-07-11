@@ -5,20 +5,18 @@ namespace Tools.JassDoc
 {
 	internal class Program
 	{
-		private static async Task Main()
+		private static async Task Main(string[] args)
 		{
-			var dirInfo = new DirectoryInfo(Environment.CurrentDirectory);
-			while (!string.Equals(dirInfo.Name, "WCSharp", StringComparison.OrdinalIgnoreCase))
-			{
-				dirInfo = dirInfo.Parent;
-				if (dirInfo == null)
-					throw new Exception("Could not find base directory");
-			}
-			Environment.CurrentDirectory = dirInfo.FullName;
+			if (args.Length == 0)
+				return;
+
 			var jassApi = await JassApiCollection.CreateAsync();
-			var roslynProject = await RoslynParser.GetApiEntities(Path.Combine("WCSharp.Api", "WCSharp.Api.csproj"), jassApi);
-			await ApiDocumentationGenerator.Run(roslynProject);
-			await Task.Delay(Timeout.Infinite);
+			foreach (var csproj in args)
+			{
+				Console.WriteLine($"Adding JassDoc documentation to {csproj}.");
+				var roslynProject = await RoslynParser.GetApiEntities(csproj, jassApi);
+				await ApiDocumentationGenerator.Run(roslynProject, dry: false);
+			}
 		}
 	}
 }

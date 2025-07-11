@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tools.JassDoc\Tools.JassDoc.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
