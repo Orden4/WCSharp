@@ -1,9 +1,7 @@
 ## Own ignores
 artifacts
 *.xml
-NuGetPusher/app.config
 DefaultDocumentation/**
-regex.csv
 
 
 

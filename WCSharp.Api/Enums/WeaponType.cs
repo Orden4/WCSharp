@@ -1,5 +1,9 @@
 ﻿namespace WCSharp.Api.Enums
 {
+	/// <summary>
+	/// The weapon type of a unit.
+	/// <para>Also maps to weapon sounds.</para>
+	/// </summary>
 	public enum WeaponType
 	{
 		/// <summary>

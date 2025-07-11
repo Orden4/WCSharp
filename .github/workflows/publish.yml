@@ -1,0 +1,41 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    name: Build and publish to NuGet
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: GitTools/actions/gitversion/setup@v4
+
+      - name: Run GitVersion
+        id: gitversion
+        uses: GitTools/actions/gitversion/execute@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack project with GitVersion version
+        run: dotnet pack --configuration Release --no-build -o out /p:UsePackageReferences=true /p:PackageVersion=${{ steps.gitversion.outputs.SemVer }}
+
+      - name: Push to NuGet
+        run: dotnet run --project ./Tools.NuGetPusher/Tools.NuGetPusher.csproj -- --ApiKey ${{ secrets.NUGET_API_KEY }} --PackageDirectory out --PackageVersion ${{ steps.gitversion.outputs.SemVer }}

@@ -3,10 +3,27 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <DocumentationFile>WCSharp.Api.xml</DocumentationFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+This API is a replacement to War3Net's own War3Api. It allows for a more object-orientated style of programming while simultaneously making it far easier and more intuitive to work with WC3 objects. By using the full power of the CSharpLua transpiler, it achieves this entirely via compile-time conversions, meaning that no wrapper logic is required and there is no difference in performance.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
   </PropertyGroup>
 
   <PropertyGroup>
     <NoWarn>1701;1702;CS0626;IDE0130</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

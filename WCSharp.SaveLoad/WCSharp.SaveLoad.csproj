@@ -3,7 +3,17 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <UsePackageReferences>false</UsePackageReferences>
     <DocumentationFile>WCSharp.SaveLoad.xml</DocumentationFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+The SaveLoad package provides a system that can be used to save and load data between separate games by (de)serializing class structures, making it easy to store complex and large amounts of data.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
 	<DefaultDocumentationFolder>../Docs/WCSharp.SaveLoad</DefaultDocumentationFolder>
 	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.SaveLoad.txt</DefaultDocumentationLinksOutputFile>
 	<DefaultDocumentationLinksBaseUrl>../WCSharp.SaveLoad/</DefaultDocumentationLinksBaseUrl>
@@ -17,9 +27,25 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
+    <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
     <ProjectReference Include="..\WCSharp.Json\WCSharp.Json.csproj" />
+    <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
     <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
+    <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Json" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Shared" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Sync" Version="$(PackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

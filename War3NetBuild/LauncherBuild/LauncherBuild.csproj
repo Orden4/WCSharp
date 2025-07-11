@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="DotNetZip" Version="1.16.0" />
+	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
+	  <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\War3Net\src\War3Net.Build\War3Net.Build.csproj" />
+	  <ProjectReference Include="..\..\..\War3Net\submodules\CSharp.lua\CSharp.lua.CoreSystem\CSharp.lua.CoreSystem.csproj" />
+	  <ProjectReference Include="..\..\WCSharp.ConstantGenerator\WCSharp.ConstantGenerator.csproj" />
+	</ItemGroup>
+
+</Project>

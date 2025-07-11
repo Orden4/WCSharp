@@ -3,7 +3,17 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <UsePackageReferences>false</UsePackageReferences>
     <DocumentationFile>WCSharp.Effects.xml</DocumentationFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+This package simply allows you to destroy Warcraft III special effects on a delay, primarily to circumvent some Reforged bugs.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
 	<DefaultDocumentationFolder>../Docs/WCSharp.Effects</DefaultDocumentationFolder>
 	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.Effects.txt</DefaultDocumentationLinksOutputFile>
 	<DefaultDocumentationLinksBaseUrl>../WCSharp.Effects/</DefaultDocumentationLinksBaseUrl>
@@ -17,9 +27,21 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
     <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
+    <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Events" Version="$(PackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

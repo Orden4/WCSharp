@@ -3,7 +3,17 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <UsePackageReferences>false</UsePackageReferences>
     <DocumentationFile>WCSharp.Missiles.xml</DocumentationFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+This package allows for the creation and management of missiles in Warcraft III.</Description>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
 	<DefaultDocumentationFolder>../Docs/WCSharp.Missiles</DefaultDocumentationFolder>
 	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.Missiles.txt</DefaultDocumentationLinksOutputFile>
 	<DefaultDocumentationLinksBaseUrl>../WCSharp.Missiles/</DefaultDocumentationLinksBaseUrl>
@@ -17,9 +27,23 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
     <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
+    <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
+    <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Events" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Shared" Version="$(PackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
