@@ -121,7 +121,7 @@ namespace WCSharp.Knockbacks
 				if (this.effect2Interval <= 0)
 				{
 					this.effect2Interval = EFFECT2_PERIOD;
-					var effect = AddSpecialEffectTarget(Effect1, Target, Effect1AttachmentPoint);
+					var effect = AddSpecialEffectTarget(Effect2, Target, Effect2AttachmentPoint);
 					DestroyEffect(effect);
 				}
 			}
