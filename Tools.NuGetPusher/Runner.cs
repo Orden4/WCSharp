@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol.Core.Types;
@@ -33,9 +34,21 @@ namespace NuGetPusher
 			this.filter = new SearchFilter(includePrerelease: true);
 		}
 
-		public async Task Run(string project, string version)
+		private static string GetVersion(string project)
 		{
-			var csprojPath = Path.Combine(project, project + ".csproj");
+			var doc = XDocument.Load("Directory.Build.props");
+			var version = doc.Descendants("Version").SingleOrDefault();
+			if (version != null && !string.IsNullOrEmpty(version.Value))
+			{
+				return version.Value;
+			}
+
+			throw new Exception($"Cannot find version of project {project}");
+		}
+
+		public async Task Run(string project)
+		{
+			var version = GetVersion(project);
 			if (!await HasVersion(project, version))
 			{
 				Log.Information("Updating {Project} to v{Version}.", project, version);

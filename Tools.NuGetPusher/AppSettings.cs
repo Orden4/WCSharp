@@ -12,6 +12,5 @@ namespace NuGetPusher
 
 		public string ApiKey { get; set; } = null!;
 		public string PackageDirectory { get; set; } = null!;
-		public string PackageVersion { get; set; } = null!;
 	}
 }

@@ -3,18 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <UsePackageReferences>false</UsePackageReferences>
     <Optimize>False</Optimize>
     <DocumentationFile>WCSharp.Sync.xml</DocumentationFile>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
-    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the syncing of class structures between players in Warcraft III, making it easy to sync complex and large amounts of data.</Description>
-    <Authors>Orden4</Authors>
-    <Company />
-    <Product>WCSharp</Product>
 	<DefaultDocumentationFolder>../Docs/WCSharp.Sync</DefaultDocumentationFolder>
 	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.Sync.txt</DefaultDocumentationLinksOutputFile>
 	<DefaultDocumentationLinksBaseUrl>../WCSharp.Sync/</DefaultDocumentationLinksBaseUrl>
@@ -38,13 +30,6 @@ This package allows for the syncing of class structures between players in Warcr
     <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
     <PackageReference Include="WCSharp.Json" Version="$(PackageVersion)" />
     <PackageReference Include="WCSharp.Shared" Version="$(PackageVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <Version>2.3.3-rc1</Version>
+    <UsePackageReferences>false</UsePackageReferences>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orden4/WCSharp</RepositoryUrl>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Authors>Orden4</Authors>
+    <Company />
+    <Product>WCSharp</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

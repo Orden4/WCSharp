@@ -24,7 +24,7 @@ namespace NuGetPusher
 			var runner = new Runner(appSettings);
 			foreach (var project in appSettings.Projects)
 			{
-				await runner.Run(project, appSettings.PackageVersion);
+				await runner.Run(project);
 			}
 		}
 	}
