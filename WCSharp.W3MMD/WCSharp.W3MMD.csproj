@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <Optimize>False</Optimize>
     <DocumentationFile>WCSharp.W3MMD.xml</DocumentationFile>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package is a C# port of the W3MMD library, allowing you to define custom events and variables in your maps for tracking by stat aggregators such as wc3stats.</Description>

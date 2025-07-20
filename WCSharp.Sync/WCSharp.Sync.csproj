@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <Optimize>False</Optimize>
     <DocumentationFile>WCSharp.Sync.xml</DocumentationFile>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the syncing of class structures between players in Warcraft III, making it easy to sync complex and large amounts of data.</Description>

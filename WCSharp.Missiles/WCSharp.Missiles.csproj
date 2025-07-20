@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <Optimize>False</Optimize>
     <DocumentationFile>WCSharp.Missiles.xml</DocumentationFile>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package allows for the creation and management of missiles in Warcraft III.</Description>

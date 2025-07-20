@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <Optimize>False</Optimize>
     <DocumentationFile>WCSharp.DateTime.xml</DocumentationFile>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
 This package defines custom DateTime and TimeSpan classes that can be used in Warcraft III.</Description>
