@@ -3,6 +3,10 @@
 	public enum HeroAttribute
 	{
 		/// <summary>
+		/// Not a hero/invalid.
+		/// </summary>
+		None = 0,
+		/// <summary>
 		/// Corresponds to <see cref="Common.HERO_ATTRIBUTE_STR"/>.
 		/// </summary>
 		Strength = 1,

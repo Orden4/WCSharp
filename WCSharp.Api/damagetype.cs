@@ -7,6 +7,8 @@
 		{
 		}
 
+		/// @CSharpLua.Get = "DAMAGE_TYPE_UNKNOWN"
+		public static extern damagetype Unknown { get; }
 		/// @CSharpLua.Get = "DAMAGE_TYPE_NORMAL"
 		public static extern damagetype Normal { get; }
 		/// @CSharpLua.Get = "DAMAGE_TYPE_ENHANCED"

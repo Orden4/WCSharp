@@ -140,7 +140,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "UnitAddSleepPerm({this}, {0})"
 		public extern bool CanSleepPerm { get; set; }
 		/// @CSharpLua.Get = "BlzGetHeroStat({this}, BlzGetHeroPrimaryStat({this}))"
-		/// @CSharpLua.Set = "BlzSetHeroPrimaryStat({this}, {0})"
+		/// @CSharpLua.Set = "BlzSetHeroStatEx({this}, BlzGetHeroPrimaryStat({this}), {0})"
 		public extern int PrimaryAttribute { get; set; }
 		/// @CSharpLua.Get = "GetUnitTurnSpeed({this})"
 		/// @CSharpLua.Set = "SetUnitTurnSpeed({this}, {0})"
