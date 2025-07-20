@@ -2,6 +2,9 @@ local define = System.defStc
 local setmetatable = setmetatable
 
 local handle = define("WCSharp.Api.handle", {
+  default = function ()
+    return nil
+  end
 })
 local agent = define("WCSharp.Api.agent", {
   base = { handle }
