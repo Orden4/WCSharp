@@ -21,7 +21,6 @@ namespace WCSharp.Events
 		};
 
 		internal static bool Debug { get; private set; }
-		internal static bool Unsafe { get; private set; }
 
 		/// <summary>
 		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for <paramref name="unit"/>.
@@ -436,15 +435,6 @@ namespace WCSharp.Events
 		public static void EnableDebug()
 		{
 			Debug = true;
-		}
-
-		/// <summary>
-		/// Call this method to avoid guarding against exceptions within your events.
-		/// <para>This can improve performance and debug information, but can cause very unpredictable errors when exceptions do occur.</para>
-		/// </summary>
-		public static void EnableUnsafe()
-		{
-			Unsafe = true;
 		}
 
 		internal static void ResolvePendingUpdates()

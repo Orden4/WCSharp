@@ -53,14 +53,16 @@ namespace WCSharp.SaveLoad
 		};
 
 		/// <summary>
-		/// Adds an additional ability id for use as temporary data storage.
+		/// <para><b>Deprecated. We now have infinite storage space and this is unnecessary.</b></para>
+		/// <para><b>Only use this for backwards compatability with older saves for your map.</b></para>
+		/// <para>Adds an additional ability id for use as temporary data storage.</para>
 		/// <para>By default, you have 6000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.</para>
 		/// <para>This should be done upon map start, before anything attempts to use the SaveSystem.</para>
 		/// <para>The default includes most of the Human abilities:</para>
 		/// <para>Amls, Ahan, Aroc, Amic, Amil, Aclf, Acmg, Adef, Adis, Afbt, Afbk, Aflk, Afla, Agyb, Afsh,
 		/// Ahea, Ahlh, Ainf, Aivs, Ahri, Amdf, Adts, Apxf, Aply, Ahrp, AHta, Aslo, Asps, Asth, Ahsb</para>
 		/// </summary>
-		/// <param name="abilityId"></param>
+		[Obsolete("No longer needed. We now have infinite storage space. Only use this for backwards compatability with older saves for your map.")]
 		public static void AddAbilityId(int abilityId)
 		{
 			if (OriginalTooltips == null)
@@ -118,6 +120,7 @@ namespace WCSharp.SaveLoad
 		private readonly int hash2;
 		private readonly bool bindSavesToPlayerName;
 		private readonly bool attemptToLoadNewerVersions;
+		private readonly bool debug;
 		private readonly string suffix;
 		private readonly Base64 base64;
 
@@ -331,22 +334,30 @@ namespace WCSharp.SaveLoad
 				save = JsonConvert.Deserialize<Save<T>>(contents);
 				return LoadResult.Success;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+				if (this.debug)
+				{
+					Console.WriteLine(ex);
+				}
 				save = null;
 				return result;
 			}
 		}
 
-		private static bool TryDeserialize(string saveData, out T saveDataObject)
+		private bool TryDeserialize(string saveData, out T saveDataObject)
 		{
 			try
 			{
 				saveDataObject = JsonConvert.Deserialize<T>(saveData);
 				return true;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+				if (this.debug)
+				{
+					Console.WriteLine(ex);
+				}
 				saveDataObject = null;
 				return false;
 			}

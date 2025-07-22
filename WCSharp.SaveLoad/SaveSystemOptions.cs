@@ -59,5 +59,10 @@ namespace WCSharp.SaveLoad
 		/// <para>This should never be changed after release of a map, as changing it will invalidate all existing save files.</para>
 		/// </summary>
 		public Base64 Base64Provider { get; set; }
+
+		/// <summary>
+		/// Will output additional debug info if a save fails to be decode.
+		/// </summary>
+		public bool EnableDebug { get; set; }
 	}
 }

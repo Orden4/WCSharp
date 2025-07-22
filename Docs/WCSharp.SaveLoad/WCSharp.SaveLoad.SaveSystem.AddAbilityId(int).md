@@ -3,7 +3,12 @@
 
 ## SaveSystem\.AddAbilityId\(int\) Method
 
-Adds an additional ability id for use as temporary data storage\.
+
+<b>Deprecated. We now have infinite storage space and this is unnecessary.</b>
+
+<b>Only use this for backwards compatability with older saves for your map.</b>
+
+Adds an additional ability id for use as temporary data storage.
 
 By default, you have 6000 characters to use as storage. If you approach that limit, expand the ability ids used at the start of the game using this method.
 

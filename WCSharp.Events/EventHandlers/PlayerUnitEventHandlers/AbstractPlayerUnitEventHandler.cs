@@ -21,24 +21,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			this.eventSets = new List<IEventSet>();
 			this.trigger = CreateTrigger();
 
-			Func<bool> run = PlayerUnitEvents.Unsafe ? RunUnsafe : Run;
-			if (PlayerUnitEvents.Debug)
-			{
-				run = () =>
-				{
-					try
-					{
-						Run();
-					}
-					catch (Exception ex)
-					{
-						Console.WriteLine(ex.Message);
-						Console.WriteLine(ex.StackTrace);
-					}
-					return false;
-				};
-			}
-			var condition = Condition(run);
+			var condition = Condition(Run);
 			TriggerAddCondition(this.trigger, condition);
 			DisableTrigger(this.trigger);
 		}
@@ -51,6 +34,13 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				for (var i = 0; i < this.eventSets.Count; i++)
 				{
 					this.eventSets[i].Run();
+				}
+			}
+			catch (Exception ex)
+			{
+				if (PlayerUnitEvents.Debug)
+				{
+					Console.WriteLine(ex);
 				}
 			}
 			finally
