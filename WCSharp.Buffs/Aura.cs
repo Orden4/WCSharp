@@ -135,6 +135,7 @@ namespace WCSharp.Buffs
 
 		/// <summary>
 		/// Use this method to filter units that should be affected by this aura.
+		/// <para><b>Note:</b> If you override <see cref="GetAuraTargets"/>, this method will not be used.</para>
 		/// </summary>
 		/// <param name="unit">The unit to evaluate</param>
 		/// <returns>True if the given unit should receive the aura buff.</returns>
@@ -162,18 +163,23 @@ namespace WCSharp.Buffs
 			if (SearchIntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
 			{
 				SearchIntervalLeft = SearchInterval;
-				GroupEnumUnitsInRange(group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
-				var units = group.ToList();
+				var units = GetAuraTargets();
 				for (var i = 0; i < units.Count; i++)
 				{
 					var unit = units[i];
-					var existingBuff = this.activeBuffs.FirstOrDefault(x => x.Unit == unit);
-					if (existingBuff != null)
+					var found = false;
+					for (var j = 0; j < this.activeBuffs.Count; j++)
 					{
-						existingBuff.Duration = Duration;
-						existingBuff.Buff.Duration = Duration;
+						var activeBuff = this.activeBuffs[j];
+						if (activeBuff.Unit == unit)
+						{
+							activeBuff.Duration = Duration;
+							activeBuff.Buff.Duration = Duration;
+							found = true;
+						}
 					}
-					else if (UnitFilter(unit))
+
+					if (!found)
 					{
 						var aura = (T)BuffSystem.Add(CreateAuraBuff(unit), StackBehaviour);
 						aura.Duration = Duration;
@@ -199,6 +205,16 @@ namespace WCSharp.Buffs
 					buff.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Default implementation for retrieving the units that should be affected by the aura.
+		/// <para>If you have a custom system (e.g. spatial hashing), you can override this to avoid using the default group-based search.</para>
+		/// </summary>
+		protected virtual List<unit> GetAuraTargets()
+		{
+			GroupEnumUnitsInRange(group, GetUnitX(Caster), GetUnitY(Caster), Radius, null);
+			return group.ToList(UnitFilter);
 		}
 
 		/// <inheritdoc/>
