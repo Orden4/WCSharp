@@ -151,7 +151,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetUnitAcquireRange({this})"
 		/// @CSharpLua.Get = "SetUnitAcquireRange({this}, {0})"
 		public extern float AcquireRange { get; set; }
-		/// @CSharpLua.Get = "SetUnitFlyHeight({this}, {0}, 0)"
+		/// @CSharpLua.Get = "GetUnitFlyHeight({this})"
+		/// @CSharpLua.Set = "SetUnitFlyHeight({this}, {0}, 0)"
 		public extern float FlyHeight { get; set; }
 		/// @CSharpLua.Get = "GetUnitMoveSpeed({this})"
 		/// @CSharpLua.Set = "SetUnitMoveSpeed({this}, {0})"

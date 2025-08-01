@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Missiles;
 using WCSharp.Shared;
 using WCSharp.Shared.Extensions;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace Source.Missiles
@@ -34,9 +34,7 @@ namespace Source.Missiles
 			{
 				Range = 600,
 				OrbitalPeriod = 4.0f,
-				SpinPeriod = 4.0f
 			};
-			Util.Debug(missile.SpinPeriod);
 			Util.Debug(missile.OrbitalPeriod);
 			MissileSystem.Add(missile);
 		}

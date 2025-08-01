@@ -157,23 +157,6 @@ namespace WCSharp.Missiles
 		public float IntervalLeft { get; set; }
 
 		/// <summary>
-		/// The velocity of the spin, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
-		/// <para>Use negative values to go clockwise.</para>
-		/// <para>Alternatively, use <see cref="SpinPeriod"/>.</para>
-		/// </summary>
-		public float SpinVelocityRad { get; set; }
-		/// <summary>
-		/// The amount of time it takes for the projectile to spin once during flight in seconds.
-		/// <para>Use negative values to go clockwise.</para>
-		/// <para>Alternatively, use <see cref="SpinVelocityRad"/>.</para>
-		/// </summary>
-		public float SpinPeriod
-		{
-			get => SpinVelocityRad == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / SpinVelocityRad;
-			set => SpinVelocityRad = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
-		}
-
-		/// <summary>
 		/// The yaw of the projectile, expressed in radians.
 		/// <para>Depending on the type of missile, yaw sets may be ignored.</para>
 		/// <para>Alternatively, use <see cref="Yaw"/>.</para>

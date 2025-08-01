@@ -292,7 +292,6 @@ namespace WCSharp.Missiles
 				var oldZ = InternalMissileZ;
 				AdjustMissileZ();
 				YawRad = this.orbitalVelocity > 0 ? OrbitalAngleRad + (Util.PI / 2) : OrbitalAngleRad - (Util.PI / 2);
-				RollRad += SpinVelocityRad;
 				var deltaX = oldX - MissileX;
 				var deltaY = oldY - MissileY;
 				var newZ = InternalMissileZ;

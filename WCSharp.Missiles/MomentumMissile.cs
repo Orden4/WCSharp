@@ -1,8 +1,8 @@
 ﻿using System;
+using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
-using WCSharp.Api;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Missiles
@@ -262,7 +262,6 @@ namespace WCSharp.Missiles
 
 			if (Effect != null)
 			{
-				RollRad += SpinVelocityRad;
 				var newZ = MissileZ;
 				PitchRad = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
 				BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, newZ);

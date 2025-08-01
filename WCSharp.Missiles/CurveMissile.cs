@@ -31,7 +31,7 @@ namespace WCSharp.Missiles
 			/// <summary>
 			/// The missile will ignore the height of the terrain.
 			/// </summary>
-			Direct
+			Direct,
 		}
 
 		/// <inheritdoc/>
@@ -294,7 +294,6 @@ namespace WCSharp.Missiles
 
 			if (Effect != null)
 			{
-				RollRad += SpinVelocityRad;
 				var newZ = MissileZ;
 				PitchRad = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
 				BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, newZ);
@@ -367,7 +366,6 @@ namespace WCSharp.Missiles
 
 				YawRad = Util.AngleBetweenPointsRad(oldX, oldY, MissileX, MissileY);
 				PitchRad = Atan2(oldZ - newZ, SquareRoot((deltaX * deltaX) + (deltaY * deltaY)));
-				RollRad += SpinVelocityRad;
 				BlzSetSpecialEffectPosition(Effect, MissileX, MissileY, newZ);
 				BlzSetSpecialEffectOrientation(Effect, YawRad, PitchRad, RollRad);
 			}
