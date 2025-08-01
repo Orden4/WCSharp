@@ -333,6 +333,10 @@ namespace Tools.JassDoc.MarkdownRendering
 					case LinkDelimiterInline:
 						// skip for now
 						continue;
+					case ContainerInline containerInline:
+						element.Add("|");
+						FormatInlines(element, containerInline);
+						continue;
 					default:
 						throw new NotImplementedException();
 				}
