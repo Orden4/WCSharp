@@ -61,20 +61,14 @@ namespace WCSharp.Shared.Extensions
 		/// </summary>
 		public static unit FirstOrDefault(this group group, Func<unit, bool> predicate)
 		{
-			var i = 0;
-			while (true)
+			var size = BlzGroupGetSize(group);
+			for (var i = 0; i < size; i++)
 			{
 				var unit = BlzGroupUnitAt(group, i);
-				if (unit == null)
-				{
-					return null;
-				}
-				else if (predicate.Invoke(unit))
-				{
+				if (predicate.Invoke(unit))
 					return unit;
-				}
-				i++;
 			}
+			return null;
 		}
 
 		/// <summary>
@@ -86,7 +80,7 @@ namespace WCSharp.Shared.Extensions
 			var list = new List<unit>();
 			for (var i = 0; i < size; i++)
 			{
-				list.Add(BlzGroupUnitAt(group, i));
+				list.AddDirect(BlzGroupUnitAt(group, i), i);
 			}
 			return list;
 		}
@@ -98,12 +92,14 @@ namespace WCSharp.Shared.Extensions
 		{
 			var size = BlzGroupGetSize(group);
 			var list = new List<unit>();
+			var count = 0;
 			for (var i = 0; i < size; i++)
 			{
 				var unit = BlzGroupUnitAt(group, i);
 				if (predicate.Invoke(unit))
 				{
-					list.Add(unit);
+					list.AddDirect(unit, count);
+					count++;
 				}
 			}
 			return list;

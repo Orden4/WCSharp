@@ -32,7 +32,7 @@ namespace Source.Buffs
 		public MyBuff(unit caster, unit target) : base(caster, target)
 		{
 			EffectString = @"Abilities\Spells\Other\GeneralAuraTarget\GeneralAuraTarget.mdl";
-			Bind(ABILITY_MARK_AURA, BUFF_MARK);
+			BindAura(ABILITY_MARK_AURA, BUFF_MARK);
 		}
 
 		public override void OnApply()

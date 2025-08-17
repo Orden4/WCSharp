@@ -12,7 +12,7 @@ namespace Source.Buffs
 			Interval = 1.0f;
 			Duration = 10.0f;
 			EffectString = @"Abilities\Spells\Human\FlameStrike\FlameStrikeDamageTarget.mdl";
-			Bind(ABILITY_MARK_AURA, BUFF_MARK);
+			BindAura(ABILITY_MARK_AURA, BUFF_MARK);
 		}
 
 		public override void OnTick()

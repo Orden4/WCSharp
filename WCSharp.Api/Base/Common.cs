@@ -3317,6 +3317,8 @@ namespace WCSharp.Api
 		public static readonly unitrealfield UNIT_RF_DEATH_TIME = ConvertUnitRealField(1969517677);
 		/// @CSharpLua.Template = "UNIT_RF_FLY_HEIGHT"
 		public static readonly unitrealfield UNIT_RF_FLY_HEIGHT = ConvertUnitRealField(1969650024);
+		/// @CSharpLua.Template = "UNIT_RF_FLY_MAX_HEIGHT"
+		public static readonly unitrealfield UNIT_RF_FLY_MAX_HEIGHT = ConvertUnitRealField(1969646952);
 		/// @CSharpLua.Template = "UNIT_RF_TURN_RATE"
 		public static readonly unitrealfield UNIT_RF_TURN_RATE = ConvertUnitRealField(1970108018);
 		/// @CSharpLua.Template = "UNIT_RF_ELEVATION_SAMPLE_RADIUS"

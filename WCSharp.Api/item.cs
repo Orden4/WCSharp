@@ -107,6 +107,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "BlzSetItemSkin({this}, {0})"
 		public extern int Skin { get; set; }
 
+		/// @CSharpLua.Template = "SetItemPosition({this}, {0}, {1})"
+		public extern void SetPosition(item item, float x, float y);
 		/// @CSharpLua.Template = "SetItemPlayer({this}, {0}, {1})"
 		public extern void SetOwner(player player, bool changeColor = true);
 		/// @CSharpLua.Template = "SetItemDropID({this}, {0})"

@@ -194,8 +194,6 @@ namespace WCSharp.Api
 		public extern float DefaultMovementSpeed { get; }
 		/// @CSharpLua.Get = "BlzGetUnitZ({this})"
 		public extern float Z { get; }
-		/// @CSharpLua.Get = "BlzGetLocalUnitZ({this})"
-		public extern float LocalZ { get; }
 		/// @CSharpLua.Get = "GetUnitPointValue({this})"
 		public extern int PointValue { get; }
 		/// @CSharpLua.Get = "GetUnitCurrentOrder({this})"
@@ -775,6 +773,10 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_MINIMUM_ATTACK_RANGE)"
 		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_MINIMUM_ATTACK_RANGE, {0})"
 		public extern float MinimumAttackRange { get; set; }
+
+		/// @CSharpLua.Get = "BlzGetUnitRealField({this}, UNIT_RF_FLY_MAX_HEIGHT)"
+		/// @CSharpLua.Set = "BlzSetUnitRealField({this}, UNIT_RF_FLY_MAX_HEIGHT, {0})"
+		public extern string FlyMaxHeight { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitStringField({this}, UNIT_SF_GROUND_TEXTURE)"
 		/// @CSharpLua.Set = "BlzSetUnitStringField({this}, UNIT_SF_GROUND_TEXTURE, {0})"

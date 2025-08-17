@@ -27,8 +27,13 @@ namespace WCSharp.Buffs
 		/// <para>Defaults to 8 (0.25s).</para>
 		/// </summary>
 		public int BindLeeway { get; set; } = 8;
+		/// <summary>
+		/// The WC3 buff ID to track.
+		/// <para>If the given buff is no longer on the unit, this buff instance will be disposed.</para>
+		/// <para>You do not need to set this if you use <see cref="BindAura(int, int, int)"/> or <see cref="BindDummyCast(int, int, int, int, player)"/>.</para>
+		/// </summary>
+		public int BuffId { get; set; }
 
-		internal int buffId;
 		internal int auraId;
 
 		/// <inheritdoc/>
@@ -44,7 +49,7 @@ namespace WCSharp.Buffs
 		/// <param name="orderId">The order ID of the ability to cast</param>
 		/// <param name="level">The level of the ability to cast</param>
 		/// <param name="dummyPlayer">Who the owner of the dummy should be set to, defaults to Neutral Passive</param>
-		public void Bind(int abilityId, int buffId, int orderId, int level = 1, player dummyPlayer = null)
+		public void BindDummyCast(int abilityId, int buffId, int orderId, int level = 1, player dummyPlayer = null)
 		{
 			dummyPlayer ??= Player(PLAYER_NEUTRAL_PASSIVE);
 			var dummy = DummySystem.GetDummy();
@@ -57,7 +62,7 @@ namespace WCSharp.Buffs
 			IssueTargetOrderById(dummy, orderId, Target);
 			DummySystem.RecycleDummy(dummy);
 
-			this.buffId = buffId;
+			BuffId = buffId;
 		}
 
 		/// <summary>
@@ -67,7 +72,7 @@ namespace WCSharp.Buffs
 		/// <param name="auraId"></param>
 		/// <param name="buffId"></param>
 		/// <param name="level"></param>
-		public void Bind(int auraId, int buffId, int level = 1)
+		public void BindAura(int auraId, int buffId, int level = 1)
 		{
 			if (GetUnitAbilityLevel(Target, auraId) == 0)
 			{
@@ -78,7 +83,7 @@ namespace WCSharp.Buffs
 			BlzUnitHideAbility(Target, auraId, true);
 
 			this.auraId = auraId;
-			this.buffId = buffId;
+			BuffId = buffId;
 		}
 
 		/// <inheritdoc/>
@@ -103,7 +108,7 @@ namespace WCSharp.Buffs
 		{
 			if (BindLeeway <= 0)
 			{
-				if (GetUnitAbilityLevel(Target, this.buffId) == 0)
+				if (GetUnitAbilityLevel(Target, BuffId) == 0)
 				{
 					Active = false;
 					return;
@@ -166,12 +171,12 @@ namespace WCSharp.Buffs
 				if (BuffSystem.GetBuffsOnUnit(Target).OfType<BoundBuff>().All(x => x.auraId != this.auraId))
 				{
 					UnitRemoveAbility(Target, this.auraId);
-					UnitRemoveAbility(Target, this.buffId);
+					UnitRemoveAbility(Target, BuffId);
 				}
 			}
-			else if (BuffSystem.GetBuffsOnUnit(Target).OfType<BoundBuff>().All(x => x.buffId != this.buffId))
+			else if (BuffSystem.GetBuffsOnUnit(Target).OfType<BoundBuff>().All(x => x.BuffId != BuffId))
 			{
-				UnitRemoveAbility(Target, this.buffId);
+				UnitRemoveAbility(Target, BuffId);
 			}
 		}
 	}
