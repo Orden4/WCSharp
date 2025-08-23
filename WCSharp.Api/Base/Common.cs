@@ -6261,7 +6261,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzGetTriggerPlayerKey()"
 		public static extern oskeytype BlzGetTriggerPlayerKey();
 		/// @CSharpLua.Template = "BlzGetTriggerPlayerMetaKey()"
-		public static extern int BlzGetTriggerPlayerMetaKey();
+		public static extern MetaKey BlzGetTriggerPlayerMetaKey();
 		/// @CSharpLua.Template = "BlzGetTriggerPlayerIsKeyDown()"
 		public static extern bool BlzGetTriggerPlayerIsKeyDown();
 		/// @CSharpLua.Template = "BlzEnableCursor({0})"
