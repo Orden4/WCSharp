@@ -10,7 +10,7 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ATTACKED
 		/// </summary>
-		Attacks = 801,
+		Attacks = 1001,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>
@@ -96,7 +96,7 @@
 		/// </summary>
 		IsAttacked,
 		/// <summary>
-		/// Based on TriggerRegisterEnterRegion using GetWorldBounds
+		/// Identical to <c>Register(RegionUnitTypeEvent.Enters, action, Rectangle.WorldBounds.Region)</c>
 		/// </summary>
 		IsCreated,
 		/// <summary>
@@ -127,6 +127,10 @@
 		/// Based on EVENT_PLAYER_UNIT_LOADED
 		/// </summary>
 		IsLoaded,
+		/// <summary>
+		/// Identical to <c>Register(RegionUnitTypeEvent.Leaves, action, Rectangle.WorldBounds.Region)</c>
+		/// </summary>
+		IsRemoved,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESCUED
 		/// </summary>

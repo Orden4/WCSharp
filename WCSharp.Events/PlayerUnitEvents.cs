@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using WCSharp.Api;
 using WCSharp.Events.EventHandlers.PlayerUnitEventHandlers;
+using WCSharp.Shared.Data;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events
@@ -11,13 +12,18 @@ namespace WCSharp.Events
 	/// </summary>
 	public static partial class PlayerUnitEvents
 	{
+		private record RegionKey(region Region, bool Enters);
+
+		private static int nextCustomEventId = 1_000_000;
+
 		private static readonly List<Action> pendingUpdates = new();
 		private static readonly Dictionary<string, int> customEventIdsByIdentifier = new();
-		private static readonly List<IPlayerUnitEventHandler> eventHandlers = new();
+		private static readonly Dictionary<RegionKey, int> customEventIdsByRegion = new();
 		private static readonly Dictionary<playerunitevent, IPlayerUnitEventHandler> playerUnitEventHandlers = new();
 		private static readonly Dictionary<int, IPlayerUnitEventHandler> customPlayerUnitEventHandlers = new()
 		{
-			{ (int)UnitTypeEvent.IsCreated, null }
+			{ (int)UnitTypeEvent.IsCreated, null },
+			{ (int)UnitTypeEvent.IsRemoved, null },
 		};
 
 		internal static bool Debug { get; private set; }
@@ -83,7 +89,7 @@ namespace WCSharp.Events
 		/// </summary>
 		public static void Register(PlayerEvent @event, Action action, player player)
 		{
-			Register((int)@event, action, GetPlayerId(player));
+			Register((int)@event, action, player);
 		}
 
 		/// <summary>
@@ -93,6 +99,33 @@ namespace WCSharp.Events
 		public static void Register(PlayerEvent @event, Action action, int playerId)
 		{
 			Register((int)@event, action, playerId);
+		}
+
+		/// <summary>
+		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for any unit.
+		/// </summary>
+		public static void Register(RegionUnitEvent @event, Action action, region region, unit unit)
+		{
+			var id = GetOrCreateRegionEventId(region, (int)@event);
+			Register(id, action, unit);
+		}
+
+		/// <summary>
+		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for any unit.
+		/// </summary>
+		public static void Register(RegionUnitTypeEvent @event, Action action, region region)
+		{
+			var id = GetOrCreateRegionEventId(region, (int)@event);
+			Register(id, action);
+		}
+
+		/// <summary>
+		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for any unit of <paramref name="unitTypeId"/>.
+		/// </summary>
+		public static void Register(RegionUnitTypeEvent @event, Action action, region region, int unitTypeId)
+		{
+			var id = GetOrCreateRegionEventId(region, (int)@event);
+			Register(id, action, unitTypeId);
 		}
 
 		/// <summary>
@@ -144,7 +177,7 @@ namespace WCSharp.Events
 		}
 
 		/// <summary>
-		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for any unit.
+		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for any unit of <paramref name="unitTypeId"/>.
 		/// </summary>
 		public static void Register(UnitTypeEvent @event, Action action, int unitTypeId)
 		{
@@ -271,6 +304,33 @@ namespace WCSharp.Events
 		}
 
 		/// <summary>
+		/// Unregisters <paramref name="action"/> from <paramref name="event"/> for <paramref name="unit"/>.
+		/// </summary>
+		public static void Unregister(RegionUnitEvent @event, Action action, region region, unit unit)
+		{
+			var id = GetOrCreateRegionEventId(region, (int)@event);
+			Unregister(id, action, unit);
+		}
+
+		/// <summary>
+		/// Unregisters <paramref name="action"/> from <paramref name="event"/> for any unit.
+		/// </summary>
+		public static void Unregister(RegionUnitTypeEvent @event, Action action, region region)
+		{
+			var id = GetOrCreateRegionEventId(region, (int)@event);
+			Unregister(id, action);
+		}
+
+		/// <summary>
+		/// Unregisters <paramref name="action"/> from <paramref name="event"/> for any unit of <paramref name="unitTypeId"/>.
+		/// </summary>
+		public static void Unregister(RegionUnitTypeEvent @event, Action action, region region, int unitTypeId)
+		{
+			var id = GetOrCreateRegionEventId(region, (int)@event);
+			Unregister(id, action, unitTypeId);
+		}
+
+		/// <summary>
 		/// Unregisters <paramref name="action"/> from <paramref name="event"/> for any research.
 		/// </summary>
 		public static void Unregister(ResearchEvent @event, Action action)
@@ -393,7 +453,6 @@ namespace WCSharp.Events
 				{
 					handler = new PlayerUnitEventHandler(playerUnitEventNative);
 					playerUnitEventHandlers.Add(playerUnitEventNative, handler);
-					eventHandlers.Add(handler);
 				}
 
 				return handler;
@@ -408,7 +467,7 @@ namespace WCSharp.Events
 		/// </summary>
 		public static void AddCustomEvent(string identifier, Func<int> filter, playerunitevent nativeEvent)
 		{
-			var id = customEventIdsByIdentifier.Count + 1001;
+			var id = ++nextCustomEventId;
 			customEventIdsByIdentifier.Add(identifier, id);
 			playerUnitEventNativesById.Add(id, nativeEvent);
 			filterFuncIdsByEvent.Add(id, filter);
@@ -416,15 +475,33 @@ namespace WCSharp.Events
 
 		private static IPlayerUnitEventHandler CreateCustomHandler(int @event)
 		{
-			var customHandler = @event switch
+			var eventId = @event switch
 			{
-				(int)UnitTypeEvent.IsCreated => new UnitCreatedHandler(),
+				(int)UnitTypeEvent.IsCreated => GetOrCreateRegionEventId(Rectangle.WorldBounds.Region, (int)RegionUnitTypeEvent.Enters),
+				(int)UnitTypeEvent.IsRemoved => GetOrCreateRegionEventId(Rectangle.WorldBounds.Region, (int)RegionUnitTypeEvent.Leaves),
 				_ => throw new NotImplementedException($"Unexpected custom handler: {@event}"),
 			};
+			return customPlayerUnitEventHandlers[eventId];
+		}
 
-			customPlayerUnitEventHandlers[@event] = customHandler;
-			eventHandlers.Add(customHandler);
-			return customHandler;
+		private static int GetOrCreateRegionEventId(region region, int @event)
+		{
+			var enters = @event == (int)RegionUnitEvent.Enters || @event == (int)RegionUnitTypeEvent.Enters;
+			var key = new RegionKey(region, enters);
+			if (!customEventIdsByRegion.TryGetValue(key, out var id))
+			{
+				id = ++nextCustomEventId;
+				customEventIdsByRegion.Add(key, id);
+
+				var eventHandler = enters
+					? new RegionEnterHandler(region)
+					: (IPlayerUnitEventHandler)new RegionLeaveHandler(region);
+				customPlayerUnitEventHandlers[id] = eventHandler;
+				filterFuncIdsByEvent[id] = () => GetUnitTypeId(GetTriggerUnit());
+				filterFuncHandlesByEvent[id] = () => GetTriggerUnit();
+			}
+
+			return id;
 		}
 
 		/// <summary>

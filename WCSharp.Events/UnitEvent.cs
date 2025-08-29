@@ -10,7 +10,7 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_ATTACKED
 		/// </summary>
-		Attacks = 701,
+		Attacks = 901,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SELL
 		/// </summary>

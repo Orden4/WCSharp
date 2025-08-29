@@ -10,7 +10,7 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CAST
 		/// </summary>
-		Cast = 601,
+		Cast = 801,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_SPELL_CHANNEL
 		/// </summary>

@@ -10,7 +10,7 @@
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_CANCEL
 		/// </summary>
-		IsCancelled = 501,
+		IsCancelled = 701,
 		/// <summary>
 		/// Based on EVENT_PLAYER_UNIT_RESEARCH_FINISH
 		/// </summary>
