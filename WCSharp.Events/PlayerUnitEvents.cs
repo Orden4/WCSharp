@@ -12,13 +12,11 @@ namespace WCSharp.Events
 	/// </summary>
 	public static partial class PlayerUnitEvents
 	{
-		private record RegionKey(region Region, bool Enters);
-
 		private static int nextCustomEventId = 1_000_000;
 
 		private static readonly List<Action> pendingUpdates = new();
 		private static readonly Dictionary<string, int> customEventIdsByIdentifier = new();
-		private static readonly Dictionary<RegionKey, int> customEventIdsByRegion = new();
+		private static readonly Dictionary<Tuple<region, bool>, int> customEventIdsByRegion = new();
 		private static readonly Dictionary<playerunitevent, IPlayerUnitEventHandler> playerUnitEventHandlers = new();
 		private static readonly Dictionary<int, IPlayerUnitEventHandler> customPlayerUnitEventHandlers = new()
 		{
@@ -487,7 +485,7 @@ namespace WCSharp.Events
 		private static int GetOrCreateRegionEventId(region region, int @event)
 		{
 			var enters = @event == (int)RegionUnitEvent.Enters || @event == (int)RegionUnitTypeEvent.Enters;
-			var key = new RegionKey(region, enters);
+			var key = Tuple.Create(region, enters);
 			if (!customEventIdsByRegion.TryGetValue(key, out var id))
 			{
 				id = ++nextCustomEventId;
