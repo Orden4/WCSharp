@@ -86,7 +86,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "ConvertItemType({0})"
 		public static extern itemtype ConvertItemType(int i);
 		/// @CSharpLua.Template = "ConvertAttackType({0})"
-		public static extern attacktype ConvertAttackType(int i);
+		public static extern attacktype ConvertAttackType(AttackType attackType);
 		/// @CSharpLua.Template = "ConvertDamageType({0})"
 		public static extern damagetype ConvertDamageType(int i);
 		/// @CSharpLua.Template = "ConvertWeaponType({0})"
@@ -304,19 +304,19 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "VERSION_FROZEN_THRONE"
 		public static readonly version VERSION_FROZEN_THRONE = ConvertVersion(1);
 		/// @CSharpLua.Template = "ATTACK_TYPE_NORMAL"
-		public static readonly attacktype ATTACK_TYPE_NORMAL = ConvertAttackType(0);
+		public static readonly attacktype ATTACK_TYPE_NORMAL = ConvertAttackType(AttackType.Normal);
 		/// @CSharpLua.Template = "ATTACK_TYPE_MELEE"
-		public static readonly attacktype ATTACK_TYPE_MELEE = ConvertAttackType(1);
+		public static readonly attacktype ATTACK_TYPE_MELEE = ConvertAttackType(AttackType.Melee);
 		/// @CSharpLua.Template = "ATTACK_TYPE_PIERCE"
-		public static readonly attacktype ATTACK_TYPE_PIERCE = ConvertAttackType(2);
+		public static readonly attacktype ATTACK_TYPE_PIERCE = ConvertAttackType(AttackType.Pierce);
 		/// @CSharpLua.Template = "ATTACK_TYPE_SIEGE"
-		public static readonly attacktype ATTACK_TYPE_SIEGE = ConvertAttackType(3);
+		public static readonly attacktype ATTACK_TYPE_SIEGE = ConvertAttackType(AttackType.Siege);
 		/// @CSharpLua.Template = "ATTACK_TYPE_MAGIC"
-		public static readonly attacktype ATTACK_TYPE_MAGIC = ConvertAttackType(4);
+		public static readonly attacktype ATTACK_TYPE_MAGIC = ConvertAttackType(AttackType.Magic);
 		/// @CSharpLua.Template = "ATTACK_TYPE_CHAOS"
-		public static readonly attacktype ATTACK_TYPE_CHAOS = ConvertAttackType(5);
+		public static readonly attacktype ATTACK_TYPE_CHAOS = ConvertAttackType(AttackType.Chaos);
 		/// @CSharpLua.Template = "ATTACK_TYPE_HERO"
-		public static readonly attacktype ATTACK_TYPE_HERO = ConvertAttackType(6);
+		public static readonly attacktype ATTACK_TYPE_HERO = ConvertAttackType(AttackType.Hero);
 		/// @CSharpLua.Template = "DAMAGE_TYPE_UNKNOWN"
 		public static readonly damagetype DAMAGE_TYPE_UNKNOWN = ConvertDamageType(0);
 		/// @CSharpLua.Template = "DAMAGE_TYPE_NORMAL"
