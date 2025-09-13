@@ -76,18 +76,18 @@ namespace WCSharp.Buffs
 		{
 			if (Interval > 0)
 			{
-				while (IntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+				while (IntervalLeft <= BuffSystem.TickInterval)
 				{
 					IntervalLeft = Interval;
 					OnTick();
 				}
 			}
 
-			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+			IntervalLeft -= BuffSystem.TickInterval;
 
 			this.buffs.IterateWithRemoval(x =>
 			{
-				x.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+				x.Duration -= BuffSystem.TickInterval;
 				if (x.Duration <= 0)
 				{
 					Stacks -= x.Stacks;

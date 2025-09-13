@@ -1,10 +1,10 @@
-﻿using WCSharp.Events;
-using WCSharp.Api;
+﻿using WCSharp.Api;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Effects
 {
-	internal class TimedEffect : IPeriodicAction
+	internal class TimedEffect : ICollectiveAction
 	{
 		public bool Active { get; set; }
 		public float Duration { get; set; }
@@ -18,7 +18,7 @@ namespace WCSharp.Effects
 
 		public void Action()
 		{
-			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+			Duration -= TimerSystem.DEFAULT_TICK_INTERVAL;
 			if (Duration <= 0)
 			{
 				DestroyEffect(Effect);

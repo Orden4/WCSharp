@@ -1,12 +1,12 @@
 #### [WCSharp\.Lightnings](README.md 'README')
 ### [WCSharp\.Lightnings](WCSharp.Lightnings.md 'WCSharp\.Lightnings').[LightningSystem](WCSharp.Lightnings.LightningSystem.md 'WCSharp\.Lightnings\.LightningSystem')
 
-## LightningSystem\.Missiles Property
+## LightningSystem\.Lightnings Property
 
 All active lightnings\.
 
 ```csharp
-public static System.Collections.Generic.IEnumerable<WCSharp.Lightnings.Lightning> Missiles { get; }
+public static System.Collections.Generic.IEnumerable<WCSharp.Lightnings.Lightning> Lightnings { get; }
 ```
 
 #### Property Value

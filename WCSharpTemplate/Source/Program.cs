@@ -38,6 +38,9 @@ namespace Source
 				Delay.EnableDebug();
 #endif
 
+				var farm = CreateUnit(Player(0), FourCC("hhou"), 0, 0, 0);
+				AddSpecialEffectTarget("Abilities\\Spells\\Human\\MagicSentry\\MagicSentryCaster.mdl", farm, "overhead");
+
 				// Both styles compile to the same output
 				// WCSharp style, left footman
 				var u = unit.Create(player.Create(0), FourCC("hfoo"), -200, 0);

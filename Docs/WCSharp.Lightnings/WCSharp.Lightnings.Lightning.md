@@ -6,12 +6,12 @@
 Represents a single lightning instance\. Add to [LightningSystem](WCSharp.Lightnings.LightningSystem.md 'WCSharp\.Lightnings\.LightningSystem') to activate\.
 
 ```csharp
-public class Lightning : WCSharp.Events.IPeriodicDisposableAction
+public class Lightning : WCSharp.Timers.ICollectiveAction, WCSharp.Timers.ITimerAction
 ```
 
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; Lightning
 
-Implements [IPeriodicDisposableAction](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp\.Events\.IPeriodicDisposableAction')
+Implements [ICollectiveAction](../WCSharp.Timers/WCSharp.Timers.ICollectiveAction.md 'WCSharp\.Timers\.ICollectiveAction'), [ITimerAction](../WCSharp.Timers/WCSharp.Timers.ITimerAction.md 'WCSharp\.Timers\.ITimerAction')
 
 | Constructors | |
 | :--- | :--- |
@@ -22,7 +22,7 @@ Implements [IPeriodicDisposableAction](../WCSharp.Events/WCSharp.Events.IPeriodi
 
 | Properties | |
 | :--- | :--- |
-| [Active](WCSharp.Lightnings.Lightning.Active.md 'WCSharp\.Lightnings\.Lightning\.Active') | Indicates the active state of this [IPeriodicDisposableAction](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.md 'WCSharp\.Events\.IPeriodicDisposableAction')\. Set this to false to disable and dispose this instance\. |
+| [Active](WCSharp.Lightnings.Lightning.Active.md 'WCSharp\.Lightnings\.Lightning\.Active') | Used to indicate whether the timer should remain active or not\.   Set to [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs\.microsoft\.com/en\-us/dotnet/csharp/language\-reference/builtin\-types/bool') automatically.  Set to [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs\.microsoft\.com/en\-us/dotnet/csharp/language\-reference/builtin\-types/bool') to disable the loop. |
 | [Alpha](WCSharp.Lightnings.Lightning.Alpha.md 'WCSharp\.Lightnings\.Lightning\.Alpha') | The alpha \(transparency\) of this lightning\. Setting this to 0 means the lightning is invisible\. |
 | [Blue](WCSharp.Lightnings.Lightning.Blue.md 'WCSharp\.Lightnings\.Lightning\.Blue') | The blue color of this lightning\. Setting this to 0 means all blue will be removed from the lightning\. |
 | [Caster](WCSharp.Lightnings.Lightning.Caster.md 'WCSharp\.Lightnings\.Lightning\.Caster') | The caster of the lightning\. Setting this means that the lightning will follow the caster when the caster moves\. |
@@ -41,5 +41,5 @@ Implements [IPeriodicDisposableAction](../WCSharp.Events/WCSharp.Events.IPeriodi
 | Methods | |
 | :--- | :--- |
 | [Action\(\)](WCSharp.Lightnings.Lightning.Action().md 'WCSharp\.Lightnings\.Lightning\.Action\(\)') | Called by the system\. Do not call yourself\. |
-| [Dispose\(\)](WCSharp.Lightnings.Lightning.Dispose().md 'WCSharp\.Lightnings\.Lightning\.Dispose\(\)') | Automatically called after [Active](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp\.Events\.IPeriodicDisposableAction\.Active') is set to false\.   Note: If set to active from outside of the [Action\(\)](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Action().md 'WCSharp\.Events\.IPeriodicDisposableAction\.Action') class, this will only be called on the next interval. |
+| [BeforeTickIntervalChanged\(float, float\)](WCSharp.Lightnings.Lightning.BeforeTickIntervalChanged(float,float).md 'WCSharp\.Lightnings\.Lightning\.BeforeTickIntervalChanged\(float, float\)') | Override if adjustments are needed when the tick interval is changed\.   Ensure that the base is still called. |
 | [StartFade\(\)](WCSharp.Lightnings.Lightning.StartFade().md 'WCSharp\.Lightnings\.Lightning\.StartFade\(\)') | For lightnings that last until cancelled \(meaning duration is excessively high\), this method can be used to start the fade out process when desired\. |

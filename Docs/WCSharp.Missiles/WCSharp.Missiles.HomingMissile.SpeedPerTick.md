@@ -3,7 +3,7 @@
 
 ## HomingMissile\.SpeedPerTick Property
 
-The speed of the missile, expressed in units per [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL')\.
+The speed of the missile, expressed in units per [TickInterval](WCSharp.Missiles.MissileSystem.TickInterval.md 'WCSharp\.Missiles\.MissileSystem\.TickInterval')\.
 
 Alternatively, use [Speed](WCSharp.Missiles.Missile.Speed.md 'WCSharp\.Missiles\.Missile\.Speed').
 

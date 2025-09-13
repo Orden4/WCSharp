@@ -3,7 +3,7 @@
 
 ## OrbitalMissile\.OrbitalVelocityRad Property
 
-The speed at which the missile is orbiting, expressed in radians per [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') tick \(0\.03125\)\.
+The speed at which the missile is orbiting, expressed in radians per [TickInterval](WCSharp.Missiles.MissileSystem.TickInterval.md 'WCSharp\.Missiles\.MissileSystem\.TickInterval') tick \(0\.03125\)\.
 
 Use negative values to go clockwise.
 

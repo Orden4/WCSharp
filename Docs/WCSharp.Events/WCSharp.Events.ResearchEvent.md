@@ -16,18 +16,18 @@ public enum ResearchEvent
 
 <a name='WCSharp.Events.ResearchEvent.IsCancelled'></a>
 
-`IsCancelled` 501
+`IsCancelled` 701
 
 Based on EVENT\_PLAYER\_UNIT\_RESEARCH\_CANCEL
 
 <a name='WCSharp.Events.ResearchEvent.IsFinished'></a>
 
-`IsFinished` 502
+`IsFinished` 702
 
 Based on EVENT\_PLAYER\_UNIT\_RESEARCH\_FINISH
 
 <a name='WCSharp.Events.ResearchEvent.IsStarted'></a>
 
-`IsStarted` 503
+`IsStarted` 703
 
 Based on EVENT\_PLAYER\_UNIT\_RESEARCH\_START

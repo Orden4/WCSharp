@@ -22,16 +22,16 @@ This package defines custom DateTime and TimeSpan classes that can be used in Wa
 
   <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
     <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
-    <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
     <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
     <ProjectReference Include="..\WCSharp.Sync\WCSharp.Sync.csproj" />
+    <ProjectReference Include="..\WCSharp.Timers\WCSharp.Timers.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
     <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
-    <PackageReference Include="WCSharp.Events" Version="$(PackageVersion)" />
     <PackageReference Include="WCSharp.Shared" Version="$(PackageVersion)" />
     <PackageReference Include="WCSharp.Sync" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Timers" Version="$(PackageVersion)" />
   </ItemGroup>
 
 </Project>

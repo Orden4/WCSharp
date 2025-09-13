@@ -1,6 +1,5 @@
 ﻿using System;
 using WCSharp.Api;
-using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
 using static WCSharp.Api.Common;
@@ -62,8 +61,8 @@ namespace WCSharp.Missiles
 		/// <inheritdoc/>
 		public sealed override float Speed
 		{
-			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
-			set => this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
+			get => this.speed / MissileSystem.TickInterval;
+			set => this.speed = value * MissileSystem.TickInterval;
 		}
 
 		/// <summary>
@@ -71,7 +70,7 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float? InitialAngle { get; set; }
 		/// <summary>
-		/// The acceleration in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+		/// The acceleration in units per <see cref="MissileSystem.TickInterval"/> (0.03125).
 		/// <para>This is used to make adjustments to the trajectory.</para>
 		/// <para>Alternatively, use <see cref="Acceleration"/>.</para>
 		/// </summary>
@@ -83,11 +82,11 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float Acceleration
 		{
-			get => AccelerationPerTick / PeriodicEvents.SYSTEM_INTERVAL;
-			set => AccelerationPerTick = value * PeriodicEvents.SYSTEM_INTERVAL;
+			get => AccelerationPerTick / MissileSystem.TickInterval;
+			set => AccelerationPerTick = value * MissileSystem.TickInterval;
 		}
 		/// <summary>
-		/// The maximum speed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+		/// The maximum speed in units per <see cref="MissileSystem.TickInterval"/> (0.03125).
 		/// <para>Alternatively, use <see cref="MaximumSpeed"/>.</para>
 		/// </summary>
 		public float MaximumSpeedPerTick { get; set; }
@@ -97,8 +96,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float MaximumSpeed
 		{
-			get => MaximumSpeedPerTick / PeriodicEvents.SYSTEM_INTERVAL;
-			set => MaximumSpeedPerTick = value * PeriodicEvents.SYSTEM_INTERVAL;
+			get => MaximumSpeedPerTick / MissileSystem.TickInterval;
+			set => MaximumSpeedPerTick = value * MissileSystem.TickInterval;
 		}
 
 		private FlightMode mode;
@@ -276,6 +275,14 @@ namespace WCSharp.Missiles
 			{
 				RunCollisions();
 			}
+		}
+
+		/// <inheritdoc/>
+		public override void BeforeTickIntervalChanged(float oldTickInterval, float newTickInterval)
+		{
+			base.BeforeTickIntervalChanged(oldTickInterval, newTickInterval);
+			AccelerationPerTick = Acceleration * newTickInterval;
+			MaximumSpeedPerTick = MaximumSpeed * newTickInterval;
 		}
 	}
 }

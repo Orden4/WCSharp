@@ -27,17 +27,20 @@ namespace WCSharp.Events.EventHandlers
 			if (index == -1)
 				return false;
 
-			var count = this.actions.Count;
-			this.actions[index] = this.actions[count - 1];
-			this.actions.Nil(count);
-			return count == 1;
+			var lastIndex = this.actions.Count - 1;
+			if (lastIndex > 0)
+			{
+				this.actions[index] = this.actions[lastIndex];
+			}
+			this.actions.RemoveAt(lastIndex);
+			return lastIndex == 0;
 		}
 
 		public void Run()
 		{
-			for (var i = 0; i < this.actions.Count; i++)
+			for (var i = 1; i <= this.actions.Count; i++)
 			{
-				this.actions[i].Invoke();
+				this.actions.DirectGet(i).Invoke();
 			}
 		}
 	}

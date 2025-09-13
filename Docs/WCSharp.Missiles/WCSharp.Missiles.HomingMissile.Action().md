@@ -9,4 +9,4 @@ Called by the system\. Do not call yourself\.
 public sealed override void Action();
 ```
 
-Implements [Action\(\)](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Action().md 'WCSharp\.Events\.IPeriodicDisposableAction\.Action')
+Implements [Action\(\)](../WCSharp.Timers/WCSharp.Timers.ITimerAction.Action().md 'WCSharp\.Timers\.ITimerAction\.Action')

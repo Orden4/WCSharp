@@ -26,7 +26,7 @@ Derived
 
 | Properties | |
 | :--- | :--- |
-| [Active](WCSharp.Buffs.Buff.Active.md 'WCSharp\.Buffs\.Buff\.Active') | Indicates the active state of this buff\. Setting this to false will cause it to be removed on the next update cycle \(at most [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') later\)\. |
+| [Active](WCSharp.Buffs.Buff.Active.md 'WCSharp\.Buffs\.Buff\.Active') | Indicates the active state of this buff\. Setting this to false will cause it to be removed on the next update cycle \(at most [TickInterval](WCSharp.Buffs.BuffSystem.TickInterval.md 'WCSharp\.Buffs\.BuffSystem\.TickInterval') later\)\. |
 | [BuffTypes](WCSharp.Buffs.Buff.BuffTypes.md 'WCSharp\.Buffs\.Buff\.BuffTypes') | The buff types, used primarily for dispelling\. e\.g\. magic, physical, undispellable, etc\. |
 | [Caster](WCSharp.Buffs.Buff.Caster.md 'WCSharp\.Buffs\.Buff\.Caster') | The unit that applied the buff\. |
 | [CastingPlayer](WCSharp.Buffs.Buff.CastingPlayer.md 'WCSharp\.Buffs\.Buff\.CastingPlayer') | The owner of the caster\. Automatically set on application\.   Does NOT update automatically! If this is desired, you can use [RegisterForOwnershipChanges\(\)](WCSharp.Buffs.BuffSystem.RegisterForOwnershipChanges().md 'WCSharp\.Buffs\.BuffSystem\.RegisterForOwnershipChanges\(\)'). |
@@ -44,6 +44,7 @@ Derived
 | :--- | :--- |
 | [Action\(\)](WCSharp.Buffs.Buff.Action().md 'WCSharp\.Buffs\.Buff\.Action\(\)') | Called by the system\. Do not call yourself\. |
 | [Apply\(\)](WCSharp.Buffs.Buff.Apply().md 'WCSharp\.Buffs\.Buff\.Apply\(\)') | Called by the system\. Do not call yourself\. |
+| [BeforeTickIntervalChanged\(float, float\)](WCSharp.Buffs.Buff.BeforeTickIntervalChanged(float,float).md 'WCSharp\.Buffs\.Buff\.BeforeTickIntervalChanged\(float, float\)') | Override if adjustments are needed when the tick interval is changed\. |
 | [Dispose\(\)](WCSharp.Buffs.Buff.Dispose().md 'WCSharp\.Buffs\.Buff\.Dispose\(\)') | Automatically called after [Active](WCSharp.Buffs.Buff.Active.md 'WCSharp\.Buffs\.Buff\.Active') is set to false\.   Automatically called by the system. Do not call yourself. |
 | [OnApply\(\)](WCSharp.Buffs.Buff.OnApply().md 'WCSharp\.Buffs\.Buff\.OnApply\(\)') | Executes immediately upon application of the buff\. |
 | [OnDeath\(bool\)](WCSharp.Buffs.Buff.OnDeath(bool).md 'WCSharp\.Buffs\.Buff\.OnDeath\(bool\)') | Executes immediately after [Target](WCSharp.Buffs.Buff.Target.md 'WCSharp\.Buffs\.Buff\.Target') dies\.   Note: [killingBlow](WCSharp.Buffs.Buff.OnDeath(bool).md#WCSharp.Buffs.Buff.OnDeath(bool).killingBlow 'WCSharp\.Buffs\.Buff\.OnDeath\(bool\)\.killingBlow') will be true if the unit dies while the buffs actions are being evaluated.             It may not be directly responsible for the death due to asynchronous events. |

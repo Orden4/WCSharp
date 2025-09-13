@@ -14,6 +14,9 @@
 | [Unregister\(ItemTypeEvent, Action, int\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ItemTypeEvent,System.Action,int) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ItemTypeEvent, System\.Action, int\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ItemTypeEvent,System.Action,int).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ItemTypeEvent, System\.Action, int\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ItemTypeEvent,System.Action,int).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ItemTypeEvent, System\.Action, int\)\.event') for any item of [itemTypeId](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ItemTypeEvent,System.Action,int).itemTypeId 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ItemTypeEvent, System\.Action, int\)\.itemTypeId')\. |
 | [Unregister\(PlayerEvent, Action\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action\)\.event') for any player\. |
 | [Unregister\(PlayerEvent, Action, int\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action,int) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action, int\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action,int).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action, int\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action,int).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action, int\)\.event') for [playerId](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action,int).playerId 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.PlayerEvent, System\.Action, int\)\.playerId')\. |
+| [Unregister\(RegionUnitEvent, Action, region, unit\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)\.event') for [unit](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).unit 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)\.unit')\. |
+| [Unregister\(RegionUnitTypeEvent, Action, region\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region\)\.event') for any unit\. |
+| [Unregister\(RegionUnitTypeEvent, Action, region, int\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)\.event') for any unit of [unitTypeId](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).unitTypeId 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)\.unitTypeId')\. |
 | [Unregister\(ResearchEvent, Action\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action\)\.event') for any research\. |
 | [Unregister\(ResearchEvent, Action, int\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action,int) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action, int\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action,int).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action, int\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action,int).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action, int\)\.event') for any research of [researchId](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action,int).researchId 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.ResearchEvent, System\.Action, int\)\.researchId')\. |
 | [Unregister\(SpellEvent, Action\)](WCSharp.Events.PlayerUnitEvents.Unregister.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.SpellEvent,System.Action) 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.SpellEvent, System\.Action\)') | Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.SpellEvent,System.Action).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.SpellEvent, System\.Action\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.SpellEvent,System.Action).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.SpellEvent, System\.Action\)\.event') for any spell\. |
@@ -216,6 +219,83 @@ public static void Unregister(WCSharp.Events.PlayerEvent @event, System.Action a
 <a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.PlayerEvent,System.Action,int).playerId'></a>
 
 `playerId` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit)'></a>
+
+## PlayerUnitEvents\.Unregister\(RegionUnitEvent, Action, region, unit\) Method
+
+Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)\.event') for [unit](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).unit 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitEvent, System\.Action, WCSharp\.Api\.region, WCSharp\.Api\.unit\)\.unit')\.
+
+```csharp
+public static void Unregister(WCSharp.Events.RegionUnitEvent @event, System.Action action, WCSharp.Api.region region, WCSharp.Api.unit unit);
+```
+#### Parameters
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).event'></a>
+
+`event` [RegionUnitEvent](WCSharp.Events.RegionUnitEvent.md 'WCSharp\.Events\.RegionUnitEvent')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).action'></a>
+
+`action` [System\.Action](https://learn.microsoft.com/en-us/dotnet/api/system.action 'System\.Action')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).region'></a>
+
+`region` [WCSharp\.Api\.region](https://learn.microsoft.com/en-us/dotnet/api/wcsharp.api.region 'WCSharp\.Api\.region')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitEvent,System.Action,WCSharp.Api.region,WCSharp.Api.unit).unit'></a>
+
+`unit` [WCSharp\.Api\.unit](https://learn.microsoft.com/en-us/dotnet/api/wcsharp.api.unit 'WCSharp\.Api\.unit')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region)'></a>
+
+## PlayerUnitEvents\.Unregister\(RegionUnitTypeEvent, Action, region\) Method
+
+Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region\)\.event') for any unit\.
+
+```csharp
+public static void Unregister(WCSharp.Events.RegionUnitTypeEvent @event, System.Action action, WCSharp.Api.region region);
+```
+#### Parameters
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).event'></a>
+
+`event` [RegionUnitTypeEvent](WCSharp.Events.RegionUnitTypeEvent.md 'WCSharp\.Events\.RegionUnitTypeEvent')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).action'></a>
+
+`action` [System\.Action](https://learn.microsoft.com/en-us/dotnet/api/system.action 'System\.Action')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region).region'></a>
+
+`region` [WCSharp\.Api\.region](https://learn.microsoft.com/en-us/dotnet/api/wcsharp.api.region 'WCSharp\.Api\.region')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int)'></a>
+
+## PlayerUnitEvents\.Unregister\(RegionUnitTypeEvent, Action, region, int\) Method
+
+Unregisters [action](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).action 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)\.action') from [event](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).event 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)\.event') for any unit of [unitTypeId](WCSharp.Events.PlayerUnitEvents.md#WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).unitTypeId 'WCSharp\.Events\.PlayerUnitEvents\.Unregister\(WCSharp\.Events\.RegionUnitTypeEvent, System\.Action, WCSharp\.Api\.region, int\)\.unitTypeId')\.
+
+```csharp
+public static void Unregister(WCSharp.Events.RegionUnitTypeEvent @event, System.Action action, WCSharp.Api.region region, int unitTypeId);
+```
+#### Parameters
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).event'></a>
+
+`event` [RegionUnitTypeEvent](WCSharp.Events.RegionUnitTypeEvent.md 'WCSharp\.Events\.RegionUnitTypeEvent')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).action'></a>
+
+`action` [System\.Action](https://learn.microsoft.com/en-us/dotnet/api/system.action 'System\.Action')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).region'></a>
+
+`region` [WCSharp\.Api\.region](https://learn.microsoft.com/en-us/dotnet/api/wcsharp.api.region 'WCSharp\.Api\.region')
+
+<a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.RegionUnitTypeEvent,System.Action,WCSharp.Api.region,int).unitTypeId'></a>
+
+`unitTypeId` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
 
 <a name='WCSharp.Events.PlayerUnitEvents.Unregister(WCSharp.Events.ResearchEvent,System.Action)'></a>
 

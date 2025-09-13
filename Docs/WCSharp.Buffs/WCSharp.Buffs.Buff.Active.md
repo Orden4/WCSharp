@@ -3,7 +3,7 @@
 
 ## Buff\.Active Property
 
-Indicates the active state of this buff\. Setting this to false will cause it to be removed on the next update cycle \(at most [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') later\)\.
+Indicates the active state of this buff\. Setting this to false will cause it to be removed on the next update cycle \(at most [TickInterval](WCSharp.Buffs.BuffSystem.TickInterval.md 'WCSharp\.Buffs\.BuffSystem\.TickInterval') later\)\.
 
 ```csharp
 public bool Active { get; set; }

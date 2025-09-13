@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Api;
-using WCSharp.Events;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -13,7 +12,7 @@ namespace WCSharp.Buffs
 	public abstract class Buff
 	{
 		/// <summary>
-		/// Indicates the active state of this buff. Setting this to false will cause it to be removed on the next update cycle (at most <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> later).
+		/// Indicates the active state of this buff. Setting this to false will cause it to be removed on the next update cycle (at most <see cref="BuffSystem.TickInterval"/> later).
 		/// </summary>
 		public bool Active { get; set; }
 		/// <summary>
@@ -246,5 +245,12 @@ namespace WCSharp.Buffs
 		/// <para>Automatically called by the system. Do not call yourself.</para>
 		/// </summary>
 		public abstract void Dispose();
+
+		/// <summary>
+		/// Override if adjustments are needed when the tick interval is changed.
+		/// </summary>
+		public virtual void BeforeTickIntervalChanged(float oldTickInterval, float newTickInterval)
+		{
+		}
 	}
 }

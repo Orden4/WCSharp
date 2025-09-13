@@ -4,8 +4,8 @@ namespace WCSharp.Shared.Extensions
 {
 	/// <summary>
 	/// Contains a number of methods that are specialised for lua to improve performance.
+	/// <para>It is strongly recommended that you do not use these.</para>
 	/// </summary>
-	/// @CSharpLua.Ignore
 	public static class SpecializedExtensions
 	{
 		/// <summary>
@@ -95,7 +95,7 @@ namespace WCSharp.Shared.Extensions
 		/// <param name="list">The list to modify.</param>
 		/// <param name="sourceIndex">The index of the item to be moved.</param>
 		/// <param name="destinationIndex">The index to move to.</param>
-		/// @CSharpLua.Template = "{0}[{1}] = {0}[{2}]"
+		/// @CSharpLua.Template = "{0}[{2}] = {0}[{1}]"
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
 		public static extern void DirectMove<T>(this IList<T> list, int sourceIndex, int destinationIndex);
 
@@ -111,5 +111,44 @@ namespace WCSharp.Shared.Extensions
 		/// @CSharpLua.Template = "{0}[{1}], {0}[{2}] = {0}[{2}], {0}[{1}]"
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
 		public static extern void DirectSwap<T>(this IList<T> list, int first, int second);
+
+		/// <summary>
+		/// Slightly more efficient way to remove the final elements in a list.
+		/// <para><b>Warning:</b> The logic that checks for collections being changed during enumeration cannot detect this.</para>
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list">The list to modify.</param>
+		/// <param name="amount">The number of elements to remove.</param>
+		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
+		public static void DirectNilLast<T>(this List<T> list, int amount)
+		{
+			var count = list.Count;
+			var end = count - amount;
+			while (end < count)
+			{
+				list.DirectNil(count);
+				count--;
+			}
+		}
+
+		/// <summary>
+		/// Slightly more efficient way to remove the final elements in a list.
+		/// <para><b>Warning:</b> Does not check for bounds.</para>
+		/// <para><b>Warning:</b> The logic that checks for collections being changed during enumeration cannot detect this.</para>
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list">The list to modify.</param>
+		/// <param name="amount">The number of elements to remove.</param>
+		/// <param name="count">This must be equal to <see cref="List{T}.Count"/>.</param>
+		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
+		public static void DirectNilLast<T>(this List<T> list, int amount, int count)
+		{
+			var end = count - amount;
+			while (end < count)
+			{
+				list.DirectNil(count);
+				count--;
+			}
+		}
 	}
 }

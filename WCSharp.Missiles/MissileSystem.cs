@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using WCSharp.Events;
-using WCSharp.Api;
+using WCSharp.Shared;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Missiles
@@ -10,11 +11,12 @@ namespace WCSharp.Missiles
 	/// </summary>
 	public static class MissileSystem
 	{
-		private static readonly PeriodicDisposableTrigger<Missile> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly TimerSetCollectiveDisposable<Missile> timerSet = new(TimerSystem.DEFAULT_TICK_INTERVAL);
+
 		/// <summary>
 		/// All active missiles.
 		/// </summary>
-		public static IEnumerable<Missile> Missiles => periodicTrigger.Actions;
+		public static IEnumerable<Missile> Missiles => timerSet.Actions;
 
 		/// <summary>
 		/// Adds the given <paramref name="missile"/> to the system.
@@ -22,7 +24,7 @@ namespace WCSharp.Missiles
 		public static void Add(Missile missile)
 		{
 			missile.Launch();
-			periodicTrigger.Add(missile);
+			timerSet.Add(missile);
 			missile.Action();
 		}
 
@@ -42,7 +44,7 @@ namespace WCSharp.Missiles
 			if (GetUnitTypeId(unit) == 2021161080)
 				return;
 
-			foreach (var missile in periodicTrigger.Actions)
+			foreach (var missile in timerSet.Actions)
 			{
 				if (missile.Caster == unit)
 				{
@@ -53,6 +55,33 @@ namespace WCSharp.Missiles
 					missile.TargetPlayer = GetOwningPlayer(unit);
 				}
 			}
+		}
+
+		/// <summary>
+		/// The interval between each update of the system.
+		/// <para>Use <see cref="SetTickInterval(float)"/> to adjust.</para>
+		/// </summary>
+		public static float TickInterval { get; private set; } = TimerSystem.DEFAULT_TICK_INTERVAL;
+		/// <summary>
+		/// Changes the tick interval to the desired value.
+		/// <para>Note that the actual change occurs after a 0 second delay.</para>
+		/// <para>Calls <see cref="Missile.BeforeTickIntervalChanged(float, float)"/> to adjust existing missiles.</para>
+		/// </summary>
+		public static void SetTickInterval(float tickInterval)
+		{
+			Delay.Add(() =>
+			{
+				var old = TickInterval;
+				if (old != tickInterval)
+				{
+					foreach (var action in timerSet.Actions)
+					{
+						action.BeforeTickIntervalChanged(old, tickInterval);
+					}
+					timerSet.SetTimeout(tickInterval);
+					TickInterval = tickInterval;
+				}
+			});
 		}
 	}
 }

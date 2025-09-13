@@ -2,6 +2,7 @@
 using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared.Extensions;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Dummies
@@ -16,7 +17,9 @@ namespace WCSharp.Dummies
 		/// </summary>
 		public const int UNIT_TYPE_DUMMY = 2021161080;
 
-		private static readonly PeriodicEvent periodicEvent = new(Countdown, 1.0);
+		private const float RECYCLE_INTERVAL = 0.125f;
+
+		private static readonly Timer timer = TimerSystem.Add(Countdown, RECYCLE_INTERVAL);
 		private static readonly List<unit> dummiesReady = new();
 		private static readonly List<DummyBeingRecycled> dummiesBeingRecycled = new();
 
@@ -34,13 +37,13 @@ namespace WCSharp.Dummies
 			}
 		}
 
-		private static bool Countdown()
+		private static void Countdown(Timer timer)
 		{
 			var size = dummiesBeingRecycled.Count;
 			for (var i = size - 1; i >= 0; i--)
 			{
 				var dummy = dummiesBeingRecycled[i];
-				if (dummy.TicksLeft <= 0)
+				if (dummy.TimeLeft <= 0)
 				{
 					SetUnitX(dummy.Dummy, 0);
 					SetUnitY(dummy.Dummy, 0);
@@ -52,11 +55,9 @@ namespace WCSharp.Dummies
 				}
 				else
 				{
-					dummy.TicksLeft--;
+					dummy.TimeLeft -= RECYCLE_INTERVAL;
 				}
 			}
-
-			return size > 0;
 		}
 
 		/// <summary>
@@ -66,9 +67,9 @@ namespace WCSharp.Dummies
 		{
 			if (dummiesBeingRecycled.Count == 0)
 			{
-				PeriodicEvents.AddPeriodicEvent(periodicEvent);
+				TimerSystem.Add(timer);
 			}
-			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, (int)(recycleTime / PeriodicEvents.SYSTEM_INTERVAL)));
+			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, recycleTime));
 		}
 
 		/// <summary>
@@ -83,8 +84,8 @@ namespace WCSharp.Dummies
 			}
 			else
 			{
-				var dummy = dummiesReady[size - 1];
-				dummiesReady.Nil(size);
+				var dummy = dummiesReady.DirectGet(size);
+				dummiesReady.DirectNil(size);
 				return dummy;
 			}
 		}
@@ -102,8 +103,8 @@ namespace WCSharp.Dummies
 			}
 			else
 			{
-				dummy = dummiesReady[size - 1];
-				dummiesReady.Nil(size);
+				dummy = dummiesReady.DirectGet(size);
+				dummiesReady.DirectNil(size);
 			}
 			SetUnitOwner(dummy, player, false);
 			SetUnitPosition(dummy, x, y);

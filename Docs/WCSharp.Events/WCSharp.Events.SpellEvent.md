@@ -16,36 +16,36 @@ public enum SpellEvent
 
 <a name='WCSharp.Events.SpellEvent.Cast'></a>
 
-`Cast` 601
+`Cast` 801
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_CAST
 
 <a name='WCSharp.Events.SpellEvent.Channel'></a>
 
-`Channel` 602
+`Channel` 802
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_CHANNEL
 
 <a name='WCSharp.Events.SpellEvent.Effect'></a>
 
-`Effect` 603
+`Effect` 803
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_EFFECT
 
 <a name='WCSharp.Events.SpellEvent.EndCast'></a>
 
-`EndCast` 604
+`EndCast` 804
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_ENDCAST
 
 <a name='WCSharp.Events.SpellEvent.Finish'></a>
 
-`Finish` 605
+`Finish` 805
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_FINISH
 
 <a name='WCSharp.Events.SpellEvent.Learned'></a>
 
-`Learned` 606
+`Learned` 806
 
 Based on EVENT\_PLAYER\_HERO\_SKILL

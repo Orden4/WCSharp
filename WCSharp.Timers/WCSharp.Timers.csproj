@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <DocumentationFile>WCSharp.Timers.xml</DocumentationFile>
+    <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
+    <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
+The Timers package provides timer-based events. All timers are bundled together behind the scenes for maximum performance.</Description>
+	<DefaultDocumentationFolder>../Docs/WCSharp.Timers</DefaultDocumentationFolder>
+	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.Timers.txt</DefaultDocumentationLinksOutputFile>
+	<DefaultDocumentationLinksBaseUrl>../WCSharp.Timers/</DefaultDocumentationLinksBaseUrl>
+	<DefaultDocumentationConfigurationFile>../default-documentation.json</DefaultDocumentationConfigurationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DefaultDocumentation" Version="1.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
+    <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
+    <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
+    <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Shared" Version="$(PackageVersion)" />
+  </ItemGroup>
+
+</Project>

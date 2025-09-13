@@ -16,61 +16,61 @@ public enum UnitTypeEvent
 
 <a name='WCSharp.Events.UnitTypeEvent.Attacks'></a>
 
-`Attacks` 801
+`Attacks` 1001
 
 Based on EVENT\_PLAYER\_UNIT\_ATTACKED
 
 <a name='WCSharp.Events.UnitTypeEvent.BuysUnit'></a>
 
-`BuysUnit` 802
+`BuysUnit` 1002
 
 Based on EVENT\_PLAYER\_UNIT\_SELL
 
 <a name='WCSharp.Events.UnitTypeEvent.CancelsBeingConstructed'></a>
 
-`CancelsBeingConstructed` 803
+`CancelsBeingConstructed` 1003
 
 Based on EVENT\_PLAYER\_UNIT\_CONSTRUCT\_CANCEL
 
 <a name='WCSharp.Events.UnitTypeEvent.CancelsBeingTrained'></a>
 
-`CancelsBeingTrained` 804
+`CancelsBeingTrained` 1004
 
 Based on EVENT\_PLAYER\_UNIT\_TRAIN\_CANCEL
 
 <a name='WCSharp.Events.UnitTypeEvent.CancelsConstruction'></a>
 
-`CancelsConstruction` 805
+`CancelsConstruction` 1005
 
 Based on EVENT\_PLAYER\_UNIT\_CONSTRUCT\_CANCEL
 
 <a name='WCSharp.Events.UnitTypeEvent.CancelsResearch'></a>
 
-`CancelsResearch` 806
+`CancelsResearch` 1006
 
 Based on EVENT\_PLAYER\_UNIT\_RESEARCH\_CANCEL
 
 <a name='WCSharp.Events.UnitTypeEvent.CancelsTraining'></a>
 
-`CancelsTraining` 807
+`CancelsTraining` 1007
 
 Based on EVENT\_PLAYER\_UNIT\_TRAIN\_CANCEL
 
 <a name='WCSharp.Events.UnitTypeEvent.CancelsUpgrade'></a>
 
-`CancelsUpgrade` 808
+`CancelsUpgrade` 1008
 
 Based on EVENT\_PLAYER\_UNIT\_UPGRADE\_CANCEL
 
 <a name='WCSharp.Events.UnitTypeEvent.ChangesOwner'></a>
 
-`ChangesOwner` 809
+`ChangesOwner` 1009
 
 Based on EVENT\_PLAYER\_UNIT\_CHANGE\_OWNER
 
 <a name='WCSharp.Events.UnitTypeEvent.Damaging'></a>
 
-`Damaging` 810
+`Damaging` 1010
 
 Based on EVENT\_PLAYER\_UNIT\_DAMAGING
 
@@ -80,7 +80,7 @@ Runs before damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.DamagingTaken'></a>
 
-`DamagingTaken` 811
+`DamagingTaken` 1011
 
 Based on EVENT\_PLAYER\_UNIT\_DAMAGING
 
@@ -90,73 +90,73 @@ Runs before damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.Decays'></a>
 
-`Decays` 812
+`Decays` 1012
 
 Based on EVENT\_PLAYER\_UNIT\_DECAY
 
 <a name='WCSharp.Events.UnitTypeEvent.Dies'></a>
 
-`Dies` 813
+`Dies` 1013
 
 Based on EVENT\_PLAYER\_UNIT\_DEATH
 
 <a name='WCSharp.Events.UnitTypeEvent.DropsItem'></a>
 
-`DropsItem` 814
+`DropsItem` 1014
 
 Based on EVENT\_PLAYER\_UNIT\_DROP\_ITEM
 
 <a name='WCSharp.Events.UnitTypeEvent.FinishesBeingConstructed'></a>
 
-`FinishesBeingConstructed` 815
+`FinishesBeingConstructed` 1015
 
 Based on EVENT\_PLAYER\_UNIT\_CONSTRUCT\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.FinishesBeingTrained'></a>
 
-`FinishesBeingTrained` 816
+`FinishesBeingTrained` 1016
 
 Based on EVENT\_PLAYER\_UNIT\_TRAIN\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.FinishesConstruction'></a>
 
-`FinishesConstruction` 817
+`FinishesConstruction` 1017
 
 Based on EVENT\_PLAYER\_UNIT\_CONSTRUCT\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.FinishesResearch'></a>
 
-`FinishesResearch` 818
+`FinishesResearch` 1018
 
 Based on EVENT\_PLAYER\_UNIT\_RESEARCH\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.FinishesTraining'></a>
 
-`FinishesTraining` 819
+`FinishesTraining` 1019
 
 Based on EVENT\_PLAYER\_UNIT\_TRAIN\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.FinishesUpgrade'></a>
 
-`FinishesUpgrade` 820
+`FinishesUpgrade` 1020
 
 Based on EVENT\_PLAYER\_UNIT\_UPGRADE\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.IsAttacked'></a>
 
-`IsAttacked` 821
+`IsAttacked` 1021
 
 Based on EVENT\_PLAYER\_UNIT\_ATTACKED
 
 <a name='WCSharp.Events.UnitTypeEvent.IsCreated'></a>
 
-`IsCreated` 822
+`IsCreated` 1022
 
-Based on TriggerRegisterEnterRegion using GetWorldBounds
+Identical to `Register(RegionUnitTypeEvent.Enters, action, Rectangle.WorldBounds.Region)`
 
 <a name='WCSharp.Events.UnitTypeEvent.IsDamaged'></a>
 
-`IsDamaged` 823
+`IsDamaged` 1023
 
 Based on EVENT\_PLAYER\_UNIT\_DAMAGED
 
@@ -166,7 +166,7 @@ Runs after damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.IsDamagedDealt'></a>
 
-`IsDamagedDealt` 824
+`IsDamagedDealt` 1024
 
 Based on EVENT\_PLAYER\_UNIT\_DAMAGED
 
@@ -176,228 +176,234 @@ Runs after damage reductions.
 
 <a name='WCSharp.Events.UnitTypeEvent.IsDeselected'></a>
 
-`IsDeselected` 825
+`IsDeselected` 1025
 
 Based on EVENT\_PLAYER\_UNIT\_DESELECTED
 
 <a name='WCSharp.Events.UnitTypeEvent.IsDetected'></a>
 
-`IsDetected` 826
+`IsDetected` 1026
 
 Based on EVENT\_PLAYER\_UNIT\_DETECTED
 
 <a name='WCSharp.Events.UnitTypeEvent.IsHidden'></a>
 
-`IsHidden` 827
+`IsHidden` 1027
 
 Based on EVENT\_PLAYER\_UNIT\_HIDDEN
 
 <a name='WCSharp.Events.UnitTypeEvent.IsLoaded'></a>
 
-`IsLoaded` 828
+`IsLoaded` 1028
 
 Based on EVENT\_PLAYER\_UNIT\_LOADED
 
+<a name='WCSharp.Events.UnitTypeEvent.IsRemoved'></a>
+
+`IsRemoved` 1029
+
+Identical to `Register(RegionUnitTypeEvent.Leaves, action, Rectangle.WorldBounds.Region)`
+
 <a name='WCSharp.Events.UnitTypeEvent.IsRescued'></a>
 
-`IsRescued` 829
+`IsRescued` 1030
 
 Based on EVENT\_PLAYER\_UNIT\_RESCUED
 
 <a name='WCSharp.Events.UnitTypeEvent.IsSelected'></a>
 
-`IsSelected` 830
+`IsSelected` 1031
 
 Based on EVENT\_PLAYER\_UNIT\_SELECTED
 
 <a name='WCSharp.Events.UnitTypeEvent.IsSold'></a>
 
-`IsSold` 831
+`IsSold` 1032
 
 Based on EVENT\_PLAYER\_UNIT\_SELL
 
 <a name='WCSharp.Events.UnitTypeEvent.IsSummoned'></a>
 
-`IsSummoned` 832
+`IsSummoned` 1033
 
 Based on EVENT\_PLAYER\_UNIT\_SUMMON
 
 <a name='WCSharp.Events.UnitTypeEvent.Kills'></a>
 
-`Kills` 833
+`Kills` 1034
 
 Based on EVENT\_PLAYER\_UNIT\_DEATH
 
 <a name='WCSharp.Events.UnitTypeEvent.Loads'></a>
 
-`Loads` 834
+`Loads` 1035
 
 Based on EVENT\_PLAYER\_UNIT\_LOADED
 
 <a name='WCSharp.Events.UnitTypeEvent.PawnsItem'></a>
 
-`PawnsItem` 835
+`PawnsItem` 1036
 
 Based on EVENT\_PLAYER\_UNIT\_PAWN\_ITEM
 
 <a name='WCSharp.Events.UnitTypeEvent.PicksUpItem'></a>
 
-`PicksUpItem` 836
+`PicksUpItem` 1037
 
 Based on EVENT\_PLAYER\_UNIT\_PICKUP\_ITEM
 
 <a name='WCSharp.Events.UnitTypeEvent.ReceivesOrder'></a>
 
-`ReceivesOrder` 837
+`ReceivesOrder` 1038
 
 Based on EVENT\_PLAYER\_UNIT\_ISSUED\_ORDER
 
 <a name='WCSharp.Events.UnitTypeEvent.ReceivesPointOrder'></a>
 
-`ReceivesPointOrder` 838
+`ReceivesPointOrder` 1039
 
 Based on EVENT\_PLAYER\_UNIT\_ISSUED\_POINT\_ORDER
 
 <a name='WCSharp.Events.UnitTypeEvent.ReceivesTargetOrder'></a>
 
-`ReceivesTargetOrder` 839
+`ReceivesTargetOrder` 1040
 
 Based on EVENT\_PLAYER\_UNIT\_ISSUED\_TARGET\_ORDER
 
 <a name='WCSharp.Events.UnitTypeEvent.ReceivesUnitTypeOrder'></a>
 
-`ReceivesUnitTypeOrder` 840
+`ReceivesUnitTypeOrder` 1041
 
 Based on EVENT\_PLAYER\_UNIT\_ISSUED\_UNIT\_ORDER
 
 <a name='WCSharp.Events.UnitTypeEvent.Rescues'></a>
 
-`Rescues` 841
+`Rescues` 1042
 
 Based on EVENT\_PLAYER\_UNIT\_RESCUED
 
 <a name='WCSharp.Events.UnitTypeEvent.SellsItem'></a>
 
-`SellsItem` 842
+`SellsItem` 1043
 
 Based on EVENT\_PLAYER\_UNIT\_SELL\_ITEM
 
 <a name='WCSharp.Events.UnitTypeEvent.SellsUnit'></a>
 
-`SellsUnit` 843
+`SellsUnit` 1044
 
 Based on EVENT\_PLAYER\_UNIT\_SELL
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellCast'></a>
 
-`SpellCast` 844
+`SpellCast` 1045
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_CAST
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellCastOn'></a>
 
-`SpellCastOn` 845
+`SpellCastOn` 1046
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_CAST
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellChannel'></a>
 
-`SpellChannel` 846
+`SpellChannel` 1047
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_CHANNEL
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellChannelOn'></a>
 
-`SpellChannelOn` 847
+`SpellChannelOn` 1048
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_CHANNEL
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellEffect'></a>
 
-`SpellEffect` 848
+`SpellEffect` 1049
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_EFFECT
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellEffectOn'></a>
 
-`SpellEffectOn` 849
+`SpellEffectOn` 1050
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_EFFECT
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellEndCast'></a>
 
-`SpellEndCast` 850
+`SpellEndCast` 1051
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_ENDCAST
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellEndCastOn'></a>
 
-`SpellEndCastOn` 851
+`SpellEndCastOn` 1052
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_ENDCAST
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellFinish'></a>
 
-`SpellFinish` 852
+`SpellFinish` 1053
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.SpellFinishOn'></a>
 
-`SpellFinishOn` 853
+`SpellFinishOn` 1054
 
 Based on EVENT\_PLAYER\_UNIT\_SPELL\_FINISH
 
 <a name='WCSharp.Events.UnitTypeEvent.StacksItem'></a>
 
-`StacksItem` 854
+`StacksItem` 1055
 
 Based on EVENT\_PLAYER\_UNIT\_STACK\_ITEM
 
 <a name='WCSharp.Events.UnitTypeEvent.StartsBeingConstructed'></a>
 
-`StartsBeingConstructed` 855
+`StartsBeingConstructed` 1056
 
 Based on EVENT\_PLAYER\_UNIT\_CONSTRUCT\_START
 
 <a name='WCSharp.Events.UnitTypeEvent.StartsBeingTrained'></a>
 
-`StartsBeingTrained` 856
+`StartsBeingTrained` 1057
 
 Based on EVENT\_PLAYER\_UNIT\_TRAIN\_START
 
 <a name='WCSharp.Events.UnitTypeEvent.StartsConstruction'></a>
 
-`StartsConstruction` 857
+`StartsConstruction` 1058
 
 Based on EVENT\_PLAYER\_UNIT\_CONSTRUCT\_START
 
 <a name='WCSharp.Events.UnitTypeEvent.StartsResearch'></a>
 
-`StartsResearch` 858
+`StartsResearch` 1059
 
 Based on EVENT\_PLAYER\_UNIT\_RESEARCH\_START
 
 <a name='WCSharp.Events.UnitTypeEvent.StartsTraining'></a>
 
-`StartsTraining` 859
+`StartsTraining` 1060
 
 Based on EVENT\_PLAYER\_UNIT\_TRAIN\_START
 
 <a name='WCSharp.Events.UnitTypeEvent.StartsUpgrade'></a>
 
-`StartsUpgrade` 860
+`StartsUpgrade` 1061
 
 Based on EVENT\_PLAYER\_UNIT\_UPGRADE\_START
 
 <a name='WCSharp.Events.UnitTypeEvent.Summons'></a>
 
-`Summons` 861
+`Summons` 1062
 
 Based on EVENT\_PLAYER\_UNIT\_SUMMON
 
 <a name='WCSharp.Events.UnitTypeEvent.UsesItem'></a>
 
-`UsesItem` 862
+`UsesItem` 1063
 
 Based on EVENT\_PLAYER\_UNIT\_USE\_ITEM

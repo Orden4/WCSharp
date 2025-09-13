@@ -1,6 +1,6 @@
-﻿using WCSharp.Events;
+﻿using WCSharp.Api;
 using WCSharp.Shared;
-using WCSharp.Api;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Lightnings
@@ -8,7 +8,7 @@ namespace WCSharp.Lightnings
 	/// <summary>
 	/// Represents a single lightning instance. Add to <see cref="LightningSystem"/> to activate.
 	/// </summary>
-	public class Lightning : IPeriodicDisposableAction
+	public class Lightning : ICollectiveAction
 	{
 		/// <inheritdoc/>
 		public bool Active { get; set; }
@@ -174,7 +174,7 @@ namespace WCSharp.Lightnings
 			this.lightning = AddLightning(this.name, true, CasterX, CasterY, TargetX, TargetY);
 			MoveLightningEx(this.lightning, true, CasterX, CasterY, this.casterZ + CasterHeightOffset, TargetX, TargetY, this.casterZ + TargetHeightOffset);
 			SetLightningColor(this.lightning, Red, Green, Blue, Alpha);
-			this.transparencyRate = FadeDuration > 0 ? Alpha / FadeDuration * PeriodicEvents.SYSTEM_INTERVAL : Alpha;
+			this.transparencyRate = FadeDuration > 0 ? Alpha / FadeDuration * LightningSystem.TickInterval : Alpha;
 			this.age = 0;
 		}
 
@@ -213,7 +213,7 @@ namespace WCSharp.Lightnings
 
 			MoveLightningEx(this.lightning, true, CasterX, CasterY, this.casterZ + CasterHeightOffset, TargetX, TargetY, this.targetZ + TargetHeightOffset);
 
-			this.age += PeriodicEvents.SYSTEM_INTERVAL;
+			this.age += LightningSystem.TickInterval;
 			if (this.age > Duration - FadeDuration)
 			{
 				Alpha -= this.transparencyRate;
@@ -238,6 +238,15 @@ namespace WCSharp.Lightnings
 		public void Dispose()
 		{
 			DestroyLightning(this.lightning);
+		}
+
+		/// <summary>
+		/// Override if adjustments are needed when the tick interval is changed.
+		/// <para>Ensure that the base is still called.</para>
+		/// </summary>
+		public virtual void BeforeTickIntervalChanged(float oldTickInterval, float newTickInterval)
+		{
+			this.transparencyRate = FadeDuration > 0 ? Alpha / FadeDuration * newTickInterval : Alpha;
 		}
 	}
 }

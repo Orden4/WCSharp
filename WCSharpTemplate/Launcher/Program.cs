@@ -89,9 +89,7 @@ namespace Launcher
 			};
 
 			// Collect required paths and compile
-			var coreSystemFiles = CSharpLua.CoreSystem.CoreSystemProvider.GetCoreSystemFiles()
-				.Where(x => !x.EndsWith("Common.lua"))
-				.Concat(new[] { "CoreSystem/WCSharp.lua", "PriorityQueue.lua", "SortedDictionary.lua", "SortedList.lua" });
+			var coreSystemFiles = CSharpLua.CoreSystem.CoreSystemProvider.GetCoreSystemFiles(CSharpLua.CoreSystem.Wc3Api.WCSharp);
 			var blizzardJ = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Warcraft III/JassHelper/Blizzard.j");
 			var commonJ = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Warcraft III/JassHelper/common.j");
 			var compileResult = map.CompileScript(compiler, coreSystemFiles, blizzardJ, commonJ);

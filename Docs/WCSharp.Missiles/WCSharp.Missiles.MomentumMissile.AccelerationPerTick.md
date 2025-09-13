@@ -3,7 +3,7 @@
 
 ## MomentumMissile\.AccelerationPerTick Property
 
-The acceleration in units per [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') \(0\.03125\)\.
+The acceleration in units per [TickInterval](WCSharp.Missiles.MissileSystem.TickInterval.md 'WCSharp\.Missiles\.MissileSystem\.TickInterval') \(0\.03125\)\.
 
 This is used to make adjustments to the trajectory.
 

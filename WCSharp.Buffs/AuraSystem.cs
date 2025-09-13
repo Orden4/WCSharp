@@ -11,7 +11,7 @@ namespace WCSharp.Buffs
 	/// </summary>
 	public static class AuraSystem
 	{
-		private static readonly PeriodicDisposableTrigger<IAura> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly PeriodicDisposableTrigger<IAura> periodicTrigger = new(BuffSystem.TickInterval);
 
 		/// <summary>
 		/// All active buffs.

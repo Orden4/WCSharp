@@ -9,7 +9,7 @@ Whether the missile is active\. This is automatically set to false prior to call
 public bool Active { get; set; }
 ```
 
-Implements [Active](../WCSharp.Events/WCSharp.Events.IPeriodicDisposableAction.Active.md 'WCSharp\.Events\.IPeriodicDisposableAction\.Active')
+Implements [Active](../WCSharp.Timers/WCSharp.Timers.ITimerAction.Active.md 'WCSharp\.Timers\.ITimerAction\.Active')
 
 #### Property Value
 [System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')

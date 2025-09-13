@@ -7,7 +7,7 @@ The interval at which the missile will call [OnPeriodic\(\)](WCSharp.Missiles.Mi
 
 Leave at default (0) to disable.
 
-Intervals lower with [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') will occassionally run multiple times per tick.
+Intervals lower than [TickInterval](WCSharp.Missiles.MissileSystem.TickInterval.md 'WCSharp\.Missiles\.MissileSystem\.TickInterval') may run multiple times per tick.
 
 ```csharp
 public float Interval { get; set; }

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using WCSharp.Api;
 using WCSharp.Dummies;
-using WCSharp.Events;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -22,7 +21,7 @@ namespace WCSharp.Buffs
 		public float Interval { get; set; }
 		/// <summary>
 		/// Used to prevent the buff from being immediately dropped. Intended to give some leeway for the dummy-based bind.
-		/// <para>This is decreased by 1 every <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>, once it becomes 0 or less it will remove this buff if the in-game buff is not present.</para>
+		/// <para>This is decreased by 1 every <see cref="BuffSystem.TickInterval"/>, once it becomes 0 or less it will remove this buff if the in-game buff is not present.</para>
 		/// <para>Automatically set to 0 once it detects the buff on the target.</para>
 		/// <para>Defaults to 8 (0.25s).</para>
 		/// </summary>
@@ -121,7 +120,7 @@ namespace WCSharp.Buffs
 
 			if (Interval > 0)
 			{
-				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+				IntervalLeft -= BuffSystem.TickInterval;
 				while (IntervalLeft <= 0)
 				{
 					IntervalLeft += Interval;
@@ -129,7 +128,7 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+			Duration -= BuffSystem.TickInterval;
 			if (Duration <= 0)
 			{
 				Active = false;

@@ -24,6 +24,7 @@ This package allows for the creation and management of powerful buffs and auras 
     <ProjectReference Include="..\WCSharp.Dummies\WCSharp.Dummies.csproj" />
     <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
     <ProjectReference Include="..\WCSharp.Shared\WCSharp.Shared.csproj" />
+    <ProjectReference Include="..\WCSharp.Timers\WCSharp.Timers.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
@@ -31,6 +32,7 @@ This package allows for the creation and management of powerful buffs and auras 
     <PackageReference Include="WCSharp.Dummies" Version="$(PackageVersion)" />
     <PackageReference Include="WCSharp.Events" Version="$(PackageVersion)" />
     <PackageReference Include="WCSharp.Shared" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Timers" Version="$(PackageVersion)" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WCSharp.Api;
-using WCSharp.Events;
 using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
@@ -160,7 +159,7 @@ namespace WCSharp.Buffs
 				return;
 			}
 
-			if (SearchIntervalLeft <= PeriodicEvents.SYSTEM_INTERVAL)
+			if (SearchIntervalLeft <= BuffSystem.TickInterval)
 			{
 				SearchIntervalLeft = SearchInterval;
 				var units = GetAuraTargets();
@@ -189,7 +188,7 @@ namespace WCSharp.Buffs
 			}
 			else
 			{
-				SearchIntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+				SearchIntervalLeft -= BuffSystem.TickInterval;
 			}
 
 			for (var i = this.activeBuffs.Count - 1; i >= 0; i--)
@@ -202,7 +201,7 @@ namespace WCSharp.Buffs
 				}
 				else
 				{
-					buff.Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+					buff.Duration -= BuffSystem.TickInterval;
 				}
 			}
 		}

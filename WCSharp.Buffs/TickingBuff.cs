@@ -1,5 +1,4 @@
 ﻿using WCSharp.Api;
-using WCSharp.Events;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -46,7 +45,7 @@ namespace WCSharp.Buffs
 		{
 			if (Interval > 0)
 			{
-				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+				IntervalLeft -= BuffSystem.TickInterval;
 				while (IntervalLeft <= 0)
 				{
 					IntervalLeft += Interval;
@@ -54,7 +53,7 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+			Duration -= BuffSystem.TickInterval;
 			if (Duration <= 0)
 			{
 				Active = false;

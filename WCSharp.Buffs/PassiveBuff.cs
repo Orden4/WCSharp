@@ -1,5 +1,4 @@
 ﻿using WCSharp.Api;
-using WCSharp.Events;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -33,7 +32,7 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+			Duration -= BuffSystem.TickInterval;
 			if (Duration <= 0)
 			{
 				Active = false;

@@ -9,4 +9,4 @@ Called by the system\. Do not call yourself\.
 public void Action();
 ```
 
-Implements [Action\(\)](../WCSharp.Events/WCSharp.Events.IPeriodicAction.Action().md 'WCSharp\.Events\.IPeriodicAction\.Action')
+Implements [Action\(\)](../WCSharp.Timers/WCSharp.Timers.ITimerAction.Action().md 'WCSharp\.Timers\.ITimerAction\.Action')

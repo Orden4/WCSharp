@@ -1,6 +1,5 @@
-﻿using WCSharp.Events;
-using WCSharp.Api;
-using static WCSharp.Api.Common;
+﻿using WCSharp.Api;
+using WCSharp.Timers;
 
 namespace WCSharp.Effects
 {
@@ -10,16 +9,16 @@ namespace WCSharp.Effects
 	/// </summary>
 	public partial class EffectSystem
 	{
-		private static readonly PeriodicTrigger<TimedEffect> periodicTrigger = new(PeriodicEvents.SYSTEM_INTERVAL);
+		private static readonly TimerSetCollective<TimedEffect> timerSet = new(TimerSystem.DEFAULT_TICK_INTERVAL);
 
 		/// <summary>
 		/// Adds an effect for removal after the given duration.
 		/// </summary>
 		/// <param name="effect"></param>
 		/// <param name="duration">In seconds.</param>
-		public static void Add(effect effect, float duration = PeriodicEvents.SYSTEM_INTERVAL)
+		public static void Add(effect effect, float duration = TimerSystem.DEFAULT_TICK_INTERVAL)
 		{
-			periodicTrigger.Add(new TimedEffect(effect, duration));
+			timerSet.Add(new TimedEffect(effect, duration));
 		}
 	}
 }

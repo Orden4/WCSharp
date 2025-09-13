@@ -21,12 +21,12 @@ This package simply allows you to destroy Warcraft III special effects on a dela
 
   <ItemGroup Condition="'$(UsePackageReferences)' != 'true'">
     <ProjectReference Include="..\WCSharp.Api\WCSharp.Api.csproj" />
-    <ProjectReference Include="..\WCSharp.Events\WCSharp.Events.csproj" />
+    <ProjectReference Include="..\WCSharp.Timers\WCSharp.Timers.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UsePackageReferences)' == 'true'">
     <PackageReference Include="WCSharp.Api" Version="$(PackageVersion)" />
-    <PackageReference Include="WCSharp.Events" Version="$(PackageVersion)" />
+    <PackageReference Include="WCSharp.Timers" Version="$(PackageVersion)" />
   </ItemGroup>
 
 </Project>

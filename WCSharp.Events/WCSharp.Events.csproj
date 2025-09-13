@@ -6,7 +6,7 @@
     <DocumentationFile>WCSharp.Events.xml</DocumentationFile>
     <PackageReleaseNotes>See the full release notes on the wiki: https://github.com/Orden4/WCSharp/wiki/Release-notes</PackageReleaseNotes>
     <Description>Part of the WCSharp line of packages aimed at providing libraries to simplify the process of mapmaking for WarCraft III in C#.
-The Events package provides various systems for organising events with a focus on efficiency and simplicity. Currently this is limited to periodic and PlayerUnitEvents.</Description>
+The Events package provides various systems for organising events with a focus on efficiency and simplicity. Currently this is limited to PlayerUnitEvents.</Description>
 	<DefaultDocumentationFolder>../Docs/WCSharp.Events</DefaultDocumentationFolder>
 	<DefaultDocumentationLinksOutputFile>../DefaultDocumentation/WCSharp.Events.txt</DefaultDocumentationLinksOutputFile>
 	<DefaultDocumentationLinksBaseUrl>../WCSharp.Events/</DefaultDocumentationLinksBaseUrl>

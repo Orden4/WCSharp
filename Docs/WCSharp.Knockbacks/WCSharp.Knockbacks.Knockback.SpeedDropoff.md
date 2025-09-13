@@ -3,7 +3,7 @@
 
 ## Knockback\.SpeedDropoff Property
 
-The amount of speed lost per [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') \(0\.03125\)\.
+The amount of speed lost per [TickInterval](WCSharp.Knockbacks.KnockbackSystem.TickInterval.md 'WCSharp\.Knockbacks\.KnockbackSystem\.TickInterval')\.
 
 ```csharp
 public float SpeedDropoff { get; set; }

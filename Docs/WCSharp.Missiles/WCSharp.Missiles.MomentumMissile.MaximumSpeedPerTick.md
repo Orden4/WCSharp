@@ -3,7 +3,7 @@
 
 ## MomentumMissile\.MaximumSpeedPerTick Property
 
-The maximum speed in units per [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') \(0\.03125\)\.
+The maximum speed in units per [TickInterval](WCSharp.Missiles.MissileSystem.TickInterval.md 'WCSharp\.Missiles\.MissileSystem\.TickInterval') \(0\.03125\)\.
 
 Alternatively, use [MaximumSpeed](WCSharp.Missiles.MomentumMissile.MaximumSpeed.md 'WCSharp\.Missiles\.MomentumMissile\.MaximumSpeed').
 

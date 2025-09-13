@@ -66,6 +66,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp.lua.CoreSystem", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.ConstantGenerator", "..\..\WCSharp.ConstantGenerator\WCSharp.ConstantGenerator\WCSharp.ConstantGenerator.csproj", "{4603FBA7-CBE4-4298-93DB-F746D1366B3B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WCSharp.Timers", "..\WCSharp.Timers\WCSharp.Timers.csproj", "{67DEBECA-FB4C-4F25-92B9-A60449EE1481}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CSharpLuaDev|Any CPU = CSharpLuaDev|Any CPU
@@ -247,6 +249,12 @@ Global
 		{4603FBA7-CBE4-4298-93DB-F746D1366B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4603FBA7-CBE4-4298-93DB-F746D1366B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4603FBA7-CBE4-4298-93DB-F746D1366B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DEBECA-FB4C-4F25-92B9-A60449EE1481}.CSharpLuaDev|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DEBECA-FB4C-4F25-92B9-A60449EE1481}.CSharpLuaDev|Any CPU.Build.0 = Debug|Any CPU
+		{67DEBECA-FB4C-4F25-92B9-A60449EE1481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DEBECA-FB4C-4F25-92B9-A60449EE1481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DEBECA-FB4C-4F25-92B9-A60449EE1481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DEBECA-FB4C-4F25-92B9-A60449EE1481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

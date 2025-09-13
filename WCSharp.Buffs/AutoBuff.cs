@@ -58,11 +58,11 @@ namespace WCSharp.Buffs
 		/// <inheritdoc/>
 		public sealed override void Action()
 		{
-			Duration -= PeriodicEvents.SYSTEM_INTERVAL;
+			Duration -= BuffSystem.TickInterval;
 
 			if (Interval > 0)
 			{
-				IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+				IntervalLeft -= BuffSystem.TickInterval;
 				while (IntervalLeft <= 0)
 				{
 					IntervalLeft += Interval;

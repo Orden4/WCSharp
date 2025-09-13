@@ -111,7 +111,7 @@ namespace NuGetPusher
 				}
 			}
 
-			throw new Exception($"{project} not found");
+			return false;
 		}
 	}
 }

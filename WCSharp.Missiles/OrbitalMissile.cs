@@ -1,6 +1,5 @@
 ﻿using System;
 using WCSharp.Api;
-using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
 using static WCSharp.Api.Common;
@@ -61,7 +60,7 @@ namespace WCSharp.Missiles
 			set => InternalMissileZ = value;
 		}
 		/// <summary>
-		/// The speed of the missile, expressed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
+		/// The speed of the missile, expressed in units per <see cref="MissileSystem.TickInterval"/> tick (0.03125).
 		/// <para>Use negative values to go clockwise.</para>
 		/// <para>Alternatively, use <see cref="Speed"/>, <see cref="OrbitalVelocityRad"/> or <see cref="OrbitalPeriod"/>.</para>
 		/// </summary>
@@ -84,13 +83,13 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public sealed override float Speed
 		{
-			get => 2 / PeriodicEvents.SYSTEM_INTERVAL * this.orbitalVelocity * this.range;
+			get => 2 / MissileSystem.TickInterval * this.orbitalVelocity * this.range;
 			set
 			{
-				this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
+				this.speed = value * MissileSystem.TickInterval;
 				if (this.range != 0)
 				{
-					this.orbitalVelocity = PeriodicEvents.SYSTEM_INTERVAL * 2 * value / this.range;
+					this.orbitalVelocity = MissileSystem.TickInterval * 2 * value / this.range;
 				}
 			}
 		}
@@ -114,7 +113,7 @@ namespace WCSharp.Missiles
 			}
 		}
 		/// <summary>
-		/// The speed at which the missile is orbiting, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
+		/// The speed at which the missile is orbiting, expressed in radians per <see cref="MissileSystem.TickInterval"/> tick (0.03125).
 		/// <para>Use negative values to go clockwise.</para>
 		/// <para>Alternatively, use <see cref="Speed"/>, <see cref="SpeedPerTick"/> or <see cref="OrbitalPeriod"/>.</para>
 		/// </summary>
@@ -134,11 +133,11 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float OrbitalPeriod
 		{
-			get => this.orbitalVelocity == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / this.orbitalVelocity;
+			get => this.orbitalVelocity == 0 ? 0 : MissileSystem.TickInterval * Util.PI * 2 / this.orbitalVelocity;
 			set
 			{
 				this.speed = 0;
-				this.orbitalVelocity = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
+				this.orbitalVelocity = value == 0 ? 0 : MissileSystem.TickInterval * Util.PI * 2 / value;
 			}
 		}
 

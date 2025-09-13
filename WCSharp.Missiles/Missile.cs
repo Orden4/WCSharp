@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Api;
-using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Extensions;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Missiles
@@ -12,10 +12,8 @@ namespace WCSharp.Missiles
 	/// Fundamental missile class that provides the properties and methods that are shared by (virtually) all missiles.
 	/// <para>Unless you wish to define a new movement pattern for missiles, you should use one of the derived classes instead.</para>
 	/// </summary>
-	public abstract class Missile : IPeriodicDisposableAction
+	public abstract class Missile : ICollectiveDisposableAction
 	{
-		// Doesn't fold multiple constant references properly unless you do this
-		internal const float ROTATION_SECONDS_TO_RADIANS = PeriodicEvents.SYSTEM_INTERVAL * Util.PI * 2;
 		private static readonly group group = CreateGroup();
 
 		/// <summary>
@@ -105,7 +103,7 @@ namespace WCSharp.Missiles
 		}
 
 		/// <summary>
-		/// The speed of the missile, expressed in units per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/>.
+		/// The speed of the missile, expressed in units per <see cref="MissileSystem.TickInterval"/>.
 		/// <para>Alternatively, use <see cref="Speed"/>.</para>
 		/// </summary>
 		public abstract float SpeedPerTick { get; set; }
@@ -148,7 +146,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// The interval at which the missile will call <see cref="OnPeriodic"/>.
 		/// <para>Leave at default (0) to disable.</para>
-		/// <para>Intervals lower with <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> will occassionally run multiple times per tick.</para>
+		/// <para>Intervals lower than <see cref="MissileSystem.TickInterval"/> may run multiple times per tick.</para>
 		/// </summary>
 		public float Interval { get; set; }
 		/// <summary>
@@ -398,7 +396,7 @@ namespace WCSharp.Missiles
 		/// </summary>
 		protected void RunInterval()
 		{
-			IntervalLeft -= PeriodicEvents.SYSTEM_INTERVAL;
+			IntervalLeft -= MissileSystem.TickInterval;
 			while (IntervalLeft <= 0)
 			{
 				IntervalLeft += Interval;
@@ -493,6 +491,15 @@ namespace WCSharp.Missiles
 			{
 				DestroyEffect(Effect);
 			}
+		}
+
+		/// <summary>
+		/// Override if adjustments are needed when the tick interval is changed.
+		/// <para>Ensure that the base is still called.</para>
+		/// </summary>
+		public virtual void BeforeTickIntervalChanged(float oldTickInterval, float newTickInterval)
+		{
+			SpeedPerTick = Speed * newTickInterval;
 		}
 	}
 }

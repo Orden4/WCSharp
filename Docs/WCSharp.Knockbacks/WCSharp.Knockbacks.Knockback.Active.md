@@ -9,7 +9,7 @@ Setting this to false will immediately end the knockback\.
 public bool Active { get; set; }
 ```
 
-Implements [Active](../WCSharp.Events/WCSharp.Events.IPeriodicAction.Active.md 'WCSharp\.Events\.IPeriodicAction\.Active')
+Implements [Active](../WCSharp.Timers/WCSharp.Timers.ITimerAction.Active.md 'WCSharp\.Timers\.ITimerAction\.Active')
 
 #### Property Value
 [System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')

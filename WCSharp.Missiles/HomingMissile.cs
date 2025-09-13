@@ -1,6 +1,5 @@
 ﻿using System;
 using WCSharp.Api;
-using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
 using static WCSharp.Api.Common;
@@ -62,12 +61,12 @@ namespace WCSharp.Missiles
 		/// <inheritdoc/>
 		public sealed override float Speed
 		{
-			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
-			set => this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
+			get => this.speed / MissileSystem.TickInterval;
+			set => this.speed = value * MissileSystem.TickInterval;
 		}
 
 		/// <summary>
-		/// The speed at which the missile can turn, expressed in radians per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).
+		/// The speed at which the missile can turn, expressed in radians per <see cref="MissileSystem.TickInterval"/> tick (0.03125).
 		/// <para>Alternatively, use <see cref="TurnRate"/> or <see cref="TurnPeriod"/>.</para>
 		/// </summary>
 		public float TurnVelocityRad { get; set; }
@@ -77,8 +76,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float TurnRate
 		{
-			get => TurnVelocityRad * Util.RAD2DEG / PeriodicEvents.SYSTEM_INTERVAL;
-			set => TurnVelocityRad = value * Util.DEG2RAD * PeriodicEvents.SYSTEM_INTERVAL;
+			get => TurnVelocityRad * Util.RAD2DEG / MissileSystem.TickInterval;
+			set => TurnVelocityRad = value * Util.DEG2RAD * MissileSystem.TickInterval;
 		}
 		/// <summary>
 		/// The rate at which the missile can turn, expressed in degrees per second.
@@ -86,8 +85,8 @@ namespace WCSharp.Missiles
 		/// </summary>
 		public float TurnPeriod
 		{
-			get => TurnVelocityRad == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / TurnVelocityRad;
-			set => TurnVelocityRad = value == 0 ? 0 : ROTATION_SECONDS_TO_RADIANS / value;
+			get => TurnVelocityRad == 0 ? 0 : MissileSystem.TickInterval * Util.PI * 2 / TurnVelocityRad;
+			set => TurnVelocityRad = value == 0 ? 0 : MissileSystem.TickInterval * Util.PI * 2 / value;
 		}
 
 		/// <summary>
@@ -284,6 +283,12 @@ namespace WCSharp.Missiles
 			{
 				RunCollisions();
 			}
+		}
+
+		/// <inheritdoc/>
+		public override void BeforeTickIntervalChanged(float oldTickInterval, float newTickInterval)
+		{
+			TurnVelocityRad = TurnVelocityRad / oldTickInterval * newTickInterval;
 		}
 	}
 }

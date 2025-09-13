@@ -4,6 +4,7 @@ using WCSharp.Events;
 using WCSharp.Missiles;
 using WCSharp.Shared;
 using WCSharp.Shared.Extensions;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace Source.Missiles
@@ -45,7 +46,7 @@ namespace Source.Missiles
 			EffectScale = 1.0f;
 			EffectString = @"Abilities\Weapons\GlaiveMissile\GlaiveMissile.mdl";
 			CollisionRadius = 150;
-			Interval = PeriodicEvents.SYSTEM_INTERVAL;
+			Interval = TimerSystem.TickInterval;
 		}
 
 		public override void OnCollision(unit unit)
@@ -62,7 +63,7 @@ namespace Source.Missiles
 			this.targetsHitCooldown.IterateWithRemoval(unitHit =>
 			{
 
-				unitHit.Age += PeriodicEvents.SYSTEM_INTERVAL;
+				unitHit.Age += TimerSystem.DEFAULT_TICK_INTERVAL;
 				if (unitHit.Age >= 1)
 				{
 					TargetsHit.Remove(unitHit.Unit);

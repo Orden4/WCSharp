@@ -3,7 +3,7 @@
 
 ## Knockback\.Speed Property
 
-The distance traversed per [SYSTEM\_INTERVAL](../WCSharp.Events/WCSharp.Events.PeriodicEvents.SYSTEM_INTERVAL.md 'WCSharp\.Events\.PeriodicEvents\.SYSTEM\_INTERVAL') \(0\.03125\)\.
+The distance traversed per [TickInterval](WCSharp.Knockbacks.KnockbackSystem.TickInterval.md 'WCSharp\.Knockbacks\.KnockbackSystem\.TickInterval')\.
 
 ```csharp
 public float Speed { get; set; }

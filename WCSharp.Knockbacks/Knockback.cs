@@ -1,6 +1,6 @@
-﻿using WCSharp.Events;
+﻿using WCSharp.Api;
 using WCSharp.Shared;
-using WCSharp.Api;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Knockbacks
@@ -8,7 +8,7 @@ namespace WCSharp.Knockbacks
 	/// <summary>
 	/// Represents a single knockback instance. Add to <see cref="KnockbackSystem"/> to activate.
 	/// </summary>
-	public class Knockback : IPeriodicAction
+	public class Knockback : ICollectiveAction
 	{
 		/// <summary>
 		/// The interval between <see cref="Effect1"/> spawns.
@@ -32,11 +32,11 @@ namespace WCSharp.Knockbacks
 		/// </summary>
 		public float Angle { get; set; }
 		/// <summary>
-		/// The distance traversed per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+		/// The distance traversed per <see cref="KnockbackSystem.TickInterval"/>.
 		/// </summary>
 		public float Speed { get; set; }
 		/// <summary>
-		/// The amount of speed lost per <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> (0.03125).
+		/// The amount of speed lost per <see cref="KnockbackSystem.TickInterval"/>.
 		/// </summary>
 		public float SpeedDropoff { get; set; }
 		/// <summary>
@@ -62,8 +62,8 @@ namespace WCSharp.Knockbacks
 		private Knockback(unit target, float distance, float duration)
 		{
 			Target = target;
-			Speed = distance / duration * PeriodicEvents.SYSTEM_INTERVAL;
-			SpeedDropoff = Speed / duration * PeriodicEvents.SYSTEM_INTERVAL;
+			Speed = distance / duration * KnockbackSystem.TickInterval;
+			SpeedDropoff = Speed / duration * KnockbackSystem.TickInterval;
 		}
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace WCSharp.Knockbacks
 
 			if (Effect1 != null)
 			{
-				this.effect1Interval -= PeriodicEvents.SYSTEM_INTERVAL;
+				this.effect1Interval -= KnockbackSystem.TickInterval;
 				if (this.effect1Interval <= 0)
 				{
 					this.effect1Interval = EFFECT1_PERIOD;
@@ -117,7 +117,7 @@ namespace WCSharp.Knockbacks
 
 			if (Effect2 != null)
 			{
-				this.effect2Interval -= PeriodicEvents.SYSTEM_INTERVAL;
+				this.effect2Interval -= KnockbackSystem.TickInterval;
 				if (this.effect2Interval <= 0)
 				{
 					this.effect2Interval = EFFECT2_PERIOD;
@@ -136,6 +136,16 @@ namespace WCSharp.Knockbacks
 			var newY = (Speed * Sin(Angle)) + (knockback.Speed * Sin(knockback.Angle));
 			Angle = Atan2(newY, newX);
 			Speed = SquareRoot((newX * newX) + (newY * newY));
+		}
+
+		/// <summary>
+		/// Override if adjustments are needed when the tick interval is changed.
+		/// <para>Ensure that the base is still called.</para>
+		/// </summary>
+		public virtual void BeforeTickIntervalChanged(float oldTickInterval, float newTickInterval)
+		{
+			Speed = Speed / oldTickInterval * newTickInterval;
+			SpeedDropoff = Speed / oldTickInterval * newTickInterval;
 		}
 	}
 }

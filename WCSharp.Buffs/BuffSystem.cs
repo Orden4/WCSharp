@@ -4,7 +4,9 @@ using System.Linq;
 using WCSharp.Api;
 using WCSharp.Dummies;
 using WCSharp.Events;
+using WCSharp.Shared;
 using WCSharp.Shared.Extensions;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -18,11 +20,11 @@ namespace WCSharp.Buffs
 		{
 			// Taking a shortcut from the standard approach and just assuming that there will pretty much always be buffs active and never unregistering these events.
 			PlayerUnitEvents.Register(UnitTypeEvent.Dies, OnDeath);
-			PeriodicEvents.AddPeriodicEvent(Action);
 		}
 
 		private static readonly List<Buff> buffs = new();
 		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new();
+		private static readonly Timer timer = new(Action, TimerSystem.DEFAULT_TICK_INTERVAL);
 
 		private static int index;
 		private static int size;
@@ -32,7 +34,7 @@ namespace WCSharp.Buffs
 		/// </summary>
 		public static IEnumerable<Buff> Buffs => buffs.Where(x => x.Active);
 
-		private static bool Action()
+		private static void Action(Timer timer)
 		{
 			size = buffs.Count;
 			index = 0;
@@ -60,8 +62,6 @@ namespace WCSharp.Buffs
 					}
 				}
 			}
-
-			return true;
 		}
 
 		private static void OnDeath()
@@ -340,6 +340,33 @@ namespace WCSharp.Buffs
 				}
 			}
 			return dispels;
+		}
+
+		/// <summary>
+		/// The interval between each update of the system.
+		/// <para>Use <see cref="SetTickInterval(float)"/> to adjust.</para>
+		/// </summary>
+		public static float TickInterval { get; private set; } = TimerSystem.DEFAULT_TICK_INTERVAL;
+		/// <summary>
+		/// Changes the tick interval to the desired value.
+		/// <para>Note that the actual change occurs after a 0 second delay.</para>
+		/// <para>Calls <see cref="Buff.BeforeTickIntervalChanged(float, float)"/> to adjust existing missiles.</para>
+		/// </summary>
+		public static void SetTickInterval(float tickInterval)
+		{
+			Delay.Add(() =>
+			{
+				var old = TickInterval;
+				if (old != tickInterval)
+				{
+					foreach (var buff in buffs)
+					{
+						buff.BeforeTickIntervalChanged(old, tickInterval);
+					}
+					TickInterval = tickInterval;
+					timer.Timeout = tickInterval;
+				}
+			});
 		}
 	}
 }

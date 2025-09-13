@@ -31,9 +31,9 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			try
 			{
 				Depth++;
-				for (var i = 0; i < this.eventSets.Count; i++)
+				for (var i = 1; i <= this.eventSets.Count; i++)
 				{
-					this.eventSets[i].Run();
+					this.eventSets.DirectGet(i).Run();
 				}
 			}
 			catch (Exception ex)
@@ -50,23 +50,6 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				{
 					PlayerUnitEvents.ResolvePendingUpdates();
 				}
-			}
-
-			return false;
-		}
-
-		protected bool RunUnsafe()
-		{
-			Depth++;
-			for (var i = 0; i < this.eventSets.Count; i++)
-			{
-				this.eventSets[i].Run();
-			}
-
-			Depth--;
-			if (Depth == 0 && RequiresUpdate)
-			{
-				PlayerUnitEvents.ResolvePendingUpdates();
 			}
 
 			return false;
@@ -162,15 +145,18 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			if (index == -1)
 				throw new Exception("Attempting to remove an event that does not exist.");
 
-			var size = this.eventSets.Count;
-			this.eventSets[index] = this.eventSets[size - 1];
-			this.eventSets.Nil(size);
-
-			if (size == 1)
+			var lastIndex = this.eventSets.Count - 1;
+			if (lastIndex == 0)
 			{
 				this.active = false;
 				DisableTrigger(this.trigger);
 			}
+			else
+			{
+				this.eventSets[index] = this.eventSets[lastIndex];
+			}
+
+			this.eventSets.RemoveAt(lastIndex);
 		}
 	}
 }

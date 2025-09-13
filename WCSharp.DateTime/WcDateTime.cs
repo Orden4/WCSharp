@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using WCSharp.Events;
 using WCSharp.Shared;
+using WCSharp.Timers;
 
 namespace WCSharp.DateTime
 {
@@ -617,11 +617,7 @@ namespace WCSharp.DateTime
 				if (baseTime < 0)
 				{
 					baseTime = seconds;
-					PeriodicEvents.AddPeriodicEvent(() =>
-					{
-						baseTime++;
-						return true;
-					}, 1f);
+					TimerSystem.Add(_ => baseTime++, 1f);
 				}
 
 				offsetByMethod.Add(method, seconds - baseTime);

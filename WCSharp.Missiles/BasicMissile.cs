@@ -1,6 +1,5 @@
 ﻿using System;
 using WCSharp.Api;
-using WCSharp.Events;
 using WCSharp.Shared;
 using WCSharp.Shared.Data;
 using static WCSharp.Api.Common;
@@ -61,8 +60,8 @@ namespace WCSharp.Missiles
 		/// <inheritdoc/>
 		public sealed override float Speed
 		{
-			get => this.speed / PeriodicEvents.SYSTEM_INTERVAL;
-			set => this.speed = value * PeriodicEvents.SYSTEM_INTERVAL;
+			get => this.speed / MissileSystem.TickInterval;
+			set => this.speed = value * MissileSystem.TickInterval;
 		}
 
 		/// <summary>
@@ -92,7 +91,7 @@ namespace WCSharp.Missiles
 		/// <summary>
 		/// Whether the projectile is currently performing an arc motion.
 		/// <para>Automatically set at launch according to the <see cref="Arc"/> value.</para>
-		/// <para>This is automatically disabled if the target moves more than 50 units in a single <see cref="PeriodicEvents.SYSTEM_INTERVAL"/> tick (0.03125).</para>
+		/// <para>This is automatically disabled if the target moves more than 50 units in a single <see cref="MissileSystem.TickInterval"/> tick (0.03125).</para>
 		/// <para>Warning: Setting this to <see langword="true"/> mid-flight will cause the stored caster position to be changed to the missiles current position.</para>
 		/// </summary>
 		public bool IsArcing
