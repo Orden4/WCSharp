@@ -83,7 +83,7 @@ namespace WCSharp.Timers
 
 			var old = TickInterval;
 			TickInterval = tickInterval;
-			nativeRoot.Timeout = TickInterval;
+			nativeRoot.Timeout = tickInterval;
 			OnTickIntervalChanged?.Invoke(tickInterval, old);
 
 			if (tickInterval > 0)

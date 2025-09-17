@@ -177,36 +177,51 @@ namespace WCSharp.Shared.Data
 		/// <returns></returns>
 		public bool Contains(float x, float y)
 		{
-			return Left <= x && Bottom <= y && Right >= x && Top >= y;
+			return Left <= x
+				&& Bottom <= y
+				&& Right >= x
+				&& Top >= y;
 		}
 
 		/// <summary>
 		/// Returns whether the given Point is located within this Rectangle.
 		/// </summary>
-		/// <param name="point"></param>
-		/// <returns></returns>
 		public bool Contains(Point point)
 		{
 			return Contains(point.X, point.Y);
 		}
 
 		/// <summary>
-		/// Returns whether the given Rectangle is located fully within this Rectangle.
+		/// Returns whether <paramref name="rect"/> is located fully within this Rectangle.
 		/// </summary>
 		public bool Contains(Rectangle rect)
 		{
-			return Left <= rect.Left && Bottom <= rect.Bottom && Right >= rect.Right && Top >= rect.Top;
+			return Left <= rect.Left
+				&& Bottom <= rect.Bottom
+				&& Right >= rect.Right
+				&& Top >= rect.Top;
 		}
 
 		/// <summary>
-		/// Returns whether this Rectangle has any point where it touches or overlaps with the given Rectangle.
+		/// Returns whether this Rectangle has any point where it overlaps with <paramref name="rect"/>.
 		/// </summary>
 		public bool IntersectsWith(Rectangle rect)
 		{
-			return rect.Left <= Right &&
-				rect.Right >= Left &&
-				rect.Top <= Bottom &&
-				rect.Bottom >= Top;
+			return rect.Left < Right
+				&& rect.Right > Left
+				&& rect.Top < Bottom
+				&& rect.Bottom > Top;
+		}
+
+		/// <summary>
+		/// Returns whether this Rectangle has any point where it overlaps with or touches <paramref name="rect"/>.
+		/// </summary>
+		public bool IntersectsWithOrTouching(Rectangle rect)
+		{
+			return rect.Left <= Right
+				&& rect.Right >= Left
+				&& rect.Top <= Bottom
+				&& rect.Bottom >= Top;
 		}
 
 		/// <summary>

@@ -22,9 +22,8 @@ Implements [ITimerAction](WCSharp.Timers.ITimerAction.md 'WCSharp\.Timers\.ITime
 | [Active](WCSharp.Timers.Timer.Active.md 'WCSharp\.Timers\.Timer\.Active') | Used to indicate whether the timer should remain active or not\.   Set to [true](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs\.microsoft\.com/en\-us/dotnet/csharp/language\-reference/builtin\-types/bool') automatically.  Set to [false](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/bool 'https://docs\.microsoft\.com/en\-us/dotnet/csharp/language\-reference/builtin\-types/bool') to disable the loop. |
 | [Timeout](WCSharp.Timers.Timer.Timeout.md 'WCSharp\.Timers\.Timer\.Timeout') | The time interval per execution\. |
 | [TimerAction](WCSharp.Timers.Timer.TimerAction.md 'WCSharp\.Timers\.Timer\.TimerAction') | The action to be executed when the timer expires\. |
-| [TimerElapsed](WCSharp.Timers.Timer.TimerElapsed.md 'WCSharp\.Timers\.Timer\.TimerElapsed') | The time elapsed since the last execution\. |
-| [TimerRemaining](WCSharp.Timers.Timer.TimerRemaining.md 'WCSharp\.Timers\.Timer\.TimerRemaining') | The time remaining until the next execution\. |
 
 | Methods | |
 | :--- | :--- |
 | [Action\(\)](WCSharp.Timers.Timer.Action().md 'WCSharp\.Timers\.Timer\.Action\(\)') | Automatically called by the timer system whenever the actions timer expires\. |
+| [SetTimeout\(float\)](WCSharp.Timers.Timer.SetTimeout(float).md 'WCSharp\.Timers\.Timer\.SetTimeout\(float\)') | Changes the timeout to the given value\.   Note that the timing of the first tick after changing the timeout is unreliable. |

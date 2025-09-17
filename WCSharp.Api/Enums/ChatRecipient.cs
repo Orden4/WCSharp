@@ -5,9 +5,21 @@
 	/// </summary>
 	public enum ChatRecipient
 	{
+		/// <summary>
+		/// Prefixe the message with <c>[All]</c>.
+		/// </summary>
 		All = 0,
+		/// <summary>
+		/// Prefixe the message with <c>[Allies]</c>.
+		/// </summary>
 		Allies = 1,
+		/// <summary>
+		/// Prefixe the message with <c>[Observers]</c>.
+		/// </summary>
 		Observers = 2,
+		/// <summary>
+		/// Prefixe the message with <c>[Private]</c>.
+		/// </summary>
 		Private = 3,
 	}
 }

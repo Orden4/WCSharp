@@ -3,7 +3,7 @@
 
 ## Rectangle\.IntersectsWith\(Rectangle\) Method
 
-Returns whether this Rectangle has any point where it touches or overlaps with the given Rectangle\.
+Returns whether this Rectangle has any point where it overlaps with [rect](WCSharp.Shared.Data.Rectangle.IntersectsWith(WCSharp.Shared.Data.Rectangle).md#WCSharp.Shared.Data.Rectangle.IntersectsWith(WCSharp.Shared.Data.Rectangle).rect 'WCSharp\.Shared\.Data\.Rectangle\.IntersectsWith\(WCSharp\.Shared\.Data\.Rectangle\)\.rect')\.
 
 ```csharp
 public bool IntersectsWith(WCSharp.Shared.Data.Rectangle rect);

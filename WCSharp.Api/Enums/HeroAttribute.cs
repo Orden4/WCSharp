@@ -1,5 +1,8 @@
 ﻿namespace WCSharp.Api.Enums
 {
+	/// <summary>
+	/// The possible attributes a hero can have.
+	/// </summary>
 	public enum HeroAttribute
 	{
 		/// <summary>

@@ -24,7 +24,7 @@ namespace WCSharp.Buffs
 
 		private static readonly List<Buff> buffs = new();
 		private static readonly Dictionary<unit, List<Buff>> buffsByUnit = new();
-		private static readonly Timer timer = new(Action, TimerSystem.DEFAULT_TICK_INTERVAL);
+		private static readonly Timer timer = TimerSystem.Add(Action, TimerSystem.DEFAULT_TICK_INTERVAL);
 
 		private static int index;
 		private static int size;
@@ -364,7 +364,7 @@ namespace WCSharp.Buffs
 						buff.BeforeTickIntervalChanged(old, tickInterval);
 					}
 					TickInterval = tickInterval;
-					timer.Timeout = tickInterval;
+					timer.SetTimeout(tickInterval);
 				}
 			});
 		}

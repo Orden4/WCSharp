@@ -6,7 +6,7 @@
 Will add the given action to this timer set, tracking it for execution whenever the timeout expires\.
 
 ```csharp
-public void Add(T action);
+public virtual void Add(T action);
 ```
 #### Parameters
 

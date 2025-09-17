@@ -7,7 +7,7 @@
 | :--- | :--- |
 | [Contains\(float, float\)](WCSharp.Shared.Data.Rectangle.Contains.md#WCSharp.Shared.Data.Rectangle.Contains(float,float) 'WCSharp\.Shared\.Data\.Rectangle\.Contains\(float, float\)') | Returns whether the given coordinates are located within this Rectangle\. |
 | [Contains\(Point\)](WCSharp.Shared.Data.Rectangle.Contains.md#WCSharp.Shared.Data.Rectangle.Contains(WCSharp.Shared.Data.Point) 'WCSharp\.Shared\.Data\.Rectangle\.Contains\(WCSharp\.Shared\.Data\.Point\)') | Returns whether the given Point is located within this Rectangle\. |
-| [Contains\(Rectangle\)](WCSharp.Shared.Data.Rectangle.Contains.md#WCSharp.Shared.Data.Rectangle.Contains(WCSharp.Shared.Data.Rectangle) 'WCSharp\.Shared\.Data\.Rectangle\.Contains\(WCSharp\.Shared\.Data\.Rectangle\)') | Returns whether the given Rectangle is located fully within this Rectangle\. |
+| [Contains\(Rectangle\)](WCSharp.Shared.Data.Rectangle.Contains.md#WCSharp.Shared.Data.Rectangle.Contains(WCSharp.Shared.Data.Rectangle) 'WCSharp\.Shared\.Data\.Rectangle\.Contains\(WCSharp\.Shared\.Data\.Rectangle\)') | Returns whether [rect](WCSharp.Shared.Data.Rectangle.md#WCSharp.Shared.Data.Rectangle.Contains(WCSharp.Shared.Data.Rectangle).rect 'WCSharp\.Shared\.Data\.Rectangle\.Contains\(WCSharp\.Shared\.Data\.Rectangle\)\.rect') is located fully within this Rectangle\. |
 
 <a name='WCSharp.Shared.Data.Rectangle.Contains(float,float)'></a>
 
@@ -53,7 +53,7 @@ public bool Contains(WCSharp.Shared.Data.Point point);
 
 ## Rectangle\.Contains\(Rectangle\) Method
 
-Returns whether the given Rectangle is located fully within this Rectangle\.
+Returns whether [rect](WCSharp.Shared.Data.Rectangle.md#WCSharp.Shared.Data.Rectangle.Contains(WCSharp.Shared.Data.Rectangle).rect 'WCSharp\.Shared\.Data\.Rectangle\.Contains\(WCSharp\.Shared\.Data\.Rectangle\)\.rect') is located fully within this Rectangle\.
 
 ```csharp
 public bool Contains(WCSharp.Shared.Data.Rectangle rect);

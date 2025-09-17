@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <Version>3.3.0-rc1</Version>
+    <Version>3.3.0-rc2</Version>
     <UsePackageReferences>false</UsePackageReferences>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/Orden4/WCSharp</PackageProjectUrl>

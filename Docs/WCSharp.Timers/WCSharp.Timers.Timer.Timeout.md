@@ -6,7 +6,7 @@
 The time interval per execution\.
 
 ```csharp
-public float Timeout { get; set; }
+public float Timeout { get; }
 ```
 
 #### Property Value

@@ -91,23 +91,23 @@ namespace WCSharp.Dummies
 		}
 
 		/// <summary>
+		/// Requests an available dummy at the given coordinates, optionally under control of the given player.
+		/// </summary>
+		public static unit GetDummy(float x, float y, player player = null)
+		{
+			var dummy = GetDummy();
+			if (player != null)
+				SetUnitOwner(dummy, player, false);
+			SetUnitPosition(dummy, x, y);
+			return dummy;
+		}
+
+		/// <summary>
 		/// Requests an available dummy at the given coordinates and under control of the given player.
 		/// </summary>
 		public static unit GetDummy(float x, float y, float z, player player)
 		{
-			var size = dummiesReady.Count;
-			unit dummy;
-			if (size == 0)
-			{
-				dummy = CreateUnit(Player(PLAYER_NEUTRAL_PASSIVE), UNIT_TYPE_DUMMY, 0, 0, 0);
-			}
-			else
-			{
-				dummy = dummiesReady.DirectGet(size);
-				dummiesReady.DirectNil(size);
-			}
-			SetUnitOwner(dummy, player, false);
-			SetUnitPosition(dummy, x, y);
+			var dummy = GetDummy(x, y, player);
 			SetUnitFlyHeight(dummy, z, int.MaxValue);
 			return dummy;
 		}

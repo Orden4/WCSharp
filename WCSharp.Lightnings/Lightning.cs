@@ -172,7 +172,7 @@ namespace WCSharp.Lightnings
 		internal void Start()
 		{
 			this.lightning = AddLightning(this.name, true, CasterX, CasterY, TargetX, TargetY);
-			MoveLightningEx(this.lightning, true, CasterX, CasterY, this.casterZ + CasterHeightOffset, TargetX, TargetY, this.casterZ + TargetHeightOffset);
+			MoveLightningEx(this.lightning, true, CasterX, CasterY, this.casterZ + CasterHeightOffset, TargetX, TargetY, this.targetZ + TargetHeightOffset);
 			SetLightningColor(this.lightning, Red, Green, Blue, Alpha);
 			this.transparencyRate = FadeDuration > 0 ? Alpha / FadeDuration * LightningSystem.TickInterval : Alpha;
 			this.age = 0;

@@ -40,7 +40,7 @@ namespace WCSharp.Timers
 		/// <summary>
 		/// Will add the given action to this timer set, tracking it for execution whenever the timeout expires.
 		/// </summary>
-		public void Add(T action)
+		public virtual void Add(T action)
 		{
 			if (this.actions.Count == 0)
 				this.root.Add(this);

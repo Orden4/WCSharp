@@ -30,6 +30,13 @@ namespace WCSharp.Timers
 		}
 
 		/// <inheritdoc/>
+		public override void Add(T action)
+		{
+			base.Add(action);
+			action.TimerRemaining = Timeout;
+		}
+
+		/// <inheritdoc/>
 		public override void Action()
 		{
 			var size = this.actions.Count;
