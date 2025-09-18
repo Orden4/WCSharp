@@ -207,10 +207,10 @@ namespace WCSharp.Shared.Data
 		/// </summary>
 		public bool IntersectsWith(Rectangle rect)
 		{
-			return rect.Left < Right
-				&& rect.Right > Left
-				&& rect.Top < Bottom
-				&& rect.Bottom > Top;
+			return Left < rect.Right
+				&& Bottom < rect.Top
+				&& Right > rect.Left
+				&& Top > rect.Bottom;
 		}
 
 		/// <summary>
@@ -218,10 +218,10 @@ namespace WCSharp.Shared.Data
 		/// </summary>
 		public bool IntersectsWithOrTouching(Rectangle rect)
 		{
-			return rect.Left <= Right
-				&& rect.Right >= Left
-				&& rect.Top <= Bottom
-				&& rect.Bottom >= Top;
+			return Left <= rect.Right
+				&& Bottom <= rect.Top
+				&& Right >= rect.Left
+				&& Top >= rect.Bottom;
 		}
 
 		/// <summary>
