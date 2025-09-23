@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using WCSharp.Api;
 using WCSharp.Dummies;
+using WCSharp.Timers;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Buffs
@@ -51,15 +52,14 @@ namespace WCSharp.Buffs
 		public void BindDummyCast(int abilityId, int buffId, int orderId, int level = 1, player dummyPlayer = null)
 		{
 			dummyPlayer ??= Player(PLAYER_NEUTRAL_PASSIVE);
-			var dummy = DummySystem.GetDummy();
-			SetUnitOwner(dummy, dummyPlayer, false);
+			var dummy = DummySystem.GetDummy(GetUnitX(Target), GetUnitY(Target), dummyPlayer);
 			UnitAddAbility(dummy, abilityId);
 			if (level > 1)
 			{
 				SetUnitAbilityLevel(dummy, abilityId, level);
 			}
 			IssueTargetOrderById(dummy, orderId, Target);
-			DummySystem.RecycleDummy(dummy);
+			DummySystem.RecycleDummy(dummy, TimerSystem.DEFAULT_TICK_INTERVAL);
 
 			BuffId = buffId;
 		}

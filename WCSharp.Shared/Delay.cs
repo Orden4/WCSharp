@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Api;
+using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Shared
@@ -34,32 +35,34 @@ namespace WCSharp.Shared
 			{
 				TimerStart(timer, 0.0f, false, execute);
 			}
-			funcs.Add(func);
+			funcs.DirectAdd(func);
 		}
 
 		private static void ExecuteAll()
 		{
-			for (var i = 0; i < funcs.Count; i++)
+			var size = funcs.Count;
+			for (var i = 1; i <= size; i++)
 			{
-				funcs[i]();
+				funcs.DirectGet(i)();
 			}
-			funcs.Clear();
+			funcs.RemoveRange(0, size);
 		}
 
 		private static void ExecuteAllDebug()
 		{
+			var size = funcs.Count;
 			try
 			{
-				for (var i = 0; i < funcs.Count; i++)
+				for (var i = 1; i <= size; i++)
 				{
-					funcs[i]();
+					funcs.DirectGet(i)();
 				}
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex);
 			}
-			funcs.Clear();
+			funcs.RemoveRange(0, size);
 		}
 	}
 }
