@@ -15,8 +15,9 @@ namespace WCSharp.Dummies
 		/// Corresponds to the code 'xxxx'
 		/// </summary>
 		public const int UNIT_TYPE_DUMMY = 2021161080;
+		private const double TICK_INTERVAL = 1.0;
 
-		private static readonly PeriodicEvent periodicEvent = new(Countdown, 1.0);
+		private static readonly PeriodicEvent periodicEvent = new(Countdown, TICK_INTERVAL);
 		private static readonly List<unit> dummiesReady = new();
 		private static readonly List<DummyBeingRecycled> dummiesBeingRecycled = new();
 
@@ -68,7 +69,7 @@ namespace WCSharp.Dummies
 			{
 				PeriodicEvents.AddPeriodicEvent(periodicEvent);
 			}
-			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, (int)(recycleTime / PeriodicEvents.SYSTEM_INTERVAL)));
+			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, (int)(recycleTime / TICK_INTERVAL)));
 		}
 
 		/// <summary>
