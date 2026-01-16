@@ -149,7 +149,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "SetUnitPropWindow({this}, {0})"
 		public extern float PropWindow { get; set; }
 		/// @CSharpLua.Get = "GetUnitAcquireRange({this})"
-		/// @CSharpLua.Get = "SetUnitAcquireRange({this}, {0})"
+		/// @CSharpLua.Set = "SetUnitAcquireRange({this}, {0})"
 		public extern float AcquireRange { get; set; }
 		/// @CSharpLua.Get = "GetUnitFlyHeight({this})"
 		/// @CSharpLua.Set = "SetUnitFlyHeight({this}, {0}, 0)"
