@@ -809,7 +809,7 @@ namespace WCSharp.Api
 		public extern bool AttackEnabled1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0)"
-		/// @CSharpLua.Set = "BlzSetUnitWeaponBooleanField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0, {0})"
+		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0, {0})"
 		public extern int AttackMaximumNumberOfTargets1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0)"
