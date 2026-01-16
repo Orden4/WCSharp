@@ -37,11 +37,11 @@ namespace WCSharp.Api
 		public static extern bool IsUnitType(int unitTypeId, unittype unitType);
 
 		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
-		public static extern int GoldCost { get; }
+		public extern int GoldCost { get; }
 		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
-		public static extern int WoodCost { get; }
+		public extern int WoodCost { get; }
 		/// @CSharpLua.Get = "GetUnitBuildTime(GetUnitTypeId({this}))"
-		public static extern int BuildTime { get; }
+		public extern int BuildTime { get; }
 
 		/// @CSharpLua.Get = "GetUnitX({this})"
 		/// @CSharpLua.Set = "SetUnitX({this}, {0})"
