@@ -25,7 +25,7 @@ namespace WCSharp.Api
 		public static extern int FoodMadeBy(int unitType);
 		/// @CSharpLua.Template = "GetUnitGoldCost({0})"
 		public static extern int GoldCostOf(int unitType);
-		/// @CSharpLua.Template = "GetUnitGoldCost({0})"
+		/// @CSharpLua.Template = "GetUnitWoodCost({0})"
 		public static extern int WoodCostOf(int unitType);
 		/// @CSharpLua.Template = "GetUnitBuildTime({0})"
 		public static extern int BuildTimeOf(int unitType);
@@ -38,7 +38,7 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
 		public extern int GoldCost { get; }
-		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
+		/// @CSharpLua.Get = "GetUnitWoodCost(GetUnitTypeId({this}))"
 		public extern int WoodCost { get; }
 		/// @CSharpLua.Get = "GetUnitBuildTime(GetUnitTypeId({this}))"
 		public extern int BuildTime { get; }
