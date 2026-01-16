@@ -390,7 +390,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "UnitMakeAbilityPermanent({this}, {1}, {0})"
 		public extern bool SetAbilityPermanent(int abilityId, bool permanent);
 		/// @CSharpLua.Template = "BlzDeleteHeroAbility({this}, {0})"
-		public extern bool DeleteHeroAbility(int abilityId);
+		public extern void DeleteHeroAbility(int abilityId);
 
 		/// @CSharpLua.Template = "UnitRemoveBuffs({this}, {0}, {1})"
 		public extern void RemoveBuffs(bool positive, bool negative);
