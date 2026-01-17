@@ -29,12 +29,12 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "GetItemType({this})"
 		public extern itemtype Type { get; }
 
-		/// @CSharpLua.Get = "GetWidgetX({this})"
-		/// @CSharpLua.Set = "SetItemPosition({this}, {0}, GetWidgetY({this}))"
+		/// @CSharpLua.Get = "GetItemX({this})"
+		/// @CSharpLua.Set = "SetItemPosition({this}, {0}, GetItemY({this}))"
 		public extern new float X { get; set; }
 
-		/// @CSharpLua.Get = "GetWidgetY({this})"
-		/// @CSharpLua.Set = "SetItemPosition({this}, GetWidgetX({this}), {0})"
+		/// @CSharpLua.Get = "GetItemY({this})"
+		/// @CSharpLua.Set = "SetItemPosition({this}, GetItemX({this}), {0})"
 		public extern new float Y { get; set; }
 
 		/// @CSharpLua.Get = "GetItemPlayer({this})"
