@@ -25,7 +25,7 @@ namespace WCSharp.Api
 		public static extern int FoodMadeBy(int unitType);
 		/// @CSharpLua.Template = "GetUnitGoldCost({0})"
 		public static extern int GoldCostOf(int unitType);
-		/// @CSharpLua.Template = "GetUnitGoldCost({0})"
+		/// @CSharpLua.Template = "GetUnitWoodCost({0})"
 		public static extern int WoodCostOf(int unitType);
 		/// @CSharpLua.Template = "GetUnitBuildTime({0})"
 		public static extern int BuildTimeOf(int unitType);
@@ -37,18 +37,18 @@ namespace WCSharp.Api
 		public static extern bool IsUnitType(int unitTypeId, unittype unitType);
 
 		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
-		public static extern int GoldCost { get; }
-		/// @CSharpLua.Get = "GetUnitGoldCost(GetUnitTypeId({this}))"
-		public static extern int WoodCost { get; }
+		public extern int GoldCost { get; }
+		/// @CSharpLua.Get = "GetUnitWoodCost(GetUnitTypeId({this}))"
+		public extern int WoodCost { get; }
 		/// @CSharpLua.Get = "GetUnitBuildTime(GetUnitTypeId({this}))"
-		public static extern int BuildTime { get; }
+		public extern int BuildTime { get; }
 
 		/// @CSharpLua.Get = "GetUnitX({this})"
 		/// @CSharpLua.Set = "SetUnitX({this}, {0})"
-		public extern float X { get; set; }
+		public extern new float X { get; set; }
 		/// @CSharpLua.Get = "GetUnitY({this})"
 		/// @CSharpLua.Set = "SetUnitY({this}, {0})"
-		public extern float Y { get; set; }
+		public extern new float Y { get; set; }
 		/// @CSharpLua.Get = "GetUnitState({this}, UNIT_STATE_MANA)"
 		/// @CSharpLua.Set = "SetUnitState({this}, UNIT_STATE_MANA, {0})"
 		public extern float Mana { get; set; }
@@ -149,7 +149,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Set = "SetUnitPropWindow({this}, {0})"
 		public extern float PropWindow { get; set; }
 		/// @CSharpLua.Get = "GetUnitAcquireRange({this})"
-		/// @CSharpLua.Get = "SetUnitAcquireRange({this}, {0})"
+		/// @CSharpLua.Set = "SetUnitAcquireRange({this}, {0})"
 		public extern float AcquireRange { get; set; }
 		/// @CSharpLua.Get = "GetUnitFlyHeight({this})"
 		/// @CSharpLua.Set = "SetUnitFlyHeight({this}, {0}, 0)"
@@ -390,7 +390,7 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "UnitMakeAbilityPermanent({this}, {1}, {0})"
 		public extern bool SetAbilityPermanent(int abilityId, bool permanent);
 		/// @CSharpLua.Template = "BlzDeleteHeroAbility({this}, {0})"
-		public extern bool DeleteHeroAbility(int abilityId);
+		public extern void DeleteHeroAbility(int abilityId);
 
 		/// @CSharpLua.Template = "UnitRemoveBuffs({this}, {0}, {1})"
 		public extern void RemoveBuffs(bool positive, bool negative);
@@ -809,7 +809,7 @@ namespace WCSharp.Api
 		public extern bool AttackEnabled1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0)"
-		/// @CSharpLua.Set = "BlzSetUnitWeaponBooleanField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0, {0})"
+		/// @CSharpLua.Set = "BlzSetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_MAXIMUM_NUMBER_OF_TARGETS, 0, {0})"
 		public extern int AttackMaximumNumberOfTargets1 { get; set; }
 
 		/// @CSharpLua.Get = "BlzGetUnitWeaponIntegerField({this}, UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0)"

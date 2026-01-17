@@ -7,6 +7,12 @@
 		{
 		}
 
+		/// @CSharpLua.Get = "GetWidgetX({this})"
+		public extern float X { get; }
+
+		/// @CSharpLua.Get = "GetWidgetY({this})"
+		public extern float Y { get; }
+
 		/// @CSharpLua.Get = "GetWidgetLife({this})"
 		/// @CSharpLua.Set = "SetWidgetLife({this}, {0})"
 		public extern float Life { get; set; }
