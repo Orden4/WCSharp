@@ -91,15 +91,6 @@ namespace WCSharp.Events
 		}
 
 		/// <summary>
-		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for <paramref name="playerId"/>.
-		/// <para>Note: <paramref name="playerId"/> start at 0. So player 1 (red) is 0.</para>
-		/// </summary>
-		public static void Register(PlayerEvent @event, Action action, int playerId)
-		{
-			Register((int)@event, action, playerId);
-		}
-
-		/// <summary>
 		/// Registers <paramref name="action"/> to fire when <paramref name="event"/> is triggered for any unit.
 		/// </summary>
 		public static void Register(RegionUnitEvent @event, Action action, region region, unit unit)
@@ -291,14 +282,6 @@ namespace WCSharp.Events
 		public static void Unregister(PlayerEvent @event, Action action)
 		{
 			Unregister((int)@event, action);
-		}
-
-		/// <summary>
-		/// Unregisters <paramref name="action"/> from <paramref name="event"/> for <paramref name="playerId"/>.
-		/// </summary>
-		public static void Unregister(PlayerEvent @event, Action action, int playerId)
-		{
-			Unregister((int)@event, action, playerId);
 		}
 
 		/// <summary>
