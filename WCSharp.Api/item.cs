@@ -31,11 +31,11 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "GetWidgetX({this})"
 		/// @CSharpLua.Set = "SetItemPosition({this}, {0}, GetWidgetY({this}))"
-		public extern float X { get; set; }
+		public extern new float X { get; set; }
 
 		/// @CSharpLua.Get = "GetWidgetY({this})"
 		/// @CSharpLua.Set = "SetItemPosition({this}, GetWidgetX({this}), {0})"
-		public extern float Y { get; set; }
+		public extern new float Y { get; set; }
 
 		/// @CSharpLua.Get = "GetItemPlayer({this})"
 		/// @CSharpLua.Set = "SetItemPlayer({this}, {0}, true)"
