@@ -26,12 +26,6 @@ namespace WCSharp.Api
 		/// @CSharpLua.Template = "BlzCreateDeadDestructableZWithSkin({0}, {1}, {2}, {3}, {5}, {6}, {7}, {4})"
 		public static extern destructable CreateDeadZWithSkin(int typeId, float x, float y, float z, int skin, float facing = Blizzard.bj_UNIT_FACING, float scale = 1.0f, int variation = 0);
 
-		/// @CSharpLua.Get = "GetWidgetX({this})"
-		public extern float X { get; }
-
-		/// @CSharpLua.Get = "GetWidgetY({this})"
-		public extern float Y { get; }
-
 		/// @CSharpLua.Get = "GetDestructableMaxLife({this})"
 		/// @CSharpLua.Set = "SetDestructableMaxLife({this}, {0})"
 		public extern float MaxLife { get; set; }

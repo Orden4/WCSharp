@@ -45,10 +45,10 @@ namespace WCSharp.Api
 
 		/// @CSharpLua.Get = "GetUnitX({this})"
 		/// @CSharpLua.Set = "SetUnitX({this}, {0})"
-		public extern float X { get; set; }
+		public extern new float X { get; set; }
 		/// @CSharpLua.Get = "GetUnitY({this})"
 		/// @CSharpLua.Set = "SetUnitY({this}, {0})"
-		public extern float Y { get; set; }
+		public extern new float Y { get; set; }
 		/// @CSharpLua.Get = "GetUnitState({this}, UNIT_STATE_MANA)"
 		/// @CSharpLua.Set = "SetUnitState({this}, UNIT_STATE_MANA, {0})"
 		public extern float Mana { get; set; }
