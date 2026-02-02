@@ -41,7 +41,7 @@ namespace WCSharp.Shared.Extensions
 		/// <param name="list">The list to modify.</param>
 		/// <param name="index">The index to move the final item to.</param>
 		/// <param name="count">This should always be equal to <see cref="List{T}.Count"/>.</param>
-		/// @CSharpLua.Template = "{0}[{1}], {0}[{2}] = {0}[{2}], nil"
+		/// @CSharpLua.Template = "{0}[{2}], {0}[{1}] = nil, {0}[{2}]"
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
 		public static extern void DirectNilShift<T>(this List<T> list, int index, int count);
 
@@ -108,7 +108,7 @@ namespace WCSharp.Shared.Extensions
 		/// <param name="list">The list to modify.</param>
 		/// <param name="first">The first index.</param>
 		/// <param name="second">The second index.</param>
-		/// @CSharpLua.Template = "{0}[{1}], {0}[{2}] = {0}[{2}], {0}[{1}]"
+		/// @CSharpLua.Template = "{0}[{2}], {0}[{1}] = {0}[{1}], {0}[{2}]"
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
 		public static extern void DirectSwap<T>(this IList<T> list, int first, int second);
 
