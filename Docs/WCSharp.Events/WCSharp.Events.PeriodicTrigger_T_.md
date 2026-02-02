@@ -8,7 +8,7 @@ subscribe/unsubscribe from [PeriodicEvents](WCSharp.Events.PeriodicEvents.md 'WC
 
 ```csharp
 public class PeriodicTrigger<T>
-    where T : WCSharp.Events.IPeriodicAction
+    where T : class, WCSharp.Events.IPeriodicAction
 ```
 #### Type parameters
 

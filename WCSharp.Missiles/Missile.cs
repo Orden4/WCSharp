@@ -412,9 +412,9 @@ namespace WCSharp.Missiles
 		{
 			GroupEnumUnitsInRange(group, MissileX, MissileY, this.collisionRadius, null);
 			var list = group.ToList();
-			for (var i = 0; i < list.Count; i++)
+			for (var i = 1; i <= list.Count; i++)
 			{
-				var unit = list[i];
+				var unit = list.DirectGet(i);
 				if (TargetsHit.Add(unit))
 				{
 					OnCollision(unit);

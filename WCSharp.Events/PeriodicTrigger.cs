@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Shared.Extensions;
 
 namespace WCSharp.Events
 {
@@ -8,7 +9,7 @@ namespace WCSharp.Events
 	/// subscribe/unsubscribe from <see cref="PeriodicEvents"/> based on whether any triggers are active.
 	/// </summary>
 	public class PeriodicTrigger<T>
-		where T : IPeriodicAction
+		where T : class, IPeriodicAction
 	{
 		private readonly List<T> actions;
 		private readonly PeriodicEvent timerEvent;
@@ -47,25 +48,21 @@ namespace WCSharp.Events
 		private bool Periodic()
 		{
 			var size = this.actions.Count;
-			var i = 0;
 
-			while (i < size)
+			for (var i = 1; i <= size; i++)
 			{
-				var action = this.actions[i];
+				var action = this.actions.DirectGet(i);
 				if (action.Active)
 				{
 					action.Action();
 				}
 
-				if (action.Active)
+				if (!action.Active)
 				{
-					i++;
-				}
-				else
-				{
+					this.actions.DirectMove(size, i);
 					size--;
-					this.actions[i] = this.actions[size];
 					this.actions.RemoveAt(size);
+					i--;
 				}
 			}
 

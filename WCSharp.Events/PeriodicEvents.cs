@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Api;
+using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events
@@ -72,22 +73,20 @@ namespace WCSharp.Events
 		private static void Tick()
 		{
 			var size = timerEvents.Count;
-			var i = 0;
-			while (i < size)
+
+			for (var i = 1; i <= size; i++)
 			{
-				// Purposely written stupidly to avoid decompilation into a for loop
-				var timerEvent = timerEvents[i];
-				i++;
+				var timerEvent = timerEvents.DirectGet(i);
 				timerEvent.IntervalLeft -= SYSTEM_INTERVAL;
 				while (timerEvent.IntervalLeft <= 0)
 				{
 					timerEvent.IntervalLeft += timerEvent.Interval;
 					if (!timerEvent.Method.Invoke())
 					{
-						i--;
+						timerEvents.DirectMove(size, i);
 						size--;
-						timerEvents[i] = timerEvents[size];
 						timerEvents.RemoveAt(size);
+						i--;
 						break;
 					}
 				}

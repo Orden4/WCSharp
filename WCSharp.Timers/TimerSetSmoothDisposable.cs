@@ -7,7 +7,7 @@ namespace WCSharp.Timers
 	/// <para>Each action has its own individual timeout.</para>
 	/// </summary>
 	public class TimerSetSmoothDisposable<T> : TimerSetSmooth<T>
-		where T : ISmoothDisposableAction
+		where T : class, ISmoothDisposableAction
 	{
 		/// <inheritdoc/>
 		public TimerSetSmoothDisposable(float timeout, float? rootTimeout = null) : base(timeout, rootTimeout)

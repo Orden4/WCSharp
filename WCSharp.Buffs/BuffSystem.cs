@@ -79,9 +79,9 @@ namespace WCSharp.Buffs
 				}
 			}
 
-			for (var i = 0; i < buffsOnUnit.Count; i++)
+			for (var i = 1; i <= buffsOnUnit.Count; i++)
 			{
-				var buff = buffsOnUnit[i];
+				var buff = buffsOnUnit.DirectGet(i);
 				if (buff.Active)
 				{
 					buff.Active = false;
@@ -101,9 +101,9 @@ namespace WCSharp.Buffs
 				if (stackBehaviour != StackBehaviour.None)
 				{
 					var type = buff.GetType();
-					for (var i = 0; i < buffsOnUnit.Count; i++)
+					for (var i = 1; i <= buffsOnUnit.Count; i++)
 					{
-						var currentBuff = buffsOnUnit[i];
+						var currentBuff = buffsOnUnit.DirectGet(i);
 						if (currentBuff.Active && currentBuff.GetType() == type)
 						{
 							if (stackBehaviour == StackBehaviour.Stack ||
@@ -171,19 +171,19 @@ namespace WCSharp.Buffs
 			if (GetUnitTypeId(unit) == DummySystem.UNIT_TYPE_DUMMY)
 				return;
 
-			for (var i = 0; i < buffs.Count; i++)
+			for (var i = 1; i <= buffs.Count; i++)
 			{
-				if (buffs[i].Caster == unit)
+				if (buffs.DirectGet(i).Caster == unit)
 				{
-					buffs[i].CastingPlayer = GetOwningPlayer(unit);
+					buffs.DirectGet(i).CastingPlayer = GetOwningPlayer(unit);
 				}
 			}
 
 			var owner = GetOwningPlayer(unit);
 			var list = GetBuffsOnUnit(unit);
-			for (var i = 0; i < list.Count; i++)
+			for (var i = 1; i <= list.Count; i++)
 			{
-				var buff = list[i];
+				var buff = list.DirectGet(i);
 				buff.TargetPlayer = owner;
 			}
 		}
@@ -210,9 +210,9 @@ namespace WCSharp.Buffs
 		{
 			var dispels = new List<Dispel>();
 			var list = GetBuffsOnUnit(target);
-			for (var i = 0; i < list.Count; i++)
+			for (var i = 1; i <= list.Count; i++)
 			{
-				var buff = list[i];
+				var buff = list.DirectGet(i);
 				if (buff.IsBeneficial == isBeneficial)
 				{
 					var stacks = buff.Stacks;
@@ -246,9 +246,9 @@ namespace WCSharp.Buffs
 		{
 			var dispels = new List<Dispel>();
 			var list = GetBuffsOnUnit(target);
-			for (var i = 0; i < list.Count; i++)
+			for (var i = 1; i <= list.Count; i++)
 			{
-				var buff = list[i];
+				var buff = list.DirectGet(i);
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Contains(dispelType))
 				{
 					var stacks = buff.Stacks;
@@ -282,9 +282,9 @@ namespace WCSharp.Buffs
 		{
 			var dispels = new List<Dispel>();
 			var list = GetBuffsOnUnit(target);
-			for (var i = 0; i < list.Count; i++)
+			for (var i = 1; i <= list.Count; i++)
 			{
-				var buff = list[i];
+				var buff = list.DirectGet(i);
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)))
 				{
 					var stacks = buff.Stacks;
@@ -319,9 +319,9 @@ namespace WCSharp.Buffs
 		{
 			var dispels = new List<Dispel>();
 			var list = GetBuffsOnUnit(target);
-			for (var i = 0; i < list.Count; i++)
+			for (var i = 1; i <= list.Count; i++)
 			{
-				var buff = list[i];
+				var buff = list.DirectGet(i);
 				if (buff.IsBeneficial == isBeneficial && buff.BuffTypes.Any(x => dispelTypes.Contains(x)) && !buff.BuffTypes.Any(x => exclusions.Contains(x)))
 				{
 					var stacks = buff.Stacks;

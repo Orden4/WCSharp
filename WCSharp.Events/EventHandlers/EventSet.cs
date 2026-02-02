@@ -18,7 +18,7 @@ namespace WCSharp.Events.EventHandlers
 
 		public void Add(Action action, object filterObj)
 		{
-			this.actions.Add(action);
+			this.actions.DirectAdd(action);
 		}
 
 		public bool Remove(Action action, object filterObj)

@@ -8,7 +8,7 @@ subscribe/unsubscribe from [PeriodicEvents](WCSharp.Events.PeriodicEvents.md 'WC
 
 ```csharp
 public class SmoothDisposableTrigger<T>
-    where T : WCSharp.Events.ISmoothDisposableAction
+    where T : class, WCSharp.Events.ISmoothDisposableAction
 ```
 #### Type parameters
 

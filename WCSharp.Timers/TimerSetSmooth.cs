@@ -7,7 +7,7 @@ namespace WCSharp.Timers
 	/// <para>Each action has its own individual timeout.</para>
 	/// </summary>
 	public class TimerSetSmooth<T> : TimerSet<T>
-		where T : ISmoothAction
+		where T : class, ISmoothAction
 	{
 		/// <summary>
 		/// The time interval of the smoothing timer.

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events
@@ -10,7 +11,7 @@ namespace WCSharp.Events
 	/// <para>Unlike <see cref="PeriodicTrigger{T}"/>, all actions will not trigger simultaneously, since each action is counted down separately.</para>
 	/// </summary>
 	public class SmoothTrigger<T>
-		where T : ISmoothAction
+		where T : class, ISmoothAction
 	{
 		private readonly List<T> actions;
 		private readonly PeriodicEvent timerEvent;
@@ -68,13 +69,10 @@ namespace WCSharp.Events
 		private bool Periodic()
 		{
 			var size = this.actions.Count;
-			var i = 0;
 
-			while (i < size)
+			for (var i = 1; i <= size; i++)
 			{
-				var action = this.actions[i];
-				// Purposely written stupidly to avoid decompilation into a for loop
-				i++;
+				var action = this.actions.DirectGet(i);
 				action.TicksLeft--;
 				if (action.TicksLeft <= 0)
 				{
@@ -86,11 +84,10 @@ namespace WCSharp.Events
 
 					if (!action.Active)
 					{
-						i--;
-
+						this.actions.DirectMove(size, i);
 						size--;
-						this.actions[i] = this.actions[size];
 						this.actions.RemoveAt(size);
+						i--;
 					}
 				}
 			}

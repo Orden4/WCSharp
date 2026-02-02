@@ -40,18 +40,19 @@ namespace WCSharp.Dummies
 		private static void Countdown(Timer timer)
 		{
 			var size = dummiesBeingRecycled.Count;
-			for (var i = size - 1; i >= 0; i--)
+			for (var i = size; i > 0; i--)
 			{
-				var dummy = dummiesBeingRecycled[i];
+				var dummy = dummiesBeingRecycled.DirectGet(i);
 				if (dummy.TimeLeft <= 0)
 				{
 					SetUnitX(dummy.Dummy, 0);
 					SetUnitY(dummy.Dummy, 0);
-					dummiesReady.Add(dummy.Dummy);
+					dummiesReady.DirectAdd(dummy.Dummy);
 
+					dummiesBeingRecycled.DirectMove(size, i);
 					size--;
-					dummiesBeingRecycled[i] = dummiesBeingRecycled[size];
 					dummiesBeingRecycled.RemoveAt(size);
+					i++;
 				}
 				else
 				{
@@ -69,7 +70,7 @@ namespace WCSharp.Dummies
 			{
 				TimerSystem.Add(timer);
 			}
-			dummiesBeingRecycled.Add(new DummyBeingRecycled(dummy, recycleTime));
+			dummiesBeingRecycled.DirectAdd(new DummyBeingRecycled(dummy, recycleTime));
 		}
 
 		/// <summary>

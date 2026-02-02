@@ -6,7 +6,7 @@ namespace WCSharp.Timers
 	/// Timer that contains a set of <see cref="ICollectiveAction"/> that will all be executed at once per timeout.
 	/// </summary>
 	public class TimerSetCollective<T> : TimerSet<T>
-		where T : ICollectiveAction
+		where T : class, ICollectiveAction
 	{
 		/// <summary>
 		/// Creates a new timer set with the given parameters.

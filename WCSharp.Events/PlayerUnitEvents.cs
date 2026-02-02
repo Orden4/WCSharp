@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using WCSharp.Api;
 using WCSharp.Events.EventHandlers.PlayerUnitEventHandlers;
 using WCSharp.Shared.Data;
+using WCSharp.Shared.Extensions;
 using static WCSharp.Api.Common;
 
 namespace WCSharp.Events
@@ -194,7 +195,7 @@ namespace WCSharp.Events
 			else
 			{
 				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
-				pendingUpdates.Add(() => Register(@event, action));
+				pendingUpdates.DirectAdd(() => Register(@event, action));
 			}
 		}
 
@@ -209,7 +210,7 @@ namespace WCSharp.Events
 			else
 			{
 				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
-				pendingUpdates.Add(() => Register(@event, action, filterId));
+				pendingUpdates.DirectAdd(() => Register(@event, action, filterId));
 			}
 		}
 
@@ -224,7 +225,7 @@ namespace WCSharp.Events
 			else
 			{
 				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
-				pendingUpdates.Add(() => Register(@event, action, handle));
+				pendingUpdates.DirectAdd(() => Register(@event, action, handle));
 			}
 		}
 
@@ -388,7 +389,7 @@ namespace WCSharp.Events
 			else
 			{
 				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
-				pendingUpdates.Add(() => Unregister(@event, action));
+				pendingUpdates.DirectAdd(() => Unregister(@event, action));
 			}
 		}
 
@@ -403,7 +404,7 @@ namespace WCSharp.Events
 			else
 			{
 				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
-				pendingUpdates.Add(() => Unregister(@event, action, filterId));
+				pendingUpdates.DirectAdd(() => Unregister(@event, action, filterId));
 			}
 		}
 
@@ -418,7 +419,7 @@ namespace WCSharp.Events
 			else
 			{
 				AbstractPlayerUnitEventHandler.RequiresUpdate = true;
-				pendingUpdates.Add(() => Unregister(@event, action, handle));
+				pendingUpdates.DirectAdd(() => Unregister(@event, action, handle));
 			}
 		}
 

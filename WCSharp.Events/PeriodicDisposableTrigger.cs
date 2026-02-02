@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WCSharp.Shared.Extensions;
 
 namespace WCSharp.Events
 {
@@ -9,7 +10,7 @@ namespace WCSharp.Events
 	/// <para>Has additional functionality for disposing of actions when they end.</para>
 	/// </summary>
 	public class PeriodicDisposableTrigger<T>
-		where T : IPeriodicDisposableAction
+		where T : class, IPeriodicDisposableAction
 	{
 		private readonly List<T> actions;
 		private readonly PeriodicEvent timerEvent;
@@ -48,26 +49,22 @@ namespace WCSharp.Events
 		private bool Periodic()
 		{
 			var size = this.actions.Count;
-			var i = 0;
 
-			while (i < size)
+			for (var i = 1; i <= size; i++)
 			{
-				var action = this.actions[i];
+				var action = this.actions.DirectGet(i);
 				if (action.Active)
 				{
 					action.Action();
 				}
 
-				if (action.Active)
+				if (!action.Active)
 				{
-					i++;
-				}
-				else
-				{
-					size--;
-					this.actions[i] = this.actions[size];
-					this.actions.RemoveAt(size);
 					action.Dispose();
+					this.actions.DirectMove(size, i);
+					size--;
+					this.actions.RemoveAt(size);
+					i--;
 				}
 			}
 

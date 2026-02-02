@@ -6,7 +6,7 @@ namespace WCSharp.Timers
 	/// Timer that contains a set of <see cref="ICollectiveDisposableAction"/> that will all be executed at once per timeout.
 	/// </summary>
 	public class TimerSetCollectiveDisposable<T> : TimerSetCollective<T>
-		where T : ICollectiveDisposableAction
+		where T : class, ICollectiveDisposableAction
 	{
 		/// <inheritdoc/>
 		public TimerSetCollectiveDisposable(float timeout) : base(timeout)

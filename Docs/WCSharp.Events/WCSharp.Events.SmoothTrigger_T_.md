@@ -10,7 +10,7 @@ Unlike [PeriodicTrigger&lt;T&gt;](WCSharp.Events.PeriodicTrigger_T_.md 'WCSharp\
 
 ```csharp
 public class SmoothTrigger<T>
-    where T : WCSharp.Events.ISmoothAction
+    where T : class, WCSharp.Events.ISmoothAction
 ```
 #### Type parameters
 

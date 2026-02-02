@@ -7,7 +7,7 @@ Timer that contains a set of [ICollectiveAction](WCSharp.Timers.ICollectiveActio
 
 ```csharp
 public class TimerSetCollective<T> : WCSharp.Timers.TimerSet<T>
-    where T : WCSharp.Timers.ICollectiveAction
+    where T : class, WCSharp.Timers.ICollectiveAction
 ```
 #### Type parameters
 

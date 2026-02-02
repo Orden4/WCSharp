@@ -10,7 +10,7 @@ Has additional functionality for disposing of actions when they end.
 
 ```csharp
 public class PeriodicDisposableTrigger<T>
-    where T : WCSharp.Events.IPeriodicDisposableAction
+    where T : class, WCSharp.Events.IPeriodicDisposableAction
 ```
 #### Type parameters
 

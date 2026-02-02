@@ -9,7 +9,7 @@ Each action has its own individual timeout.
 
 ```csharp
 public class TimerSetSmooth<T> : WCSharp.Timers.TimerSet<T>
-    where T : WCSharp.Timers.ISmoothAction
+    where T : class, WCSharp.Timers.ISmoothAction
 ```
 #### Type parameters
 

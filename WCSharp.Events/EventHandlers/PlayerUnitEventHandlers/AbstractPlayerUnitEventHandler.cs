@@ -135,7 +135,7 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 				EnableTrigger(this.trigger);
 			}
 
-			this.eventSets.Add(eventSet);
+			this.eventSets.DirectAdd(eventSet);
 			return eventSet;
 		}
 

@@ -201,7 +201,8 @@ namespace WCSharp.Api
 		/// @CSharpLua.Get = "BlzGetUnitOrderCount({this})"
 		public extern int OrderCount { get; }
 		/// @CSharpLua.Get = "GetUnitLevel({this})"
-		public extern int Level { get; }
+		/// @CSharpLua.Set = "BlzSetUnitIntegerField({this}, UNIT_IF_LEVEL, {0})"
+		public extern int Level { get; set; }
 		/// @CSharpLua.Get = "GetUnitFoodUsed({this})"
 		public extern int FoodUsed { get; }
 		/// @CSharpLua.Get = "GetUnitFoodMade({this})"

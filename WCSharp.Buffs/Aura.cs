@@ -163,13 +163,13 @@ namespace WCSharp.Buffs
 			{
 				SearchIntervalLeft = SearchInterval;
 				var units = GetAuraTargets();
-				for (var i = 0; i < units.Count; i++)
+				for (var i = 1; i <= units.Count; i++)
 				{
-					var unit = units[i];
+					var unit = units.DirectGet(i);
 					var found = false;
-					for (var j = 0; j < this.activeBuffs.Count; j++)
+					for (var j = 1; j <= this.activeBuffs.Count; j++)
 					{
-						var activeBuff = this.activeBuffs[j];
+						var activeBuff = this.activeBuffs.DirectGet(j);
 						if (activeBuff.Unit == unit)
 						{
 							activeBuff.Duration = Duration;
@@ -191,13 +191,16 @@ namespace WCSharp.Buffs
 				SearchIntervalLeft -= BuffSystem.TickInterval;
 			}
 
-			for (var i = this.activeBuffs.Count - 1; i >= 0; i--)
+			var size = this.activeBuffs.Count;
+			for (var i = 1; i <= size; i++)
 			{
-				var buff = this.activeBuffs[i];
+				var buff = this.activeBuffs.DirectGet(i);
 				if (buff.Duration <= 0)
 				{
 					buff.Buff.Stacks--;
-					this.activeBuffs.RemoveAt(i);
+					this.activeBuffs.DirectNilShift(i, size);
+					size--;
+					i--;
 				}
 				else
 				{
