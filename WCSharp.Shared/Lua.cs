@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WCSharp.Shared
+﻿namespace WCSharp.Shared
 {
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 	/// <summary>
@@ -34,9 +32,6 @@ namespace WCSharp.Shared
 		/// </summary>
 		/// @CSharpLua.Template = "{0}({*1})"
 		public static extern object Call(object obj, params object[] args);
-
-		/// @CSharpLua.Template = "{0}[{2} + 1] = {1}"
-		internal static extern void AddDirect<T>(this List<T> list, T item, int index);
 	}
 #pragma warning restore CS0626 // Method, operator, or accessor is marked external and has no attributes on it
 }

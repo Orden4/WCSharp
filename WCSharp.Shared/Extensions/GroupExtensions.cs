@@ -80,7 +80,7 @@ namespace WCSharp.Shared.Extensions
 			var list = new List<unit>();
 			for (var i = 0; i < size; i++)
 			{
-				list.AddDirect(BlzGroupUnitAt(group, i), i);
+				list.DirectSet(BlzGroupUnitAt(group, i), i + 1);
 			}
 			return list;
 		}
@@ -98,8 +98,8 @@ namespace WCSharp.Shared.Extensions
 				var unit = BlzGroupUnitAt(group, i);
 				if (predicate.Invoke(unit))
 				{
-					list.AddDirect(unit, count);
 					count++;
+					list.DirectSet(unit, count);
 				}
 			}
 			return list;

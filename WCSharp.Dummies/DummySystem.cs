@@ -52,7 +52,6 @@ namespace WCSharp.Dummies
 					dummiesBeingRecycled.DirectMove(size, i);
 					size--;
 					dummiesBeingRecycled.RemoveAt(size);
-					i++;
 				}
 				else
 				{
