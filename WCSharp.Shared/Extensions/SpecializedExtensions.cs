@@ -55,7 +55,7 @@ namespace WCSharp.Shared.Extensions
 		/// </summary>
 		/// <param name="list">The list to modify.</param>
 		/// <param name="item">The item to add.</param>
-		/// @CSharpLua.Template = "{0}[#{0}] = {1}"
+		/// @CSharpLua.Template = "{0}[#{0} + 1] = {1}"
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false)]
 		public static extern void DirectAdd<T>(this List<T> list, T item);
 
