@@ -1,4 +1,5 @@
-﻿using WCSharp.Api;
+﻿using System;
+using WCSharp.Api;
 using WCSharp.Shared;
 using WCSharp.Timers;
 using static WCSharp.Api.Common;
@@ -8,7 +9,7 @@ namespace WCSharp.Lightnings
 	/// <summary>
 	/// Represents a single lightning instance. Add to <see cref="LightningSystem"/> to activate.
 	/// </summary>
-	public class Lightning : ICollectiveAction
+	public class Lightning : ICollectiveDisposableAction
 	{
 		/// <inheritdoc/>
 		public bool Active { get; set; }
@@ -216,7 +217,7 @@ namespace WCSharp.Lightnings
 			this.age += LightningSystem.TickInterval;
 			if (this.age > Duration - FadeDuration)
 			{
-				Alpha -= this.transparencyRate;
+				Alpha = MathF.Max(0, Alpha - this.transparencyRate);
 				SetLightningColor(this.lightning, Red, Green, Blue, Alpha);
 			}
 
