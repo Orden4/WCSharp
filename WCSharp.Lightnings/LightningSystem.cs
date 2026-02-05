@@ -9,7 +9,7 @@ namespace WCSharp.Lightnings
 	/// </summary>
 	public static class LightningSystem
 	{
-		private static readonly TimerSetCollective<Lightning> timerSet = new(TimerSystem.DEFAULT_TICK_INTERVAL);
+		private static readonly TimerSetCollectiveDisposable<Lightning> timerSet = new(TimerSystem.DEFAULT_TICK_INTERVAL);
 		/// <summary>
 		/// All active lightnings.
 		/// </summary>
