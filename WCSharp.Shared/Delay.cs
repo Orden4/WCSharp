@@ -31,10 +31,11 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static void Add(Action func)
 		{
+			if (func == null)
+				throw new ArgumentNullException(nameof(func));
 			if (funcs.Count == 0)
-			{
 				TimerStart(timer, 0.0f, false, execute);
-			}
+
 			funcs.DirectAdd(func);
 		}
 

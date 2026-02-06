@@ -187,6 +187,9 @@ namespace WCSharp.Events
 
 		private static void Register(int @event, Action action)
 		{
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
 			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
 				var handler = GetOrCreateHandler(@event);
@@ -201,6 +204,9 @@ namespace WCSharp.Events
 
 		private static void Register(int @event, Action action, int filterId)
 		{
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
 			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
 				var filterFunc = filterFuncIdsByEvent[@event];
@@ -216,6 +222,9 @@ namespace WCSharp.Events
 
 		private static void Register(int @event, Action action, handle handle)
 		{
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
 			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
 				var filterFunc = filterFuncHandlesByEvent[@event];
@@ -381,6 +390,9 @@ namespace WCSharp.Events
 
 		private static void Unregister(int @event, Action action)
 		{
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
 			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
 				var handler = GetOrCreateHandler(@event);
@@ -395,6 +407,9 @@ namespace WCSharp.Events
 
 		private static void Unregister(int @event, Action action, int filterId)
 		{
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
 			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
 				var filterFunc = filterFuncIdsByEvent[@event];
@@ -410,6 +425,9 @@ namespace WCSharp.Events
 
 		private static void Unregister(int @event, Action action, handle handle)
 		{
+			if (action == null)
+				throw new ArgumentNullException(nameof(action));
+
 			if (AbstractPlayerUnitEventHandler.Depth == 0)
 			{
 				var filterFunc = filterFuncHandlesByEvent[@event];

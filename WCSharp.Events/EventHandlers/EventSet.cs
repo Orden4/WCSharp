@@ -27,13 +27,17 @@ namespace WCSharp.Events.EventHandlers
 			if (index == -1)
 				return false;
 
-			var lastIndex = this.actions.Count - 1;
-			if (lastIndex > 0)
+			var count = this.actions.Count;
+			if (count == 1)
 			{
-				this.actions[index] = this.actions[lastIndex];
+				this.actions.DirectNil(count);
+				return true;
 			}
-			this.actions.RemoveAt(lastIndex);
-			return lastIndex == 0;
+			else
+			{
+				this.actions.DirectNilShift(index + 1, count);
+				return false;
+			}
 		}
 
 		public void Run()

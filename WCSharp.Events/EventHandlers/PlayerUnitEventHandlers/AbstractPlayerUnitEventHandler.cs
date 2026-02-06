@@ -145,18 +145,17 @@ namespace WCSharp.Events.EventHandlers.PlayerUnitEventHandlers
 			if (index == -1)
 				throw new Exception("Attempting to remove an event that does not exist.");
 
-			var lastIndex = this.eventSets.Count - 1;
-			if (lastIndex == 0)
+			var count = this.eventSets.Count;
+			if (count == 1)
 			{
 				this.active = false;
 				DisableTrigger(this.trigger);
+				this.eventSets.DirectNil(count);
 			}
 			else
 			{
-				this.eventSets[index] = this.eventSets[lastIndex];
+				this.eventSets.DirectNilShift(index + 1, count);
 			}
-
-			this.eventSets.RemoveAt(lastIndex);
 		}
 	}
 }

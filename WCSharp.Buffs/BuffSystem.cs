@@ -183,8 +183,7 @@ namespace WCSharp.Buffs
 			var list = GetBuffsOnUnit(unit);
 			for (var i = 1; i <= list.Count; i++)
 			{
-				var buff = list.DirectGet(i);
-				buff.TargetPlayer = owner;
+				list.DirectGet(i).TargetPlayer = owner;
 			}
 		}
 

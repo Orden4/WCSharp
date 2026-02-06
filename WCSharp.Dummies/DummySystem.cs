@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WCSharp.Api;
 using WCSharp.Events;
 using WCSharp.Shared.Extensions;
@@ -65,10 +66,11 @@ namespace WCSharp.Dummies
 		/// </summary>
 		public static void RecycleDummy(unit dummy, float recycleTime = 2.0f)
 		{
+			if (dummy == null)
+				throw new ArgumentNullException(nameof(dummy));
 			if (dummiesBeingRecycled.Count == 0)
-			{
 				TimerSystem.Add(timer);
-			}
+
 			dummiesBeingRecycled.DirectAdd(new DummyBeingRecycled(dummy, recycleTime));
 		}
 

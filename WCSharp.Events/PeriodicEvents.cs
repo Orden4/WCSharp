@@ -58,7 +58,7 @@ namespace WCSharp.Events
 		public static PeriodicEvent AddPeriodicEvent(Func<bool> method, double period = SYSTEM_INTERVAL)
 		{
 			var timerEvent = new PeriodicEvent(method, period);
-			timerEvents.Add(timerEvent);
+			timerEvents.DirectAdd(timerEvent);
 			return timerEvent;
 		}
 
@@ -67,7 +67,9 @@ namespace WCSharp.Events
 		/// </summary>
 		public static void AddPeriodicEvent(PeriodicEvent timerEvent)
 		{
-			timerEvents.Add(timerEvent);
+			if (timerEvent == null)
+				throw new ArgumentNullException(nameof(timerEvent));
+			timerEvents.DirectAdd(timerEvent);
 		}
 
 		private static void Tick()
