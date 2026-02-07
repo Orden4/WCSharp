@@ -31,7 +31,7 @@ namespace WCSharp.Timers
 		private static readonly Dictionary<float, TimerRoot> rootsByTimeout = new();
 		private static readonly TimerRoot nativeRoot = new(DEFAULT_TICK_INTERVAL);
 		private static readonly timer timer = Initialize();
-		private static readonly bool debug;
+		private static bool debug;
 
 		private static timer Initialize()
 		{
@@ -103,6 +103,7 @@ namespace WCSharp.Timers
 		/// </summary>
 		public static void EnableDebug()
 		{
+			debug = true;
 			timer.Start(TickInterval, true, GuardedAction);
 		}
 

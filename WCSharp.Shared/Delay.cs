@@ -47,6 +47,9 @@ namespace WCSharp.Shared
 				funcs.DirectGet(i)();
 			}
 			funcs.RemoveRange(0, size);
+
+			if (funcs.Count > 0)
+				TimerStart(timer, 0.0f, false, execute);
 		}
 
 		private static void ExecuteAllDebug()
@@ -63,7 +66,11 @@ namespace WCSharp.Shared
 			{
 				Console.WriteLine(ex);
 			}
+
 			funcs.RemoveRange(0, size);
+
+			if (funcs.Count > 0)
+				TimerStart(timer, 0.0f, false, execute);
 		}
 	}
 }
