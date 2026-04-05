@@ -14,7 +14,7 @@ namespace WCSharp.Shared
 	{
 		private static readonly timer timer = CreateTimer();
 		private static readonly List<Action> funcs = new();
-		private static Action execute = ExecuteAll;
+		private static bool debug;
 
 		/// <summary>
 		/// Call this method to automatically wrap your actions in a try/catch, so that exceptions that lead back to <see cref="Delay"/> will automatically output information.
@@ -22,7 +22,7 @@ namespace WCSharp.Shared
 		/// </summary>
 		public static void EnableDebug()
 		{
-			execute = ExecuteAllDebug;
+			debug = true;
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace WCSharp.Shared
 			if (func == null)
 				throw new ArgumentNullException(nameof(func));
 			if (funcs.Count == 0)
-				TimerStart(timer, 0.0f, false, execute);
+				TimerStart(timer, 0.0f, false, ExecuteAll);
 
 			funcs.DirectAdd(func);
 		}
@@ -42,19 +42,7 @@ namespace WCSharp.Shared
 		private static void ExecuteAll()
 		{
 			var size = funcs.Count;
-			for (var i = 1; i <= size; i++)
-			{
-				funcs.DirectGet(i)();
-			}
-			funcs.RemoveRange(0, size);
 
-			if (funcs.Count > 0)
-				TimerStart(timer, 0.0f, false, execute);
-		}
-
-		private static void ExecuteAllDebug()
-		{
-			var size = funcs.Count;
 			try
 			{
 				for (var i = 1; i <= size; i++)
@@ -64,13 +52,15 @@ namespace WCSharp.Shared
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex);
+				if (debug)
+				{
+					Console.WriteLine(ex);
+				}
 			}
 
 			funcs.RemoveRange(0, size);
-
 			if (funcs.Count > 0)
-				TimerStart(timer, 0.0f, false, execute);
+				TimerStart(timer, 0.0f, false, ExecuteAll);
 		}
 	}
 }
